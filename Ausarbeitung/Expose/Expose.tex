@@ -9,11 +9,9 @@
 \usepackage{cite}
 \usepackage{pdfpages}
 \usepackage{rotating}
-%\usepackage{tocstyle}
-%\documentclass[german]{seminar}
-\setlength{\parindent}{0pt} %\ neuer Absatz ohne Einrücken
+
 \title{
-Exposé:\\
+Exposé zur Bachelorarbeit:\\
  \textbf{"Implementierung von Transferfunktionen zur Visualisierung von Volumen Modellen auf einer AR-Brille"}
 }
 
@@ -22,31 +20,55 @@ Exposé:\\
 \author{Lukas Diewald, uodzo@student.kit.edu}
 
 \begin{document}
+
 \maketitle
 
-\clearpage
 \section{Motivation}
-Computergestütze Verfahren werden in der Medizin immer wichtiger. Sie erleichtern dem Arzt seine Arbeit und senken die Wahrscheinlichkeit, dass bei einem Eingriffen oder einer Behandlungen ein Fehler gemacht wird.
+
+Computergestütze Verfahren werden in der Medizin immer wichtiger. Sie erleichtern dem Arzt seine Arbeit und senken die Wahrscheinlichkeit, dass bei einem Eingriff oder einer Behandlungen ein Fehler gemacht wird.
+\newline
+Eine Ventrikelpunktion ist ein operativer Eingriff am Gehirn, der von einem Neurochirugen durchgeführt wird. Er dient zur Entnahme von Nervenflüssigkeit, die im Anschluss untersucht werden kann. Der Chirug führt hierbei eine Bohrlochtrepantation am Kocherpunkt durch, also er bohrt an einem speziellen Punkt ein Loch in die Schädeldecke. Der Eingriff muss möglichst genau erflogen, um ungewollte Schäden am Gehirn zu vermeiden.
+
 
 \section{Problemstellung}
-Eine Ventrikelpunktion ist ein operativer Eingriff am Gehirn, der von einem Neurochirugen durchgeführt wird. Er dient zur Entnahme von Nervenflüssigkeit, die im Anschluss untersucht werden kann. Der Chirug führt hierbei eine Bohrlochtrepantation am Kocherpunkt durch, also er bohrt an einem speziellen Punkt ein Loch in die Schädeldecke. Der Eingriff muss möglichst genau erflogen, um ungewollte Schäden am Gehirn zu vermeiden.
+
+Diese Arbeit befasst sich mit der Visualisierung des Gehirns. Hierzu wird die AR-Brille  HoloLens von Microsoft verwendet. Abhängig von den verschiedenen Gewebestrukturen- und dichten wird das Gehirn dargestellt. Das Hauptaugenmerk liegt dabei auf dem Kenntlich machen des Ventrikelsystems.
 \newline
-Ziel dieser Bachelorarbeit ist, das Volumenmodell eines Gehirns mithilfe einer AR-Brille zu visualisieren. Weiterhin soll es mithilfe von Transferfunktionen möglich sein einzelne Gebiete des Gehirns hervorzuheben.
+Es soll möglich sein verschiedene Bereiche des Kopfes hervorzuheben um dem Arzt die Auswertung der CT/MRT-Bilder zu erleichtern. Dies geschieht mit Hilfe von Transferfunktionen, die die unterschiedlichen Regionen abhängig von deren Gewebeinformation farblich markieren und/oder die Transparenz entsprechend anpassen. Hierbei soll dem Benutzer schon vorgefertigte Transferfunktionen bereit gestellt werden. Weiterhin soll er benutzerdefinierte Funktionen erstellen können, die gewünschte Bereiche hervorheben.
+\newline
+Des Weiteren soll ein interaktives arbeiten mit der AR-Brille möglich sein. Mithilfe des Clickers oder speziellen Gesten soll der Anwender mit dem Modell interagieren können. So soll es beispielsweise möglich sein, dass er das Modell dreht, oder einen Schnitt ausführt, um gewisse Bereiche des Gehirns sich genauer anschauen zu können.
+\newline
+Außer der Darstellung auf der AR-Brille, soll es auch möglich sein, sich die Visualisierung auf dem Computer darstellen lassen zu können. Dies wird mit Unity möglich sein.
+
 
 \section{State of the art}
+\subsection{Transferfunktion zur Transparenz}
+
+Die Arbeit von Reitinger, Zach, Bornik und Beichel befasst sich mit der Anwendung von Transferfunktionen zur Unterstützung der Planung von Operationen an der Leber. Ihre Vorgehen zum erstellen von Transferfunktionen besteht dabei aus 2 Teilen.
+\newline
+Einerseits kann der Nutzer einen peak Wert bestimmen, nach dem sich die Intensität der Darstellung richtet. Voxel mit dem peak Wert, werden in voller Intensität dargestellt. Abhängig von der gewählten shape Art werden Voxel mit größerer Differenz zum peak  bis zu einem Schwellenwert mit maximaler, linear sinkender oder Gaußförmig sinkender Intensität dargestellt. Voxel die eine gewissen Differenz überschreiten werden mit dem Mindestwert angezeigt.
+Der peak Wert wird mithilfe eines Stiftes im CT-Bild ausgewählt. Hierbei ist zu beachten, dass beim Auslesen des peak Wertes die 26 Nachbarvoxel aus repräsentativen Gründen miteinbezogen werden. Dies geschieht in dem der Median des ausgewählten Voxels und seiner Nachbarn berechnet wird.
+\newline
+Des Weiteren wird von einem ausgewählte Punk aus zu jedem andern Voxel die euklidische Distanz bestimmt und abhängig davon die Transparenz berechnet. Diese kann linear abfallen oder bis zu einem gewissen Abstand konstant bleiben und dann abfallen.
+\newline
+In einem letzten Schritt werden die beiden Ergebnisse multipliziert um die endgültige Darstellung zu erhalten.
+
+
+\subsection{2D Histogramm}
+
+In der Arbeit von Wesarg und Kirschner geht es um die Benutzung von 2D Histogrammen für Transferfunktionen zur Unterscheidung von verschiedenen Gewebearten, die bei CT-Bildern ähnliche Grauwerte haben.
+\newline
+Dabei wird für Voxel berechnet wie viele Schritt in die jeweilige Richtung der 26 Nachbarn gemacht werden kann,(grau ähnlich)???. Die Akkumulation aller Werte ergibt dann die Größe der Struktur. Hierbei wird zur weiteren Verbesserung nur der größere Wert zweier Richtungen genommen.
+\newline
+Das Histogramm hat folglich als zwei Eingabe die Strukturgröße und den Grauwert. 
+
+\subsection{}
+
 
 \section{Vorgehen}
-\begin{itemize}
-	\item Literaturrecherche
-	\item Berechnung von Volumenmodellen recherchieren
-	\item Einarbeiten in Unity/c
-	\item 
-	\item GUI zum Einlesen von CTs
-	\item Testen
-\end{itemize}
-\section{Zeitliche Planung}
-Mai-Juli
 
+\section{Zeitliche Planung}
+Mai-Sept
 \section{Literatur}
 
 
