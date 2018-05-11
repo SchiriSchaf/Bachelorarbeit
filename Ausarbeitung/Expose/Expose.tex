@@ -17,7 +17,7 @@ Exposé zur Bachelorarbeit:\\
 
 
 %\date{26.04.2018}
-\author{Lukas Diewald, uodzo@student.kit.edu}
+\author{Lukas Diewald, lukas.diewald@student.kit.edu}
 
 \begin{document}
 
@@ -25,14 +25,14 @@ Exposé zur Bachelorarbeit:\\
 
 \section{Motivation}
 
-Computergestütze Verfahren werden in der Medizin immer wichtiger. Sie erleichtern dem Arzt seine Arbeit und senken die Wahrscheinlichkeit, dass bei einem Eingriff oder einer Behandlungen ein Fehler gemacht wird.
+Computergestützte Verfahren werden in der Medizin immer wichtiger. Sie erleichtern dem Arzt seine Arbeit und senken die Wahrscheinlichkeit, dass bei einem Eingriff oder einer Behandlungen ein Fehler gemacht wird.
 \newline
-Eine Ventrikelpunktion ist ein operativer Eingriff am Gehirn, der von einem Neurochirugen durchgeführt wird. Er dient zur Entnahme von Nervenflüssigkeit, die im Anschluss untersucht werden kann. Der Chirug führt hierbei eine Bohrlochtrepantation am Kocherpunkt durch, also er bohrt an einem speziellen Punkt ein Loch in die Schädeldecke. Der Eingriff muss möglichst genau erflogen, um ungewollte Schäden am Gehirn zu vermeiden.
+Eine Ventrikelpunktion ist ein operativer Eingriff am Gehirn, der von einem Neurochirurgen durchgeführt wird. Er dient zur Entnahme von Nervenflüssigkeit, die im Anschluss untersucht werden kann. Der Chirurg führt hierbei eine Bohrlochtrepantation am Kocherpunkt durch, also er bohrt an einem speziellen Punkt ein Loch in die Schädeldecke. Der Eingriff muss möglichst genau erflogen, um ungewollte Schäden am Gehirn zu vermeiden.
 
 
 \section{Problemstellung}
 
-Diese Arbeit befasst sich mit der Visualisierung des Gehirns. Hierzu wird die AR-Brille  HoloLens von Microsoft verwendet. Abhängig von den verschiedenen Gewebestrukturen- und dichten wird das Gehirn dargestellt. Das Hauptaugenmerk liegt dabei auf dem Kenntlich machen des Ventrikelsystems.
+Diese Arbeit befasst sich mit der Visualisierung des Gehirns. Hierzu wird die AR-Brille  HoloLens von Microsoft verwendet. Abhängig von den verschiedenen Gewebestrukturen und -dichten wird das Gehirn dargestellt. Das Hauptaugenmerk liegt dabei auf dem Kenntlich machen des Ventrikelsystems.
 \newline
 Es soll möglich sein verschiedene Bereiche des Kopfes hervorzuheben um dem Arzt die Auswertung der CT/MRT-Bilder zu erleichtern. Dies geschieht mit Hilfe von Transferfunktionen, die die unterschiedlichen Regionen abhängig von deren Gewebeinformation farblich markieren und/oder die Transparenz entsprechend anpassen. Hierbei soll dem Benutzer schon vorgefertigte Transferfunktionen bereit gestellt werden. Weiterhin soll er benutzerdefinierte Funktionen erstellen können, die gewünschte Bereiche hervorheben.
 \newline
@@ -44,32 +44,69 @@ Außer der Darstellung auf der AR-Brille, soll es auch möglich sein, sich die V
 \section{State of the art}
 \subsection{Transferfunktion zur Transparenz}
 
-Die Arbeit von Reitinger, Zach, Bornik und Beichel befasst sich mit der Anwendung von Transferfunktionen zur Unterstützung der Planung von Operationen an der Leber. Ihre Vorgehen zum erstellen von Transferfunktionen besteht dabei aus 2 Teilen.
+Die Arbeit von Reitinger \cite{reitinger2004user} befasst sich mit der Anwendung von Transferfunktionen zur Unterstützung der Planung von Operationen an der Leber. Ihre Vorgehen zum erstellen von Transferfunktionen besteht dabei aus 2 Teilen.
 \newline
 Einerseits kann der Nutzer einen peak Wert bestimmen, nach dem sich die Intensität der Darstellung richtet. Voxel mit dem peak Wert, werden in voller Intensität dargestellt. Abhängig von der gewählten shape Art werden Voxel mit größerer Differenz zum peak  bis zu einem Schwellenwert mit maximaler, linear sinkender oder Gaußförmig sinkender Intensität dargestellt. Voxel die eine gewissen Differenz überschreiten werden mit dem Mindestwert angezeigt.
-Der peak Wert wird mithilfe eines Stiftes im CT-Bild ausgewählt. Hierbei ist zu beachten, dass beim Auslesen des peak Wertes die 26 Nachbarvoxel aus repräsentativen Gründen miteinbezogen werden. Dies geschieht in dem der Median des ausgewählten Voxels und seiner Nachbarn berechnet wird.
 \newline
-Des Weiteren wird von einem ausgewählte Punk aus zu jedem andern Voxel die euklidische Distanz bestimmt und abhängig davon die Transparenz berechnet. Diese kann linear abfallen oder bis zu einem gewissen Abstand konstant bleiben und dann abfallen.
+Des Weiteren wird von einem ausgewählte Punk aus zu jedem andern Voxel die euklidische Distanz bestimmt und abhängig davon die Transparenz berechnet.
 \newline
 In einem letzten Schritt werden die beiden Ergebnisse multipliziert um die endgültige Darstellung zu erhalten.
 
 
 \subsection{2D Histogramm}
 
-In der Arbeit von Wesarg und Kirschner geht es um die Benutzung von 2D Histogrammen für Transferfunktionen zur Unterscheidung von verschiedenen Gewebearten, die bei CT-Bildern ähnliche Grauwerte haben.
-\newline
-Dabei wird für Voxel berechnet wie viele Schritt in die jeweilige Richtung der 26 Nachbarn gemacht werden kann,(grau ähnlich)???. Die Akkumulation aller Werte ergibt dann die Größe der Struktur. Hierbei wird zur weiteren Verbesserung nur der größere Wert zweier Richtungen genommen.
-\newline
-Das Histogramm hat folglich als zwei Eingabe die Strukturgröße und den Grauwert. 
+\subsubsection{SSE}
 
-\subsection{}
+In der Arbeit von Wesarg und Kirschner \cite{wesarg2009structure} und später in \cite{wesarg20102d} geht es um die Benutzung von 2D Histogrammen für Transferfunktionen zur Unterscheidung von verschiedenen Gewebearten, die bei CT-Bildern ähnliche Grauwerte haben.
+\newline
+Dabei wird für Voxel berechnet wie viele Schritt in die jeweilige Richtung der 26 Nachbarn gemacht werden kann, ohne, dass der Grauwert um mehr als eine gewisse Differenz verändert. Die Akkumulation aller Werte ergibt dann die Größe der Struktur. Hierbei wird zur weiteren Verbesserung nur der größere Wert zweier Richtungen genommen.
+\newline
+Das Histogramm hat folglich als zwei Eingabe die Strukturgröße und den Grauwert.
+
+
+\subsubsection{LH-TF}
+
+Alle Voxel werden eingeteilt in Voxel innerhalb eines Materials oder Voxel an der Grenze zweier Materialien. Mithilfe der Gradientenwerte, werden alle Voxel des Volumens eingeteilt. Die Low und die High Werte der Grenzvoxel beschreiben die beiden Materialien an denen die Grenze verläuft. Sie werden berechnet indem das Gradientenfeld in beide Richtungen integriert wird bis der Low und der High Wert gefunden wurden. 
+\newline
+Das Histogramm bildet sich dann aus den Low und High Werten. \cite{sereda2006visualization}
+
+
+\subsection{Verbesserung SG-TF}
+
+Die Arbeit von Shouren Lan \cite{lan2017improving} befasst sich mit der Verbesserung von 2D Transferfunktionen die auf Skalarwerten und Gradienten(SG-TF) basieren um ein Überlappen von Bereichen die nicht zusammen gehören zu vermeiden.
+\newline
+Es wird zwischen 3 verschiedenen Arten von Strukturen gesprochen:
+\begin{itemize}
+\item (i) Strukturen die keine andere Struktur berühren
+\item (ii) Strukturen die keine andere Struktur berühren, jedoch nah an einer andern liegen
+\item (iii) Strukturen die andere Strukturen berühren
+\end{itemize} 
+Wenn der Benutzer eine Region ausgewählt hat, werden zunächst alle Strukturen in dem Bereich klassifiziert und kleine Fragmente entfernt. Durch verschiedene Algorithmen werden Strukturen der Klassen (ii) durch Erosion, Dilatation, Aufteilen und neu zusammenfügen von einander getrennt. Strukturen der Klasse (iii) werden durch eine weitere niedrig dimensionale Transferfunktion getrennt. Anschließend werden durch das Aufteilen entstehende Löcher mit Hilfe von Dilatation gestopft. Als letztes wird durch eine Transferfunktion den Strukturen entsprechende Farben und Intensitäten zugewiesen.
+
+
+\subsection{Clustering}
+
+Das Paper von Binh P. Nguyen, Wei-Liang Tay und Chee-Kong Chui \cite{nguyen2012clustering} befasst sich mit dem Anwenden von Clustering auf einem Volumenmodell um mit Hilfe einer Transferfunktion medizinische Bilder effektiv und effizient darzustellen.
+\newline
+In einem Vorverarbeitungsschritt wird für jeden Voxel der Gradient berechnet, und hinterher daraus die Lower und Higher Intensitätswerte. Anschließend wird aus diesen Daten ein LH Histogramm erstellt.
+\newline
+In den ersten beiden Clusteringschritten werden zunächst Voxel mit ähnlichen  LH-Wert in Clustern zusammengefasst. Anschließend werden diese Cluster erneut in mehrere Cluster aufgeteilt, bei denen die Voxel auch im Raum nah beieinander liegen. Für diese beiden Schritte wird jeweils ein Parameter benötigt, der die maximale Distanz zum mittleren Voxel in einem Cluster bestimmt. Daraufhin werden alle Cluster hierarchisch gemerged, bis es nur noch einen gibt. Dabei werden immer die zwei paarweise räumlich am nächsten ausgesucht und es wird gespeichert welche diese waren. Anschließend kann der Benutzer durch umkehren des Algorithmus entscheiden wie viel Cluster er haben möchte. Am Ende werden die Cluster mit verschieden Farben und Intensitätswerten versehen.
+
+
+
+\subsection{Mehrdimensionale Transferfunktionen}
+
+Es existieren viele Paper zu mehrdimensionalen Transferfunktionen. Diese sind jedoch sehr komplex, für den Benutzer nicht intuitiv und damit für die gegebene Aufgabe nicht zielführend.
 
 
 \section{Vorgehen}
 
 \section{Zeitliche Planung}
 Mai-Sept
-\section{Literatur}
+
+\bibliography{Expose}{}
+\bibliographystyle{plain}
+\nocite{*}
 
 
 

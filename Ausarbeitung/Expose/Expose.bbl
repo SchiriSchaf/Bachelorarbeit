@@ -1,0 +1,42 @@
+\begin{thebibliography}{1}
+
+\bibitem{lan2017improving}
+Shouren Lan, Lisheng Wang, Yipeng Song, Yu-ping Wang, Liping Yao, Kun Sun, Bin
+  Xia, and Zongben Xu.
+\newblock Improving separability of structures with similar attributes in 2d
+  transfer function design.
+\newblock {\em IEEE transactions on visualization and computer graphics},
+  23(5):1546--1560, 2017.
+
+\bibitem{nguyen2012clustering}
+Binh~P Nguyen, Wei-Liang Tay, Chee-Kong Chui, and Sim-Heng Ong.
+\newblock A clustering-based system to automate transfer function design for
+  medical image visualization.
+\newblock {\em The Visual Computer}, 28(2):181--191, 2012.
+
+\bibitem{reitinger2004user}
+Bernhard Reitinger, Christopher Zach, Alexander Bornik, and Reinhard Beichel.
+\newblock User-centric transfer function specification in augmented reality.
+\newblock 2004.
+
+\bibitem{sereda2006visualization}
+Petr Sereda, Anna~Vilanova Bartroli, Iwo~WO Serlie, and Frans~A Gerritsen.
+\newblock Visualization of boundaries in volumetric data sets using lh
+  histograms.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  12(2):208--218, 2006.
+
+\bibitem{wesarg2009structure}
+Stefan Wesarg and Matthias Kirschner.
+\newblock Structure size enhanced histogram.
+\newblock In {\em Bildverarbeitung f{\"u}r die Medizin 2009}, pages 16--20.
+  Springer, 2009.
+
+\bibitem{wesarg20102d}
+Stefan Wesarg, Matthias Kirschner, and M~Fawad Khan.
+\newblock 2d histogram based volume visualization: combining intensity and size
+  of anatomical structures.
+\newblock {\em International journal of computer assisted radiology and
+  surgery}, 5(6):655--666, 2010.
+
+\end{thebibliography}
