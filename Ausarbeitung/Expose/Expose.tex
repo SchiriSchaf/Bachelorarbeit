@@ -38,7 +38,7 @@ Es soll möglich sein verschiedene Bereiche des Kopfes hervorzuheben um dem Arzt
 \newline
 Des Weiteren soll ein interaktives arbeiten mit der AR-Brille möglich sein. Mithilfe des Clickers oder speziellen Gesten soll der Anwender mit dem Modell interagieren können. So soll es beispielsweise möglich sein, dass er das Modell dreht, oder einen Schnitt ausführt, um gewisse Bereiche des Gehirns sich genauer anschauen zu können.
 \newline
-Außer der Darstellung auf der AR-Brille, soll es auch möglich sein, sich die Visualisierung auf dem Computer darstellen lassen zu können. Dies wird mit Unity möglich sein.
+Außer der Darstellung auf der AR-Brille, soll es auch möglich sein, sich die Visualisierung auf dem Computer darstellen lassen zu können. Dies wird mit Unity realisiert werden.
 
 
 \section{State of the art}
@@ -59,21 +59,21 @@ In einem letzten Schritt werden die beiden Ergebnisse multipliziert um die endg�
 
 In der Arbeit von Wesarg und Kirschner \cite{wesarg2009structure} und später in \cite{wesarg20102d} geht es um die Benutzung von 2D Histogrammen für Transferfunktionen zur Unterscheidung von verschiedenen Gewebearten, die bei CT-Bildern ähnliche Grauwerte haben.
 \newline
-Dabei wird für Voxel berechnet wie viele Schritt in die jeweilige Richtung der 26 Nachbarn gemacht werden kann, ohne, dass der Grauwert um mehr als eine gewisse Differenz verändert. Die Akkumulation aller Werte ergibt dann die Größe der Struktur. Hierbei wird zur weiteren Verbesserung nur der größere Wert zweier Richtungen genommen.
+Dabei wird für Voxel berechnet wie viele Schritt in die jeweilige Richtung der 26 Nachbarn gemacht werden kann, ohne, dass der Grauwert um mehr als eine gewisse Differenz verändert. Die Akkumulation aller Werte ergibt dann die Größe der Struktur. Hierbei wird zur weiteren Verbesserung nur der größere Wert zweier entgegengesetzter Richtungen genommen.
 \newline
-Das Histogramm hat folglich als zwei Eingabe die Strukturgröße und den Grauwert.
+Das Histogramm hat folglich als zwei Eingaben die Strukturgröße und den Grauwert.
 
 
 \subsubsection{LH-TF}
 
-Alle Voxel werden eingeteilt in Voxel innerhalb eines Materials oder Voxel an der Grenze zweier Materialien. Mithilfe der Gradientenwerte, werden alle Voxel des Volumens eingeteilt. Die Low und die High Werte der Grenzvoxel beschreiben die beiden Materialien an denen die Grenze verläuft. Sie werden berechnet indem das Gradientenfeld in beide Richtungen integriert wird bis der Low und der High Wert gefunden wurden. 
+Alle Voxel werden eingeteilt in Voxel innerhalb eines Materials oder Voxel an der Grenze zweier Materialien. Die Einteilung jedes Voxels erfolgt mithilfe der Gradientenwerte. Die Low und die High Werte der Grenzvoxel beschreiben die beiden Materialien an denen die Grenze verläuft. Sie werden berechnet indem das Gradientenfeld in beide Richtungen integriert wird bis der Low und der High Wert gefunden wurden. 
 \newline
 Das Histogramm bildet sich dann aus den Low und High Werten. \cite{sereda2006visualization}
 
 
 \subsection{Verbesserung SG-TF}
 
-Die Arbeit von Shouren Lan \cite{lan2017improving} befasst sich mit der Verbesserung von 2D Transferfunktionen die auf Skalarwerten und Gradienten(SG-TF) basieren um ein Überlappen von Bereichen die nicht zusammen gehören zu vermeiden.
+Die Arbeit von Shouren Lan \cite{lan2017improving} befasst sich mit der Verbesserung von 2D Transferfunktionen die auf Skalarwerten und Gradienten(SG-TF) basieren. Genauer geht es darum ein Überlappen von Bereichen die nicht zusammen gehören zu vermeiden.
 \newline
 Es wird zwischen 3 verschiedenen Arten von Strukturen gesprochen:
 \begin{itemize}
@@ -90,7 +90,7 @@ Das Paper von Binh P. Nguyen, Wei-Liang Tay und Chee-Kong Chui \cite{nguyen2012c
 \newline
 In einem Vorverarbeitungsschritt wird für jeden Voxel der Gradient berechnet, und hinterher daraus die Lower und Higher Intensitätswerte. Anschließend wird aus diesen Daten ein LH Histogramm erstellt.
 \newline
-In den ersten beiden Clusteringschritten werden zunächst Voxel mit ähnlichen  LH-Werten in Clustern zusammengefasst. Anschließend werden diese Cluster erneut in mehrere Cluster aufgeteilt, bei denen die Voxel auch im Raum nah beieinander liegen. Für diese beiden Schritte wird jeweils ein Parameter benötigt, der die maximale Distanz zum mittleren Voxel in einem Cluster bestimmt. Daraufhin werden alle Cluster hierarchisch gemerged, bis es nur noch einen gibt. Dabei werden immer die zwei paarweise räumlich am nächsten ausgesucht und es wird gespeichert welche diese waren. Anschließend kann der Benutzer durch umkehren des Algorithmus entscheiden wie viel Cluster er haben möchte. Am Ende werden die Cluster mit verschieden Farben und Intensitätswerten versehen.
+In den ersten beiden Clusteringschritten werden zunächst Voxel mit ähnlichen  LH-Werten in Clustern zusammengefasst. Anschließend werden diese Cluster erneut in mehrere Cluster aufgeteilt, bei denen die Voxel auch im Raum nah beieinander liegen. Für diese beiden Schritte wird jeweils ein Parameter benötigt, der die maximale Distanz zum mittleren Voxel in einem Cluster bestimmt. Daraufhin werden alle Cluster hierarchisch gemerged, bis es nur noch einen gibt. Dabei werden immer die zwei paarweise räumlich am nächsten ausgesucht und es wird gespeichert welche Cluster gemerged wurden. Anschließend kann der Benutzer durch umkehren des Algorithmus entscheiden wie viel Cluster er haben möchte. Am Ende werden die Cluster mit verschieden Farben und Intensitätswerten versehen.
 
 
 
@@ -101,9 +101,29 @@ Es existieren viele Paper zu mehrdimensionalen Transferfunktionen. Diese sind je
 
 \section{Vorgehen}
 
-\section{Zeitliche Planung}
-Mai-Sept
+In dieser Arbeit soll der Ansatz von Binh P. \cite{nguyen2012clustering} verfolgt und für die AR-Brille HoloLens von Microsoft angepasst werden. Ziel ist es also mit Hilfe eines auf Clustering basierendem Verfahren dem Benutzer das Ventrikelsystem möglichst genau sichtbar zu machen.
+\newline
+Der Ansatz eignet sich für dieses Projekt, aufgrund der Tatsache, dass die HoloLens über eine sehr begrenzte Rechenleistung verfügt, gut, da sich das Berechnen der Cluster als Vorverarbeitungsschritt abhanden lässt. Das der Algorithmus nur noch beliebig oft umzukehren ist, hält den Berechnungsaufwand der HoloLens gering und lässt den Benutzer beim Tragen der AR-Brille Änderungen an der Darstellungsweise vornehmen. Wie viel die Brille mit ihren Resourcen zu berechnen schafft gilt es während der Arbeit heraus zu finden.  Falls das geplante Vorgehen jedoch zu viel Rechenaufwand ist, kann der Plan geändert werden und der Anwender muss vor dem Aufsetzten der HoloLens am Computer seine Wünsche angeben.
 
+
+\section{Zeitliche Planung}
+
+\begin{tabular}{lcr}
+
+
+\textit{\textbf{Aufgabe}} & \textit{\textbf{Zeit}} & \textit{\textbf{Datum}} \\
+ Einarbeitung in den bisher vorhandenen Code & 2 Woche & 14.05. - 28.05. \\
+ Programmieren der Berechnung der Gradienten- und LH-Werte der Daten & 2 Wochen & 28.05. - 11.06. \\
+ Programmieren des ersten Clustering Schrittes(LH-Werte) & 2 Wochen & 11.06. - 25.06. \\
+ Programmieren des zweiten Clustering Schrittes(Räumliche Nähe) & 2 Wochen &  25.06. - 09.07.\\
+ Programmieren des dritten Clustering Schrittes(Hierarchisch) & 2 Wochen &  09.07. - 23.07.\\
+ Testen  &  2 Wochen & 23.07. - 06.08.\\
+ Zusammenschreiben & 4 Wochen &  06.08. - 31.08.\\
+ \end{tabular}
+
+
+
+\clearpage
 \bibliography{Expose}{}
 \bibliographystyle{plain}
 \nocite{*}
