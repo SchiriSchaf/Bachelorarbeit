@@ -1,0 +1,13 @@
+Voxel auf Kanten -> 1/8 -> Paper: Hong(Mehtod of normal...)
+LH-Werte Abbruchbedingung -> nur durch Gradienten Extremum und Wendepunkt -> Paper: Automatic Transfer Function... 
+Christian obere beide Paper schicken.
+
+
+
+
+Im Paper von Hong wird für jeden Voxel der Gradient bestimmt mithilfe seiner 64 Nachbarkanten.
+Hat man jedoch die Intensitätswerte nicht in den Kanten sondern im Zentrum eines jeden Voxels gespeichert benötigt es ein Umdenken.
+Meine Frage wäre, ist es sinnvoller das Volumenmodel umzurechnen, dass die Werte in den Kanten gespeichert werden.
+Beispielsweise indem man den Wert einer Kante aus den 8 umliegenden Voxel berechnet.
+Oder ist es sinnvoller statt denn 64 Nachbarkanten die 26 Nachbarvoxel zu betrachten?
+
