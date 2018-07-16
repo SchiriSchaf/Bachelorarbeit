@@ -1,0 +1,46 @@
+%% ==============================
+\chapter{\iflanguage{ngerman}{Stand der Wissenschenschaft und Technik}{State of the art}}
+\label{sec:state_of_the_art}
+%% ==============================
+
+\subsection{2D Histogramm}
+
+\subsubsection{SSE}
+
+In der Arbeit von Wesarg und Kirschner \cite{wesarg2009structure} und später in \cite{wesarg20102d} geht es um die Benutzung von 2D Histogrammen für Transferfunktionen zur Unterscheidung von verschiedenen Gewebearten, die bei CT-Bildern ähnliche Grauwerte haben.
+\newline
+Dabei wird für Voxel berechnet wie viele Schritt in die jeweilige Richtung der 26 Nachbarn gemacht werden kann, ohne, dass der Grauwert um mehr als eine gewisse Differenz verändert. Die Akkumulation aller Werte ergibt dann die Größe der Struktur. Hierbei wird zur weiteren Verbesserung nur der größere Wert zweier entgegengesetzter Richtungen genommen.
+\newline
+Das Histogramm hat folglich als zwei Eingaben die Strukturgröße und den Grauwert.
+
+
+\subsubsection{LH-TF}
+
+Alle Voxel werden eingeteilt in Voxel innerhalb eines Materials oder Voxel an der Grenze zweier Materialien. Die Einteilung jedes Voxels erfolgt mithilfe der Gradientenwerte. Die Low und die High Werte der Grenzvoxel beschreiben die beiden Materialien an denen die Grenze verläuft. Sie werden berechnet indem das Gradientenfeld in beide Richtungen integriert wird bis der Low und der High Wert gefunden wurden. 
+\newline
+Das Histogramm bildet sich dann aus den Low und High Werten. \cite{sereda2006visualization}
+
+
+\subsection{Verbesserung SG-TF}
+
+Die Arbeit von Shouren Lan \cite{lan2017improving} befasst sich mit der Verbesserung von 2D Transferfunktionen die auf Skalarwerten und Gradienten(SG-TF) basieren. Genauer geht es darum ein Überlappen von Bereichen die nicht zusammen gehören zu vermeiden.
+\newline
+Es wird zwischen 3 verschiedenen Arten von Strukturen gesprochen:
+\begin{itemize}
+\item (i) Strukturen die keine andere Struktur berühren
+\item (ii) Strukturen die keine andere Struktur berühren, jedoch nah an einer andern liegen
+\item (iii) Strukturen die andere Strukturen berühren
+\end{itemize} 
+Wenn der Benutzer eine Region ausgewählt hat, werden zunächst alle Strukturen in dem Bereich klassifiziert und kleine Fragmente entfernt. Durch verschiedene Algorithmen werden Strukturen der Klassen (ii) durch Erosion, Dilatation, Aufteilen und neu zusammenfügen von einander getrennt. Strukturen der Klasse (iii) werden durch eine weitere niedrig dimensionale Transferfunktion getrennt. Anschließend werden durch das Aufteilen entstehende Löcher mit Hilfe von Dilatation gestopft. Als letztes wird durch eine Transferfunktion den Strukturen entsprechende Farben und Intensitäten zugewiesen.
+
+
+\subsection{Clustering}
+
+Das Paper von Binh P. Nguyen, Wei-Liang Tay und Chee-Kong Chui \cite{nguyen2012clustering} befasst sich mit dem Anwenden von Clustering auf einem Volumenmodell um mit Hilfe einer Transferfunktion medizinische Bilder effektiv und effizient darzustellen.
+\newline
+In einem Vorverarbeitungsschritt wird für jeden Voxel der Gradient berechnet, und hinterher daraus die Lower und Higher Intensitätswerte. Anschließend wird aus diesen Daten ein LH Histogramm erstellt.
+\newline
+In den ersten beiden Clusteringschritten werden zunächst Voxel mit ähnlichen  LH-Werten in Clustern zusammengefasst. Anschließend werden diese Cluster erneut in mehrere Cluster aufgeteilt, bei denen die Voxel auch im Raum nah beieinander liegen. Für diese beiden Schritte wird jeweils ein Parameter benötigt, der die maximale Distanz zum mittleren Voxel in einem Cluster bestimmt. Daraufhin werden alle Cluster hierarchisch gemerged, bis es nur noch einen gibt. Dabei werden immer die zwei paarweise räumlich am nächsten ausgesucht und es wird gespeichert welche Cluster gemerged wurden. Anschließend kann der Benutzer durch umkehren des Algorithmus entscheiden wie viel Cluster er haben möchte. Am Ende werden die Cluster mit verschieden Farben und Intensitätswerten versehen.
+
+
+
