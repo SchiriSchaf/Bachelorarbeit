@@ -1,0 +1,62 @@
+1) MD-TF gradient magnitude+intens -> 2d histo + follow papers +2
+G. Kindlmann, J. Durkin, Semi-automatic generation of transfer functions for
+direct volume rendering, in: Proceedings of the 1998 IEEE Symposium on
+Volume visualization, ACM, Research Triangle Park, North Carolina, USA, 1998,
+pp. 79–86
+
+2) 2D LH-histo 2d +2
+P. Sereda, A. Bartroli, I. Serlie, F. Gerritsen, Visualization of boundaries in
+volumetric data sets using LH histograms, IEEE Trans. Vis. Comput. Graph. 12
+(2006) 208–218.
+
+3) sizebased scalefield
+C. Correa, K. Ma, Size-based transfer functions: a new volume exploration
+technique, IEEE Trans. Vis. Comput. Graph. 14 (2008) 1380–1387.
+
+4) SSE
+2D Histogram based volume visualization: combining intensity
+and size of anatomical structures
+S. Wesarg · M. Kirschner · M. F. Khan
+
+5) regiongrowing
+Interactive Volume Exploration for Feature Detection
+and Quanti¿cation in Industrial CT Data
+Markus Hadwiger, Laura Fritz, Christof Rezk-Salama, Thomas Hollt, Georg Geier, and Thomas Pabel
+
+6) distance based
+Distance-based transfer function design:
+Specification Methods and Applications
+Andreas Tappenbeck Bernhard Preim Volker Dicken
+
+7) spatial + histo
+Spatialized Transfer Functions
+Stefan Roettger, Michael Bauer and Marc Stamminger
+Computer Graphics Group, University of Erlangen, Germany
+
+8) clustering
+Automating Transfer Function Design for Volume Rendering
+Using Hierarchical Clustering of Material Boundaries
+Petr Šereda
+
+9) ?
+Structuring Feature Space: A Non-Parametric Method for
+Volumetric Transfer Function Generation
+Ross Maciejewski
+
+10) clustering
+Parallel Mean Shift for
+Interactive Volume Segmentation
+Fangfang Zhou
+
+11) 1d +2
+The Contour Spectrum
+Chandrajit L. Bajaj
+
+
+
+
+
+
+
+
+

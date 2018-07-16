@@ -1,0 +1,28 @@
+1) stift
+User-Centric Transfer Function Specification
+in Augmented Reality
+Bernhard Reitinger1 
+
+2)
+Image-Based Transfer Function Design for Data Exploration
+in Volume Visualization
+Shiaofen Fang
+
+3)
+Image-Based Transfer Function Design for Data Exploration
+in Volume Visualization
+Shiaofen Fang
+
+4)
+Multi-Dimensional Transfer Function Design based on Flexible Dimension
+Projection Embedded in Parallel Coordinates
+Hanqi Guo
+
+5)
+VISUALIZATION BY EXAMPLE -
+A CONSTRUCTIVE VISUAL COMPONENT-BASED INTERFACE
+FOR DIRECT VOLUME RENDERING
+Bingchen Liu and Burkhard W¨unsche and Timo Ropinski
+
+
+

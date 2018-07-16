@@ -3,7 +3,28 @@
 \label{sec:state_of_the_art}
 %% ==============================
 
+
+
+
+Imagebased vs Databased
+
+
+\subsection{1D}
+Die einfachste Form der Transferfunktion, ist eine eindimensionale Transferfunktion. Es wird nur der Intensitätswert der Voxel in betracht gezogen. Dies ist aus mehreren Gründen suboptimal. Medizinischen Daten werden gemessen und haben deshalb meist ein Rauschen, was die genaue Darstellung erschwert. Weiterhin sind die Intensitätswerte verschiedener Bereiche nah beieinander oder gar gleich und damit sind eindimensionale Transferfunktionen unpraktisch um Materialien kenntlich zu machen.
+\subsection{2D}
+\subsection{MehrD}
+\subsection{Räumliche Info}
+\subsection{Machine learning}
+\subsection{Clustering}
+\subsection{Imagebased}
+Eine weiter Art Transferfunktionen anzuwenden, sind Verfahren, die auf ?einem Bild? basieren. Hier hat der Benutzer die Möglichkeit, mit dem Programm zu interagieren...
+
+
+
+
 \subsection{2D Histogramm}
+
+Viele Arbeiten benutzen zweidiminsionale Transferfunktionen.
 
 \subsubsection{SSE}
 
@@ -16,9 +37,11 @@ Das Histogramm hat folglich als zwei Eingaben die Strukturgröße und den Grauwe
 
 \subsubsection{LH-TF}
 
-Alle Voxel werden eingeteilt in Voxel innerhalb eines Materials oder Voxel an der Grenze zweier Materialien. Die Einteilung jedes Voxels erfolgt mithilfe der Gradientenwerte. Die Low und die High Werte der Grenzvoxel beschreiben die beiden Materialien an denen die Grenze verläuft. Sie werden berechnet indem das Gradientenfeld in beide Richtungen integriert wird bis der Low und der High Wert gefunden wurden. 
+\todo{geht um die grenzerkennung von materialien}
+
+In dem Paper von Sereda \cite{sereda2006visualization} werden Voxel zwischen zwei Typen unterschieden. Es gibt Voxel, die  innerhalb eines Materials sind und Voxel, die  an der Grenze zweier Materialien sind. Die Einteilung jedes Voxels erfolgt mithilfe der Länge der Gradienten. Sind die Low- und High-Werte eines Voxels gleich, so liegt er innerhalb eines Materials. Sind  die sie jedoch verschieben, liegt der Voxel an der Grenze zweier Materialien. Hierbei beschreiben die Low und High Werte die Intensitätswerte der beiden Materialien. Sie werden berechnet indem das Gradientenfeld in beide Richtungen integriert wird bis der Low und der High Wert gefunden wurden. 
 \newline
-Das Histogramm bildet sich dann aus den Low und High Werten. \cite{sereda2006visualization}
+Das Histogramm bildet sich dann aus den Low und High Werten.
 
 
 \subsection{Verbesserung SG-TF}
