@@ -8,11 +8,6 @@ Image-Based Transfer Function Design for Data Exploration
 in Volume Visualization
 Shiaofen Fang
 
-3)
-Image-Based Transfer Function Design for Data Exploration
-in Volume Visualization
-Shiaofen Fang
-
 4)
 Multi-Dimensional Transfer Function Design based on Flexible Dimension
 Projection Embedded in Parallel Coordinates
@@ -24,5 +19,12 @@ A CONSTRUCTIVE VISUAL COMPONENT-BASED INTERFACE
 FOR DIRECT VOLUME RENDERING
 Bingchen Liu and Burkhard W¨unsche and Timo Ropinski
 
+6)
+Perception-Based Transparency Optimization
+for Direct Volume Rendering
+Ming-Yuen Chan
 
-
+7)
+Perceptually-Based Depth-Ordering
+Enhancement for Direct Volume Rendering
+Lin Zheng

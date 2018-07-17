@@ -1,4 +1,4 @@
-1) MD-TF gradient magnitude+intens -> 2d histo + follow papers +2
+1) MD-TF gradient magnitude+intens -> 2d histo + follow papers +4
 G. Kindlmann, J. Durkin, Semi-automatic generation of transfer functions for
 direct volume rendering, in: Proceedings of the 1998 IEEE Symposium on
 Volume visualization, ACM, Research Triangle Park, North Carolina, USA, 1998,
@@ -9,7 +9,7 @@ P. Sereda, A. Bartroli, I. Serlie, F. Gerritsen, Visualization of boundaries in
 volumetric data sets using LH histograms, IEEE Trans. Vis. Comput. Graph. 12
 (2006) 208–218.
 
-3) sizebased scalefield
+3) sizebased scalefield +2
 C. Correa, K. Ma, Size-based transfer functions: a new volume exploration
 technique, IEEE Trans. Vis. Comput. Graph. 14 (2008) 1380–1387.
 
@@ -48,11 +48,14 @@ Parallel Mean Shift for
 Interactive Volume Segmentation
 Fangfang Zhou
 
-11) 1d +2
+11) 1d +3
 The Contour Spectrum
 Chandrajit L. Bajaj
 
-
+12) visibility histograms +2
+C. D. Correa and K.-L. Ma, “Visibility histograms and visibilitydriven
+transfer functions,” IEEE Transactions on Visualization
+and Computer Graphics, vol. 17, no. 2, pp. 192–204, 2011
 
 
 

@@ -1,0 +1,8 @@
+Einleitung
+State of the art
+Vorgehen
+Implementierung
+Ergebnis
+Auswertung
+Fazit
+Ausblick

@@ -5,47 +5,6 @@
 
 
 
-
-Imagebased vs Databased
-
-
-\subsection{1D}
-Die einfachste Form der Transferfunktion, ist eine eindimensionale Transferfunktion. Es wird nur der Intensitätswert der Voxel in betracht gezogen. Dies ist aus mehreren Gründen suboptimal. Medizinischen Daten werden gemessen und haben deshalb meist ein Rauschen, was die genaue Darstellung erschwert. Weiterhin sind die Intensitätswerte verschiedener Bereiche nah beieinander oder gar gleich und damit sind eindimensionale Transferfunktionen unpraktisch um Materialien kenntlich zu machen.
-\subsection{2D}
-\subsection{MehrD}
-\subsection{Räumliche Info}
-\subsection{Machine learning}
-\subsection{Clustering}
-\subsection{Imagebased}
-Eine weiter Art Transferfunktionen anzuwenden, sind Verfahren, die auf ?einem Bild? basieren. Hier hat der Benutzer die Möglichkeit, mit dem Programm zu interagieren...
-
-
-
-
-\subsection{2D Histogramm}
-
-Viele Arbeiten benutzen zweidiminsionale Transferfunktionen.
-
-\subsubsection{SSE}
-
-In der Arbeit von Wesarg und Kirschner \cite{wesarg2009structure} und später in \cite{wesarg20102d} geht es um die Benutzung von 2D Histogrammen für Transferfunktionen zur Unterscheidung von verschiedenen Gewebearten, die bei CT-Bildern ähnliche Grauwerte haben.
-\newline
-Dabei wird für Voxel berechnet wie viele Schritt in die jeweilige Richtung der 26 Nachbarn gemacht werden kann, ohne, dass der Grauwert um mehr als eine gewisse Differenz verändert. Die Akkumulation aller Werte ergibt dann die Größe der Struktur. Hierbei wird zur weiteren Verbesserung nur der größere Wert zweier entgegengesetzter Richtungen genommen.
-\newline
-Das Histogramm hat folglich als zwei Eingaben die Strukturgröße und den Grauwert.
-
-
-\subsubsection{LH-TF}
-
-\todo{geht um die grenzerkennung von materialien}
-
-In dem Paper von Sereda \cite{sereda2006visualization} werden Voxel zwischen zwei Typen unterschieden. Es gibt Voxel, die  innerhalb eines Materials sind und Voxel, die  an der Grenze zweier Materialien sind. Die Einteilung jedes Voxels erfolgt mithilfe der Länge der Gradienten. Sind die Low- und High-Werte eines Voxels gleich, so liegt er innerhalb eines Materials. Sind  die sie jedoch verschieben, liegt der Voxel an der Grenze zweier Materialien. Hierbei beschreiben die Low und High Werte die Intensitätswerte der beiden Materialien. Sie werden berechnet indem das Gradientenfeld in beide Richtungen integriert wird bis der Low und der High Wert gefunden wurden. 
-\newline
-Das Histogramm bildet sich dann aus den Low und High Werten.
-
-
-\subsection{Verbesserung SG-TF}
-
 Die Arbeit von Shouren Lan \cite{lan2017improving} befasst sich mit der Verbesserung von 2D Transferfunktionen die auf Skalarwerten und Gradienten(SG-TF) basieren. Genauer geht es darum ein Überlappen von Bereichen die nicht zusammen gehören zu vermeiden.
 \newline
 Es wird zwischen 3 verschiedenen Arten von Strukturen gesprochen:
@@ -57,13 +16,67 @@ Es wird zwischen 3 verschiedenen Arten von Strukturen gesprochen:
 Wenn der Benutzer eine Region ausgewählt hat, werden zunächst alle Strukturen in dem Bereich klassifiziert und kleine Fragmente entfernt. Durch verschiedene Algorithmen werden Strukturen der Klassen (ii) durch Erosion, Dilatation, Aufteilen und neu zusammenfügen von einander getrennt. Strukturen der Klasse (iii) werden durch eine weitere niedrig dimensionale Transferfunktion getrennt. Anschließend werden durch das Aufteilen entstehende Löcher mit Hilfe von Dilatation gestopft. Als letztes wird durch eine Transferfunktion den Strukturen entsprechende Farben und Intensitäten zugewiesen.
 
 
-\subsection{Clustering}
+
+
+
+Kindlmann und Durkin  \cite{kindlmann1998semi} - gradient
+
+
+Bajaj Countour: \cite{bajaj1997contour} -1d
+
+
+Correa und Ma Transferfunktion,basierend auf Größe \cite{correa2008size}, occlusion \cite{correa2009occlusion}, visibility \cite{correa2009visibility}(später histogram\cite{correa2011visibility})
+
+
+Größe: 
+
+
+
+
+
+Imagebased:
+
+ 
+Wu and Qu
+proposed a system that uses editing operations and stochastic
+search of the transfer function parameters to maximize the
+similarity between volume-rendered images given by the user
+
+Wu und Qu schlugen in ihrer Arbeit vor \cite{wu2007interactive}
+
+
+Das Gebiet der Transferfunktionen ist weit erforscht und es gibt viele verschiedene Methoden und Herangehensweisen. Diese werden in diesem Abschnitt in folgende Kategorien unterteil: eindimensionale Transferfunktionen, zweidimensionale Transferfunktionen, mehrdimensionale Transferfunktionen, ...
+
+
+\subsection{Eindimensionale Transferfunktionen}
+
+Die einfachste Form der Transferfunktionrm, sind die eindimensionalen Transferfunktionen. In diesen, wird nur der Intensitätswert der Voxel in Betracht gezogen. Dies ist aus mehreren Gründen suboptimal. Medizinischen Daten werden gemessen und haben deshalb meist ein Rauschen, was die genaue Darstellung erschwert. Weiterhin sind die Intensitätswerte verschiedener Bereiche nah beieinander oder gar gleich und damit sind eindimensionale Transferfunktionen unpraktisch um Materialien kenntlich zu machen.
+\subsection{Zweidimensionale Transferfunktionen}
+
+
+
+In der Arbeit von Wesarg und Kirschner \cite{wesarg2009structure} und später in \cite{wesarg20102d} geht es um die Benutzung von 2D Histogrammen für Transferfunktionen zur Unterscheidung von verschiedenen Gewebearten, die bei CT-Bildern ähnliche Grauwerte haben.
+Dabei wird für Voxel berechnet wie viele Schritt in die jeweilige Richtung der 26 Nachbarn gemacht werden kann, ohne, dass der Grauwert um mehr als eine gewisse Differenz verändert. Die Akkumulation aller Werte ergibt dann die Größe der Struktur. Hierbei wird zur weiteren Verbesserung nur der größere Wert zweier entgegengesetzter Richtungen genommen.
+Das Histogramm hat folglich als zwei Eingaben die Strukturgröße und den Grauwert.
+
+
+Sereda stellt in seiner Arbeit \cite{sereda2006visualization} eine Methode zur Kantenerkennung vor, basierend auf LH-Werten. Er unterscheidet die Voxel dabei zwischen zwei Typen. Es gibt Voxel, die  innerhalb eines Materials sind und Voxel, die  an der Grenze zweier Materialien sind. Die Einteilung jedes Voxels erfolgt, indem jeder Voxel in Richtung und umgekehrte Richtung seines Gradienten integriert wird, bis die LH-Werte ermittelt werden. Sind die Low- und High-Werte eines Voxels gleich, so liegt er innerhalb eines Materials. Sind  die sie jedoch verschieben, liegt der Voxel an der Grenze zweier Materialien. Hierbei beschreiben die Low und High Werte die Intensitätswerte der beiden Materialien. Sie werden berechnet indem das Gradientenfeld in beide Richtungen integriert wird bis der Low und der High Wert gefunden wurden. Das Histogramm bildet sich dann aus den Low und High Werten.
+
+\subsection{Mehrdimensionale Transferfunktionen}
+\subsection{Räumliche Info}
+\subsection{Machine learning}
+\subsection{Clustering basierte Transferfunktionen}
+
 
 Das Paper von Binh P. Nguyen, Wei-Liang Tay und Chee-Kong Chui \cite{nguyen2012clustering} befasst sich mit dem Anwenden von Clustering auf einem Volumenmodell um mit Hilfe einer Transferfunktion medizinische Bilder effektiv und effizient darzustellen.
-\newline
 In einem Vorverarbeitungsschritt wird für jeden Voxel der Gradient berechnet, und hinterher daraus die Lower und Higher Intensitätswerte. Anschließend wird aus diesen Daten ein LH Histogramm erstellt.
-\newline
 In den ersten beiden Clusteringschritten werden zunächst Voxel mit ähnlichen  LH-Werten in Clustern zusammengefasst. Anschließend werden diese Cluster erneut in mehrere Cluster aufgeteilt, bei denen die Voxel auch im Raum nah beieinander liegen. Für diese beiden Schritte wird jeweils ein Parameter benötigt, der die maximale Distanz zum mittleren Voxel in einem Cluster bestimmt. Daraufhin werden alle Cluster hierarchisch gemerged, bis es nur noch einen gibt. Dabei werden immer die zwei paarweise räumlich am nächsten ausgesucht und es wird gespeichert welche Cluster gemerged wurden. Anschließend kann der Benutzer durch umkehren des Algorithmus entscheiden wie viel Cluster er haben möchte. Am Ende werden die Cluster mit verschieden Farben und Intensitätswerten versehen.
 
+\subsection{Imagebased}
+Eine weitere Art Transferfunktionen anzuwenden, sind Verfahren, die auf ?einem Bild? basieren. Hier hat der Benutzer die Möglichkeit, mit dem Programm zu interagieren. Dies ist für einen unerfahrenen User intuitiver und er kann durch ausprobieren ein gewünschtes Ergebnis erzielen.
+
+Fang stellt in seinem Paper \cite{fang1998image} ein Verfahren vor, bei dem die  Transferfunktioneine eine Abfolge von verschieden 3D Bildverabteitungsverfahren ist, deren Parameter vom Benutzer angepasst werden können.
+
+Es gibt auch Methoden, bei denen ein Hilfswerkzeug zum Einsatz kommt. Zum Beispiel kann der Benutzer im Paper von Reitinger: \cite{reitinger2004user} sich gezielt Bereiche des Volumens hervorheben lassen, indem er sie mit einem Stift auswählt. Hierbei wird die Intensiät des ausgewählten Punktes als auch der räumliche Abstand zum Stift in Betracht gezogen.
 
 
