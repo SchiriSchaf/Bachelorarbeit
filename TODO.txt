@@ -1,0 +1,16 @@
+﻿Bajaj -Contour
+LH-Clustering x2
+SSE -gescheit schreiben
+--------------
+Correra und Ma 3-4
+Imagebased Wu and Qu
+Machine learining (SOM glaube ich)
+schon geöffneten anschauen
+---------------
+2D mehr finden
+Region growing
+Image based mehr finden
+
+
+-----------
+Gute aufteilung und übergänge

@@ -1,8 +1,8 @@
 Einleitung
 State of the art
-Vorgehen
+Grundlagen
+Design
 Implementierung
-Ergebnis
-Auswertung
+Ergebnis & Auswertung
 Fazit
 Ausblick
