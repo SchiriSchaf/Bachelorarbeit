@@ -1,16 +1,12 @@
 ﻿Bajaj -Contour
-LH-Clustering x2
-SSE -gescheit schreiben
---------------
-Correra und Ma 3-4
-Imagebased Wu and Qu
+Clusteringbasiertes Verfahren
 Machine learining (SOM glaube ich)
+Correra und Ma 3-4
+------------------
+Imagebased Wu and Qu
 schon geöffneten anschauen
----------------
+------------------
 2D mehr finden
-Region growing
 Image based mehr finden
-
-
------------
+------------------
 Gute aufteilung und übergänge

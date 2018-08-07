@@ -5,17 +5,16 @@
 
 
 
+Die Arbeit von Tzeng \cite{tzeng2005intelligent} benutzt Machinelearning um interessante Strukturen darzustellen. Hierbei wird ein Neuronales Netz und eine Support Vecotr Machine benutzt.
+\newline
+Als Input für das Verfahren kann der Benutzer im Volumen mit zwei verschiedenen Farben Regionen anmalen und damit markieren. Mit der einen Farbe markiert der Nutzer die Stellen von Interesse, die er hervorgehoben haben möchte, mit der anderen Farbe Stellen, die ihn explizit nicht interessieren. Das Programm nimmt im Anschluss die Intensitätswerte, Länge der Gradienten und Intensitätswerte der Nachbarn aller markierter Voxel als Input um eine sinnvole Segmentierung zu finden. Das Ergebnis wird dem Anwender in Form einer farbigen Darstellung gezeigt, bei der er abhängig von der Farbe der Regionen sieht wie ähnlich sie den angemalten Voxeln sind. Gefällt dem Benutzer das Ergebnis noch nicht, so kann er durch weiteres einfärben von Regionen das Ergebnis verbessern bis das gewünschte Resultat erreicht wird.
 
-Im Paper von Hong \cite{hong2003method} wird ein Approximationsbasiertes Verfahren zur Berechnung von Gradienten eines Volumens vorgestellt. 
-\newline
-Hierbei ist zu beachten, dass der Gradient nicht für einen Voxel direkt berechnet werden kann. Der Gradient liegt im Falle eines dreidimensionalen Volumens im Zentrum eins Würfels, der von 4 benachbarten Voxeln aufgepsannt wird. In Hongs Verfahren wird zur Berechnung die lokale 4x4x4 Nachbarschaft hinzugezogen.
-\newline
-\includegraphics[width=\textwidth]{Logos/VoxelEdges.PNG}
-\todo{richtig bild zitieren u. evtl kleiner}
 
-Die Funktionen für die Intensitätswerte wird im Paper mit:  $f(x,y,z) = Ax^{2}+By^{2}+Cz^{2}+2Fyz+2Gzx+2Hxy+2Ix+2Jy+2Kz+D$  approximiert. Den dreidimensionalen Gradientenvektor n erhält man, indem man die Funktion ableitet: $n = (Ax+Gz+Hy+I, By+Fz+Hx+J, Cz + Fy + Gx + K)$ .
-\newline
-Um den Gradienten zu Berechnen müssen die Parameter A,B,C,E,F,G,H,I,J,K  berechnet werden. Dies geschieht mithilfe der Methode der kleinsten Quadrate.
+
+
+
+
+
 
 
 
@@ -52,14 +51,20 @@ Das Gebiet der Transferfunktionen ist weit erforscht und es existieren bereits v
 \subsection{Eindimensionale Transferfunktionen}
 
 Die einfachste Form der Transferfunktionrm, sind die eindimensionalen Transferfunktionen. In diesen, wird nur der Intensitätswert der Voxel in Betracht gezogen. Abgesehe von den niedrigen Berechnungszeiten, sind diese jedoch aus mehreren Gründen suboptimal. Medizinischen Daten werden gemessen und haben deshalb meist ein Rauschen, was die genaue Darstellung erschwert. Weiterhin sind die Intensitätswerte verschiedener Bereiche nah beieinander oder gar gleich und damit sind eindimensionale Transferfunktionen unpraktisch um verschiedene Materialien kenntlich zu machen. Trotzdem sind eindimensionale Transferfunktionen weit verbreitet und werden oft benutzt. 
+\newline
+
+
+
 
 \subsection{Zweidimensionale Transferfunktionen}
 
 Eine zweidimensionale Transferfunktion hat als Eingabeparameter zwei Werte. Oftmals werden hierbei der Gradient beziehungsweise desen Länge und der Intensitätswert eine Voxels genommen.
 
-In der Arbeit von Wesarg und Kirschner \cite{wesarg2009structure} \cite{wesarg20102d} wird das Stucture-Size-Enhanced Histogram vorgestellt. geht es um die Benutzung von 2D Histogrammen für Transferfunktionen zur Unterscheidung von verschiedenen Gewebearten, die bei CT-Bildern ähnliche Grauwerte haben.
-Dabei wird für Voxel berechnet wie viele Schritt in die jeweilige Richtung der 26 Nachbarn gemacht werden kann, ohne, dass der Grauwert um mehr als eine gewisse Differenz verändert. Die Akkumulation aller Werte ergibt dann die Größe der Struktur. Hierbei wird zur weiteren Verbesserung nur der größere Wert zweier entgegengesetzter Richtungen genommen.
-Das Histogramm hat folglich als zwei Eingaben die Strukturgröße und den Grauwert.
+
+In der Arbeit von Wesarg und Kirschner \cite{wesarg2009structure, wesarg20102d} wird das "Stucture-Size-Enhanced Histogram" vorgestellt.
+\newline
+Dafür muss für jeden Voxel die "structure size estimators" berechnet werden. Dies geschieht, indem betrachtet wird, wie viele Schritte in die Richtung der 26 Nachbarn des Voxel gemacht werden kann. Ein Schritt kann gemacht werden, wenn der Intensitätswert des erreichten Voxels nicht mehr als ein gegebener Parameter abweicht. Die Schrittweiter startet mit einem Voxel und verdoppelt sich mit jedem gemachten Schritt bis hin zur Hälft der Größe des gegebenen Volumens. Für ein besseres Ergebnis wird nur der kleinere Wert von zwei entgegengesetzten Richtungen gespeichert. Die Akkumulation alle Werte ergibt die Größe der Struktur. Aus diesem und dem Intensitätswert wird ein zweidimensionales Histogram erstellt.
+
 
 
 
@@ -95,13 +100,41 @@ Wenn der Benutzer eine Region ausgewählt hat, werden zunächst alle Strukturen 
 
 
 \subsection{Räumliche Info}
+
+
+Es gibt diverse Regiongrowingverfahren um Strukturen von interesse hervozuheben.
+\newline
+Beipsielsweise wird im Paper von Huang \cite{huang2003rgvis} ein solches Regiongrowingverfahren vorgestellt.
+\newline
+Der Benutzer kann einen Punkt von interesse im Volumen wählen, den sogenannten "seed". Es werden alle 26 Nachbarn des "seeds" besucht und anhand einer Kostenfunktion, die den entsprechenden Wert des besuchten Voxels und des Seedvoxels vergleicht, entschieden ob sie zu der Region dazugehören oder nicht. Sind sie Teil der Struktur werden auch ihre Nachbarn besucht und alle passenden Voxel zu der Region hinzugefügt. Diese Vorgang wiederholt sich so lange bis alle Voxel gefunden wurden, oder ein anderes internes Abbruchkriterium erfüllt wurde.  Es stehen dem Anwender 3 verschiedene Kostenfunktionen bereit. Die erste Funktion bezieht sich auf die Intensitätswerte der Voxel, die Zweite auf die Länge der jeweiligen Gradienten und bei der Dritten werden die Gewichte der Voxel verglichen, die vorher vom Benutzer definiert werden müssen. In einem Nachbearbeitungsschritt ist es anschließend noch möglich unpassende Elemente zu entfernen, wenn beispielsweise eine ganze weitere Struktur auch visualisiert wird, da sie über eine kleine Brücke von ein bis zwei Voxeln mit der eigentlich gesuchten Struktur verbunden ist.
+\newline
+Da das Regiongrowing sehr zeitaufwändig ist, kann der Anwender auswählen, dass er zunächst nur eine gewisse Teil der Region sich errechnen lässt.
+
+
+
+Im Vergleich zu Huan \cite{huang2003rgvis} benutzt Chen  in seiner Arbeit \cite{chen2006sketch} nicht nur ein seedbasiertes Verfahren, sondern fügt noch ein sketchbasiertes Verfahren davor ein.
+\newline
+Anfangs wählt der Anwender eine Reihe an Intensitätswerten im Histogram, die für ihn interessant sind. Danach kann er direkt im Volumen eine Region von Interesse einzeichnen und markieren. Das Program schneidet im Anschluss, alle Teile des Volumens außerhalb der gewählten Region weg. Jetzt kann der Nutzer wie im vorrig vorgestllen Verfahren seinen "seed" setzen.
+\newline
+Dies erleichtert dem Benutzer die Anwendung, da er schneller zu seinem Punkt von Interesse gelangt ohne vorher durch diverese Querschnittsbilder iterieren zu müssen. Desweiteren ist es Zeitsparrend für den User, falls er sich nicht genau mit dem Datensatz und der zu Visualisierenden Region auskennt.
+
+
 \subsection{Machine learning}
 \subsection{Clustering basierte Transferfunktionen}
 
+\todo{altes paper auch einbinden}
+Das Paper von Binh P. Nguyen \cite{nguyen2012clustering} stellt ein clusteringbasiertes Verfahren um für den Benutzer interessante Gebiete hervozuheben.
+Zunächst wird in einem Vorverarbeitungsschritt die Gradienten des Volumens berechnet. Hierzu wurde Hong's Methode \cite{hong2003method} verwendet. Im Anschluss daran wird anhand der Gradienten die LH-Werte mithilfe von Heuns Methode, ein modifizierte Euler Methode, ermittelt.Hierbei wird desweiteren eine Gewichtung abhängig von der zurückgelegten Strecke bei der Interpolation für den Low- bzw. High-Wert errechnet. Aus den LH-Werten und deren Gewichten wird anschließend ein LH-Histogram erzeugt.
+\newline
+Dem Benutzter steht dann ein zwei stufiges und ein drei stufiges Clusteringverfahren zur Auswahl, wobei die ersten beiden Clusteringschritte die Selben sind. 
+Im ersten Clusteringschritt wird im LH-Raum mithilfe von "Meanshiftclustering" geclustert. Es wird für jeden LH-Wert alle Werte gefunden, die in einem Kreis mit einem Radius von 7\% - 9\%  des maximalen LH-Wertes um den ursprünglichen Punkt liegen. Anschließend wird der neue durchschnittliche Mittelpunkt von allen Punkten im Cluster ermittelt. Der Vorgang wiederholt sich der Mittelpunkt zwischen zwei Iterationen nur minimal ändert. Der komplette Vorgang wird für jeden Punkt im LH-Histogram wiederholt und in Folge werden Cluster, deren Mittelpunkt nah beieinander liegen zu einem Cluster gemerged.
+\newline
+Der zweite Clusteringschritt wird auf die Cluster des ersten Schittes angewendet. Hierbei wird auch "Meanschiftclustering" verwendet. Diesmal wird jedoch räumlich, also abhängig von der Position im Volumen, geclustert. Desweiteren werden die Parameter für den Suchradius und Distanz zweier Mittelpunkte damit sie gemerged werden angepasst.
+\newline
+Als Ergebnis der ersten zwei Schritte erhält man Cluster mit Voxeln die ähnliche LH-Werte haben, als auch räumlich nah beieinander liegen.
+\newline
+Im optionalen dritten und letzten Clusteringschritt wird hieraschisch geclustert. Hierbei wird für jeden Cluster die paarweise Nähe zu jedem anderen Cluster errechnet. Anschließend werden hieraschich immer die zwei Cluster, die sich am nähsten sind, zu einem gemerged, solange bis nur noch ein Cluster existiert.  Hierbei speichert das Programm jeweils welche Cluster wann miteinander gemerged wurden. Der Benutzer kann im Anschluss entscheiden wie viel Cluster er haben möchte. Abhängig davon, wird das hierarschiche Clustern umgekehrt und die Cluster werden wieder getrennt, bis die gewünschte Anzahl an Clustern erreicht ist.
 
-Das Paper von Binh P. Nguyen \cite{nguyen2012clustering} befasst sich mit dem Anwenden von Clustering auf einem Volumenmodell um mit Hilfe einer Transferfunktion medizinische Bilder effektiv und effizient darzustellen.
-In einem Vorverarbeitungsschritt wird für jeden Voxel der Gradient berechnet, und hinterher daraus die Lower und Higher Intensitätswerte. Anschließend wird aus diesen Daten ein LH Histogramm erstellt.
-In den ersten beiden Clusteringschritten werden zunächst Voxel mit ähnlichen  LH-Werten in Clustern zusammengefasst. Anschließend werden diese Cluster erneut in mehrere Cluster aufgeteilt, bei denen die Voxel auch im Raum nah beieinander liegen. Für diese beiden Schritte wird jeweils ein Parameter benötigt, der die maximale Distanz zum mittleren Voxel in einem Cluster bestimmt. Daraufhin werden alle Cluster hierarchisch gemerged, bis es nur noch einen gibt. Dabei werden immer die zwei paarweise räumlich am nächsten ausgesucht und es wird gespeichert welche Cluster gemerged wurden. Anschließend kann der Benutzer durch umkehren des Algorithmus entscheiden wie viel Cluster er haben möchte. Am Ende werden die Cluster mit verschieden Farben und Intensitätswerten versehen.
 
 \subsection{Imagebased}
 Eine weitere Art Transferfunktionen anzuwenden, sind Verfahren, die auf ?einem Bild? basieren. Hier hat der Benutzer die Möglichkeit, mit dem Programm zu interagieren. Dies ist für einen unerfahrenen User intuitiver und er kann durch ausprobieren ein gewünschtes Ergebnis erzielen.
@@ -109,5 +142,65 @@ Eine weitere Art Transferfunktionen anzuwenden, sind Verfahren, die auf ?einem B
 Fang stellt in seinem Paper \cite{fang1998image} ein Verfahren vor, bei dem die  Transferfunktioneine eine Abfolge von verschieden 3D Bildverabteitungsverfahren ist, deren Parameter vom Benutzer angepasst werden können.
 
 Es gibt auch Methoden, bei denen ein Hilfswerkzeug zum Einsatz kommt. Zum Beispiel kann der Benutzer im Paper von Reitinger: \cite{reitinger2004user} sich gezielt Bereiche des Volumens hervorheben lassen, indem er sie mit einem Stift auswählt. Hierbei wird die Intensiät des ausgewählten Punktes als auch der räumliche Abstand zum Stift in Betracht gezogen.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
