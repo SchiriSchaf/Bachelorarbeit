@@ -5,20 +5,6 @@
 
 
 
-Die Arbeit von Tzeng \cite{tzeng2005intelligent} benutzt Machinelearning um interessante Strukturen darzustellen. Hierbei wird ein Neuronales Netz und eine Support Vecotr Machine benutzt.
-\newline
-Als Input für das Verfahren kann der Benutzer im Volumen mit zwei verschiedenen Farben Regionen anmalen und damit markieren. Mit der einen Farbe markiert der Nutzer die Stellen von Interesse, die er hervorgehoben haben möchte, mit der anderen Farbe Stellen, die ihn explizit nicht interessieren. Das Programm nimmt im Anschluss die Intensitätswerte, Länge der Gradienten und Intensitätswerte der Nachbarn aller markierter Voxel als Input um eine sinnvole Segmentierung zu finden. Das Ergebnis wird dem Anwender in Form einer farbigen Darstellung gezeigt, bei der er abhängig von der Farbe der Regionen sieht wie ähnlich sie den angemalten Voxeln sind. Gefällt dem Benutzer das Ergebnis noch nicht, so kann er durch weiteres einfärben von Regionen das Ergebnis verbessern bis das gewünschte Resultat erreicht wird.
-
-
-
-
-
-
-
-
-
-
-
 Kindlmann und Durkin  \cite{kindlmann1998semi} - gradient
 
 
@@ -27,22 +13,11 @@ Bajaj Countour: \cite{bajaj1997contour} -1d
 
 Correa und Ma Transferfunktion,basierend auf Größe \cite{correa2008size}, occlusion \cite{correa2009occlusion}, visibility \cite{correa2009visibility}(später histogram\cite{correa2011visibility})
 
-
-Größe: 
-
-\todo{region growing}
-
-
-
-Imagebased:
-
  
-Wu and Qu
-proposed a system that uses editing operations and stochastic
-search of the transfer function parameters to maximize the
-similarity between volume-rendered images given by the user
 
-Wu und Qu schlugen in ihrer Arbeit vor \cite{wu2007interactive}
+
+
+
 
 
 Das Gebiet der Transferfunktionen ist weit erforscht und es existieren bereits viele verschiedene Methoden und Herangehensweisen. In diesem Abschnitt wird ein Überblick über die unterschiedlichen Vorgehensweisen von Transferfunktionen gegeben. Dabei werden diese im Folgenden in die Kategorien: eindimensionale Transferfunktionen, zweidimensionale Transferfunktionen, mehrdimensionale Transferfunktionen, ... unterteilt. Hierbei ist jedoch zu beachten, das manche der hier vorgestellten Verfahren mehrere Kategorien verbinden.
@@ -120,6 +95,13 @@ Dies erleichtert dem Benutzer die Anwendung, da er schneller zu seinem Punkt von
 
 
 \subsection{Machine learning}
+
+Die Arbeit von Tzeng \cite{tzeng2005intelligent} benutzt Machinelearning um interessante Strukturen darzustellen. Hierbei wird ein Neuronales Netz und eine Support Vecotr Machine benutzt.
+\newline
+Als Input für das Verfahren kann der Benutzer im Volumen mit zwei verschiedenen Farben Regionen anmalen und damit markieren. Mit der einen Farbe markiert der Nutzer die Stellen von Interesse, die er hervorgehoben haben möchte, mit der anderen Farbe Stellen, die ihn explizit nicht interessieren. Das Programm nimmt im Anschluss die Intensitätswerte, Länge der Gradienten und Intensitätswerte der Nachbarn aller markierter Voxel als Input um eine sinnvole Segmentierung zu finden. Das Ergebnis wird dem Anwender in Form einer farbigen Darstellung gezeigt, bei der er abhängig von der Farbe der Regionen sieht wie ähnlich sie den angemalten Voxeln sind. Gefällt dem Benutzer das Ergebnis noch nicht, so kann er durch weiteres einfärben von Regionen das Ergebnis verbessern bis das gewünschte Resultat erreicht wird.
+
+
+
 \subsection{Clustering basierte Transferfunktionen}
 
 \todo{altes paper auch einbinden}
@@ -143,8 +125,9 @@ Fang stellt in seinem Paper \cite{fang1998image} ein Verfahren vor, bei dem die 
 
 Es gibt auch Methoden, bei denen ein Hilfswerkzeug zum Einsatz kommt. Zum Beispiel kann der Benutzer im Paper von Reitinger: \cite{reitinger2004user} sich gezielt Bereiche des Volumens hervorheben lassen, indem er sie mit einem Stift auswählt. Hierbei wird die Intensiät des ausgewählten Punktes als auch der räumliche Abstand zum Stift in Betracht gezogen.
 
-
-
+Wu und Qu stellen in ihrer Arbeit \cite{wu2007interactive} ein intuitives Verfahren zum verändern von Features von Transferfunktionen vor.
+Der Benutzer kann Features von zwei verschiedenen direct volume rendered images(DVRIs) verschmelzen, mischen oder löschen. Dies geschieht mithilfe eines stochachstischen Suchalgorithmus und einer Energiefunktion zur Beschreibung der Ähnlichkeit zweier Bilder. Dadurch wird das Problem zu einem Optimierungsproblem, dem minimieren der Energiefunktion.
+\todo{nochmal drüber schauen}
 
 
 
