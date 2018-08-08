@@ -1,10 +1,4 @@
-﻿Bajaj -Contour
-Clusteringbasiertes Verfahren
-Machine learining
-------------------
-schon geöffneten anschauen
-------------------
-2D mehr finden
+﻿eindimensionale Transferfunktionen finden
+2d sg-tf finden -> Kniss
+-----------------------
 Image based mehr finden
-------------------
-Gute aufteilung und übergänge
