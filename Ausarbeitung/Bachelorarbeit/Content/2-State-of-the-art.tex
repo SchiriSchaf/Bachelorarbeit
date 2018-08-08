@@ -10,17 +10,28 @@ Kindlmann und Durkin  \cite{kindlmann1998semi} - gradient
 
 Bajaj Countour: \cite{bajaj1997contour} -1d
 
-
-Correa und Ma Transferfunktion,basierend auf Größe \cite{correa2008size}, occlusion \cite{correa2009occlusion}, visibility \cite{correa2009visibility}(später histogram\cite{correa2011visibility})
-
  
 
 
+Correa und Ma zeigen in ihrer Arbeit \cite{correa2008size} einen Ansatz, der auf der relativen Größe der zu visualisierenden Features basiert.
+\newline
+Dazu benutzen sie den sogenannten "scale-space", welcher für das Volumen berechnet wird, um anschließend eine auf Größe basierende Transferfunktion anzuwenden. Diese mappt Farbe und Okklusion zu den entsprechenden Größen der Features des Volumens.
+\newline
+In einem weiteren Paper \cite{correa2009occlusion} beschreiben die beiden Forscher ein Verfahren, dass auf der Okklusion der Voxel basiert.
+\newline
+Dafür betrachten sie die Umgebung einzelner Voxel und berechnen abhängig davon, die Okklusion. Die Ergebnisse werden in einem zweidimensionalen Histogram gespeichert in Kombination mit den Intensitätswerten der Voxel. Durch die Umgebungsokklusion der Voxel ist es leicht mit einer auf dem Histogram basierenden Transferfunktion unterschiedliche Materialien mit gleichen Intensitätwerten zu unterscheiden.
+\newline
+Eine weitere Arbeit \cite{correa2009visibility} von Correa und Ma beschäftigt sich mit Transferfunktionen abhängig von der Sichtbarkeit einzelner Voxel.
+\newline
+Die Sichtbarkeit jedes Voxels wird abhängig vom Sichtpunkt auf das Volumen berechnet, indem die Opazität vom Standpunkt der Kamera bis hin zum Voxel akkumuliert wird. Anschließend wird ein Histogram über die Sichtbarkeitswerte erstellt. Auf diesem kann der Benutzer eine Transferfunktion erstellen, bei der er ein direktes Feedback über die Darstellung erhält. Um das gewünschte Ergebnis zu erhalten, wäre jedoch ein sehr genaues Einstellen dieser Funktion von Nöten, was der User nur schwer umsetzten kann. Deshalb wird eine Energiefunktion erstellt, die es zu minimieren gilt. Damit wird das Problem wie bei \cite{wu2007interactive}  zu einem Optimierungsproblem, welches mithilfe von progressiver Suche gelöst werden kann. Der Anwender muss dafür lediglich ein Opazitätsfunktion angeben, die seine gewünschten Visualisierungsziele beschreibt. Hierbei kann er auch aus vorgefertigten Funktionen wählen.
+\newline
+Diese Histogramme des vorangegangen Papers wurde von Correa und Ma in einer erweiterten Arbeit \cite{correa2011visibility} nochmals verbessert. Sie führten multidimensionale Sichtbarkeitshistogramme, die beispielsweise auch die Gradientenlänge in Betracht ziehen. Desweiteren stellen sie zwei Methoden vor zur Berechnung von Sichtpunkt unabhängigen Sichtbarkeitshistogrammen. Zum einen ein Omni-direktionales Sichtbarkeitshistogramm, bei dem die Sichtbarkeit von allen möglich Sichtpunkten berechnet wird. Und ein Raidales Sichtbarkeitshistogramm, bei dem radiale Strahlen verwendet werden. Dazu wird das kartesische in ein sphärisches Koordinatensystem umgerechnet.
 
 
 
 
 Das Gebiet der Transferfunktionen ist weit erforscht und es existieren bereits viele verschiedene Methoden und Herangehensweisen. In diesem Abschnitt wird ein Überblick über die unterschiedlichen Vorgehensweisen von Transferfunktionen gegeben. Dabei werden diese im Folgenden in die Kategorien: eindimensionale Transferfunktionen, zweidimensionale Transferfunktionen, mehrdimensionale Transferfunktionen, ... unterteilt. Hierbei ist jedoch zu beachten, das manche der hier vorgestellten Verfahren mehrere Kategorien verbinden.
+\todo{allgemeine heransgehensweisen beschreiben -> abhängig von region etc. und automatic semit automatic...}
 
 
 \subsection{Eindimensionale Transferfunktionen}
@@ -49,7 +60,9 @@ Dafür muss für jeden Voxel die "structure size estimators" berechnet werden. D
 
 
 
-Sereda baut seine Arbeit \cite{sereda2006visualization} auf den von Serlie \cite{serlie2003computed} vorgestellten LH-Histogramen auf und zeigt wie man mit ihnen Objekte klassifizieren kann. Die Berechnung eines LH-Histograms ist eine Methode zur Erkennung von Kanten, unter der Verwendung von Low- und High-Werten. Dabei werden die Voxel in zwei verschiedenen Kategorien eingeteilt. Es gibt Voxel, die  innerhalb eines Materials liegen und welche, die  an der Grenze zweier Materialien liegen. Ist ein Voxel innerhalb, so sind seine LH-Werte gleich. Grenzvoxel hingegen haben unterschiedliche Low- und High-Werte, wobei disese die Intensitätswerte der beiden Materialien, zwischen denen die Grenze verläuft, beschreiben. 
+Sereda baut seine Arbeit \cite{sereda2006visualization} auf den von Serlie \cite{serlie2003computed} vorgestellten LH-Histogramen auf und zeigt wie man mit ihnen Objekte klassifizieren kann.
+\newline
+Die Berechnung eines LH-Histograms ist eine Methode zur Erkennung von Kanten, unter der Verwendung von Low- und High-Werten. Dabei werden die Voxel in zwei verschiedenen Kategorien eingeteilt. Es gibt Voxel, die  innerhalb eines Materials liegen und welche, die  an der Grenze zweier Materialien liegen. Ist ein Voxel innerhalb, so sind seine LH-Werte gleich. Grenzvoxel hingegen haben unterschiedliche Low- und High-Werte, wobei disese die Intensitätswerte der beiden Materialien, zwischen denen die Grenze verläuft, beschreiben. 
 \newline
 Bei der Berechnung des Histograms wird als erstes getestet, ob der betrachtete Voxel an einer Grenze liegt. Ein Punkt liegt innerhalb eines Materials, wenn  die Länge des Gradienten kleiner als ein gewisses epsilon (bei MRT-Daten) oder gleich null(bei CT-Daten ist). In diesem Fall wären die Low- und High-Werte der Intensitätswert des Voxels. Ist dies jedoch nicht der Fall, wird in Richtung(für die High-Werte) und entgegengesetzter Richtung(für die Low-Werte) des Gradientens schrittweise integriert. Dies stoppt sobald ein Material gefunden wurde. Dies wird für jeden Punkt im Volumen berechnet und danach aus allen LH-Werten ein Histogram erstellt.
 \newline 
@@ -106,6 +119,7 @@ Als Input für das Verfahren kann der Benutzer im Volumen mit zwei verschiedenen
 
 \todo{altes paper auch einbinden}
 Das Paper von Binh P. Nguyen \cite{nguyen2012clustering} stellt ein clusteringbasiertes Verfahren um für den Benutzer interessante Gebiete hervozuheben.
+\newline
 Zunächst wird in einem Vorverarbeitungsschritt die Gradienten des Volumens berechnet. Hierzu wurde Hong's Methode \cite{hong2003method} verwendet. Im Anschluss daran wird anhand der Gradienten die LH-Werte mithilfe von Heuns Methode, ein modifizierte Euler Methode, ermittelt.Hierbei wird desweiteren eine Gewichtung abhängig von der zurückgelegten Strecke bei der Interpolation für den Low- bzw. High-Wert errechnet. Aus den LH-Werten und deren Gewichten wird anschließend ein LH-Histogram erzeugt.
 \newline
 Dem Benutzter steht dann ein zwei stufiges und ein drei stufiges Clusteringverfahren zur Auswahl, wobei die ersten beiden Clusteringschritte die Selben sind. 
@@ -126,9 +140,8 @@ Fang stellt in seinem Paper \cite{fang1998image} ein Verfahren vor, bei dem die 
 Es gibt auch Methoden, bei denen ein Hilfswerkzeug zum Einsatz kommt. Zum Beispiel kann der Benutzer im Paper von Reitinger: \cite{reitinger2004user} sich gezielt Bereiche des Volumens hervorheben lassen, indem er sie mit einem Stift auswählt. Hierbei wird die Intensiät des ausgewählten Punktes als auch der räumliche Abstand zum Stift in Betracht gezogen.
 
 Wu und Qu stellen in ihrer Arbeit \cite{wu2007interactive} ein intuitives Verfahren zum verändern von Features von Transferfunktionen vor.
-Der Benutzer kann Features von zwei verschiedenen direct volume rendered images(DVRIs) verschmelzen, mischen oder löschen. Dies geschieht mithilfe eines stochachstischen Suchalgorithmus und einer Energiefunktion zur Beschreibung der Ähnlichkeit zweier Bilder. Dadurch wird das Problem zu einem Optimierungsproblem, dem minimieren der Energiefunktion.
-\todo{nochmal drüber schauen}
-
+\newline
+Der Benutzer lädt zwei verschiedene direct volume rendered images(DVRIs) in das Program. Hierbei wird ihm die jeweilige Visualisierung und Transferfunktion angezeigt. Der User kann entscheiden ob er gewisse Features der beiden DVRIs zu einem verschmelzen, aus beiden mischen oder einzelne löschen möchte. Die Zusammenführung geschiet im Anschluss mithilfe einer Energiefunktion, die die Ähnlichkeit zweier Bilder beschreibt. Das Zusammenführen wird somit zu einem Optimierungsproblem undzwar dem minimieren der Energiefunktion. Dieses Problem kann mithilfe eines stochastischen Suchalgorithmus gelöst werden. Der Anwender bekommt am eine Visualisierung mit allen gewünschen Features.
 
 
 

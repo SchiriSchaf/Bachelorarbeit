@@ -1,9 +1,7 @@
 ﻿Bajaj -Contour
 Clusteringbasiertes Verfahren
-Machine learining (SOM glaube ich)
-Correra und Ma 3-4
+Machine learining
 ------------------
-Imagebased Wu and Qu
 schon geöffneten anschauen
 ------------------
 2D mehr finden
