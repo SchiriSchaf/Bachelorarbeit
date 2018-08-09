@@ -1,4 +1,5 @@
-﻿eindimensionale Transferfunktionen finden
+﻿Übergänge
+eindimensionale Transferfunktionen finden
 2d sg-tf finden -> Kniss
 -----------------------
 Image based mehr finden
