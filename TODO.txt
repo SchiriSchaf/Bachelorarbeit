@@ -1,5 +1,19 @@
-﻿Übergänge
+﻿State of the art:
+Begründung für die Wahl der Methode 
+Übergänge
 eindimensionale Transferfunktionen finden
 2d sg-tf finden -> Kniss
------------------------
+Allgemein drüber lesen -> lesefluss testen
 Image based mehr finden
+------------------------------------------------
+Methods:
+------------------------------------------------
+Design:
+------------------------------------------------
+Implementierung:
+------------------------------------------------
+Evaluation:
+------------------------------------------------
+Fazit:
+------------------------------------------------
+Ausblick:
