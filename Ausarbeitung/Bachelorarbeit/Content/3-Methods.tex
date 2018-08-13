@@ -11,7 +11,7 @@ Das Modul zum Laden und Speichern von Volumendaten, sowie das Unityprogramm zum 
 \todo{christians paper}
 
 Anfangs liegen die CT-Daten von den Volumen als Schnittbilder im DICOM Format vor. Diese werden mithilfe der MITK Workbench zu einer einzelnen Datei im .nrrd Format umgewandelt, welche vom Programm eingelesen werden können.
-Da CT-Daten Werte im negativen Bereich haben, die für  das Verfahren hinderlich sind, werden die Daten geshiftet, sodass das Minimum des Volumens bei null liegt.
+Da CT-Daten Werte im negativen Bereich haben, die für  das Verfahren hinderlich sind, werden die Daten um den kleinsten Wert verschoben, sodass das Minimum des Volumens bei null liegt.
 
 
 Zunächst müssen die LH-Werte des Volumen berechnet werden, dafür müssen die Gradienten aller Voxel bestimmt werden. Wie im Paper beschrieben wurde in dieser Arbeit auch Hong's Methode \cite{hong2003method} dafür gewählt.
@@ -74,7 +74,7 @@ Als nächstes werden die LH-Cluster erneut mit Meanshiftclustering geclustert. D
 
 
 
-Nachdem alles Cluster erzeugt wurden, werden ihnen zufällige IDs von eins bis zur Anzahl an Clustern zugeteilt. Anschließend wird ein Volumen erstellt, mit den Dimensionen des ursprünglichen Intensitätsvolumens, dass nur mit nullen als Werte gefüllt ist. Warum es diese Dimension haben muss, wird später erklärt. Danach wird durch alle Cluster iteriert, und jeder Voxel in das neu erstellte Volumen an der jeweiligen Position eingetragen. Dabei ist der eingetragene Wert immer die  ID des aktuellen Clusters. Nachdem alle Cluster abgearbeitet wurden, besteht das Volumen aus ausschließlich nullen und den IDs der Cluster an den passenden Stellen.
+Nachdem alle Cluster erzeugt wurden, werden ihnen zufällige IDs von eins bis zur Anzahl an Clustern zugeteilt. Anschließend wird ein Volumen erstellt, mit den Dimensionen des ursprünglichen Intensitätsvolumens, dass nur mit nullen als Werte gefüllt ist. Warum es diese Dimension haben muss, wird später erklärt. Danach wird durch alle Cluster iteriert, und jeder Voxel in das neu erstellte Volumen an der jeweiligen Position eingetragen. Dabei ist der eingetragene Wert immer die  ID des aktuellen Clusters. Nachdem alle Cluster abgearbeitet wurden, besteht das Volumen aus ausschließlich nullen und den IDs der Cluster an den passenden Stellen.
 
 
 Dieses Volumen wird als eine binäre Datei abgespeichert und in Unity geladen. Hier kann der Anwender sich entweder die Form von einzelnen IDs anschauen oder eine Reichweite von IDs. Die gewählten IDs werden rot markiert und sich deutlich vom restlichen Volumen zu unterscheiden. Mithile der Darstellung muss der Nutzer anhand der Form die Cluster erkennen, die zum Ventrikelsystem gehören, und deren IDs notieren. 
