@@ -3,7 +3,12 @@
 \label{sec:results}
 %% ==============================
 
-\dots
+
+
+Die folgenden Zeitmessungen wurde alle auf einem Computer mit einem 3.70GHz  Intel Core(TM) i7-8700K CPU mit 32GB RAM ausgeführt.
+Um die Berechnungszeit des Systems messen zu können, wurde die Berechnung des gesamten Clusteringverfahrens und die des LH-Histogramms mit drei verschieden großen Volumen durchgeführt. Diese stammen alle von den gleichen CT-Daten ab und wurden lediglich  mit dem Resamplemodul verkleinert. Es war geplant, noch ein viertes Volumen zum Vergleich hinzuzuziehen, jedoch war es aus einem unbekannten Fehler leider nicht möglich die Verfahren mit einem gevierteltes Volumen durchzuführen. Desweiteren funktioniert die gesamte Berechnung nicht für das ganze Volumen, da es vermutlich zu viele Daten für die aktuelle Implementierung sind.
+
+Die Berechnungszeit hängt stark von der Größe des Eingabevolumens ab. Die ist in \autoref{tab:ueberblick_zeit} sehr gut zu erkennen.
 
 
 \begin{table}[h]
@@ -11,15 +16,26 @@
 \resizebox{\columnwidth}{!}{
  \begin{tabular}{| c | c | c | c |}
   \hline
-  Object & Speed $[cm/s]$ & Inner LR $[cm]$ & Inner UR $[cm]$ \\ \hline \hline
-  \multirow{3}{*}{\emph{Pitcher}} & real & $ n/a $ & $ 5.65 $ \\
-   & $4.60$ & $3.71 \pm 0.67$ & $5.09 \pm 2.23$ \\
-   & $10.64$ & $3.55 \pm 0.57$ & $6.14 \pm 0.69$ \\ \hline \hline
-  \multirow{3}{*}{Cookie O} & real & $ 7.55 $ & $ 7.55 $ \\
-   & $4.60$ & $6.98 \pm 0.27$ & $6.98 \pm 0.27$ \\
-   & $10.64$ & $6.77 \pm 0.26$ & $6.77 \pm 0.26$ \\ \hline
+  Volumengröße & LH-Histogramm $[s]$ & Komplettes Verfahren $[s]$ \\ \hline
+  Halbes Volumen (256x101x256)  & 30 &  50	\\ \hline
+  Dreiviertel Volumen (384x151x384)  & 90 &  380	\\ \hline
+  Ganzes Volumen (512x201x512) & 225 & -	\\ \hline
  \end{tabular}
  }
-\caption{Estimated objects inner parameters on different speeds compared to real sizes of the object. Inner LR stands for lower inner radius of the object and Inner UR for upper radius. The real value of inner lower radius for object \emph{Pitcher} is very hard to be determined precisely, therefore the real value is marked with $n/a$.}
-\label{tab:estim_object_parameters_hollow}
+\caption{Überblick über die Berechnungszeiten der verschiedenen Volumengrößen}
+\label{tab:ueberblick_zeit}
 \end{table}
+
+
+\todo{gradienten zeit und lh zeit getrennt erwähnen}
+Hierbei ist wichtig zu beachten, dass die Zeit zur Berechnung der LH-Histogramme, im gleichen Umfang Zeit bei der Kalkulation des gesamten Verfahrens benötigt. Zieht man also diese Berechnungszeit von der Gesamtzeit ab, erhält man die Zeit, die die beiden Clusteringschritte benötigen.
+Eine interessante Beobachtung dabei ist, dass die Berechnung der LH-Histogramme abhängig von der Anzahl der Pixel gesehen grob gleich schnell abläuft. Das halbe Volumen hat eine Gesamtpixelzahl von ungefähr 6,6 Millionen, das dreiviertel Volumen von zirka 22,2 Millionen und das ganze Volumen von grob 52,6 Millionen Pixeln. Wird die Anzahl an Pixeln die pro Sekunde bearbeitet werden für diese drei Volumen berechnet so ist zu beobachten, dass kein großer Unterschied  zu bemerken ist. Das Halbe bearbeitet etwa 220 Tausend, das Dreiviertel ungefähr 247 Tausend und das Ganze 234 Tausend Pixel pro Sekunde. Der kleine Unterschied lässt sich einerseits durch feste Berechnungen die unabhängig von der Pixelzahl Zeit benötigen und andererseits über nicht ganz genauen Messungen. Folglich kann man sagen, dass die Berechnung der LH-Werte in etwa linear mit der Anzahl an Eingabepixeln wächst.
+
+Auf der anderen Seite kann man jedoch auch sehen, dass die beiden Clusteringschritte mit zunehmender Eingabegröße deutlich langsamer werden. Das Clustering des halben Volumens dauerte 20 Sekunden und hat damit eine Verarbeitungsrate von zirka 330 Tausend Pixeln pro Sekunde. Hingegen dauert es beim dreiviertel Volumen 290 Sekunden und erreicht damit gerade einmal einen Rate von 76 Tausend Pixeln pro Sekunde. Es braucht also 14,5 Mal so lange an Zeit für die 3,3 fache Anzahl an Pixeln.
+
+
+
+
+
+
+ In dieser Arbeit wurden hauptsächlich Volumen mit einer Auflösung von 256x101x256 Pixeln verwendet... -> ergebnisse zeigen

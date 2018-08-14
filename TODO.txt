@@ -7,13 +7,24 @@ Allgemein drüber lesen -> lesefluss testen
 Image based mehr finden
 ------------------------------------------------
 Methods:
+Drüber lesen
+2400 grenze für LH-Werte -> wegen ausreisern
 ------------------------------------------------
 Design:
+Generell überarbeiten
+Mit Methods vergleich -> nicht zu viel doppelt
 ------------------------------------------------
 Implementierung:
 ------------------------------------------------
 Evaluation:
 ------------------------------------------------
 Fazit:
+Klappt aber nicht so einfach
 ------------------------------------------------
 Ausblick:
+Region growing
+Aufwand reduzieren
+Benutzerfreundlicher machen
+GPU rechnen lassen
+Fixen für ganzes Volumen und viertel
+Besser skaling für große Volumen überlegen
