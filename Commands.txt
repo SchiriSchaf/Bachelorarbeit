@@ -12,5 +12,5 @@ load C:\Users\diewald\Documents\Daten\Heads\Hydrocephalus\hydrocephalus_half.bin
 clustervolume C:\Users\diewald\Documents\Daten\Heads\Hydrocephalus\hydrocephalus_half_cluster.bin.txt
 
 
-load C:\Users\diewald\Documents\Daten\Heads\Mittellinie\Normal\mittellinie_half.bin.txt
-mergecluster C:\Users\diewald\Documents\Daten\Heads\Mittellinie\Normal\mittellinie_half_cluster.bin.txt 2,3,4,5,19,20,21,22,23 C:\Users\diewald\Documents\Daten\Heads\Mittellinie\Normal\mittellinie_final.bin.txt
+load C:\Users\diewald\Documents\Daten\Heads\NormalerVentrikel\4-sab\normal4_half.bin.txt
+mergecluster C:\Users\diewald\Documents\Daten\Heads\NormalerVentrikel\4-sab\normal4_half_cluster.bin.txt 1,10 C:\Users\diewald\Documents\Daten\Heads\NormalerVentrikel\4-sab\normal4_half_final.bin.txt

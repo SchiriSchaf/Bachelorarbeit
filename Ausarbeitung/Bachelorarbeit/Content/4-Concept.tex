@@ -6,13 +6,24 @@
 
 \todo{Formulierung}
 
-Das hier folgende Kapitel beschäftigt sich mit dem Softwaredesign der Implementierung dieser Arbeit. Da diese jedoch, wie schon erwähnt, auf einer Vorarbeit des IPR basiert, war es nicht möglich, die Programmiersprache frei zu wählen. Aus diesem Grund ist es möglich, dass diese Implementierung in einer anderen Sprache besser lösbar ist. In dieser Arbeit wurde das Verfahren, da Unity als Programm für die Visualisierung gewählt wurde, in \textit{c sharp} umgesetzt. 
+Das hier folgende Kapitel beschäftigt sich mit dem Softwaredesign der Implementierung dieser Arbeit.
+\newline
+Die hier vorgestellte Implementierung teilt sich dabei in zwei verschieden Programme auf. Zum einen den sogenannten \textit{VolumeRenderHelper}, der für das Laden, Umwandeln, Verarbeiten und Speichern der Volumendaten zuständig ist. Auf der anderen Seite das Unityprogramm \textit{VolumeRenderer}, welches zur Visualisierung der vom Helper erzeugten Daten dient. Diese beiden Programme existierten bereits vorher und sind in Vorarbeiten des IPRs entstanden. In dieser Arbeit wurde der \textit{VolumeRenderHelper} um die vorgestellte Transferfunktion und der \textit{VolumeRenderer} um eine kleine Darstellungshilfe erweitert. Die Beiden Programme werden im folgenden als Helper und Renderer erwähnt.
+
+\todo{christians paper}
+\todo{unity und stefffens zeug genauer erklären}
+\todo{csharp erwähnen und allgemeine umgebung}
+Anfangs liegen die CT-Daten von den Volumen als Schnittbilder im DICOM Format vor. Diese werden mithilfe der MITK Workbench zu einer einzelnen Datei im .nrrd Format umgewandelt, welche vom Programm eingelesen werden können.
+Da CT-Daten Werte im negativen Bereich haben, die für  das Verfahren hinderlich sind, werden die Daten um den kleinsten Wert verschoben, sodass das Minimum des Volumens bei null liegt.
+
 
 Die interne Speicherung des Volumens wurde mit der generischen Klasse \textit{Volume} umgesetzt. 
 \todo{attribute funktionen etc. von volumenklasse in UML}
 
-Die Interaktion des Benutzers mit dem Programm findet über eine Kommandozeile statt. Hierbei hat der Anwender die Befehle Load, Dump, Resample, Info, Write, LHHistogram, ClusterVolume und MergeCluster zur Auswahl. Jedes Modul hat dabei seine eigene Syntax die mithilfe eines Help Befehls angezeigt werden kann.
-Die Funktionen der Anweisungen entsprechen dem Namen der Befehle. So lädt Load bespielsweise eine .nrrd oder binäre Datei, Dump und Write speichern das geladene Volumen als binäre oder .nrrd Datei ab, Info gibt Informationen über das aktuell geladene Volumen zurück und Resample lässt den Anwender die Größe des Volumens verändern. Ruft man den Dump Befehl mit einem "u" auf, so wird das Volumen vor dem Speichern zum Typ "unsigned int" gecastet, indem wie im vorigen Kapitel beschrieben die Werte verschoben werden.
+
+
+Die Interaktion des Benutzers mit dem Helper findet über eine Kommandozeile statt. Hierbei hat der Anwender die Befehle Load, Dump, Resample, Info, Write, LHHistogram, ClusterVolume und MergeCluster zur Auswahl. Jedes Modul hat dabei seine eigene Syntax die mithilfe eines Help Befehls angezeigt werden kann.
+Die Funktionen der Module entsprechen deren Namen. So lädt Load bespielsweise eine .nrrd oder binäre Datei, Dump und Write speichern das geladene Volumen als binäre oder .nrrd Datei ab, Info gibt Informationen über das aktuell geladene Volumen zurück und Resample lässt den Anwender die Größe des Volumens verändern. Ruft man den Dump Befehl mit einem "u" auf, so wird das Volumen vor dem Speichern zum Typ "unsigned int" gecastet, indem auf alle Werte der Betrag des minimalen Wertes aufaddiert wird. Dadurch  verschieben sich die Werte so, dass das Minimum bei null liegt, also nur noch positive Zahlen im Volumen vorhanden sind. Dies ist für die Implementierung des Verfahrens wichtig, da es nur mit positiven Werten funktioniert.
 
 
 Im Folgenden werden hauptsächlich die Module LHHistogram, ClusterVolume und MergeCluster erläutert, da diese im Laufe dieser Arbeit entstanden sind. LHHistogram berechnet hierbei lediglich die Gradienten und LH-Werte und erstellt eine .csv Datei, in der das LH-Histogram gespeichert wird. ClusterVolume kalkuliert das Gleiche, führt hinterher jedoch noch die beiden Clusteringschritte aus. Das Modul MergeCluster hingegen dient der Verschmelzung der gewünschten IDs, und dem ursprünglichen Volumen. In \autoref{fig:ueberblick} sieht man einen Überblick über den Aufbau der Implementierung.

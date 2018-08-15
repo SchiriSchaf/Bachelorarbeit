@@ -36,6 +36,7 @@ GPU rechnen lassen
 Fixen für ganzes Volumen und viertel
 Besser Skaling für große Volumen überlegen -> Berechnungszeit verbessern
 noch genauerer bereich für clustering -> schneller IDs finden
+räumliche IDs die am rand sind weglassen
 
 
 ------------------------------------------------
