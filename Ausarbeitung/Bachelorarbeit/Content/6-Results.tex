@@ -66,7 +66,7 @@ Beispiel einer Visualisierung kann man in \autoref{fig:ventrikel_seite}, \autore
 
 \todo{nutzerstudie variablen etc. erwähnen -> proseminar}
 \todo{info über teilnehmer}
-Im Rahmen der Evaluation der Benutzerfreundlichkeit des Verfahrens wurde eine kleine Nutzerstudie mit ... Teilnehmern durchgeführt. Bei dieser wurden den Probanden zunächst der Ablauf und die vom Benutzer erforderlichen Schritte um eine Visualisierung des Ventrikelsystems zu erhalten durch eine Vorführung durch den Interviewer gezeigt. Anschließend mussten die Teilnehmer selbst das eben gelernte anwenden und das Programm selber ausführen. Dabei bekamen sie, wenn sie nicht weiterwussten, Hilfe vom Versuchsleiter. Als Abschluss füllten die Probanden einen NASA-TLX Bogen zu der Aufgabe aus. Die durchschnittlichen Ergebnisse der einzelnen Kategorien wird in \autoref{tab: ergebnis_nasa} gezeigt.
+Im Rahmen der Evaluation der Benutzerfreundlichkeit des Verfahrens wurde eine kleine Nutzerstudie mit ... Teilnehmern durchgeführt. Bei dieser wurden den Probanden zunächst der Ablauf und die vom Benutzer erforderlichen Schritte um eine Visualisierung des Ventrikelsystems zu erhalten durch eine Vorführung durch den Interviewer gezeigt. Anschließend mussten die Teilnehmer selbst das eben gelernte anwenden und das Programm selber ausführen. Dabei bekamen sie, wenn sie nicht weiterwussten, Hilfe vom Versuchsleiter. Als Abschluss füllten die Probanden einen NASA-TLX Bogen zu der Aufgabe aus. Die durchschnittlichen Ergebnisse der einzelnen Kategorien wird in \autoref{tab:ergebnis_nasa} gezeigt.
 
 
 \begin{table}[h]
@@ -97,17 +97,50 @@ Trotz der Schwierigkeiten,  gaben die Probanden an, dass sie die Aufgabe mit ein
 \todo{normale, schlanke etc. erwähnen plus sagen wie gut es funktioniert hat}
 
 
+\todo{SATZBAU!!!}
+Das Verfahren wurde an 15 verschiedenen CT-Daten getestet. Darunter waren Ventrikelsysteme, von denen vier normal, vier schlank, zwei unter Atrophie leidend, zwei mit einem Mittellinienshift, eins deformiert, eins Blutresorbiertes und eins Hydrocephalus waren.
+Die normalen und die schlanken Ventrikelsysteme benötigen keiner weiteren Erklärung. Bei den Normalen glückte die Visualisierung bei zwei Stück. Die Schlanken, waren leider für das Verfahren nicht zu erfassen, weshalb es davon keine zufriedenstellende Visualisierung gibt. Atrophie bezeichnet den, oft durch das Alter verursachten, Schwund von Hirnmasse. Hierbei war es bei einem der beiden Datensätze möglich das Ventrikelsystem sichtbar zu machen. Bei dem Mittellinienshift, der Verschiebung der Mittellinie des Ventrikelsystems, dem Deformierten, dem Blutresorbiertem und dem Hydrocephalus, einer Aufstauung von Nervenwasser im Kopf, war aus jeweils dem Grund der Unterschiede der Daten zum normalen Ventrikelsystem mit dem aktuellen Stand der Implementierung keine erfolgreiche Visualisierung möglich.
+\newline
+Für die erfolgreich visualisierten Daten wurde zur Evaluation ein Arzt von der Uniklinik Ulm befragt. Diesem wurden die Visualisierungen drei verschiedener Ventrikel vorgeführt, zwei normale Ventrikel und ein Ventrikel mit Atrophie. Screenshots der Visualisierung des 2ten normalen und des atrophie Venktrikels sind im Anhang zu sehen. Der erste normale Ventrikel, ist in \autoref{fig:ventrikel_seite, fig:ventrikel_unten, fig:ventrikel_oben} zu sehen. Während der Vorführung konnte der Mediziner selbst die Kamera durch die Darstellung lenken. Anschließend bewertete er mit der Beantwortung von drei verschiedenen Fragen auf einer Skala von eins bis fünf die Qualität der Ergebnisse.
+\begin{itemize}
+	\item 1) Wie gut ist das Ventrikelsystem bei der Visualisierung zu erkennen? \newline sehr schlecht 1 - 5 sehr gut
+	\item 2) Wird das Ventrikelsystem in der Visualisierung vollständig dargestellt? \newline überhaupt nicht vollständig 1 - 5 vollständig
+	\item 3) Wie genau ist das Ventrikelsystem segmentiert? \newline überhaupt nicht segmentiert 1 - 5 ausschließlich das Ventrikelsystem ist segmentiert
+\end{itemize}
+
+
+Die Ergebnisse zu den verschiedenen Visualisierungen werden in \autoref{tab:ergebnis_arzt} gezeigt.
+
+\begin{table}[h]
+\centering
+\resizebox{\columnwidth}{!}{
+ \begin{tabular}{| c | c | c | c |}
+  \hline
+  Ventrikelsystem & 1. Frage & 2.Frage & 3. Frage\\ \hline
+  Normal 1 & 4 & 4 & 3 \\ \hline
+  Normal 2 & 4 & 2 & 3\\ \hline
+  Atrophie & 4 & 3 & 2 \\ \hline
+ \end{tabular}
+ }
+\caption{Ergebnisse des Interviews mit einem Arzt}
+\label{tab:ergebnis_arzt}
+\end{table}
+
+
+
+Der Arzt merkte an, dass bei jeder Visualisierung, die durch das Verfahren erzeugt wurde, nur der linke und rechte Seitenventrikel zu sehen war. Die deutlich schmaleren dritten und vierten Ventrikel und die Unterhörner der Seitenventrikel fehlten bei den Darstellungen komplett. Diese sind bei einem gesunden Menschen jedoch klein und deshalb schwer zu segmentieren. Weiterhin sind diese Teile für die Ventrikelpunktion ohnehin uninteressant, da die Punktion im Vorderhorn eines Seitenventrikel stattfindet, also einem Bereich den die Visualisierung abdeckt. Folglich sind die Antworten auf die zweite Frage, nach der Vollständigkeit des Ventrikelsystems, lediglich Vollständigkeit der beiden Seitenventrikel zu sehen.
+\newline
+Die Bewertung des ersten normalen Ventrikelsystems fiel positiv mit 11 von möglichen 15 Punkten aus. Das Ventrikelsystem war als solches klar zu erkennen, jedoch fehlten die Hinterhörner ein wenig. Bis auf diese waren die Seitenventrikel auch vollständig zu sehen. Bei der Segmentierung gab es mehrere kleine Ausreißer.
+\newline
+Der zweite normale Ventrikelsystem, war auch gut zu erkennen. Jedoch wird fast ausschließlich der linke Seitenventrikel visualisiert, weshalb die 4 als Bewertung auf diesen bezogen war. Dieser ist dafür jedoch sehr klar, deutlich und vollständig zu sehen. Der Arzt sagte, dass dieser besser und glatter als die des ersten normalen Ventrikelsystems sein, da man auch das Unterhorn erkennen kann. 
+\newline
+Bei einer Atrophie ist im Gehirn deutlich mehr Liquor zu finden als bei einem gesunden. Diese werden vom Verfahren auch erkannt, weshalb die Segmentierung etwas verschwimmt und nicht die kompletten Seitenventrikel erfasst werden. Jedoch ist zu vermuten, dass viele der Ausreißer zum dritten Ventrikel gehören, da dieses, wie alle Ventrikel bei einer Atrophie sich weitet. Trotz der Flüssigkeiten im Gehirn war das Ventrikelsystem in der Darstellung gut zu erkennen.
+\newline
 
 
 
 
-
-
-
-
-
-
-
+ Im Allgemeinen sagte der Mediziner, dass das Ventrikelsystem als solchen ganz eindeutig zu erkennen sei, allerdings sei die Darstellung nicht glatt genug.
 
 
 

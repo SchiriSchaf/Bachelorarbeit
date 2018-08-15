@@ -26,6 +26,8 @@ Evaluation:
 Fazit:
 
 Klappt, aber nicht so einfach
+Viele Fehler
+Klappt nicht nur bei wenigen Daten
 ------------------------------------------------
 Ausblick:
 
