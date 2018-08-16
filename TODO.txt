@@ -6,12 +6,13 @@ eindimensionale Transferfunktionen finden
 2d sg-tf finden -> Kniss
 Allgemein drüber lesen -> lesefluss testen
 Image based mehr finden
+Optisches zeug mehr erwähnen
 ------------------------------------------------
 Methods:
 
 Drüber lesen
 2400 grenze für LH-Werte -> wegen ausreisern
-klare trennung der einzelnen Schritte beim beschreiben
+klare trennung der einzelnen Schritte beim beschreiben -> zeilenumbruch sagen bei welchem schritt man  aktuell ist
 ------------------------------------------------
 Design:
 
@@ -22,6 +23,7 @@ Mit Methods vergleich -> nicht zu viel doppelt
 .bin.txt erwähnen
 nochmals auf das notwendige u eingehen
 parallelität -> vllt auch implementierung
+darstellung des gehirns un des Ventrikels -> rot durchsichtigkeit , durchsichtigkeit und farbe vom rest
 ------------------------------------------------
 Implementierung:
 
@@ -34,15 +36,19 @@ Auf Screenshots bezug nehmen
 ------------------------------------------------
 Fazit:
 
+Am Ende, wenn der Rest fertig ist -> auf alles vorher gesagte bezug nehmen
 Klappt, aber nicht so einfach
 Viele Fehler
 Klappt nicht nur bei wenigen Daten
 ------------------------------------------------
 Ausblick:
 
+Bissel mehr
+3 und 4 bei CT daten nicht segmentierbar
 ------------------------------------------------
 Allgemein:
 
+Ventrikelsystem zeigen und beschreiben -> entscheiden wo
 Lesefluss kontrolliern!!!
 Roter Faden!!!
 
