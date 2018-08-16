@@ -9,7 +9,7 @@ Diese Arbeit orientiert sich an dem zweistufigen Clusteringverfahren aus dem Pap
 Zuerst müssen die LH-Werte des Volumen berechnet werden. Hierfür werden zunächst die Gradienten aller Voxel benötigt. Wie im Paper beschrieben wurde auch in dieser Arbeit Hong's Methode \cite{hong2003method} dafür gewählt.
 Diese ist ein approximationsbasiertes Verfahren zur Berechnung von Gradienten eines Volumens. 
 \newline
-In Hong's Verfahren wird zur Berechnung der Gradienten die lokale 4x4x4 Nachbarschaft des betrachteten Punktes hinzugezogen. Hierbei ist zu beachten, dass es nicht möglich ist, den Gradienten für einen Voxel direkt zu berechnen. Der Gradient drückt die Veränderung der Intensitätswerte im Raum aus, folglich kann er immer nur zwischen zwei Punkten berechnet werden. Deshalb liegt er im Falle eines dreidimensionalen Volumens im Zentrum eins Würfels, der von 8 benachbarten Voxeln aufgespannt wird. In \autoref{fig:nachbarschaft} ist zu erkennen, wie der Gradient im Zentrum der vier Voxel liegt. Desweiteren ist die 4x4x4 Nachbarschaft in Form der durchnummerierten Punkte zu sehen.
+In Hong's Verfahren wird zur Berechnung der Gradienten die lokale 4x4x4 Nachbarschaft des betrachteten Punktes hinzugezogen. Hierbei ist zu beachten, dass es nicht möglich ist, den Gradienten für einen Voxel direkt zu berechnen. Der Gradient drückt die Veränderung der Intensitätswerte im Raum aus, folglich kann er immer nur zwischen zwei Punkten berechnet werden. Deshalb liegt er im Falle eines dreidimensionalen Volumens im Zentrum eins Würfels, der von 8 benachbarten Voxeln aufgespannt wird. In \autoref{fig:nachbarschaft} ist zu erkennen, wie der Gradient im Zentrum der acht Voxel liegt. Desweiteren ist die 4x4x4 Nachbarschaft in Form der durchnummerierten Punkte zu sehen.
 \newline
 
 \begin{figure}[!h] 
@@ -40,11 +40,11 @@ Da für die Berechnung der LH-Werte jedoch der Gradient und der Intensitätswert
 
 
 Nachdem die Gradienten berechnet sind und die Intensitätswerte passend umgerechnet wurde, folgt die Berechnung der Low- und High-Werte. Dazu wird in Richtung der Gradienten integriert. Hierfür wurde wie von Nguyen auch Heun's Methode, eine modifizierte Euler Methode verwendet. Die hierzu benutzte Formel lautet:
-\newline
-$u_{i+1} = u_{i} + \frac{1}{2}d(\triangledown f (u_{i}) + \triangledown f(u_{i}+d \triangledown f(u_{i}))) $
-\newline
+\begin{equation}
+	u_{i+1} = u_{i} + \frac{1}{2}d(\triangledown f (u_{i}) + \triangledown f(u_{i}+d \triangledown f(u_{i}))) 
+\end{equation}
 Hierbei sind $u_{i}$ und $u_{i+1}$ die Positionen des aktuellen, beziehungsweise des nächsten Voxels. $\triangledown f(x)$ beschreibt den normalisierten Gradienten für die High-Werte und den normalisierten inversen Gradienten für die Low-Werte an Stelle $x$ . $d$ steht für die Schrittweite (ein Voxel).
-Da das Verfahren in dieser Arbeit auf CT-Daten angewendet wird, ist das Abbruchkriterium der Integration, dass ein Gradient mit Länge null gefunden wird. Ist dies der Fall wir der Intensitätswert dieses Voxels als Ergebnis für den Low- beziehungsweise High-Wert des Startvoxel festgelegt.
+Da das Verfahren in dieser Arbeit auf CT-Daten angewendet wird, ist das Abbruchkriterium der Integration, dass ein Gradient mit Länge null gefunden wird. Ist dies der Fall, wird der Intensitätswert dieses Voxels als Ergebnis für den Low- beziehungsweise High-Wert des Startvoxel festgelegt.
 \newline
 Anschließend wird ein LH-Histogramm über alle berechneten Werte erstellt. Die x-Achse sind hierbei die Low- und die y-Achse die High-Werte. Deren Reichweite geht von null bis zu den jeweiligen Maxima der Werte.
 \newline

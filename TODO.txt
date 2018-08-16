@@ -11,17 +11,26 @@ Methods:
 
 Drüber lesen
 2400 grenze für LH-Werte -> wegen ausreisern
+klare trennung der einzelnen Schritte beim beschreiben
 ------------------------------------------------
 Design:
 
 Generell überarbeiten
+Abbildung überarbeiten
 Mit Methods vergleich -> nicht zu viel doppelt
+übliche Anzahl an Clustern am ende un LH erwähnen
+.bin.txt erwähnen
+nochmals auf das notwendige u eingehen
+parallelität -> vllt auch implementierung
 ------------------------------------------------
 Implementierung:
 
 ------------------------------------------------
 Evaluation:
 
+MITK Vergleichen
+Nutzerstudie fertig machen + schreiben
+Auf Screenshots bezug nehmen
 ------------------------------------------------
 Fazit:
 
@@ -31,18 +40,15 @@ Klappt nicht nur bei wenigen Daten
 ------------------------------------------------
 Ausblick:
 
-Region growing
-Aufwand reduzieren
-Benutzerfreundlicher machen
-GPU rechnen lassen
-Fixen für ganzes Volumen und viertel
-Besser Skaling für große Volumen überlegen -> Berechnungszeit verbessern
-noch genauerer bereich für clustering -> schneller IDs finden
-räumliche IDs die am rand sind weglassen
-
-
 ------------------------------------------------
 Allgemein:
 
 Lesefluss kontrolliern!!!
 Roter Faden!!!
+
+Bilder finden!!!
+Kocherpunkt, OP
+Ventrikelsystem
+LH-Histogramm
+Visualisierung MITK Workbench -> verfahren beschreiben.s
+UML Diagramme -> mehr erstellen, Steffen schreiben
