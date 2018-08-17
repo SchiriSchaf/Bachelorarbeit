@@ -11,7 +11,7 @@ Optisches zeug mehr erwähnen
 Methods:
 
 Drüber lesen
-2400 grenze für LH-Werte -> wegen ausreisern
+2400 grenze für LH-Werte -> wegen ausreisern -> %max wegen clustering mit erklären
 klare trennung der einzelnen Schritte beim beschreiben -> zeilenumbruch sagen bei welchem schritt man  aktuell ist
 ------------------------------------------------
 Design:
@@ -27,12 +27,15 @@ darstellung des gehirns un des Ventrikels -> rot durchsichtigkeit , durchsichtig
 ------------------------------------------------
 Implementierung:
 
+Loop bei LH-Werten
 ------------------------------------------------
 Evaluation:
 
 MITK Vergleichen
 Nutzerstudie fertig machen + schreiben
 Auf Screenshots bezug nehmen
+3 und 4 bei CT daten nicht segmentierbar
+LH-Histogramme vergleichen
 ------------------------------------------------
 Fazit:
 
@@ -43,8 +46,8 @@ Klappt nicht nur bei wenigen Daten
 ------------------------------------------------
 Ausblick:
 
-Bissel mehr
-3 und 4 bei CT daten nicht segmentierbar
+gewicht zum erstellen der LH-Histogramme
+Kleine Optimierungen am code -> highwert beispiel aufgreifen
 ------------------------------------------------
 Allgemein:
 

@@ -1,5 +1,5 @@
 %% ==============================
-\chapter{\iflanguage{ngerman}{Zusammensaffung und Ausblick}{Conclusion}}
+\chapter{\iflanguage{ngerman}{Ausblick}{Conclusion}}
 \label{sec:conclusion}
 %% ==============================
 
@@ -19,6 +19,8 @@ Dies könnte an vielen Stellen verbessert werden. Die zwei Programme könnten zu
 Ein Problem, dass auch vom Arzt erkannt wurde, ist die nicht glatte Darstellung im Ergebnis, sowie die vielen existierenden Ausreißer. Dies macht die Visualisierung ungenau und teilweise missverständlich.
 \newline
 Dies lies sich lösen, indem auf das Endergebnis weiter Algorithmen angewendet werden. Beispielsweise könnten mit Dilatations- und Erosionsfiltern die Oberfläche geschlossen und kleine Ausreißer eliminiert werden. Eine weitere Verbesserung hierbei wäre, einen Regiongrowingalgorithmus am Ende des Verfahrens anzuwenden. Dieser könnte das Ergebnis deutlich verbessern, da dadurch ein vollständigeres Bild des Ventrikelsystems entstehen und eventuell sogar weitere Ventrikel, wie zum Beispiel das Dritte und Vierte, erkannt werden könnten.
+\newline
+Weiterhin könnte an vermutlich mehreren Stellen des aktuellen Codes kleine Optimierungen vorgenommen werden, wie das Beispiel im Kapitel \nameref{sec:implementation}. Diese haben eine kleinen Auswirkung auf das Ergebnis könnte aber nützlich sein, um ein optimales Ergebnis zu erreichen.
 \newline
 Eine andere Stelle an der die Implementierung weiterentwickelt werden könnte, ist die Anwendung des Verfahrens auf große Volumen. Hierzu müsste einerseits, der Fehler behoben werden, dass die Berechnung für zu große Datensätze nicht funktioniert. Des Weiteren wäre dafür Nötig und von allgemeinem Vorteil, wenn die Berechnungszeit verbessert werden würde. Aktuell wird die komplette Berechnung parallel auf dem CPU laufen gelassen. Die Kalkulation der Cluster könnte jedoch auf der GPU stattfinden und damit schneller berechnet werden.
 
