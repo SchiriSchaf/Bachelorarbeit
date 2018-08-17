@@ -1,0 +1,52 @@
+
+Gegebene Reihe i
+for j=i bis Ende des Histogramms mit Schrittweite
+
+    if HatEintrag(Histogramm[i,j])
+
+	   Mittelpunkt = (i,j);
+	   while 
+		  for (k, l) alle Punkte die im Radius der Bandbreite um den Mittelpunkt liegen
+			  if HatEintrag(Histogramm[k, l]) && IstInReichweiteVomMittelpunkt(Histogramm[k, l])
+				  if NochNichtTeilDesClusters((k, l))
+					  AktuellerCluster.Hinzufügen((k, l))
+
+
+
+		  NeuerMittelpunkt = NeuenMittelpunktBerechnen(AktuellerCluster)
+    AlleErgebnisCluster.Hinzufügen(AktuellerCluster);
+    Leeren(AktuellerCluster);
+
+
+VerschmelzeNaheCluster(AlleErgebnisCluster);
+return AlleErgebnisCluster;
+
+
+
+\begin{algorithm}[H]
+ \KwData{LH-Histogramm, Spalte i}
+ \KwResult{LH-Clusters}
+ AlleErgbnisCluster\;
+ NeuerMittelpunkt\;
+ AlterMittelpunkt\;
+ AktuellerCluster\;
+ \For{$j\leftarrow i$ \KwTo $Rand des Histogramms mit Schrittweite 5$}{
+  Mittelpunkt = (i,j)\;
+ \While{Abstand(NeuerMittelpunkt, AlterMittelpunkt) > Threshold}{
+  \For{$(k, l)\leftarrow alle Punkte im Radius der Bandbreite um den Mittelpunkt$}{
+    \If{IstInReichweiteVomMittelpunkt((k, l))}{
+      \If{NochNichtTeilDesClusters((k, l))}{
+	AktuellerCluster.Hinzufügen((k, l))\;
+     }
+    }
+    NeuerMittelpunkt = NeuenMittelpunktBerechnen(AktuellerCluster)\;
+   }
+  }
+  AlleErgebnisCluster.Hinzufügen(AktuellerCluster)\;
+  Leeren(AktuellerCluster)\;
+ }
+VerschmelzeNaheCluster(AlleErgebnisCluster)\;
+return AlleErgebnisCluster\;
+
+ \caption{Pseudocode der Implementierung der LH-Cluster}
+\end{algorithm}

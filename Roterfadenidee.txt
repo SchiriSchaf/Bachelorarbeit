@@ -1,0 +1,15 @@
+Einleitung: Motivation, Problem nennen -> Transferfunktion ist Lösung
+
+State of the art: Welche Transferfunktionen gibt und wie gut passen sie auf das Problem -> Ein Verfahren auswählen
+
+Methode: Wie genau funktioniert die Methode?
+
+Design: Wie war die Implementierung geplant, wie sollte die Methode umgesetzt werden?
+
+Implementierung: Wie wurde die Methode umgesetzt? Lief alles nach Plan? Welche Probleme sind aufgetreten?
+
+Ergebnisse: Was kam bei der Implementierung heraus? Wie gut sind die Ergebnisse? Wie gut die Implementierung?
+
+Fazit: Alles zusammenfassen und zu einem Schluss kommen
+
+Auslbick: Wie können die genannten Probleme verbessert werden? Was kann generell verbessert werden?

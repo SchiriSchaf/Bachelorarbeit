@@ -11,7 +11,6 @@ Optisches zeug mehr erwähnen
 Methods:
 
 Drüber lesen
-2400 grenze für LH-Werte -> wegen ausreisern -> %max wegen clustering mit erklären
 klare trennung der einzelnen Schritte beim beschreiben -> zeilenumbruch sagen bei welchem schritt man  aktuell ist
 ------------------------------------------------
 Design:
@@ -27,7 +26,10 @@ darstellung des gehirns un des Ventrikels -> rot durchsichtigkeit , durchsichtig
 ------------------------------------------------
 Implementierung:
 
-Loop bei LH-Werten
+Gradient mehr beschreiben
+Gewählte stepsize clustering nennen.
+Parallelität erwähnen erklären
+Räumlich ausführlicher
 ------------------------------------------------
 Evaluation:
 
@@ -48,10 +50,11 @@ Ausblick:
 
 gewicht zum erstellen der LH-Histogramme
 Kleine Optimierungen am code -> highwert beispiel aufgreifen
+weniger clusterids -> zu viele zum finden
 ------------------------------------------------
 Allgemein:
 
-Ventrikelsystem zeigen und beschreiben -> entscheiden wo
+Ventrikelsystem zeigen und beschreiben -> einleitung oder evaluation
 Lesefluss kontrolliern!!!
 Roter Faden!!!
 
