@@ -10,26 +10,24 @@ Optisches zeug mehr erwähnen
 ------------------------------------------------
 Methods:
 
-Drüber lesen
-klare trennung der einzelnen Schritte beim beschreiben -> zeilenumbruch sagen bei welchem schritt man  aktuell ist
+LH-Werte genauer erklären -> grenze zwischen zwei materialien
 ------------------------------------------------
 Design:
 
-Generell überarbeiten
-Abbildung überarbeiten
-Mit Methods vergleich -> nicht zu viel doppelt
+Abbildung überarbeiten -> workbench und user mit reinnehmen
 übliche Anzahl an Clustern am ende un LH erwähnen
 .bin.txt erwähnen
-nochmals auf das notwendige u eingehen
-parallelität -> vllt auch implementierung
+auf das notwendige u eingehen
 darstellung des gehirns un des Ventrikels -> rot durchsichtigkeit , durchsichtigkeit und farbe vom rest
+räumlich clustern zeigen dass gefundene rausgeworfen werden -> vielleicht implementierung
+	-> Verbesserung nur rauswerfen wenn der cluster groß genug zum adden ist
 ------------------------------------------------
 Implementierung:
 
 Gradient mehr beschreiben
 Gewählte stepsize clustering nennen.
 Parallelität erwähnen erklären
-Räumlich ausführlicher
+Räumlich ausführlicher -> parameter werte -> warum keine schrittweite -> gefundenen werden aus der liste geworfen
 ------------------------------------------------
 Evaluation:
 
@@ -38,6 +36,7 @@ Nutzerstudie fertig machen + schreiben
 Auf Screenshots bezug nehmen
 3 und 4 bei CT daten nicht segmentierbar
 LH-Histogramme vergleichen
+ct daten nur wert des Ventrikelsystems
 ------------------------------------------------
 Fazit:
 
@@ -51,12 +50,15 @@ Ausblick:
 gewicht zum erstellen der LH-Histogramme
 Kleine Optimierungen am code -> highwert beispiel aufgreifen
 weniger clusterids -> zu viele zum finden
+Räumliche Cluster mergen -> vom gleichen LH-Cluster
+u weglassen können
 ------------------------------------------------
 Allgemein:
 
 Ventrikelsystem zeigen und beschreiben -> einleitung oder evaluation
 Lesefluss kontrolliern!!!
 Roter Faden!!!
+Arbeit -> Bachelorarbeit andere Synonyme
 
 Bilder finden!!!
 Kocherpunkt, OP
