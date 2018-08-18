@@ -14,20 +14,22 @@ LH-Werte genauer erklären -> grenze zwischen zwei materialien
 ------------------------------------------------
 Design:
 
+
 Abbildung überarbeiten -> workbench und user mit reinnehmen
-übliche Anzahl an Clustern am ende un LH erwähnen
 .bin.txt erwähnen
 auf das notwendige u eingehen
-darstellung des gehirns un des Ventrikels -> rot durchsichtigkeit , durchsichtigkeit und farbe vom rest
-räumlich clustern zeigen dass gefundene rausgeworfen werden -> vielleicht implementierung
-	-> Verbesserung nur rauswerfen wenn der cluster groß genug zum adden ist
+darstellung des gehirns und des Ventrikels -> rot durchsichtigkeit , durchsichtigkeit und farbe vom rest
 ------------------------------------------------
 Implementierung:
 
 Gradient mehr beschreiben
+Shader verändert beschreiben
+übliche Anzahl an Clustern am ende und LH erwähnen
 Gewählte stepsize clustering nennen.
 Parallelität erwähnen erklären
 Räumlich ausführlicher -> parameter werte -> warum keine schrittweite -> gefundenen werden aus der liste geworfen
+räumlich clustern zeigen dass gefundene rausgeworfen werden -> vielleicht implementierung
+	-> Verbesserung nur rauswerfen wenn der cluster groß genug zum adden ist
 ------------------------------------------------
 Evaluation:
 
@@ -59,6 +61,7 @@ Ventrikelsystem zeigen und beschreiben -> einleitung oder evaluation
 Lesefluss kontrolliern!!!
 Roter Faden!!!
 Arbeit -> Bachelorarbeit andere Synonyme
+Intensitätswerte und CT erklären
 
 Bilder finden!!!
 Kocherpunkt, OP

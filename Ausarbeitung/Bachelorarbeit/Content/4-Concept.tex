@@ -15,7 +15,7 @@ Die Implementierung dieser Bachelorarbeit teilt sich dabei in zwei verschieden P
 Anfangs liegen die CT-Daten von den Volumen in mehreren Dateien als Schnittbilder im DICOM Format vor. Diese werden mithilfe der MITK Workbench zu einer einzelnen Datei im .nrrd Format umgewandelt, da nur Volumen in diesem Format vom Helper eingelesen werden können.
 \newline
 Die interne Speicherung des Volumens wird mit der generischen Klasse \textit{Volume} umgesetzt. Diese besitzt ein dreidimensionalen Array vom angegebenen generischen Datentyp, sowie Informationen über das Volumen, wie zum Beispiel Größe der Voxel oder Anzahl der Elemente pro Achse. Des Weiteren bietet die Klasse verschieden Funktionen um Informationen auszulesen oder zu bearbeiten. Zur Darstellung von dreidimensionale Koordinaten, werden die Klassen \textit{IVector3} und \textit{FVector3} benutzt. Diese stellen Vektoren dar, die entweder Integer, Ganzzahlen, oder Float, Dezimalzahlen, als $x,y$ und $z$ Werte speichern.
-\todo{attribute funktionen etc. von volumenklasse in UML}
+\todo{Volumenklasse  UML}
 \newline
 \todo{mergecluster oder clustermerge}
 Die Interaktion des Benutzers mit dem Helper findet über eine Kommandozeile statt. Hierbei hat der Anwender die Befehle Load, Dump, Resample, Info, Write, LHHistogram, ClusterVolume und MergeCluster zur Auswahl. Jedes Modul hat dabei seine eigene Syntax die mithilfe eines Help Befehls angezeigt werden kann.
@@ -31,31 +31,73 @@ Im Folgenden werden hauptsächlich die Module LHHistogram, ClusterVolume und Mer
 \label{fig:ueberblick} 
 \end{figure}
 
-
-Damit das Verfahren funktioniert, muss das geladene Volumen als "unsigned int" vorliegen. Der Ablauf der Berechnung startet in der statischen \textit{Gradient} Klasse. Diese ist eine Implementierung des Verfahren von Hong \cite{hong2003method}. Sie nimmt für ihre Berechnung als Parameter ein Volumen von Integern entgegen und gibt ein Volumen mit dem generischen Datentyp \textit{FVector3} zurück. Diese ist eine Hilfsklasse zur Darstellung von dreidimensionalen Vektoren.
-
-Als nächstes wird die Funktion \textit{LHValueVolume} der statischen Klasse \textit{LHValues} aufgerufen. Diese berechnet für das gegebene \textit{FVector3} Volumen und den dazugehörigen Intensitätswerten die LH-Werte für jeden Voxel. Diese gibt die Methode in Form eines Volumens vom Typen "Tuple<float,float>" zurück.
-
-Hat der Benutzer das Modul LHHistogram aufgerufen, entsteht im Anschluss das LH-Histogramm in der Klasse \textit{LHHistogramCSV} und wird von ihr als .csv Datei in einem vom Anwender angegebenen Pfad abgespeichert. Diese kann der Benutzer anschließend in dem Pythonscript \textit{PlotHelper}  laden und sich Visualisieren lassen. Hierbei ist zu beachten, dass das Histogramm gebildet wird, indem die Häufigkeit des Vorkommens eines LH-Wertpaares im Volumen im jeweils dazu passenden Kästchen gespeichert wird. Dies ist simpler als das im Paper von Nguyen \cite{nguyen2012clustering} benutzte Erstellen des Histogramms abhängig von einer für jeden Voxel berechneten Gewichtung. Da die Arbeit an der Implementierung zeitlich beschränkt war, wurde diese Gewichtung, die einzig und allein einer genaueren Darstellung des für das Verfahren irrelevante LH-Histogramm dient, vernachlässigt. Die Gewichtung ist für das Clustering belanglos, da dort ein Histogramm wie oben beschrieben, abhängig von der Häufigkeit der LH-Werte verwendet wird. 
-
-
+\todo{abbildung die zeigt warum es das volumen kleiner wird}
+\todo{funktionsnamen}
+Der Ablauf der Berechnung startet in der statischen \textit{Gradient} Klasse. Diese ist eine Implementierung des Verfahren von Hong \cite{hong2003method}. Zur Berechnung wird der Funktion \textit{bla} das Volumen der Intensitätswerte, als Volumen aus Integern, als Parameter übergeben. Wie im vorherigen Kapitel besprochen, können die Gradienten nicht für einen Voxel direkt berechnet werden, sondern nur für die Punkte zwischen den Voxeln. Aus diesem Grund ist das Ergebnisvolumen um ein Voxel in jeder Achse kleiner als das Volumen der Intensitätswerte, da... (abbildung). Als Ergebnis der Funktion wird ein Volumen vom Typen \textit{FVector3} zurückgegeben.
+\newline
+DIe Berechnung der LH-Werte findet in der statischen Klasse \textit{LHValues} in der Funktion \textit{LHValueVolume} statt. Als Parameter wird das \textit{FVector3} Volumen der Gradienten aus dem Schritt davor entgegengenommen. Da für die Berechnung der LH-Werte die Intensitätswerte und die Gradienten am gleichen Punkt vorhanden seien müssen, müssen die Intensitätswerte für das verschobene Volumen der Gradienten berechnet werden. Dazu wurde eine einfache Interpolation durchgeführt, indem von allen 8 Nachbarn eines Punktes die Intensitätswerte aufaddiert und hinterher durch acht geteilt wurden. Hierbei muss jedoch beachtet werden, dass die Werte dadurch verändert werden, und Informationen verloren gehen.
+\newline
+Hat der Benutzer das Modul LHHistogram aufgerufen, wird im Anschluss das LH-Histogramm in der Klasse \textit{LHHistogramCSV} erstellt und wird von ihr als .csv Datei in einem vom Anwender angegebenen Pfad abgespeichert.
+\newline
+An dieser Stelle kommt das Pythonskript \textit{PlotHelper} zum Einsatz. Dieses lädt die .csv Datei und visualisiert das LH-Histogramm mithilfe einer kalt-zu-heiß-Farbrampe in einem zweidimensionalem Koordinatensystem.
+\newline
+Hierbei ist zu beachten, dass das Histogramm abhängig von der Häufigkeit des Vorkommens eines LH-Wertpaares im Volumen gebildet wird. Diese werden im jeweils dazu passenden Kästchen des Koordinatensystems gespeichert. Dies ist ein simplerer Vorgehen, als das im Paper von Nguyen \cite{nguyen2012clustering} benutzte Erstellen des Histogramms abhängig von einer für jeden Voxel berechneten Gewichtung. Da die Arbeit an der Implementierung zeitlich beschränkt war, wurde diese Gewichtung, die einzig und allein einer genaueren Darstellung des für das Verfahren irrelevante LH-Histogramm dient, vernachlässigt. Die Gewichtung ist für das Clustering belanglos, da dort ein Histogramm wie oben beschrieben, abhängig von der Häufigkeit der LH-Werte verwendet wird. 
+\newline
 Wurde jedoch das ClusterVolume Modul aufgerufen, wird mit den beiden Clusteringschritten fortgefahren.
-Die Berechnung die in der \textit{LHClustering} Klasse geschieht nimmt das Volumen mit den LH-Werten entgegen und rechnet es aus Performancegründen in ein ein Histogramm um. Dieser Schritt könnte gespart werden, wenn die Methode \textit{LHValueVolume} direkt ein Histogramm als Rückgabewert liefern würde. Als Ergebnis der Clusteringfunktion \textit{ComputeLHClusters} wird eine Liste der Cluster zurückgegeben. Ein Cluster besteht aus einer Liste von \textit{IVector3}.Diese Hilfsklasse beschreibt wie \textit{FVector3} Vektoren, jedoch können die Werte nur ganze Zahlen annehmen, folglich eigenen sie sich gut, wie hier verwendet, zum Beschreiben von Positionen im Volumen.Die Cluster werden nur als Liste der räumliche Information der Punkte gespeichert, da für den nächsten Clusteringschritt  lediglich diese Information benötigt wird. 
-
-
-
-Dies wird für jeden Voxel im Volumen berechnet. Als Ergebnis des Verfahrens kommt ein Volumen, in dem alle Gradienten gespeichert sind, heraus. Jedoch sind die Punkte um eine halbe Voxellänge verschoben. Desweiteren ist die Dimension dieses Volumens in jeder Achse um eins kleiner als das vorher gegebene Intensitätsvolumen.
-Da für die Berechnung der LH-Werte jedoch der Gradient und der Intensitätswert an einer Stelle im Volumen bekannt sein muss, wurden die Intensitätswerte auf das Volumen der Gradienten umgerechnet. Dies geschieht durch eine einfach Interpolation, indem von allen 8 Nachbarn eines Punktes der Intensitätswerte aufaddiert und hinterher durch acht geteilt werden. Hierbei gehen Information verloren....
-\todo{abbildung für interpolation und beschreiben was verloren geht}
-
-
-
-
-Nachdem alle Cluster erzeugt wurden, werden ihnen zufällige IDs von eins bis zur Anzahl an Clustern zugeteilt. Anschließend wird ein Volumen erstellt, mit den Dimensionen des ursprünglichen Intensitätsvolumens, dass nur mit nullen als Werte gefüllt ist. Warum es diese Dimension haben muss, wird später erklärt. Danach wird durch alle Cluster iteriert, und jeder Voxel in das neu erstellte Volumen an der jeweiligen Position eingetragen. Dabei ist der eingetragene Wert immer die  ID des aktuellen Clusters. Nachdem alle Cluster abgearbeitet wurden, besteht das Volumen aus ausschließlich nullen und den IDs der Cluster an den passenden Stellen.
+Die Berechnung die in der \textit{LHClustering} Klasse geschieht nimmt das Volumen mit den LH-Werten entgegen und rechnet dieses aus Performancegründen, wie oben beschrieben, in ein ein Histogramm um. Dieser Schritt könnte gespart werden, wenn die Methode \textit{LHValueVolume} direkt ein Histogramm als Rückgabewert liefern würde. Dies würde auch das \textit{LHHistogram} Modul verbessern, da damit die Umrechnung in dieser Klasse ebenso hinfällig wird. Als Ergebnis der Clusteringfunktion \textit{ComputeLHClusters} wird eine Liste der Cluster zurückgegeben, wobei ein Cluster aus einer Liste von \textit{IVector3} besteht. Die Cluster werden nur als Liste der räumliche Informationen der Voxel gespeichert, da für den nächsten Clusteringschritt  lediglich diese Information benötigt wird. 
 \newline
-Dieses Volumen wird als eine binäre Datei abgespeichert und in Unity geladen. Hier kann der Anwender sich entweder die Form von einzelnen IDs anschauen oder eine Reichweite von IDs. Die gewählten IDs werden rot markiert und sich deutlich vom restlichen Volumen zu unterscheiden. Mithilfe der Darstellung muss der Nutzer anhand der Form die Cluster erkennen, die zum Ventrikelsystem gehören, und deren IDs notieren. 
+Anschließend geht es in der \textit{SpatialClustering} Klasse mit der Berechnung der räumlichen Cluster weiter...
+\todo{mehr räumlich clustern beschreiben}
 \newline
-Hat er dies getan kann er im ... Programm die binäre Datei mit den IDs, die ursprüngliche Intensitätsvolumendatei laden und eine die Liste der passenden IDs als Parameter übergeben. Die ausgewählten IDs werden zu einem Cluster verschmolzen und in das Intensitätsvolumen übernommen. Dort erhalten sie, da der maximale Wert von CT-Daten bei ...(4400) liegt, den Wert 5000. Dieser Wert erhöht das Maximum für die Darstellung der Daten nur gering, ist dafür aber im Volumen sonst nirgends enthalten. Das Ergebnis dieser Verschmelzung wird wieder als binäre Datei gespeichert.
+Nachdem alle Cluster kalkuliert wurden, werden sie in einem Volumen gespeichert. Jeder Cluster bekommt dabei zunächst seine eigene ID beginnend bei eins. Das Volumen wird dann mit den verschiedenen IDs gefüllt. Dies geschieht indem für jeden Cluster an den Positionen der Punkte die jeweilige ID gespeichert wird. Alle anderen Voxel des Clustervolumen wird der Wert null zugewiesen. Dieses Volumen wird als binäre Datei gespeichert und ist das Ergebnis der ClusterVolume Moduls. Es ist bei diesem Modul sehr wichtig, dass es, wie es bei dem Dump Befehl möglich ist, mit einem $u$ am Ende aufgerufen wird, da das Ergebnis sonst nicht vom Renderer dargestellt werden kann.
 \newline
-Als letzten Schritt kann nun der Benutzer die verschmolzene Datei erneut in Unity laden. Hier kann er sich dann das Volumen normale abhängig von den Grauwerten dargestellt anzeigen lassen, mit dem Ventrikelsystem in rot, oder einer anderen ausgewählten Farbe darin.
-\todo{letzten schritt genauer}
+Das Ergebnis muss anschließend vom Nutzer in Unity geladen werden. Hierbei kommt die von dieser Arbeit vorgenommenen Anpassung am Renderer zum Einsatz. Dadurch ist es dem Benutzer möglich über ein Eingabefeld während der Visualisierung einen Wert, oder einen Wertebereich anzugeben. Dieser wird dann in einer gewählten Farbe, standardmäßig rot, hervorgehoben. Dies muss der Anwender nutzen, um die IDs, die das Ventrikelsystem beschreiben, zu finden.
+\newline
+Hat er dies getan kann er mit dem MergeCluster Modul des Helpers das Ergebnis zusammenfügen und die finale Visualisierung erhalten. Beim Aufruf muss der Nutzer das Intensitätsvolumen, das Clustervolumen mit den IDs und die ausgewählten IDs als Parameter übergeben. Anschließend wird an den Stellen der ClusterIDs die Werte im Intensitäsvolumen mit dem Wert 5000 überschrieben, da nach dem beschriebenen Werteshift ins positive der maximale Intensitätswert bei ungefähr 4500 liegt. Dies erhöht das Maximum des Volumens nur gering und lässt es zu die zu visualisierenden Bereiche klar vom Rest abzugrenzen. Dieses Volumen wird erneut als binäre Datei gespeichert.
+\newline
+Als letzten Schritt kann nun der Benutzer den Wert der eben erklärte Erweiterung des Renderer auf 5000 stellen und die Visualisierung des Ventrikelsystems betrachten.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
