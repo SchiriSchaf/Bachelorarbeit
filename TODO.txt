@@ -4,7 +4,6 @@ Begründung für die Wahl der Methode
 Übergänge
 eindimensionale Transferfunktionen finden
 2d sg-tf finden -> Kniss
-Allgemein drüber lesen -> lesefluss testen
 Image based mehr finden
 Optisches zeug mehr erwähnen
 ------------------------------------------------
@@ -14,7 +13,6 @@ LH-Werte genauer erklären -> grenze zwischen zwei materialien
 ------------------------------------------------
 Design:
 
-
 Abbildung überarbeiten -> workbench und user mit reinnehmen
 .bin.txt erwähnen
 auf das notwendige u eingehen
@@ -22,24 +20,17 @@ darstellung des gehirns und des Ventrikels -> rot durchsichtigkeit , durchsichti
 ------------------------------------------------
 Implementierung:
 
-Gradient mehr beschreiben
-old werte rausschmeißen bei hwertcode
-Shader verändert beschreiben
+old werte rausschmeißen bei hwertcode abbildung
 übliche Anzahl an Clustern am ende und LH erwähnen
-Gewählte stepsize clustering nennen.
-Parallelität erwähnen erklären
-Räumlich ausführlicher -> parameter werte -> warum keine schrittweite -> gefundenen werden aus der liste geworfen
-räumlich clustern zeigen dass gefundene rausgeworfen werden -> vielleicht implementierung
-	-> Verbesserung nur rauswerfen wenn der cluster groß genug zum adden ist
 ------------------------------------------------
 Evaluation:
 
-MITK Vergleichen
+MITK Vergleichen -> screenshots
 Nutzerstudie fertig machen + schreiben
 Auf Screenshots bezug nehmen
-3 und 4 bei CT daten nicht segmentierbar
+3 und 4 bei CT daten nicht segmentierbar gesunder mensch
 LH-Histogramme vergleichen
-ct daten nur wert des Ventrikelsystems
+ct daten nur wert des Ventrikelsystems -> unity screenshots
 ------------------------------------------------
 Fazit:
 
@@ -59,10 +50,15 @@ u weglassen können
 Allgemein:
 
 Ventrikelsystem zeigen und beschreiben -> einleitung oder evaluation
-Lesefluss kontrolliern!!!
-Roter Faden!!!
+Lesefluss kontrolliern!!! -> überall Übergänge verwenden
 Arbeit -> Bachelorarbeit andere Synonyme
-Intensitätswerte und CT erklären
+Intensitätswerte und CT erklären -> vielleicht einleitung
+Alle "man"s finden und entfernen
+Fehlende Refs und Cites einfügen
+CT MRT unterschieden -> klappt nicht mrt -> warum -> wo?
+Einheitlich, was kursiv ist.
+Einheitliche Trennung von Absätzen und Zeilenumbrüche überlegen -> 3 verscheiden Trennung
+	-> newline in einem absatz, kleiner Abstand neuer Absatz, großer abstand neues Thema
 
 Bilder finden!!!
 Kocherpunkt, OP
