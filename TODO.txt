@@ -23,6 +23,7 @@ darstellung des gehirns und des Ventrikels -> rot durchsichtigkeit , durchsichti
 Implementierung:
 
 Gradient mehr beschreiben
+old werte rausschmeißen bei hwertcode
 Shader verändert beschreiben
 übliche Anzahl an Clustern am ende und LH erwähnen
 Gewählte stepsize clustering nennen.
