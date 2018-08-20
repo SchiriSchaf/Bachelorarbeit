@@ -1,4 +1,9 @@
-﻿State of the art:
+﻿Einleitung:
+
+Bild der Operation einfügen
+Intensitätswerte und CT erklären
+------------------------------------------------------------------------------------------------
+State of the art:
 
 Begründung für die Wahl der Methode 
 Übergänge
@@ -6,37 +11,34 @@ eindimensionale Transferfunktionen finden
 2d sg-tf finden -> Kniss
 Image based mehr finden
 Optisches zeug mehr erwähnen -> Farbgebung etc.
-------------------------------------------------
+------------------------------------------------------------------------------------------------
 Methods:
 
 LH-Werte genauer erklären -> grenze zwischen zwei materialien
-------------------------------------------------
+------------------------------------------------------------------------------------------------
 Design:
 
-Abbildung die zeit warum das Volumen kleiner wird
 Abbildung überarbeiten -> workbench und user mit reinnehmen
 .bin.txt erwähnen
 auf das notwendige u eingehen
 darstellung des gehirns und des Ventrikels -> rot durchsichtigkeit , durchsichtigkeit und farbe vom rest
-------------------------------------------------
+------------------------------------------------------------------------------------------------
 Implementierung:
 
 übliche Anzahl an Clustern am ende und LH erwähnen
-------------------------------------------------
+------------------------------------------------------------------------------------------------
 Evaluation:
 
 Nutzerstudie fertig machen + schreiben
-Auf Screenshots bezug nehmen
-3 und 4 bei CT daten nicht segmentierbar gesunder mensch
 LH-Histogramme vergleichen
-------------------------------------------------
+------------------------------------------------------------------------------------------------
 Fazit:
 
 Am Ende, wenn der Rest fertig ist -> auf alles vorher gesagte bezug nehmen
 Klappt, aber nicht so einfach
 Viele Fehler
 Klappt nur bei wenigen Daten
-------------------------------------------------
+------------------------------------------------------------------------------------------------
 Ausblick:
 
 gewicht zum erstellen der LH-Histogramme
@@ -44,14 +46,12 @@ Kleine Optimierungen am code -> highwert beispiel aufgreifen
 weniger clusterids -> zu viele zum finden
 Räumliche Cluster mergen -> vom gleichen LH-Cluster
 u weglassen können
-genaueres Clustern -> 1025-1030 ventrikel gefunden -> unklar ob 3 und 4 damit überhautp gefunden werden kann
-------------------------------------------------
+genaueres Clustern -> 1025-1030 ventrikel gefunden -> unklar ob 3 und 4 damit überhaupt gefunden werden kann
+------------------------------------------------------------------------------------------------
 Allgemein:
 
-Ventrikelsystem zeigen und beschreiben -> einleitung oder evaluation
 Lesefluss kontrolliern!!! -> überall Übergänge verwenden
 Arbeit -> Bachelorarbeit andere Synonyme
-Intensitätswerte und CT erklären -> vielleicht einleitung
 Alle "man"s finden und entfernen
 Fehlende Refs und Cites einfügen
 CT MRT unterschieden -> klappt nicht mrt -> warum -> wo?
@@ -60,10 +60,9 @@ Einheitliche Trennung von Absätzen und Zeilenumbrüche überlegen -> 3 verschei
 	-> newline in einem absatz, kleiner Abstand neuer Absatz, großer abstand neues Thema
 	-> unterkapitel zur Trennung benutzen
 Anfürungszeichen ändern -> bsp. kursiv benutzen
-
+Bilder, Tabellen etc. an die richtigen Stellen im Text schieben
+------------------------------------------------------------------------------------------------
 Bilder finden!!!
-Kocherpunkt, OP
-Ventrikelsystem
 LH-Histogramm
 Visualisierung MITK Workbench -> verfahren beschreiben.s
 UML Diagramme -> mehr erstellen, Steffen schreiben

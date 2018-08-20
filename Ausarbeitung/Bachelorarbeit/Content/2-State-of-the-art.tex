@@ -12,12 +12,12 @@
 Das Gebiet der Transferfunktionen ist bereits weit erforscht und es existieren viele unterschiedliche Methoden und Herangehensweisen um medizinische Daten abhängig von verschiedenen Problemstellungen passend darzustellen.
 \newline
 \todo{besser formulieren}
-Dabei kann man einerseits zwischen dem Level an Automation eines Systems unterscheiden. Hierbei gibts es vollautomatische Verfahren, bei denen keine Interaktion mit den Benutzer von Nöten ist, semiautomatische Verfahren bei denen der Benutzer noch an gewissen Stellschrauben drehen kann um das Ergebnis zu beeinflussen und manuele Verfahren, bei denen der Anwender mehr oder minder auf sich alleine gestellt ist.Transferfunktionene unterscheiden sich weiterhin in ihrer Dimensionalität. Es gibt ein- zwei- und allgemein -mehrdimensionale Transferfunktionen. Desweiteren sind die Grundlagen auf denen die Berechnungen ruhen teils völlig verschieden. Manche Verfahren basieren auf den Intensitätswerten oder deren Änderung im gegebenen Volumen, andere auf der Größe der Features die für den Nutzer von interesse sind. Wieder andere sind Bildbasiert oder wenden Machinelearning an um zum gewünschten Ziel zu gelangen.
+Dabei kann man einerseits zwischen dem Level an Automation eines Systems unterscheiden. Hierbei gibt es vollautomatische Verfahren, bei denen keine Interaktion mit den Benutzer von Nöten ist, semiautomatische Verfahren bei denen der Benutzer noch an gewissen Stellschrauben drehen kann um das Ergebnis zu beeinflussen und manuelle Verfahren, bei denen der Anwender mehr oder minder auf sich alleine gestellt ist.Transferfunktionen unterscheiden sich weiterhin in ihrer Dimensionalität. Es gibt ein- zwei- und allgemein -mehrdimensionale Transferfunktionen. Des Weiteren sind die Grundlagen auf denen die Berechnungen ruhen teils völlig verschieden. Manche Verfahren basieren auf den Intensitätswerten oder deren Änderung im gegebenen Volumen, andere auf der Größe der Features die für den Nutzer von Interesse sind. Wieder andere sind Bildbasiert oder wenden Machinelearning an um zum gewünschten Ziel zu gelangen.
 \newline
 In diesem Abschnitt wird ein Überblick über die unterschiedlichen Vorgehensweisen von Transferfunktionen gegeben. Dabei werden diese im Folgenden für die Übersicht in die Kategorien Eindimensionale, Zweidimensionale, Räumlichbasierte,Machinelearning, Bildbasierte, Clusteringbasierte Verfahren geteilt.
 \newline
 \todo{übersicht zu oft}
-Dabei ist jedoch zu beachten, dass die Kategorien lediglich der Übsicht diese Abschnitts dienen. Die Kategorien hätten anders gewählt werden können. Desweiteren können manche Verfahren nicht eindeutig in die hier genannte Unterteilung eingeteilt werden, da sie mehrere Klassen auf sie zutreffen. 
+Dabei ist jedoch zu beachten, dass die Kategorien lediglich der Übersicht diese Abschnitts dienen. Die Kategorien hätten anders gewählt werden können. Des Weiteren können manche Verfahren nicht eindeutig in die hier genannte Unterteilung eingeteilt werden, da sie mehrere Klassen auf sie zutreffen. 
 
 
 
@@ -27,7 +27,7 @@ Dabei ist jedoch zu beachten, dass die Kategorien lediglich der Übsicht diese A
 
 \subsection{Eindimensionale Verfahren}
 
-Die einfachste Form der Transferfunktionrm, sind die eindimensionalen Transferfunktionen. In diesen, wird nur der Intensitätswert der Voxel in Betracht gezogen. Abgesehe von den niedrigen Berechnungszeiten, sind diese jedoch aus mehreren Gründen suboptimal. Medizinischen Daten werden gemessen und haben deshalb meist ein Rauschen, was die genaue Darstellung erschwert. Weiterhin sind die Intensitätswerte verschiedener Bereiche nah beieinander oder gar gleich und damit sind eindimensionale Transferfunktionen unpraktisch um verschiedene Materialien kenntlich zu machen. Trotzdem sind eindimensionale Transferfunktionen weit verbreitet und werden oft benutzt. 
+Die einfachste Form der Transferfunktionen, sind die eindimensionalen Transferfunktionen. In diesen, wird nur der Intensitätswert der Voxel in Betracht gezogen. Abgesehen von den niedrigen Berechnungszeiten, sind diese jedoch aus mehreren Gründen suboptimal. Medizinischen Daten werden gemessen und haben deshalb meist ein Rauschen, was die genaue Darstellung erschwert. Weiterhin sind die Intensitätswerte verschiedener Bereiche nah beieinander oder gar gleich und damit sind eindimensionale Transferfunktionen unpraktisch um verschiedene Materialien kenntlich zu machen. Trotzdem sind eindimensionale Transferfunktionen weit verbreitet und werden oft benutzt. 
 \newline
 
 
@@ -57,38 +57,38 @@ Wenn der Benutzer eine Region ausgewählt hat, werden zunächst alle Strukturen 
 
 In der Arbeit von Wesarg und Kirschner \cite{wesarg2009structure, wesarg20102d} wird das "Stucture-Size-Enhanced Histogram" vorgestellt.
 \newline
-Dafür muss für jeden Voxel die "structure size estimators" berechnet werden. Dies geschieht, indem betrachtet wird, wie viele Schritte in die Richtung der 26 Nachbarn des Voxel gemacht werden kann. Ein Schritt kann gemacht werden, wenn der Intensitätswert des erreichten Voxels nicht mehr als ein gegebener Parameter abweicht. Die Schrittweiter startet mit einem Voxel und verdoppelt sich mit jedem gemachten Schritt bis hin zur Hälft der Größe des gegebenen Volumens. Für ein besseres Ergebnis wird nur der kleinere Wert von zwei entgegengesetzten Richtungen gespeichert. Die Akkumulation alle Werte ergibt die Größe der Struktur. Aus diesem und dem Intensitätswert wird ein zweidimensionales Histogram erstellt.
+Dafür muss für jeden Voxel die "structure size estimators" berechnet werden. Dies geschieht, indem betrachtet wird, wie viele Schritte in die Richtung der 26 Nachbarn des Voxel gemacht werden kann. Ein Schritt kann gemacht werden, wenn der Intensitätswert des erreichten Voxels nicht mehr als ein gegebener Parameter abweicht. Die Schrittweite startet mit einem Voxel und verdoppelt sich mit jedem gemachten Schritt bis hin zur Hälfte der Größe des gegebenen Volumens. Für ein besseres Ergebnis wird nur der kleinere Wert von zwei entgegengesetzten Richtungen gespeichert. Die Akkumulation alle Werte ergibt die Größe der Struktur. Aus diesem und dem Intensitätswert wird ein zweidimensionales Histogramm erstellt.
 
 
-Es gibt diverse Regiongrowingverfahren um Strukturen von interesse hervozuheben.
+Es gibt diverse Regiongrowingverfahren um Strukturen von Interesse hervorzuheben.
 \newline
-Beipsielsweise wird im Paper von Huang \cite{huang2003rgvis} ein solches Regiongrowingverfahren vorgestellt.
+Beispielsweise wird im Paper von Huang \cite{huang2003rgvis} ein solches Regiongrowingverfahren vorgestellt.
 \newline
-Der Benutzer kann einen Punkt von interesse im Volumen wählen, den sogenannten "seed". Es werden alle 26 Nachbarn des "seeds" besucht und anhand einer Kostenfunktion, die den entsprechenden Wert des besuchten Voxels und des Seedvoxels vergleicht, entschieden ob sie zu der Region dazugehören oder nicht. Sind sie Teil der Struktur werden auch ihre Nachbarn besucht und alle passenden Voxel zu der Region hinzugefügt. Diese Vorgang wiederholt sich so lange bis alle Voxel gefunden wurden, oder ein anderes internes Abbruchkriterium erfüllt wurde.  Es stehen dem Anwender 3 verschiedene Kostenfunktionen bereit. Die erste Funktion bezieht sich auf die Intensitätswerte der Voxel, die Zweite auf die Länge der jeweiligen Gradienten und bei der Dritten werden die Gewichte der Voxel verglichen, die vorher vom Benutzer definiert werden müssen. In einem Nachbearbeitungsschritt ist es anschließend noch möglich unpassende Elemente zu entfernen, wenn beispielsweise eine ganze weitere Struktur auch visualisiert wird, da sie über eine kleine Brücke von ein bis zwei Voxeln mit der eigentlich gesuchten Struktur verbunden ist.
+Der Benutzer kann einen Punkt von Interesse im Volumen wählen, den sogenannten "seed". Es werden alle 26 Nachbarn des "seeds" besucht und anhand einer Kostenfunktion, die den entsprechenden Wert des besuchten Voxels und des Seedvoxels vergleicht, entschieden ob sie zu der Region dazugehören oder nicht. Sind sie Teil der Struktur werden auch ihre Nachbarn besucht und alle passenden Voxel zu der Region hinzugefügt. Diese Vorgang wiederholt sich so lange bis alle Voxel gefunden wurden, oder ein anderes internes Abbruchkriterium erfüllt wurde.  Es stehen dem Anwender 3 verschiedene Kostenfunktionen bereit. Die erste Funktion bezieht sich auf die Intensitätswerte der Voxel, die Zweite auf die Länge der jeweiligen Gradienten und bei der Dritten werden die Gewichte der Voxel verglichen, die vorher vom Benutzer definiert werden müssen. In einem Nachbearbeitungsschritt ist es anschließend noch möglich unpassende Elemente zu entfernen, wenn beispielsweise eine ganze weitere Struktur auch visualisiert wird, da sie über eine kleine Brücke von ein bis zwei Voxeln mit der eigentlich gesuchten Struktur verbunden ist.
 \newline
 Da das Regiongrowing sehr zeitaufwändig ist, kann der Anwender auswählen, dass er zunächst nur eine gewisse Teil der Region sich errechnen lässt.
 
 
 Correa und Ma zeigen in ihrer Arbeit \cite{correa2008size} einen Ansatz, der auf der relativen Größe der zu visualisierenden Features basiert.
 \newline
-Dazu benutzen sie den sogenannten "scale-space", welcher für das Volumen berechnet wird, um anschließend eine auf Größe basierende Transferfunktion anzuwenden. Diese mappt Farbe und Okklusion zu den entsprechenden Größen der Features des Volumens.
+Dazu benutzen sie den sogenannten "scale-space", welcher für das Volumen berechnet wird, um anschließend eine auf Größe basierende Transferfunktion anzuwenden. Diese mapt Farbe und Okklusion zu den entsprechenden Größen der Features des Volumens.
 \newline
 In einem weiteren Paper \cite{correa2009occlusion} beschreiben die beiden Forscher ein Verfahren, dass auf der Okklusion der Voxel basiert.
 \newline
-Dafür betrachten sie die Umgebung einzelner Voxel und berechnen abhängig davon, die Okklusion. Die Ergebnisse werden in einem zweidimensionalen Histogram gespeichert in Kombination mit den Intensitätswerten der Voxel. Durch die Umgebungsokklusion der Voxel ist es leicht mit einer auf dem Histogram basierenden Transferfunktion unterschiedliche Materialien mit gleichen Intensitätwerten zu unterscheiden.
+Dafür betrachten sie die Umgebung einzelner Voxel und berechnen abhängig davon, die Okklusion. Die Ergebnisse werden in einem zweidimensionalen Histogramm gespeichert in Kombination mit den Intensitätswerten der Voxel. Durch die Umgebungsokklusion der Voxel ist es leicht mit einer auf dem Histogramm basierenden Transferfunktion unterschiedliche Materialien mit gleichen Intensitätswerten zu unterscheiden.
 \newline
 Eine weitere Arbeit \cite{correa2009visibility} von Correa und Ma beschäftigt sich mit Transferfunktionen abhängig von der Sichtbarkeit einzelner Voxel.
 \newline
-Die Sichtbarkeit jedes Voxels wird abhängig vom Sichtpunkt auf das Volumen berechnet, indem die Opazität vom Standpunkt der Kamera bis hin zum Voxel akkumuliert wird. Anschließend wird ein Histogram über die Sichtbarkeitswerte erstellt. Auf diesem kann der Benutzer eine Transferfunktion erstellen, bei der er ein direktes Feedback über die Darstellung erhält. Um das gewünschte Ergebnis zu erhalten, wäre jedoch ein sehr genaues Einstellen dieser Funktion von Nöten, was der User nur schwer umsetzten kann. Deshalb wird eine Energiefunktion erstellt, die es zu minimieren gilt. Damit wird das Problem wie bei \cite{wu2007interactive}  zu einem Optimierungsproblem, welches mithilfe von progressiver Suche gelöst werden kann. Der Anwender muss dafür lediglich ein Opazitätsfunktion angeben, die seine gewünschten Visualisierungsziele beschreibt. Hierbei kann er auch aus vorgefertigten Funktionen wählen.
+Die Sichtbarkeit jedes Voxels wird abhängig vom Sichtpunkt auf das Volumen berechnet, indem die Opazität vom Standpunkt der Kamera bis hin zum Voxel akkumuliert wird. Anschließend wird ein Histogramm über die Sichtbarkeitswerte erstellt. Auf diesem kann der Benutzer eine Transferfunktion erstellen, bei der er ein direktes Feedback über die Darstellung erhält. Um das gewünschte Ergebnis zu erhalten, wäre jedoch ein sehr genaues Einstellen dieser Funktion von Nöten, was der User nur schwer umsetzten kann. Deshalb wird eine Energiefunktion erstellt, die es zu minimieren gilt. Damit wird das Problem wie bei \cite{wu2007interactive}  zu einem Optimierungsproblem, welches mithilfe von progressiver Suche gelöst werden kann. Der Anwender muss dafür lediglich ein Opazitätsfunktion angeben, die seine gewünschten Visualisierungsziele beschreibt. Hierbei kann er auch aus vorgefertigten Funktionen wählen.
 \newline
-Diese Histogramme des vorangegangen Papers wurde von Correa und Ma in einer erweiterten Arbeit \cite{correa2011visibility} nochmals verbessert. Sie führten multidimensionale Sichtbarkeitshistogramme, die beispielsweise auch die Gradientenlänge in Betracht ziehen. Desweiteren stellen sie zwei Methoden vor zur Berechnung von Sichtpunkt unabhängigen Sichtbarkeitshistogrammen. Zum einen ein Omni-direktionales Sichtbarkeitshistogramm, bei dem die Sichtbarkeit von allen möglich Sichtpunkten berechnet wird. Und ein Raidales Sichtbarkeitshistogramm, bei dem radiale Strahlen verwendet werden. Dazu wird das kartesische in ein sphärisches Koordinatensystem umgerechnet.
+Diese Histogramme des vorangegangen Papers wurde von Correa und Ma in einer erweiterten Arbeit \cite{correa2011visibility} nochmals verbessert. Sie führten multidimensionale Sichtbarkeitshistogramme, die beispielsweise auch die Gradientenlänge in Betracht ziehen. Des Weiteren stellen sie zwei Methoden vor zur Berechnung von Sichtpunkt unabhängigen Sichtbarkeitshistogrammen. Zum einen ein Omni-direktionales Sichtbarkeitshistogramm, bei dem die Sichtbarkeit von allen möglich Sichtpunkten berechnet wird. Und ein Raidales Sichtbarkeitshistogramm, bei dem radiale Strahlen verwendet werden. Dazu wird das kartesische in ein sphärisches Koordinatensystem umgerechnet.
 
 
 Im Vergleich zu Huan \cite{huang2003rgvis} benutzt Chen  in seiner Arbeit \cite{chen2006sketch} nicht nur ein seedbasiertes Verfahren, sondern fügt noch ein sketchbasiertes Verfahren davor ein.
 \newline
-Anfangs wählt der Anwender eine Reihe an Intensitätswerten im Histogram, die für ihn interessant sind. Danach kann er direkt im Volumen eine Region von Interesse einzeichnen und markieren. Das Program schneidet im Anschluss, alle Teile des Volumens außerhalb der gewählten Region weg. Jetzt kann der Nutzer wie im vorrig vorgestllen Verfahren seinen "seed" setzen.
+Anfangs wählt der Anwender eine Reihe an Intensitätswerten im Histogramm, die für ihn interessant sind. Danach kann er direkt im Volumen eine Region von Interesse einzeichnen und markieren. Das Programm schneidet im Anschluss, alle Teile des Volumens außerhalb der gewählten Region weg. Jetzt kann der Nutzer wie im vorherig vorgestellten Verfahren seinen "seed" setzen.
 \newline
-Dies erleichtert dem Benutzer die Anwendung, da er schneller zu seinem Punkt von Interesse gelangt ohne vorher durch diverese Querschnittsbilder iterieren zu müssen. Desweiteren ist es Zeitsparrend für den User, falls er sich nicht genau mit dem Datensatz und der zu Visualisierenden Region auskennt.
+Dies erleichtert dem Benutzer die Anwendung, da er schneller zu seinem Punkt von Interesse gelangt ohne vorher durch diverse Querschnittbilder iterieren zu müssen. Des Weiteren ist es zeitsparend für den User, falls er sich nicht genau mit dem Datensatz und der zu Visualisierenden Region auskennt.
 
 
 
@@ -96,17 +96,17 @@ Dies erleichtert dem Benutzer die Anwendung, da er schneller zu seinem Punkt von
 
 \subsection{Machinelearning Verfahren}
 
-Die Arbeit von Tzeng \cite{tzeng2005intelligent} benutzt Machinelearning um interessante Strukturen darzustellen. Hierbei wird ein Neuronales Netz und eine Support Vecotr Machine benutzt.
+Die Arbeit von Tzeng \cite{tzeng2005intelligent} benutzt Machinelearning um interessante Strukturen darzustellen. Hierbei wird ein Neuronales Netz und eine Support Vector Machine benutzt.
 \newline
 Als Input für das Verfahren kann der Benutzer im Volumen mit zwei verschiedenen Farben Regionen anmalen und damit markieren. Mit der einen Farbe markiert der Nutzer die Stellen von Interesse, die er hervorgehoben haben möchte, mit der anderen Farbe Stellen, die ihn explizit nicht interessieren. Das Programm nimmt im Anschluss die Intensitätswerte, Länge der Gradienten und Intensitätswerte der Nachbarn aller markierter Voxel als Input um eine sinnvole Segmentierung zu finden. Das Ergebnis wird dem Anwender in Form einer farbigen Darstellung gezeigt, bei der er abhängig von der Farbe der Regionen sieht wie ähnlich sie den angemalten Voxeln sind. Gefällt dem Benutzer das Ergebnis noch nicht, so kann er durch weiteres einfärben von Regionen das Ergebnis verbessern bis das gewünschte Resultat erreicht wird.
 
 
 
-Soundararajan stellt ein Verfahren vor \cite{soundararajan2015learning}, bei dem  der Anwender auch direkt im Volumen markieren kann, welche Gebiete für ihn von interesse sind.
+Soundararajan stellt ein Verfahren vor \cite{soundararajan2015learning}, bei dem  der Anwender auch direkt im Volumen markieren kann, welche Gebiete für ihn von Interesse sind.
 \newline
-Dabei wird überwachtes maschinelles Lernen angewendet, um aus dieser Eingabe eine probabilistische Übertragungsfunktion abzuleiten. Dabei ist es wichtig, dass das ausgewählte Machinelearningverfahren wie gesagt eine probabilistische Klassifikation erlaubt. Desweiteren muss es nicht nur zwischen zwei verschiedenen Klassen unterscheiden können sondern multiple Klassen unterstüzten.
+Dabei wird überwachtes maschinelles Lernen angewendet, um aus dieser Eingabe eine probabilistische Übertragungsfunktion abzuleiten. Dabei ist es wichtig, dass das ausgewählte Machinelearningverfahren wie gesagt eine probabilistische Klassifikation erlaubt. Des Weiteren muss es nicht nur zwischen zwei verschiedenen Klassen unterscheiden können sondern multiple Klassen unterstützen.
 \newline
-In dem Paper wird das Verfahren mit fünf verschiedenen Machinelearningverfahren getestet und erklärt wie weit mit diesen das gegebene Verfahren umsetztbar ist. Es wurden "Gaussian Naive Bayes", "k Nearest Neighbor", "Support Vector Machines", "Random Forests" und "Neural Networks" getestet.
+In dem Paper wird das Verfahren mit fünf verschiedenen Machinelearningverfahren getestet und erklärt wie weit mit diesen das gegebene Verfahren umsetzbar ist. Es wurden "Gaussian Naive Bayes", "k Nearest Neighbor", "Support Vector Machines", "Random Forests" und "Neural Networks" getestet.
 
 
 
@@ -116,13 +116,13 @@ In dem Paper wird das Verfahren mit fünf verschiedenen Machinelearningverfahren
 \subsection{Bildbasierte Verfahren}
 Eine weitere Art Transferfunktionen anzuwenden, sind Verfahren, die auf ?einem Bild? basieren. Hier hat der Benutzer die Möglichkeit, mit dem Programm zu interagieren. Dies ist für einen unerfahrenen User intuitiver und er kann durch ausprobieren ein gewünschtes Ergebnis erzielen.
 
-Fang stellt in seinem Paper \cite{fang1998image} ein Verfahren vor, bei dem die  Transferfunktioneine eine Abfolge von verschieden 3D Bildverabteitungsverfahren ist, deren Parameter vom Benutzer angepasst werden können.
+Fang stellt in seinem Paper \cite{fang1998image} ein Verfahren vor, bei dem die  Transferfunktion eine Abfolge von verschieden 3D Bildverabteitungsverfahren ist, deren Parameter vom Benutzer angepasst werden können.
 
 Es gibt auch Methoden, bei denen ein Hilfswerkzeug zum Einsatz kommt. Zum Beispiel kann der Benutzer im Paper von Reitinger: \cite{reitinger2004user} sich gezielt Bereiche des Volumens hervorheben lassen, indem er sie mit einem Stift auswählt. Hierbei wird die Intensiät des ausgewählten Punktes als auch der räumliche Abstand zum Stift in Betracht gezogen.
 
 Wu und Qu stellen in ihrer Arbeit \cite{wu2007interactive} ein intuitives Verfahren zum verändern von Features von Transferfunktionen vor.
 \newline
-Der Benutzer lädt zwei verschiedene direct volume rendered images(DVRIs) in das Program. Hierbei wird ihm die jeweilige Visualisierung und Transferfunktion angezeigt. Der User kann entscheiden ob er gewisse Features der beiden DVRIs zu einem verschmelzen, aus beiden mischen oder einzelne löschen möchte. Die Zusammenführung geschiet im Anschluss mithilfe einer Energiefunktion, die die Ähnlichkeit zweier Bilder beschreibt. Das Zusammenführen wird somit zu einem Optimierungsproblem undzwar dem minimieren der Energiefunktion. Dieses Problem kann mithilfe eines stochastischen Suchalgorithmus gelöst werden. Der Anwender bekommt am eine Visualisierung mit allen gewünschen Features.
+Der Benutzer lädt zwei verschiedene direct volume rendered images(DVRIs) in das Programm. Hierbei wird ihm die jeweilige Visualisierung und Transferfunktion angezeigt. Der User kann entscheiden ob er gewisse Features der beiden DVRIs zu einem verschmelzen, aus beiden mischen oder einzelne löschen möchte. Die Zusammenführung geschieht im Anschluss mithilfe einer Energiefunktion, die die Ähnlichkeit zweier Bilder beschreibt. Das Zusammenführen wird somit zu einem Optimierungsproblem undzwar dem minimieren der Energiefunktion. Dieses Problem kann mithilfe eines stochastischen Suchalgorithmus gelöst werden. Der Anwender bekommt am eine Visualisierung mit allen gewünschten Features.
 
 
 
@@ -130,35 +130,35 @@ Der Benutzer lädt zwei verschiedene direct volume rendered images(DVRIs) in das
 \subsection{Clusteringbasierte Verfahren}
 
 
-Sereda baut seine Arbeit \cite{sereda2006visualization} auf den von Serlie \cite{serlie2003computed} vorgestellten LH-Histogramen auf und zeigt wie man mit ihnen Objekte klassifizieren kann.
+Sereda baut seine Arbeit \cite{sereda2006visualization} auf den von Serlie \cite{serlie2003computed} vorgestellten LH-Histogrammen auf und zeigt wie man mit ihnen Objekte klassifizieren kann.
 \newline
-Die Berechnung eines LH-Histograms ist eine Methode zur Erkennung von Kanten, unter der Verwendung von Low- und High-Werten. Dabei werden die Voxel in zwei verschiedenen Kategorien eingeteilt. Es gibt Voxel, die  innerhalb eines Materials liegen und welche, die  an der Grenze zweier Materialien liegen. Ist ein Voxel innerhalb, so sind seine LH-Werte gleich. Grenzvoxel hingegen haben unterschiedliche Low- und High-Werte, wobei disese die Intensitätswerte der beiden Materialien, zwischen denen die Grenze verläuft, beschreiben. 
+Die Berechnung eines LH-Histograms ist eine Methode zur Erkennung von Kanten, unter der Verwendung von Low- und High-Werten. Dabei werden die Voxel in zwei verschiedenen Kategorien eingeteilt. Es gibt Voxel, die  innerhalb eines Materials liegen und welche, die  an der Grenze zweier Materialien liegen. Ist ein Voxel innerhalb, so sind seine LH-Werte gleich. Grenzvoxel hingegen haben unterschiedliche Low- und High-Werte, wobei diese die Intensitätswerte der beiden Materialien, zwischen denen die Grenze verläuft, beschreiben. 
 \newline
-Bei der Berechnung des Histograms wird als erstes getestet, ob der betrachtete Voxel an einer Grenze liegt. Ein Punkt liegt innerhalb eines Materials, wenn  die Länge des Gradienten kleiner als ein gewisses epsilon (bei MRT-Daten) oder gleich null(bei CT-Daten ist). In diesem Fall wären die Low- und High-Werte der Intensitätswert des Voxels. Ist dies jedoch nicht der Fall, wird in Richtung(für die High-Werte) und entgegengesetzter Richtung(für die Low-Werte) des Gradientens schrittweise integriert. Dies stoppt sobald ein Material gefunden wurde. Dies wird für jeden Punkt im Volumen berechnet und danach aus allen LH-Werten ein Histogram erstellt.
+Bei der Berechnung des Histograms wird als erstes getestet, ob der betrachtete Voxel an einer Grenze liegt. Ein Punkt liegt innerhalb eines Materials, wenn  die Länge des Gradienten kleiner als ein gewisses epsilon (bei MRT-Daten) oder gleich null(bei CT-Daten ist). In diesem Fall wären die Low- und High-Werte der Intensitätswert des Voxels. Ist dies jedoch nicht der Fall, wird in Richtung(für die High-Werte) und entgegengesetzter Richtung(für die Low-Werte) des Gradientens schrittweise integriert. Dies stoppt sobald ein Material gefunden wurde. Dies wird für jeden Punkt im Volumen berechnet und danach aus allen LH-Werten ein Histogramm erstellt.
 \newline 
 Zur Visualisierung benutzt Sereda eine dreidimensionale Transferfunktion. Diese nimmt die beiden LH-Werte als auch die Gradientenlänge, aus dem Grund, dass vor allem Voxel nah an der Grenze interessant sind und diese dadurch hervorgehoben werden, als Parameter entgegen.
 \newline
-Weiterhin verwenden die Forscher Regiongrowing um Strukturen zu erkennen. Dabei basiert die Kostenfunktion auf dem LH-Histogram. Dies ist deutlich besser als Kostenfunktionen, die auf dem Intensitätswert und der Gradientenlänge basieren, da Kanten trotz Überlappungen besser erkannt werden können.
+Weiterhin verwenden die Forscher Regiongrowing um Strukturen zu erkennen. Dabei basiert die Kostenfunktion auf dem LH-Histogramm. Dies ist deutlich besser als Kostenfunktionen, die auf dem Intensitätswert und der Gradientenlänge basieren, da Kanten trotz Überlappungen besser erkannt werden können.
 \todo{besser schreiben}
 \newline
 \newline
-In einer späteren Arbeit \cite{sereda2006automating} stellt Sereda ein hierarschies Clusteringverfahren vor. Hierbei werden in einer Menge von Clustern immer die zwei gemerged, die sich bei dem ausgewählten Vergleichsverfahren am ähnlichsten sind. Es wird eine Kombination aus zwei solcher Vergleichsverfahren vorgestellt. Zum einen wird die räumliche Nähe in betracht gezogen, bei der gezählt wird, wie viele direkte Nachbarn zwei Cluster besitzen. Zum anderen wird die Nähe im LH-Raum untersucht. Als Startcluster dienen hierbei die Kästchen des LH-Histograms. Die einzelnen Cluster bekommen für die Visualisierung am Ende eine zufälligen Farbwert zugewiesen. 
+In einer späteren Arbeit \cite{sereda2006automating} stellt Sereda ein hierarchisches Clusteringverfahren vor. Hierbei werden in einer Menge von Clustern immer die zwei gemerged, die sich bei dem ausgewählten Vergleichsverfahren am ähnlichsten sind. Es wird eine Kombination aus zwei solcher Vergleichsverfahren vorgestellt. Zum einen wird die räumliche Nähe in betracht gezogen, bei der gezählt wird, wie viele direkte Nachbarn zwei Cluster besitzen. Zum anderen wird die Nähe im LH-Raum untersucht. Als Startcluster dienen hierbei die Kästchen des LH-Histogramms. Die einzelnen Cluster bekommen für die Visualisierung am Ende eine zufälligen Farbwert zugewiesen. 
 
 
 
 \todo{altes paper auch einbinden}
-Das Paper von Binh P. Nguyen \cite{nguyen2012clustering} stellt ein clusteringbasiertes Verfahren um für den Benutzer interessante Gebiete hervozuheben.
+Das Paper von Binh P. Nguyen \cite{nguyen2012clustering} stellt ein clusteringbasiertes Verfahren um für den Benutzer interessante Gebiete hervorzuheben.
 \newline
 Zunächst wird in einem Vorverarbeitungsschritt die Gradienten des Volumens berechnet. Hierzu wurde Hong's Methode \cite{hong2003method} verwendet. Im Anschluss daran wird anhand der Gradienten die LH-Werte mithilfe von Heuns Methode, ein modifizierte Euler Methode, ermittelt.Hierbei wird desweiteren eine Gewichtung abhängig von der zurückgelegten Strecke bei der Interpolation für den Low- bzw. High-Wert errechnet. Aus den LH-Werten und deren Gewichten wird anschließend ein LH-Histogramm erzeugt.
 \newline
 Dem Benutzter steht dann ein zwei stufiges und ein drei stufiges Clusteringverfahren zur Auswahl, wobei die ersten beiden Clusteringschritte die Selben sind. 
-Im ersten Clusteringschritt wird im LH-Raum mithilfe von "Meanshiftclustering" geclustert. Es wird für jeden LH-Wert alle Werte gefunden, die in einem Kreis mit einem Radius von 7\% - 9\%  des maximalen LH-Wertes um den ursprünglichen Punkt liegen. Anschließend wird der neue durchschnittliche Mittelpunkt von allen Punkten im Cluster ermittelt. Der Vorgang wiederholt sich der Mittelpunkt zwischen zwei Iterationen nur minimal ändert. Der komplette Vorgang wird für jeden Punkt im LH-Histogram wiederholt und in Folge werden Cluster, deren Mittelpunkt nah beieinander liegen zu einem Cluster gemerged.
+Im ersten Clusteringschritt wird im LH-Raum mithilfe von "Meanshiftclustering" geclustert. Es wird für jeden LH-Wert alle Werte gefunden, die in einem Kreis mit einem Radius von 7\% - 9\%  des maximalen LH-Wertes um den ursprünglichen Punkt liegen. Anschließend wird der neue durchschnittliche Mittelpunkt von allen Punkten im Cluster ermittelt. Der Vorgang wiederholt sich der Mittelpunkt zwischen zwei Iterationen nur minimal ändert. Der komplette Vorgang wird für jeden Punkt im LH-Histogramm wiederholt und in Folge werden Cluster, deren Mittelpunkt nah beieinander liegen zu einem Cluster gemerged.
 \newline
-Der zweite Clusteringschritt wird auf die Cluster des ersten Schittes angewendet. Hierbei wird auch "Meanschiftclustering" verwendet. Diesmal wird jedoch räumlich, also abhängig von der Position im Volumen, geclustert. Desweiteren werden die Parameter für den Suchradius und Distanz zweier Mittelpunkte damit sie gemerged werden angepasst.
+Der zweite Clusteringschritt wird auf die Cluster des ersten Schrittes angewendet. Hierbei wird auch "Meanschiftclustering" verwendet. Diesmal wird jedoch räumlich, also abhängig von der Position im Volumen, geclustert. Des Weiteren werden die Parameter für den Suchradius und Distanz zweier Mittelpunkte damit sie gemerged werden angepasst.
 \newline
 Als Ergebnis der ersten zwei Schritte erhält man Cluster mit Voxeln die ähnliche LH-Werte haben, als auch räumlich nah beieinander liegen.
 \newline
-Im optionalen dritten und letzten Clusteringschritt wird hieraschisch geclustert. Hierbei wird für jeden Cluster die paarweise Nähe zu jedem anderen Cluster errechnet. Anschließend werden hieraschich immer die zwei Cluster, die sich am nähsten sind, zu einem gemerged, solange bis nur noch ein Cluster existiert.  Hierbei speichert das Programm jeweils welche Cluster wann miteinander gemerged wurden. Der Benutzer kann im Anschluss entscheiden wie viel Cluster er haben möchte. Abhängig davon, wird das hierarschiche Clustern umgekehrt und die Cluster werden wieder getrennt, bis die gewünschte Anzahl an Clustern erreicht ist.
+Im optionalen dritten und letzten Clusteringschritt wird hierarchisch geclustert. Hierbei wird für jeden Cluster die paarweise Nähe zu jedem anderen Cluster errechnet. Anschließend werden hieraschich immer die zwei Cluster, die sich am nähsten sind, zu einem gemerged, solange bis nur noch ein Cluster existiert.  Hierbei speichert das Programm jeweils welche Cluster wann miteinander gemerged wurden. Der Benutzer kann im Anschluss entscheiden wie viel Cluster er haben möchte. Abhängig davon, wird das hierarchische Clustern umgekehrt und die Cluster werden wieder getrennt, bis die gewünschte Anzahl an Clustern erreicht ist.
 
 
 
