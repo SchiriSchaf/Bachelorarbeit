@@ -99,7 +99,6 @@ Eine erste Maßnahme um das Problem zu beheben, war es alle Low- und High- Werte
 \newline
 Also wurde als nächste Verbesserung eine Schrittweite beim Clustern eingeführt. Dies geschah aus der Beobachtung heraus, dass zwei bis drei oder eventuell sogar mehr direkt nebeneinanderliegende Kasten meist zum selben oder einen so ähnlichen Cluster führen, dass diese im letzten Schritt des Clusteringsverfahrens verschmolzen wurden. Diese Änderung verbesserte die Berechnungszeit erneut, jedoch  dauert die Berechnung immer noch relativ lange und es entstanden sehr viele Cluster. Diese durchzuschauen benötigte viel Zeit und das Gehirn wurde dabei meist als viele sehr große Cluster erkannt. Daraufhin wurde das Clustering auf einen LH-Wertbereich von 1025 bis 1075 begrenzt und die Bandweite auf 0,1\% des maximalen LH-Wertes gesetzt. Diese Änderung führte zum Erfolg und das Ventrikelsystem war innerhalb der paar hunderten Clustern mit ein bisschen Aufwand zu erkennen.
 \newline
-\todo{code spatial hinzufügen}
 In der statischen Klasse \textit{SpatialClustering} ist die Implementierung zur Berechnung der räumlichen Cluster und dem Clustervolumen der IDs zu finden.
 \newline
 Die Kalkulation der räumlichen Clustern wurde dabei, wie die Berechnung der LH-Cluster, mit einer parallelen for-Schleife realisiert. Diese iteriert über die LH-Cluster und ruft für jeden Cluster die in \autoref{fig:spatclust_code} gezeigte Funktion auf. Die Cluster sind in der globalen Liste \textit{LHClusters} gespeichert. Sie haben den Typ einer Liste von \textit{IVector3}. 
@@ -115,7 +114,7 @@ Anschließend wird in der Funktion \textit{ComputeIDs}, der die Cluster als Para
 
 
 \begin{figure}[!h] 
-\includegraphics[width=1.2\textwidth]{Logos/Nachbar_Code_Hell_Kurz.PNG}
+\includegraphics[width=1.2\textwidth]{Logos/Spatial_Code.PNG}
 \caption{Implementierung der Berechnung der Gewichte und Koordinaten} 
 \label{fig:spatclust_code} 
 \end{figure}

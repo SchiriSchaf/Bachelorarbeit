@@ -40,9 +40,8 @@ Die Integration stoppt, wenn eine lokale Extremstelle oder ein Wendepunkt erreic
 \newline
 Anschließend wird ein LH-Histogramm mit allen berechneten LH-Wertpaaren erstellt. Hierbei sind auf der x-Achse die Low-Werte und auf der y-Achse die High-Werte angesiedelt. Die Werte der Achsen reichen von null bis zum jeweiligen Maximum des Low- beziehungsweise High-Werte.
 \newline
-\todo{cite einfügen}
 Als nächstes, wird der erste Clusteringschritt berechnet. Dieser findet im LH-Raum statt, genauer wird er auf dem eben berechneten LH-Histogramm angewendet. Dabei kommt Meanshiftclustering zum Einsatz. Der Ablauf davon geschieht wie folgt.
-Vor dem Clustering muss eine Bandweite und ein Thresholdwert bestimmt werden, welche die Sensitivität des Clusterings festlegen. Die Bandweite liegt im Paper von Nguyen \cite{} bei 7\% - 9\% des maximalen LH-Wertes und der Threshold bei 0,01. Anschließend kann das LH-Clustering auf jeden Punkt im Histogramm angewandt werden.
+Vor dem Clustering muss eine Bandweite und ein Thresholdwert bestimmt werden, welche die Sensitivität des Clusterings festlegen. Die Bandweite liegt im Paper von Nguyen \cite{nguyen2012clustering} bei 7\% - 9\% des maximalen LH-Wertes und der Threshold bei 0,01. Anschließend kann das LH-Clustering auf jeden Punkt im Histogramm angewandt werden.
 \newline
 Für einen beliebigen Punkt, werden alle Punkte die innerhalb des Radius der Bandbreite liegen gespeichert. Diese Punkte bilden nun den gefundenen Cluster. Von diesem Cluster wird der neue Mittelpunkt, der jeweilige Mittelwert der beiden Koordinaten, berechnet. Um diesen Punkt wird erneut mit selben Radius alle Punkte die bisher nicht zu dem Cluster gehören gesucht und hinzugefügt. Dies geschieht solange, bis der Abstand des neu kalkulierte Mittelpunkt zum alten weniger als der Thresholdwert multipliziert mit die Bandweite ist. 
 Nachdem dieses Prozedere für jeden Punkt im Histogramm ausgeführt wird, gibt es viele verschiedene Cluster. In einem nächsten Schritt, werden alle Cluster die sehr nah beieinander liegen verschmolzen. Dies betrifft jene Cluster, deren Mittelpunkte eine Distanz kleiner als die Hälfte der Bandweite zueinander haben.

@@ -17,7 +17,6 @@ Anfangs liegen die CT-Daten von den Volumen in mehreren Dateien als Schnittbilde
 Die interne Speicherung des Volumens wird mit der generischen Klasse \textit{Volume} umgesetzt. Diese besitzt ein dreidimensionalen Array vom angegebenen generischen Datentyp, sowie Informationen über das Volumen, wie zum Beispiel Größe der Voxel oder Anzahl der Elemente pro Achse. Des Weiteren bietet die Klasse verschieden Funktionen um Informationen auszulesen oder zu bearbeiten. Zur Darstellung von dreidimensionale Koordinaten, werden die Klassen \textit{IVector3} und \textit{FVector3} benutzt. Diese stellen Vektoren dar, die entweder Integer, Ganzzahlen, oder Float, Dezimalzahlen, als $x,y$ und $z$ Werte speichern.
 \todo{Volumenklasse  UML}
 \newline
-\todo{mergecluster oder clustermerge}
 Die Interaktion des Benutzers mit dem Helper findet über eine Kommandozeile statt. Hierbei hat der Anwender die Befehle \textit{Load}, \textit{Dump}, \textit{Resample}, \textit{Info}, \textit{Write}, \textit{LHHistogram}, \textit{ClusterVolume} und \textit{MergeCluster} zur Auswahl. Jedes Modul hat dabei seine eigene Syntax die mithilfe eines Help Befehls angezeigt werden kann.
 \newline
 Die Funktionen der Module entsprechen deren Namen. So lädt \textit{Load} bespielsweise eine .nrrd oder binäre Datei, \textit{Dump} und \textit{Write} speichern das geladene Volumen als binäre oder .nrrd Datei ab, \textit{Info} gibt Informationen über das aktuell geladene Volumen zurück und \textit{Resample} lässt den Anwender die Größe des Volumens verändern. Ruft man den \textit{Dump} Befehl mit einem $u$ am Ende auf, so wird das Volumen vor dem Speichern zum Typ $unsigned$ $int$ gecastet. Dies geschieht indem auf alle Werte der Betrag des minimalen Wertes aufaddiert wird. Dadurch verschieben sich die Werte so, dass das Minimum bei null liegt, also nur noch positive Zahlen im Volumen vorhanden sind. Dies ist für die Darstellung im Renderer wichtig, da dieser nur mit positiven Zahlen funktioniert.
@@ -31,11 +30,21 @@ Im Folgenden werden hauptsächlich die Module \textit{LHHistogram}, \textit{Clus
 \label{fig:ueberblick} 
 \end{figure}
 
-\todo{abbildung die zeigt warum es das volumen kleiner wird}
-\todo{funktionsnamen}
-Der Ablauf der Berechnung startet in der statischen \textit{Gradient} Klasse. Diese ist eine Implementierung des Verfahren von Hong \cite{hong2003method}. Zur Berechnung wird der Funktion \textit{bla} das Volumen der Intensitätswerte, als Volumen aus Integern, als Parameter übergeben. Wie im vorherigen Kapitel besprochen, können die Gradienten nicht für einen Voxel direkt berechnet werden, sondern nur für die Punkte zwischen den Voxeln. Aus diesem Grund ist das Ergebnisvolumen um ein Voxel in jeder Achse kleiner als das Volumen der Intensitätswerte, da... (abbildung). Als Ergebnis der Funktion wird ein Volumen vom Typen \textit{FVector3} zurückgegeben.
-\newline
-DIe Berechnung der LH-Werte findet in der statischen Klasse \textit{LHValues} in der Funktion \textit{LHValueVolume} statt. Als Parameter wird das \textit{FVector3} Volumen der Gradienten aus dem Schritt davor entgegengenommen. Da für die Berechnung der LH-Werte die Intensitätswerte und die Gradienten am gleichen Punkt vorhanden seien müssen, müssen die Intensitätswerte für das verschobene Volumen der Gradienten berechnet werden. Dazu wurde eine einfache Interpolation durchgeführt, indem von allen 8 Nachbarn eines Punktes die Intensitätswerte aufaddiert und hinterher durch acht geteilt wurden. Hierbei muss jedoch beachtet werden, dass die Werte dadurch verändert werden, und Informationen verloren gehen.
+\todo{abbildung besser beschreibeng}
+Der Ablauf der Berechnung startet in der statischen \textit{Gradient} Klasse. Diese ist eine Implementierung des Verfahren von Hong \cite{hong2003method}. Zur Berechnung wird der Funktion \textit{CalcGradientVolume} das Volumen der Intensitätswerte, als Volumen aus Integern, als Parameter übergeben. Wie im vorherigen Kapitel besprochen, können die Gradienten nicht für einen Voxel direkt berechnet werden, sondern nur für die Punkte zwischen den Voxeln. Aus diesem Grund ist das Ergebnisvolumen um ein Voxel in jeder Achse kleiner als das Volumen der Intensitätswerte. In \autoref{fig:shift} ist ein zweidimensionales Beispiel zu sehen, bei dem die Gradienten berechnet werden. Als Ergebnis der Funktion wird ein Volumen vom Typen \textit{FVector3} zurückgegeben.
+
+
+\begin{figure}
+\centering 
+\includegraphics[width=0.75\textwidth]{Logos/VoxelShift.png}
+\caption{2D Beispiel warum das Volumen kleiner wird} 
+\label{fig:shift} 
+\end{figure}
+
+
+
+
+Die Berechnung der LH-Werte findet in der statischen Klasse \textit{LHValues} in der Funktion \textit{LHValueVolume} statt. Als Parameter wird das \textit{FVector3} Volumen der Gradienten aus dem Schritt davor entgegengenommen. Da für die Berechnung der LH-Werte die Intensitätswerte und die Gradienten am gleichen Punkt vorhanden seien müssen, müssen die Intensitätswerte für das verschobene Volumen der Gradienten berechnet werden. Dazu wurde eine einfache Interpolation durchgeführt, indem von allen 8 Nachbarn eines Punktes die Intensitätswerte aufaddiert und hinterher durch acht geteilt wurden. Hierbei muss jedoch beachtet werden, dass die Werte dadurch verändert werden, und Informationen verloren gehen.
 \newline
 Hat der Benutzer das Modul \textit{LHHistogram} aufgerufen, wird im Anschluss das LH-Histogramm in der Klasse \textit{LHHistogramCSV} erstellt und wird von ihr als .csv Datei in einem vom Anwender angegebenen Pfad abgespeichert.
 \newline
