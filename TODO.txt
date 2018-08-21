@@ -5,12 +5,11 @@ Intensitätswerte und CT erklären
 ------------------------------------------------------------------------------------------------
 State of the art:
 
-Begründung für die Wahl der Methode 
 Das Wort Transferfunktion passend verwenden
 eindimensionale Transferfunktionen finden
-2dtf auf histogramm beschreiben
-2d sg-tf finden -> Kniss
-Image based mehr finden -> Kapitel überdenken
+2D-tf auf histogramm beschreiben
+2D sg-tf finden -> Kniss
+Image based überdenken -> weglassen oder mehr/bessere Paper finden -> umschreiben ist nötig
 ------------------------------------------------------------------------------------------------
 Methods:
 
@@ -21,7 +20,8 @@ Design:
 Abbildung überarbeiten -> workbench und user mit reinnehmen
 .bin.txt erwähnen
 auf das notwendige u eingehen
-darstellung des gehirns und des Ventrikels -> rot durchsichtigkeit , durchsichtigkeit und farbe vom rest
+Darstellung des gehirns und des Ventrikels -> rot durchsichtigkeit , durchsichtigkeit und farbe vom rest
+	-> Unity allgemein mehr beschreiben
 ------------------------------------------------------------------------------------------------
 Implementierung:
 
@@ -39,7 +39,7 @@ Klappt nur bei wenigen Daten
 ------------------------------------------------------------------------------------------------
 Ausblick:
 
-gewicht zum erstellen der LH-Histogramme
+gewicht zum Erstellen der LH-Histogramme
 Kleine Optimierungen am code -> highwert beispiel aufgreifen
 weniger clusterids -> zu viele zum finden
 Räumliche Cluster mergen -> vom gleichen LH-Cluster
@@ -64,4 +64,3 @@ UML Diagrammte testen ob diese UML konform sind
 ------------------------------------------------------------------------------------------------
 Bilder finden!!!
 Visualisierung MITK Workbench -> verfahren beschreiben.s
-UML Diagramme -> mehr erstellen, Steffen schreiben

@@ -11,24 +11,20 @@
 
 Das Gebiet der Transferfunktionen ist bereits weit erforscht und es existieren viele unterschiedliche Methoden und Herangehensweisen um medizinische Daten abhängig von verschiedenen Problemstellungen passend darzustellen.
 \newline
-\todo{besser formulieren}
-Dabei kann man einerseits zwischen dem Level an Automation eines Systems unterscheiden. Hierbei gibt es vollautomatische Verfahren, bei denen keine Interaktion mit den Benutzer von Nöten ist, semiautomatische Verfahren bei denen der Benutzer noch an gewissen Stellschrauben drehen kann um das Ergebnis zu beeinflussen und manuelle Verfahren, bei denen der Anwender mehr oder minder auf sich alleine gestellt ist.Transferfunktionen unterscheiden sich weiterhin in ihrer Dimensionalität. Es gibt ein- zwei- und allgemein -mehrdimensionale Transferfunktionen. Des Weiteren sind die Grundlagen auf denen die Berechnungen ruhen teils völlig verschieden. Manche Verfahren basieren auf den Intensitätswerten oder deren Änderung im gegebenen Volumen, andere auf der Größe der Features die für den Nutzer von Interesse sind. Wieder andere sind Bildbasiert oder wenden Machinelearning an um zum gewünschten Ziel zu gelangen.
+Dabei kann man einerseits zwischen dem Level an Automation eines Systems unterscheiden. Hierbei gibt es vollautomatische Verfahren, bei denen keine Interaktion mit den Benutzer von Nöten ist, semiautomatische Verfahren bei denen der Benutzer noch an gewissen Stellschrauben drehen kann um das Ergebnis zu beeinflussen und manuelle Verfahren, bei denen der Anwender das meiste selber machen muss.
 \newline
-In diesem Abschnitt wird ein Überblick über die unterschiedlichen Vorgehensweisen von Transferfunktionen gegeben. Dabei werden diese im Folgenden für die Übersicht in die Kategorien Eindimensionale, Zweidimensionale, Räumlichbasierte,Machinelearning, Bildbasierte, Clusteringbasierte Verfahren geteilt.
+Transferfunktionen unterscheiden sich weiterhin in ihrer Dimensionalität. Es gibt ein- zwei- und allgemein -mehrdimensionale Transferfunktionen. Des Weiteren sind die Grundlagen auf denen die Berechnungen ruhen teils völlig verschieden. Manche Verfahren basieren auf den Intensitätswerten oder deren Änderung im gegebenen Volumen. Andere basieren auf der Größe der Features die für den Nutzer von Interesse sind. Wieder andere sind Bildbasiert oder wenden Machinelearning an um zum gewünschten Ziel zu gelangen.
 \newline
-\todo{übersicht zu oft}
-Dabei ist jedoch zu beachten, dass die Kategorien lediglich der Übersicht diese Abschnitts dienen. Die Kategorien hätten anders gewählt werden können. Des Weiteren können manche Verfahren nicht eindeutig in die hier genannte Unterteilung eingeteilt werden, da sie mehrere Klassen auf sie zutreffen. 
-
-
-
-
+In diesem Abschnitt wird ein Überblick über die unterschiedlichen Vorgehensweisen von Transferfunktionen gegeben. Dabei werden diese im Folgenden in die Kategorien Eindimensionale, Zweidimensionale, Räumlichbasierte,Machinelearning, Bildbasierte und Clusteringbasierte Verfahren geteilt.
+\newline
+Dabei ist jedoch zu beachten, dass die Kategorien lediglich einer übersichtlichen Struktur dieses Abschnitts dienen. Die Kategorien hätten anders gewählt werden können. Des Weiteren können manche Verfahren nicht eindeutig in die hier genannte Unterteilung eingeteilt werden, da eine Mehrfachnennung möglich wäre.
 
 
 
 \subsection{Eindimensionale Verfahren}
 
 Die einfachste Form der Transferfunktionen, sind die eindimensionalen Transferfunktionen. In diesen, wird nur der Intensitätswert der Voxel in Betracht gezogen. Abgesehen von den niedrigen Berechnungszeiten, sind diese jedoch aus mehreren Gründen suboptimal. Medizinischen Daten werden gemessen und haben deshalb meist ein Rauschen, was die genaue Darstellung erschwert. Weiterhin sind die Intensitätswerte verschiedener Bereiche nah beieinander oder gar gleich und damit sind eindimensionale Transferfunktionen unpraktisch um verschiedene Materialien kenntlich zu machen. Trotzdem sind eindimensionale Transferfunktionen weit verbreitet und werden oft benutzt. 
-\newline
+
 
 
 \subsection{Zweidimensionale Verfahren}
@@ -60,7 +56,7 @@ Der erste Schritt hat eine Länge von einem Voxel, der zweite von zwei Voxeln, d
 \newline
 Aus der geschätzten Größe und dem Intensitätswert wird ein zweidimensionales Histogramm erstellt. Abhängig von der euklidischen Distanz der Kästchen des Histogramms zu einem vom Benutzer gegebenen Punkt, werden die Farbwerte der einzelnen Voxel in einer Tabelle nachgeschaut.
 \newline
-Das Verfahren eignet sich gut, um relativ große Strukturen zu erkennen, jedoch ist es unklar ob das relativ schmale Ventrikelsystem erkannt werden würde. Des Weiteren benötigt das Verfahren einen vom Anwender gewählten Punkt. Somit muss der Nutzer nicht nur wissen, wie das Ventrikelsystem aussieht, sonder auch wo es liegt. Dieses Vorgehen ist nicht intuitiv.
+Das Verfahren eignet sich gut, um relativ große Strukturen zu erkennen, jedoch ist es unklar ob das relativ schmale Ventrikelsystem erkannt werden würde.
 
 
 Eine andere Idee Strukturen basierend auf räumlichen Informationen zu Segmentieren ist die Verwendung von Regiongrowing.
@@ -143,7 +139,7 @@ Zur Visualisierung benutzt Sereda eine dreidimensionale Transferfunktion. Diese 
 \newline
 Anschließend verwenden die Forscher Regiongrowing um Strukturen noch deutlicher erkennen zu können. Dabei basiert die Kostenfunktion auf dem LH-Histogramm. Dies beschreiben sie als deutlich besser als Kostenfunktionen, die auf dem Intensitätswert und der Gradientenlänge basieren, da Kanten trotz Überlappungen besser erkannt werden können.
 \newline
-In einer späteren Arbeit \cite{sereda2006automating} stellt Sereda ein hierarchisches Clusteringverfahren vor. Hierbei werden in einer Menge von Clustern immer die zwei verschmolzen, die sich bei dem ausgewählten Vergleichsverfahren am ähnlichsten sind. Es wird eine Kombination aus zwei solcher Vergleichsverfahren vorgestellt. Zum einen wird die räumliche Nähe in betracht gezogen, bei der gezählt wird, wie viele direkte Nachbarn zwei Cluster besitzen. Zum anderen wird die Nähe im LH-Raum untersucht. Als Startcluster dienen hierbei die Kästchen des LH-Histogramms. Die einzelnen Cluster bekommen für die Visualisierung am Ende eine zufälligen Farbwert zugewiesen. 
+In einer späteren Arbeit \cite{sereda2006automating} stellt Sereda ein hierarchisches Clusteringverfahren vor. Hierbei werden in einer Menge von Clustern immer die zwei verschmolzen, die sich bei dem ausgewählten Vergleichsverfahren am ähnlichsten sind. Es wird eine Kombination aus zwei solcher Vergleichsverfahren vorgestellt. Zum einen wird die räumliche Nähe in Betracht gezogen, bei der gezählt wird, wie viele direkte Nachbarn zwei Cluster besitzen. Zum anderen wird die Nähe im LH-Raum untersucht. Als Startcluster dienen hierbei die Kästchen des LH-Histogramms. Die einzelnen Cluster bekommen für die Visualisierung am Ende eine zufälligen Farbwert zugewiesen. 
 
 
 Das Paper von Binh P. Nguyen \cite{nguyen2012clustering} stellt ebenfalls ein clusteringbasiertes Verfahren vor.
@@ -157,9 +153,21 @@ Der zweite Clusteringschritt wird auf die Cluster des ersten Schrittes angewende
 \newline
 Als Ergebnis der ersten zwei Schritte erhält man Cluster mit Voxeln die ähnliche LH-Werte haben, als auch räumlich nah beieinander liegen.
 \newline
-Im optionalen dritten und letzten Clusteringschritt wird hierarchisch geclustert. Hierbei wird für jeden Cluster die paarweise Nähe zu jedem anderen Cluster errechnet. Anschließend werden hierarchisch immer die zwei Cluster, die sich am nähsten sind, zu einem verschmolzen, solange bis nur noch ein Cluster existiert.  Hierbei speichert das Programm jeweils welche Cluster wann miteinander verschmolzen wurden. Der Benutzer kann im Anschluss entscheiden wie viel Cluster er haben möchte. Abhängig davon, wird das hierarchische Clustern umgekehrt und die Cluster werden wieder getrennt, bis die gewünschte Anzahl an Clustern erreicht ist.
+Im optionalen dritten und letzten Clusteringschritt wird hierarchisch geclustert. Hierbei wird für jeden Cluster die paarweise Nähe zu jedem anderen Cluster errechnet. Anschließend werden hierarchisch immer die zwei Cluster, die sich am nächsten sind, zu einem verschmolzen, solange bis nur noch ein Cluster existiert.  Hierbei speichert das Programm jeweils welche Cluster wann miteinander verschmolzen wurden. Der Benutzer kann im Anschluss entscheiden wie viel Cluster er haben möchte. Abhängig davon, wird das hierarchische Clustern umgekehrt und die Cluster werden wieder getrennt, bis die gewünschte Anzahl an Clustern erreicht ist.
 
 
+\subsection{Wahl des Verfahrens}
+
+
+Bei der Wahl des in dieser Bachelorarbeit verwendeten Verfahrens, könnten viele der gerade vorgestellten Herangehensweisen zu einer erfolgreichen Visualisierung des Ventrikelsystems führen. Andere scheiden jedoch schon prinzipiell aus.
+\newline
+Beispielsweise eignen sich eindimensionale und zweidimensionale Transferfunktionen schlecht für diese Aufgabe. Sie sind von ihrer Herangehensweise zu direkt und leiden oft an Überlappungen. Auch das genaue Abgrenzen von kleineren Strukturen, deren Intensitätswerte womöglich mehrfach im Volumen vorkommen ist damit schwer bis gar nicht möglich.
+\newline 
+Ein Verfahren wie von Lan \cite{lan2017improving} vorgeschlagen eignet sich schon besser für diese Aufgabe. Jedoch ist, wie schon erwähnt wurde, der Aufwand der Implementierung für den Rahmen dieser Bachelorarbeit zu groß.
+\newline
+Weiterhin wurden verschiedene Transferfunktionen vorgestellt, die auf den räumlichen Informationen der anzuzeigenden Regionen basieren. Die Implementation eines solchen Verfahrens würde vermutlich ebenfalls zu einer erfolgreichen Darstellung des Ventrikelsystems führen. Jedoch benötigt der Anwender für all diese Herangehensweisen nicht nur die Information wie das Ventrikelsystem aussieht, sondern auch wo es im Volumen zu finden ist. Folglich funktionieren diese Verfahren zwar, sind aber wenig intuitiv und benötigen ein gewisses Fachwissen seitens des Nutzers. Darum wurde sich gegen einen Räumlichbasiertes Vorgehen entschieden.
+\newline
+Aus diesen Gründen, wurde sich in dieser Arbeit auf die Implementierung des clusteringbasierten Verfahren von Nguyen \cite{nguyen2012clustering} festgelegt. Dieses eignet sich mit der Kantenerkennung gut zum Segmentieren von gezielten Strukturen.
 
 
 

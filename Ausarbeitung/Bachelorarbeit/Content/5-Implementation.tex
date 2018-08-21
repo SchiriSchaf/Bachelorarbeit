@@ -134,11 +134,9 @@ Die Suche nach Clustern liegt in einer while-Schleife, die so lange ausgeführt 
 \newline
 Das Finden von Clustern läuft dabei folgendermaßen ab. Der erste Punkt im LH-Cluster wird als Startmittelpunkt gewählt. Danach wird durch alle Punkte iteriert und diejenigen die innerhalb der Bandweite liegen sowohl zum temporärem Cluster \textit{currentSpatialCluster} als auch zum HashSet der zu entfernenden Punkte \textit{toRemove} hinzugefügt. Anschließend werden, alle Elemente von \textit{toRemove} aus dem LH-Cluster entfernt und wie beim LH-Clustering auch ein neuer Mittelpunkt errechnet. Wenn das Abbruchkriterium der zwei naheliegenden aufeinanderfolgenden Mittelpunkte erfüllt ist, wird der temporäre Cluster \textit{currentSpatialCluster} zur Liste der Ergebniscluster \textit{resultClusters} hinzugefügt, falls er genug Elemente besitzt.
 \newline
-Für die Bandweite und die minimale Distanz für das Abbruchkriterium wurden im Paper von Nguyen \cite{} keine Werte angegeben. In dieser Bachelorarbeit wurde die Bandweite auf 15 und die Distanz auf 0,01 gesetzt. Diese Werte wurden durch Testen herausgefunden und führten zu den besten Ergebnissen.
+Für die Bandweite und die minimale Distanz für das Abbruchkriterium wurden im Paper von Nguyen \cite{nguyen2012clustering} keine Werte angegeben. In dieser Bachelorarbeit wurde die Bandweite auf 15 und die Distanz auf 0,01 gesetzt. Diese Werte wurden durch Testen herausgefunden und führten zu den besten Ergebnissen.
 \newline
 Anschließend wird in der Funktion \textit{ComputeIDs}, der die Cluster als Parameter übergeben werden, das Clustervolumen erstellt und zurückgegeben.
-
-
 
 
 

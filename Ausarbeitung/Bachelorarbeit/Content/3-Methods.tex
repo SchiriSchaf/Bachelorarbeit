@@ -20,7 +20,7 @@ In Hong's Verfahren wird zur Berechnung der Gradienten die lokale 4x4x4 Nachbars
 \caption{Darstellung der lokalen 4x4x4 Nachbarschaft} 
 \label{fig:nachbarschaft} 
 \end{figure}
-\todo{richtig bild zitieren u. evtl kleiner}
+\todo{richtig Bild zitieren}
 
 Die Funktionen für die Intensitätswerte wird im Paper mit:
 \begin{equation}
@@ -55,13 +55,12 @@ Nachdem dieses Prozedere für jeden Punkt im Histogramm ausgeführt wird, gibt e
 \subsection{Räumliches-Clustering}
 
 Als letzten Schritt, wird erneut auf jedem eben entstandenen Cluster \textit{Meanshiftclustering} angewendet. Dabei wird auf jedem Cluster einzeln und unabhängig von den anderen Clustern geclustert. Außerdem werden diesmal die räumlichen Informationen der Punkte in Betracht gezogen. Hierzu müssen zunächst erneut die beiden Parameter Bandweite und Threshold definiert werden. Das Clustering läuft wie zuvor im LH-Raum ab, nur wird statt im zweidimensionalem Raum mit einem zweidimensionalem Kreis im dreidimensionalem Raum des Volumens mit einer dreidimensionalen Kugel geclustert. Des Weiteren findet am Ende der Berechnung der Cluster keine Verschmelzung statt, da dies den Sinn der beiden verschiedenen Clusteringschritte zerstören würde. In den finalen Cluster haben alle Punkte jeweils ähnliche LH-Werte und liegen im Volumen nah beieinander. Würde man diese Cluster anhand ihrer räumlichen Informationen verschmelzen, haben die Punkte keine ähnlichen LH-Werte mehr und der erste Clusteringschritt wäre umsonst gewesen.
-\todo{vllt mehr bei räumlich clustering}
 
 
 
 
 
 
-Der vorgestellte dritte hierarchische Clusteringsschritt wurde in dieser Arbeit nicht angewendet. Dies geschah aus dem Grund, dass ...
-\todo{warum nicht hierarchisch}
+
+Der vorgestellte dritte hierarchische Clusteringsschritt wurde in dieser Arbeit nicht angewendet. Dies geschah aus dem Grund, dass bei diesem immer die beiden Cluster die sich am nächsten sind verschmolzen werden. Dies ist für die Aufgabe das Ventrikelsystem hervorzuheben nicht zielführend, da dieses mitten im Gehirn neben sehr vielen andern Cluster liegt. Folglich würde es relativ schnell mit andern Clustern verschmolzen werden.
 
