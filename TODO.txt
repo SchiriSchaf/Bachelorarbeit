@@ -6,11 +6,11 @@ Intensitätswerte und CT erklären
 State of the art:
 
 Begründung für die Wahl der Methode 
-Übergänge
+Das Wort Transferfunktion passend verwenden
 eindimensionale Transferfunktionen finden
+2dtf auf histogramm beschreiben
 2d sg-tf finden -> Kniss
-Image based mehr finden
-Optisches zeug mehr erwähnen -> Farbgebung etc.
+Image based mehr finden -> Kapitel überdenken
 ------------------------------------------------------------------------------------------------
 Methods:
 
@@ -25,12 +25,10 @@ darstellung des gehirns und des Ventrikels -> rot durchsichtigkeit , durchsichti
 ------------------------------------------------------------------------------------------------
 Implementierung:
 
-übliche Anzahl an Clustern am ende und LH erwähnen
 ------------------------------------------------------------------------------------------------
 Evaluation:
 
 Nutzerstudie fertig machen + schreiben
-LH-Histogramme vergleichen
 ------------------------------------------------------------------------------------------------
 Fazit:
 
@@ -53,6 +51,7 @@ Allgemein:
 Lesefluss kontrolliern!!! -> überall Übergänge verwenden
 Arbeit -> Bachelorarbeit andere Synonyme
 Alle "man"s finden und entfernen
+Wertende Wörter z.b. gut, besser, etc. entfernen
 Fehlende Refs und Cites einfügen
 CT MRT unterschieden -> klappt nicht mrt -> warum -> wo?
 Einheitlich, was kursiv ist.
@@ -61,8 +60,8 @@ Einheitliche Trennung von Absätzen und Zeilenumbrüche überlegen -> 3 verschei
 	-> unterkapitel zur Trennung benutzen
 Anfürungszeichen ändern -> bsp. kursiv benutzen
 Bilder, Tabellen etc. an die richtigen Stellen im Text schieben
+UML Diagrammte testen ob diese UML konform sind
 ------------------------------------------------------------------------------------------------
 Bilder finden!!!
-LH-Histogramm
 Visualisierung MITK Workbench -> verfahren beschreiben.s
 UML Diagramme -> mehr erstellen, Steffen schreiben
