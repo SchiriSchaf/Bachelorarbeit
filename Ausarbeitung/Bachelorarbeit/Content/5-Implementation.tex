@@ -30,7 +30,7 @@ Für die Berechnung der Methode wird eine Gewichtung und die Koordinaten aller 6
 
 \subsection{LH-Werte}
 
-In \autoref{fig:lh_code} kann man den Code zur Berechnung der High-Werte sehen. Der Code liegt innerhalb einer while-Schleife, die so lange aufgerufen wird, bis die Berechnung des Low- und des High-Wertes abgeschlossen, also \textit{LisFinished} und \textit{HisFinished} true sind. Die Berechnung des Low-Wertes ist ebenfalls in der Schleife und sieht bis auf die Richtung der neuen \textit{absVector} und \textit{secondAbsVector} gleich aus. Folglich sind alle hier gegebenen Erklärung und Anmerkungen ebenso auf die Berechnung der Low-Werte zu beziehen.
+In \autoref{fig:lh_code} ist der Code zur Berechnung der High-Werte zu sehen. Der Code liegt innerhalb einer while-Schleife, die so lange aufgerufen wird, bis die Berechnung des Low- und des High-Wertes abgeschlossen, also \textit{LisFinished} und \textit{HisFinished} true sind. Die Berechnung des Low-Wertes ist ebenfalls in der Schleife und sieht bis auf die Richtung der neuen \textit{absVector} und \textit{secondAbsVector} gleich aus. Folglich sind alle hier gegebenen Erklärung und Anmerkungen ebenso auf die Berechnung der Low-Werte zu beziehen.
 
 
 \begin{figure}[!h] 
@@ -101,7 +101,7 @@ Das LH-Clustering wurde anfangs wie im Paper von Nguyen \cite{nguyen2012clusteri
 
 
 \begin{figure}[!h] 
-\includegraphics[width=0.9\textwidth]{Logos/LHHistogram.png}
+\includegraphics[width=0.9\textwidth]{Logos/LHHistogram_a.png}
 \caption{Beispiel eine LH-Histogramms} 
 \label{fig:lh_histo} 
 \end{figure}
@@ -113,8 +113,7 @@ Also wurde als nächste Verbesserung eine Schrittweite beim Clustern eingeführt
 \newline
 Daraufhin wurde das Clustering auf einen LH-Wertbereich von 1025 bis 1075 begrenzt und die Bandweite auf 0,1\% des maximalen LH-Wertes gesetzt. Diese Änderung führte zum Erfolg und das Ventrikelsystem war innerhalb der paar hunderten Clustern mit ein bisschen Aufwand zu erkennen.
 \newline
-\todo{zweiten Bereich anders beschreiben, vllt mehr zum Ballungsgebiet Gehirn}
-Im LH-Histogramm eines CT-Datensatzes in \autoref{fig:lh_histo} sind viele dieser Beobachtungen zu erkennen. Es ist deutlich zu sehen, dass sehr wenige Werte über 2400 existieren. Des Weiteren ist die Ballungen an Kästchen mit sehr vielen Einträgen im linken unteren Eck, mit LH-Werten zwischen  0 und 50 zu erkennen. Weiterhin sieht man es in einem kleinen Bereich der (1000,1000) Koordinaten ebenfalls eine große Ansammlung an  Kästchen mit  sehr vielen Einträgen. Diese stellen wie erwähnt das Gehirn dar.
+Im LH-Histogramm eines CT-Datensatzes in \autoref{fig:lh_histo} sind viele dieser Beobachtungen zu erkennen. Es ist deutlich zu sehen, dass sehr wenige Werte über 2400 existieren. Des Weiteren ist die Ballungen an Kästchen mit sehr vielen Einträgen im linken unteren Eck, mit LH-Werten zwischen  0 und 50 zu erkennen. Weiterhin ist in dem kleinen Bereich, auf den der schwarze Pfeil zeigt, ebenfalls eine große Ansammlung an Kästchen mit sehr vielen Einträgen zu sehen. Diese Ansammlung an Punkten stellt das Gehirn dar. Hierbei ist der Fakt zu sehen, dass die Intensitätswerte im Gehirn sehr nah beieinander liegen.
 
 \subsection{Räumliches-Clustering}
 

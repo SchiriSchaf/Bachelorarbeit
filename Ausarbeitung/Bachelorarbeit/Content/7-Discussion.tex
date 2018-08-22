@@ -3,6 +3,64 @@
 \label{sec:discussion}
 %% ==============================
 
-\dots
+
+Nachdem die Ergebnisse im vorherigen Kapitel gezeigt und evaluiert wurden, wird in diesem ein Fazit gezogen.
+\newline
+Das Ziel der Bachelorarbeit, war die Implementierung eines Verfahrens zur erfolgreiche Visualisierung des Ventrikelsystem basierend auf Volumendaten. Dieses Ziel wurde erfüllt, jedoch mit deutlichen Abstrichen.
+
+
+Zunächst gilt es die Robustheit der Implementierung zu betrachten. Es konnte nur in 3 von 15 Fällen das Ventrikelsystem erfolgreich Visualisiert werden. Zwar waren diese Daten meist von einer besonderen Art, jedoch konnte auch bei normalen Ventrikeln nur in 50\% der Fälle ein zufriedenstellendes Ergebnis erzielt werden. Weiterhin war es nur für bestimmte Auflösungen überhaupt möglich die Berechnung der Cluster durchzuführen.
+\newline
+Die Robustheit des Systems ist folglich verbesserungswürdig. Es funktioniert zwar, jedoch in nur wenigen Fällen.
+
+
+Als nächstes wird die Qualität der erzeugten Ergebnisse betrachtet.
+\newline
+In dem Fall, dass die Visualisierung geglückt ist, waren die Ergebnisse von einer guten Qualität. Das Ventrikelsystem war deutlich zu sehen und als solches auch klar zu identifizieren. Es fehlten zwar bei allen Visualisierungen der dritte und vierte Ventrikel, jedoch sind diese für die Ventrikelpunktion nicht von Nöten. Dem Arzt dem das Hervorheben des Systems im Operationssaal assistieren soll, sollten womöglich nur die relevanten Informationen angezeigt werden, damit diese stets übersichtlich bleiben und ihn nicht im schlimmsten Fall zusätzlich verwirren.
+\newline
+Jedoch fehlten auch bei den Seitenventrikel teils kleine, teils große Stücke in der Visualisierung. Des Weiteren gab es viele Ausreißer, die vom interviewten Arzt als störend empfunden wurden. Weiterhin sind die Ergebnisse nicht glatt, sondern haben in der hervorgehobenen Struktur kleine Löcher und Unreinheiten.
+\newline
+Für die Zeit die für die Implementierung zu Verfügung stand, sind die Ergebnisse schon solide, benötigen jedoch an mehreren Stellen einer Verbesserung.
+
+
+Im folgenden Abschnitt wird die Benutzerfreundlichkeit des Verfahrens diskutiert.
+\newline
+Die Schritte, die vom Benutzer ausgeführt werden müssen, um zu einem Ergebnis zu gelangen, sind wenig intuitiv. Er benötigt Wissen darüber welche Befehle wann im Helper ausgeführt werden müssen und deren Syntax. Weiterhin muss er selbst Dateien in speziellen Formaten speichern und laden. Außerdem muss der Anwender die passenden IDs manuell finden, was zeitaufwändig ist.
+\newline
+Im Bezug auf die Nutzerfreundlichkeit benötigt das Verfahren viel Überarbeitung. Das es bisher schwer zu bedienen ist, ist dem Fakt geschuldet, dass das Funktionieren der Methode oberste Priorität bei dem Programmierung hatte. Aus der schon mehrfach erwähnten Zeitknappheit wurde die Benutzerfreundlichkeit zunächst vernachlässigt.
+
+
+Schließlich wird noch die Verarbeitungsgeschwindigkeit des Verfahren betrachtet.
+\newline
+Diese ist bei 50 Sekunden zur Berechnung der IDs schnell. Die benötigte Zeit wächst jedoch nicht linear mit der Größe der Eingabe. Dies liegt jedoch an der Berechnung der Cluster und dabei ist unklar, ob dies an der Implementierung oder an dem Verfahren an sich liegt, da über die Laufzeit der Meanshiftclustering keine Informationen vorliegen.
+(Da das Meanshiftclustering für jeden Punkt ausgeführt wird, und im worst-case bei jeder Iteration jedes Punktes ein Punkt gefunden wird  liegt die Laufzeit bei $O(n^{2})$)
+
+
+Zusammenfassend lässt sich sagen, dass die Bachelorarbeit zu einem positiven Ergebnis gelangt ist. Zwar gibt es noch viele Stellen, an denen Verbesserungen vorgenommen werden können. Aber es war möglich die im Kontext des HoloMed Projektes wichtigen Bereiche des Ventrikelsystems zu segmentieren und hervorzuheben.
+\newline
+Ein Ausblick wie die verschiedenen genannten Probleme behoben und das Verfahren an vielen Stellen verbessert werden kann wird im nächsten Kapitel gegeben.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

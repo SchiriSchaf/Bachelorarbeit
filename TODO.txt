@@ -13,7 +13,7 @@ Image based überdenken -> weglassen oder mehr/bessere Paper finden -> umschreib
 ------------------------------------------------------------------------------------------------
 Methods:
 
-LH-Werte genauer erklären -> grenze zwischen zwei materialien
+LH-Werte genauer erklären -> Grenze zwischen zwei Materialien
 ------------------------------------------------------------------------------------------------
 Design:
 
@@ -25,6 +25,7 @@ Darstellung des gehirns und des Ventrikels -> rot durchsichtigkeit , durchsichti
 ------------------------------------------------------------------------------------------------
 Implementierung:
 
+Erwähnen, dass anfangs auf MRT Daten getestet wurde -> nur CT funktioniert
 ------------------------------------------------------------------------------------------------
 Evaluation:
 
@@ -32,35 +33,34 @@ Nutzerstudie fertig machen + schreiben
 ------------------------------------------------------------------------------------------------
 Fazit:
 
-Am Ende, wenn der Rest fertig ist -> auf alles vorher gesagte bezug nehmen
-Klappt, aber nicht so einfach
-Viele Fehler
-Klappt nur bei wenigen Daten
+Vorherige Kapitel checken und Bezug nehmen
 ------------------------------------------------------------------------------------------------
 Ausblick:
 
-gewicht zum Erstellen der LH-Histogramme
-Kleine Optimierungen am code -> highwert beispiel aufgreifen
-weniger clusterids -> zu viele zum finden
-Räumliche Cluster mergen -> vom gleichen LH-Cluster
-u weglassen können
-genaueres Clustern -> 1025-1030 ventrikel gefunden -> unklar ob 3 und 4 damit überhaupt gefunden werden kann
 ------------------------------------------------------------------------------------------------
 Allgemein:
 
+Abstract schreiben
 Lesefluss kontrolliern!!! -> überall Übergänge verwenden
+Widersprüche suchen und entfernen
+newlines und abschnitte einfügen
 Arbeit -> Bachelorarbeit andere Synonyme
 Alle "man"s finden und entfernen
 Wertende Wörter z.b. gut, besser, etc. entfernen
 Fehlende Refs und Cites einfügen
-CT MRT unterschieden -> klappt nicht mrt -> warum -> wo?
 Einheitlich, was kursiv ist.
-Einheitliche Trennung von Absätzen und Zeilenumbrüche überlegen -> 3 verscheiden Trennung
-	-> newline in einem absatz, kleiner Abstand neuer Absatz, großer abstand neues Thema
-	-> unterkapitel zur Trennung benutzen
-Anfürungszeichen ändern -> bsp. kursiv benutzen
 Bilder, Tabellen etc. an die richtigen Stellen im Text schieben
 UML Diagrammte testen ob diese UML konform sind
+Segmentieren häufiger verwenden -> statt visualisieren etc.
 ------------------------------------------------------------------------------------------------
 Bilder finden!!!
-Visualisierung MITK Workbench -> verfahren beschreiben.s
+Visualisierung MITK Workbench -> verfahren beschreiben -> technische dokue mit screenshots für den Anhang
+Im Anhang mehr Screenshots von Visualisierungen
+Bilder schärfer machen
+------------------------------------------------------------------------------------------------
+Fragen an Christian -> Beim Zusenden fragen
+Paper von ihm
+Laufzeit Meanschiftclustering -> kann man das so einfach Berechnen ohne Beweis etc.
+Ventrikelsystem benutzen und ändern von irgendeiner seite ok?
+Wie lange braucht er?
+Treffen zum Besprechen?

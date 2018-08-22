@@ -11,7 +11,7 @@
 
 Das Gebiet der Transferfunktionen ist bereits weit erforscht und es existieren viele unterschiedliche Methoden und Herangehensweisen um medizinische Daten abhängig von verschiedenen Problemstellungen passend darzustellen.
 \newline
-Dabei kann man einerseits zwischen dem Level an Automation eines Systems unterscheiden. Hierbei gibt es vollautomatische Verfahren, bei denen keine Interaktion mit den Benutzer von Nöten ist, semiautomatische Verfahren bei denen der Benutzer noch an gewissen Stellschrauben drehen kann um das Ergebnis zu beeinflussen und manuelle Verfahren, bei denen der Anwender das meiste selber machen muss.
+Dabei kann ist einerseits zwischen dem Level an Automation eines Systems unterscheiden. Hierbei gibt es vollautomatische Verfahren, bei denen keine Interaktion mit den Benutzer von Nöten ist, semiautomatische Verfahren bei denen der Benutzer noch an gewissen Stellschrauben drehen kann um das Ergebnis zu beeinflussen und manuelle Verfahren, bei denen der Anwender das meiste selber machen muss.
 \newline
 Transferfunktionen unterscheiden sich weiterhin in ihrer Dimensionalität. Es gibt ein- zwei- und allgemein -mehrdimensionale Transferfunktionen. Des Weiteren sind die Grundlagen auf denen die Berechnungen ruhen teils völlig verschieden. Manche Verfahren basieren auf den Intensitätswerten oder deren Änderung im gegebenen Volumen. Andere basieren auf der Größe der Features die für den Nutzer von Interesse sind. Wieder andere sind Bildbasiert oder wenden Machinelearning an um zum gewünschten Ziel zu gelangen.
 \newline
@@ -129,7 +129,7 @@ Der Benutzer lädt zwei verschiedene \textit{direct volume rendered images(DVRIs
 
 \subsection{Clusteringbasierte Verfahren}
 
-Sereda baut seine Arbeit \cite{sereda2006visualization} auf den von Serlie \cite{serlie2003computed} vorgestellten LH-Histogrammen auf und zeigt wie man mit ihnen Objekte klassifizieren kann.
+Sereda baut seine Arbeit \cite{sereda2006visualization} auf den von Serlie \cite{serlie2003computed} vorgestellten LH-Histogrammen auf und zeigt wie es mithilfe von ihnen möglich ist Objekte zu klassifizieren.
 \newline
 Die Berechnung eines LH-Histogramms ist eine Methode zur Erkennung von Kanten, unter der Verwendung von Low- und High-Werten. Dabei werden die Voxel in zwei verschiedenen Kategorien eingeteilt. Es gibt Voxel, die  innerhalb eines Materials liegen und welche, die  an der Grenze zweier Materialien liegen. Ist ein Voxel innerhalb, so sind seine LH-Werte gleich. Grenzvoxel hingegen haben unterschiedliche Low- und High-Werte, wobei diese die Intensitätswerte der beiden Materialien, zwischen denen die Grenze verläuft, beschreiben. 
 \newline
@@ -151,7 +151,7 @@ Im ersten Clusteringschritt wird im LH-Raum mithilfe von \textit{Meanshiftcluste
 \newline
 Der zweite Clusteringschritt wird auf die Cluster des ersten Schrittes angewendet. Hierbei wird auch \textit{Meanschiftclustering} verwendet. Diesmal wird jedoch räumlich, also abhängig von der Position im Volumen, geclustert. Des Weiteren werden die Parameter für den Suchradius und Distanz zweier Mittelpunkte damit sie verschmolzen werden angepasst.
 \newline
-Als Ergebnis der ersten zwei Schritte erhält man Cluster mit Voxeln die ähnliche LH-Werte haben, als auch räumlich nah beieinander liegen.
+Das Ergebnis der ersten zwei Schritte sind Cluster, bei denen alle Voxel ähnliche LH-Werte haben, als auch räumlich nah beieinander liegen.
 \newline
 Im optionalen dritten und letzten Clusteringschritt wird hierarchisch geclustert. Hierbei wird für jeden Cluster die paarweise Nähe zu jedem anderen Cluster errechnet. Anschließend werden hierarchisch immer die zwei Cluster, die sich am nächsten sind, zu einem verschmolzen, solange bis nur noch ein Cluster existiert.  Hierbei speichert das Programm jeweils welche Cluster wann miteinander verschmolzen wurden. Der Benutzer kann im Anschluss entscheiden wie viel Cluster er haben möchte. Abhängig davon, wird das hierarchische Clustern umgekehrt und die Cluster werden wieder getrennt, bis die gewünschte Anzahl an Clustern erreicht ist.
 
