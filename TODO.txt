@@ -18,10 +18,7 @@ LH-Werte genauer erklären -> Grenze zwischen zwei Materialien
 Design:
 
 Abbildung überarbeiten -> workbench und user mit reinnehmen
-.bin.txt erwähnen
-auf das notwendige u eingehen
-Darstellung des gehirns und des Ventrikels -> rot durchsichtigkeit , durchsichtigkeit und farbe vom rest
-	-> Unity allgemein mehr beschreiben
+Unity allgemein mehr beschreiben
 ------------------------------------------------------------------------------------------------
 Implementierung:
 
@@ -29,7 +26,7 @@ Erwähnen, dass anfangs auf MRT Daten getestet wurde -> nur CT funktioniert
 ------------------------------------------------------------------------------------------------
 Evaluation:
 
-Nutzerstudie fertig machen + schreiben
+Nutzerstudie fertig machen + schreiben -> Fachbegriffe, Proseminar -> Infos über Teilnehmer
 ------------------------------------------------------------------------------------------------
 Fazit:
 
@@ -45,22 +42,26 @@ Lesefluss kontrolliern!!! -> überall Übergänge verwenden
 Widersprüche suchen und entfernen
 newlines und abschnitte einfügen
 Arbeit -> Bachelorarbeit andere Synonyme
-Alle "man"s finden und entfernen
-Wertende Wörter z.b. gut, besser, etc. entfernen
 Fehlende Refs und Cites einfügen
 Einheitlich, was kursiv ist.
 Bilder, Tabellen etc. an die richtigen Stellen im Text schieben
 UML Diagrammte testen ob diese UML konform sind
+
+------------------------------------------------------------------------------------------------
+Sprache:
+
+Alle "man"s finden und entfernen
+Wertende Wörter z.b. gut, besser, etc. entfernen
 Segmentieren häufiger verwenden -> statt visualisieren etc.
 ------------------------------------------------------------------------------------------------
-Bilder finden!!!
+Bilder:
+
 Visualisierung MITK Workbench -> verfahren beschreiben -> technische dokue mit screenshots für den Anhang
 Im Anhang mehr Screenshots von Visualisierungen
 Bilder schärfer machen
 ------------------------------------------------------------------------------------------------
-Fragen an Christian -> Beim Zusenden fragen
+Fragen an Christian: -> Beim Zusenden fragen
+
 Paper von ihm
-Laufzeit Meanschiftclustering -> kann man das so einfach Berechnen ohne Beweis etc.
-Ventrikelsystem benutzen und ändern von irgendeiner seite ok?
 Wie lange braucht er?
 Treffen zum Besprechen?

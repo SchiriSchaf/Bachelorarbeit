@@ -4,12 +4,11 @@
 %% ==============================
 
 
-Diese Arbeit orientiert sich an dem zweistufigen Clusteringverfahren aus dem Paper von Nguyen \cite{nguyen2012clustering}. 
+Diese Arbeit orientiert sich an dem zweistufigen Clusteringverfahren aus dem Paper von Nguyen \cite{nguyen2012clustering}. In diesem Kapitel werden dabei die verschiedenen verwendeten Methoden und Verfahren vorgestellt.
 
 \subsection{Gradient}
 
-Zuerst müssen die LH-Werte des Volumen berechnet werden. Hierfür werden zunächst die Gradienten aller Voxel benötigt. Wie im Paper beschrieben wurde auch in dieser Arbeit Hong's Methode \cite{hong2003method} dafür gewählt.
-Diese ist ein approximationsbasiertes Verfahren zur Berechnung von Gradienten eines Volumens. 
+Zuerst müssen die Gradienten aller Voxel berechnet werden. Wie im Paper beschrieben wurde auch in dieser Arbeit Hong's Methode \cite{hong2003method} dafür gewählt. Diese ist ein approximationsbasiertes Verfahren zur Berechnung von Gradienten eines Volumens. 
 \newline
 In Hong's Verfahren wird zur Berechnung der Gradienten die lokale 4x4x4 Nachbarschaft des betrachteten Punktes hinzugezogen. Hierbei ist zu beachten, dass es nicht möglich ist, den Gradienten für einen Voxel direkt zu berechnen. Der Gradient drückt die Veränderung der Intensitätswerte im Raum aus, folglich kann er immer nur zwischen zwei Punkten berechnet werden. Deshalb liegt er im Falle eines dreidimensionalen Volumens im Zentrum eins Würfels, der von 8 benachbarten Voxeln aufgespannt wird. In \autoref{fig:nachbarschaft} ist zu erkennen, wie der Gradient im Zentrum der acht Voxel liegt. Des Weiteren ist die 4x4x4 Nachbarschaft in Form der durchnummerierten Punkte zu sehen.
 \newline
@@ -20,7 +19,7 @@ In Hong's Verfahren wird zur Berechnung der Gradienten die lokale 4x4x4 Nachbars
 \caption{Darstellung der lokalen 4x4x4 Nachbarschaft  \\ Entnommen aus Hong's Paper} 
 \label{fig:nachbarschaft} 
 \end{figure}
-\todo{richtig Bild zitieren}
+
 
 Die Funktionen für die Intensitätswerte wird im Paper mit:
 \begin{equation}
@@ -28,10 +27,37 @@ Die Funktionen für die Intensitätswerte wird im Paper mit:
 \end{equation}
 approximiert. Da der Gradient die Ableitung der Intensitätsfunktion ist, muss diese abgeleitet werden, um dreidimensionalen Gradientenvektor $n$ zu erhalten:
 \begin{equation}
-	n = (Ax+Gz+Hy+I, By+Fz+Hx+J, Cz + Fy + Gx + K)
+	n = [Ax+Gz+Hy+I, By+Fz+Hx+J, Cz + Fy + Gx + K]
 \end{equation}
-Um den Gradienten zu Berechnen müssen die Parameter $A,B,C,E,F,G,H,I,J,K$  berechnet werden. Dies geschieht mithilfe der Methode der kleinsten Quadrate.
-\todo{Methode der kleinsten Quadrate genauer beschreiben}
+Um den Gradienten zu Berechnen müssen die Parameter $A,B,C,E,F,G,H,I,J,K$  berechnet werden. Dies wird mithilfe der Methode der kleinsten Quadrate und der im Paper vorgestellten \textit{error distance}, die die Entfernung zwischen einem berechneten Datenpunkt und seinem korrespondierenden Punkt in den tatsächlichen Daten beschreibt, umgesetzt.
+\newline
+Wurden die Parameter berechnet kann der Gradient $[X, Y, Z]$ des Punktes $[x, y, z]$ mit folgender Formel kalkuliert werden:
+
+\begin{align}
+\begin{bmatrix}
+           X \\
+           Y \\
+           Z
+         \end{bmatrix}    
+ 	= \begin{bmatrix}
+           2A & 2H & 2G \\
+           2H & 2B & 2F \\
+           2G & 2F & 2C
+         \end{bmatrix}
+         \begin{bmatrix}
+           x \\
+           y \\
+           z
+         \end{bmatrix}
+	+\begin{bmatrix}
+           2I \\
+           2J \\
+           2K
+         \end{bmatrix}
+  \end{align}
+
+
+
 
 \subsection{LH-Werte}
 

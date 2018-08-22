@@ -12,8 +12,7 @@ Diese Kapitel beschäftigt sich mit den Ergebnissen und der Evaluation dieser Ba
 
 \subsection{Visualisierung}
 
-\todo{formulierung}
-Die in diesem Unterkapitel gezeigten Visualisierungen wurde alle auf Volumen mit einer Auflösung von 256x101x256 Pixeln berechnet. Aus dem Grund, dass diese ein gute Balance zwischen der Auflösung und der Berechnungszeit darstellt. Im Unterkapitel  Berechnungszeiten wird dies genauer beschrieben. Bevor die Visualisierung ausgewertet werden kann, wird zunächst das Ventrikelsystem erläutert.
+Die in diesem Unterkapitel gezeigten Visualisierungen wurde alle auf Volumen mit einer Auflösung von 256x101x256 Pixeln berechnet. Aus dem Grund, dass dies ein gute Balance zwischen der Auflösung und der Berechnungszeit der Ergebnisse darstellt. Im Unterkapitel  Berechnungszeiten wird dies genauer beschrieben. Bevor die Visualisierung ausgewertet werden kann, wird zunächst das Ventrikelsystem erläutert.
 \newline
 In \autoref{fig:ventrik} ist das Ventrikelsystem zu sehen. Dieses besteht aus vier verschiedenen Ventrikeln. Zum einen der linke und der rechte Seitenventrikel, oberen beiden Bögen, die in der Abbildung zu sehen sind. Zum anderen der dritte und vierte Ventrikel, die zwischen den beiden Seitenventrikeln liegen und nach unten weggehen. Die Seitenventrikel bestehen aus einem Vorderhorn, Nr. 1,  einem Hinterhorn, Nr. 2, und einem Unterhorn, Nr. 3. Der dritte Ventrikel ist mit der Nummer 4 und der vierte Ventrikel mit der Nummer 5 versehen.
 \newline
@@ -21,12 +20,10 @@ Bei der Ventrikelpunktion, wird einer der beiden Seitenventrikel im vorderen Ber
 
 \begin{figure}[!h] 
 \centering 
-\includegraphics[width=0.75\textwidth]{Logos/Ventrikelsystem_V.png}
-\caption{Ventrikelsystem} 
+\includegraphics[width=0.75\textwidth]{Logos/Ventrikelsystem_V2.png}
+\caption{Zeichnung des Ventrikelsystems  \\  Quelle:$ http://www.kiefer-saarland.com/anatomie\_physiologie.htm$} 
 \label{fig:ventrik} 
 \end{figure}
-\todo{richtiges bild finden, quelle angeben}
-
 
 
 Das Verfahren wurde an 15 verschiedenen CT-Datensätzen von der Uni Ulm getestet. Darunter waren verschiedene Ventrikelsysteme. Vier der Datensätze waren von Menschen mit einem normalen Ventrikelsystem, vier andere wiesen ein sehr schlankes System auf. Weiterhin litten zwei Patienten unter Atrophie, einem, oft durch das Alter verursachtem, Schwund an Gehirnmasse. Zwei andere Datensätze waren von Leuten, die unter einem Mittellinienshift litten. Dies bezeichnet die Verschiebung der Mittellinie der Ventrikelsystems, was beispielsweise durch einen Schlag auf den Kopf hervorgerufen werden kann. Weiterhin gab es Daten, von einer Hirnblutung, und einem Hydrocephalus, einer Aufstauung von Nervenwasser im Kopf. Als letztes gab es noch Daten eines deformierten Ventrikelsystems, ausgelöst durch Wassereinlagerungen im Gehirn.
@@ -113,8 +110,6 @@ In einem Gehirn eines unter Atrophie leidenden Menschen, ist deutlich mehr Liquo
  Im Allgemeinen sagte der Mediziner, dass das Ventrikelsystem bei allen Visualisierungen als solches eindeutig zu erkennen sei. Er bemängelte jedoch, dass die Darstellungen nicht glatt genug sei und zu viele Ausreißer besitzen.
 
 
-
-
 Zur weiteren Auswertung der Ergebnisse wurde das erste normale Ventrikelsystem aus \autoref{fig:norm1_s} und \autoref{fig:norm1_u} in Unity und mit der MITK-Workbench, die auch zum Umwandeln der DICOM-Dateien benutzt wurde, visualisiert.
 \newline
 In Unity wurde dabei die Erweiterung zum hervorheben von Wertebereichen benutzt. Diese wurde auf 1025 bis 1030 eingestellt, da das Ventrikelsystem Intensitätswerte in diesem Bereich hat. Die Ergebnisse sind in \autoref{fig:unity_s} und \autoref{fig:unity_u} zu sehen.
@@ -124,7 +119,6 @@ Das Ventrikelsystem ist zwar zu sehen, es gibt jedoch sehr viele Ausreißer, die
 In der MITK-Workbench gibt es verschiedene Segmentierungstools. Darunter ist ein Region Growing Tool, bei dem der Nutzer einen \textit{seed} Punkt in den Schnittbildern wählen kann. Über die verwendete Kostenfunktion werden keine Informationen genannt. Anschließend können die Löcher der Auswahl mit einem \textit{closing} Filter geschlossen und mit einem weiteren Tool ein geglättete 3D Ansicht des Ergebnis erzeugt werden. Screenshots des Ergebnisses sind in \autoref{fig:mitk_o} und \autoref{fig:mitk_v} zu sehen.
 \newline
 In dem von der Workbench erzeugte Ergebnis ist das Ventrikelsystem gut zu erkennen. Die Seitenventrikel sind vollständig und besitzen eine glatte Oberfläche. Sogar große Teile des dritten und vierten Ventrikels sind teil der Segmentierung. Allerdings sind auch ganze Bereiche hervorgehoben, die nicht zum Ventrikelsystem gehören. Diese könnten vom Benutzer manuell in jedem Schichtbild des Datensatzes entfernt werden, was jedoch sehr zeitaufwändig wäre.
-\todo{drüber schauen}
 
 
 \begin{minipage}[c]{0.49\textwidth}
@@ -154,8 +148,6 @@ In dem von der Workbench erzeugte Ergebnis ist das Ventrikelsystem gut zu erkenn
 \subsection{Nutzerstudie}
 
 
-\todo{nutzerstudie variablen etc. erwähnen -> proseminar}
-\todo{info über teilnehmer}
 Im Rahmen der Evaluation der Benutzerfreundlichkeit des Verfahrens wurde eine kleine Nutzerstudie mit ... Teilnehmern durchgeführt. Bei dieser wurden den Probanden zunächst der Ablauf und die vom Benutzer erforderlichen Schritte um eine Visualisierung des Ventrikelsystems zu erhalten durch eine Vorführung durch den Interviewer gezeigt. Anschließend mussten die Teilnehmer selbst das eben gelernte anwenden und das Programm selber ausführen. Dabei bekamen sie, wenn sie nicht weiterwussten, Hilfe vom Versuchsleiter. Als Abschluss füllten die Probanden einen NASA-TLX Bogen zu der Aufgabe aus. Die durchschnittlichen Ergebnisse der einzelnen Kategorien wird in \autoref{tab:ergebnis_nasa} gezeigt.
 
 
