@@ -13,7 +13,6 @@ Image based überdenken -> weglassen oder mehr/bessere Paper finden -> umschreib
 ------------------------------------------------------------------------------------------------
 Methods:
 
-LH-Werte genauer erklären -> Grenze zwischen zwei Materialien
 ------------------------------------------------------------------------------------------------
 Design:
 

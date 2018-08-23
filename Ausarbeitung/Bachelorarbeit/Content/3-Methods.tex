@@ -61,7 +61,7 @@ Wurden die Parameter berechnet kann der Gradient $[X, Y, Z]$ des Punktes $[x, y,
 
 \subsection{LH-Werte}
 
-Als nächster Schritt, nach der Kalkulation der Gradienten, folgt die Berechnung der Low- und High-Werte. Dazu wird in Richtung der Gradienten integriert. Hierfür wurde, wie auch von Nguyen, Heun's Methode, eine modifizierte Euler Methode, verwendet. Die für die Integration benutzte Formel lautet:
+Als nächster Schritt, nach der Kalkulation der Gradienten, folgt die Berechnung der Low- und High-Werte. Dazu wird für jeden Voxel im Volumen in Richtung des Gradienten integriert. Hierfür wurde, wie auch von Nguyen, Heun's Methode, eine modifizierte Euler Methode, verwendet. Die für die Integration benutzte Formel lautet:
 \begin{equation}
 	u_{i+1} = u_{i} + \frac{1}{2}d(\triangledown f (u_{i}) + \triangledown f(u_{i}+d \triangledown f(u_{i}))) 
 \end{equation}

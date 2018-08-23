@@ -15,7 +15,7 @@ Dabei kann ist einerseits zwischen dem Level an Automation eines Systems untersc
 \newline
 Transferfunktionen unterscheiden sich weiterhin in ihrer Dimensionalität. Es gibt ein- zwei- und allgemein -mehrdimensionale Transferfunktionen. Des Weiteren sind die Grundlagen auf denen die Berechnungen ruhen teils völlig verschieden. Manche Verfahren basieren auf den Intensitätswerten oder deren Änderung im gegebenen Volumen. Andere basieren auf der Größe der Features die für den Nutzer von Interesse sind. Wieder andere sind Bildbasiert oder wenden Machinelearning an um zum gewünschten Ziel zu gelangen.
 \newline
-In diesem Abschnitt wird ein Überblick über die unterschiedlichen Vorgehensweisen von Transferfunktionen gegeben. Dabei werden diese im Folgenden in die Kategorien Eindimensionale, Zweidimensionale, Räumlichbasierte,Machinelearning, Bildbasierte und Clusteringbasierte Verfahren geteilt.
+In diesem Abschnitt wird ein Überblick über die unterschiedlichen Vorgehensweisen von Transferfunktionen gegeben. Dabei werden diese im Folgenden in die Kategorien Eindimensionale, Zweidimensionale, Räumlichbasierte, Machinelearning, Bildbasierte und Clusteringbasierte Verfahren geteilt.
 \newline
 Dabei ist jedoch zu beachten, dass die Kategorien lediglich einer übersichtlichen Struktur dieses Abschnitts dienen. Die Kategorien hätten anders gewählt werden können. Des Weiteren können manche Verfahren nicht eindeutig in die hier genannte Unterteilung eingeteilt werden, da eine Mehrfachnennung möglich wäre.
 
@@ -23,11 +23,19 @@ Dabei ist jedoch zu beachten, dass die Kategorien lediglich einer übersichtlich
 
 \subsection{Eindimensionale Verfahren}
 
-Die einfachste Form der Transferfunktionen, sind die eindimensionalen Transferfunktionen. In diesen, wird nur der Intensitätswert der Voxel in Betracht gezogen. Abgesehen von den niedrigen Berechnungszeiten, sind diese jedoch aus mehreren Gründen suboptimal. Medizinischen Daten werden gemessen und haben deshalb meist ein Rauschen, was die genaue Darstellung erschwert. Weiterhin sind die Intensitätswerte verschiedener Bereiche nah beieinander oder gar gleich und damit sind eindimensionale Transferfunktionen unpraktisch um verschiedene Materialien kenntlich zu machen. Trotzdem sind eindimensionale Transferfunktionen weit verbreitet und werden oft benutzt. 
+Die einfachste Form der Transferfunktionen, sind die eindimensionalen Transferfunktionen. Meistens werden in diesen, den Voxeln Farbe und Okklusion nur abhängig von deren Intensitätswerten zugeteilt.
+\newline
+Abgesehen von den niedrigen Berechnungszeiten, sind diese jedoch aus mehreren Gründen suboptimal. Medizinischen Daten werden gemessen und haben deshalb meist ein Rauschen, was die genaue Darstellung erschwert. Weiterhin sind die Intensitätswerte verschiedener Bereiche nah beieinander oder gar gleich und damit sind eindimensionale Transferfunktionen unpraktisch um verschiedene Materialien kenntlich zu machen. Trotzdem sind eindimensionale Transferfunktionen weit verbreitet und werden oft benutzt. 
+\newline
+Eine etwas komplexere eindimensionalen Transferfunktion wird im Paper von Drebin \cite{drebin1988volume} vorgestellt, bei der Voxel in verschiedene Materialien, anhand von Wahrscheinlichkeiten, die auf den Intensitätswerten basieren, klassifiziert werden.
+
 
 
 
 \subsection{Zweidimensionale Verfahren}
+
+Transferfunktionen, die auf zweidimensionalen Histogramme basieren, sind häufig verwendet. Das am meisten benutzte Histogramm basiert auf den \textit{scalar value}, den Intensitätswerten und \textit{gradientmagnitude}, der Länge der Gradienten.
+
 
 \cite{kniss2002multidimensional} SG-TF
 
