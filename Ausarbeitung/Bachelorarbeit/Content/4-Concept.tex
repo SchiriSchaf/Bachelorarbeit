@@ -10,11 +10,21 @@ Die Implementierung dieser Bachelorarbeit teilt sich dabei in zwei verschieden P
 \newline
 In dieser Bachelorarbeit wurde der \textit{VolumeRenderHelper} um die vorgestellte Transferfunktion erweitert und der \textit{VolumeRenderer} geringfügig angepasst. Da beide Programme in \textit{csharp} geschrieben sind, wurden auch der Code, der im Laufe dieser Bachelorarbeit entstand in \textit{csharp geschriebn}. Als Entwicklerumgebung wurde dementsprechend \textit{Visual Studio 2017} von Microsoft verwendet.
 \newline
-Die Beiden Programme werden im folgenden als Helper und Renderer erwähnt. Weiterhin wurde ein Pythonskript \textit{PlotHelper} geschrieben, um LH-Histogramme anzuzeigen.
-\newline
+Die Beiden Programme werden im folgenden als Helper und Renderer bezeichnet. Weiterhin wurde ein Pythonskript \textit{PlotHelper} geschrieben, um LH-Histogramme anzuzeigen.
+
 \todo{Christians Paper}
-\todo{Unity genauer erklären, Darstellung des Daten, Benutzeroberfläche etc.}
-Anfangs liegen die CT-Daten von den Volumen in mehreren Dateien als Schnittbilder im DICOM Format vor. Diese werden mithilfe der MITK Workbench zu einer einzelnen Datei im .nrrd Format umgewandelt, da nur Volumen in diesem Format vom Helper eingelesen werden können.
+
+Anfangs liegen die CT-Daten der Volumen in mehreren Dateien als Schnittbilder im DICOM Format vor. Diese werden mithilfe der \textit{Medical Imaging Interaction Toolkit} (kurz: \textit{MITK}) \textit{Workbench} \cite{mitk} zu einer einzelnen Datei im .nrrd Format umgewandelt, da nur Volumen in diesem Format vom Helper eingelesen werden können.
+\newline
+\textit{MITK} ist ein kostenloses open-source System zur Entwicklung von medizinischer Bildverarbeitungssoftware und wurde vom Deutschen Krebsforschungszentrum entwickelt. Dessen \textit{Workbench} bietet zum einen, das eben vorgestellte Laden und Umwandeln von DICOM Dateien, zum anderen auch diverse Segmentierungstools.
+
+
+Die Darstellung von Volumendaten ist über den Renderer in Unity möglich. Der Benutzer hat hierbei mehrere Möglichkeiten Eingaben über Parameterfelder oder durch Drücken von Tasten zu machen und mit der Visualisierung zu interagieren. Zunächst muss er jedoch in das Parameterfeld \textit{Binary Data} via drag and drop eine binäre Volumendatei ziehen. Anschließend kann die Visualisierung gestartet werden. Hierbei hat der Nutzer die Möglichkeit die Kamera mit den Tasten $W$ $A$ $S$ $D$ zu bewegen als auch mit den seitlichen Pfeiltasten sowie der $Q$ und $E$ Taste das Volumen um verschiedene Achsen zu drehen. Die Position der Kamera sowie die Drehung des Volumens, kann ebenfalls durch verschiedene Parameterfeldern verändert werden.
+\newline
+Die Volumen, werden als Graubilder dargestellt, wobei die Helligkeit der einzelnen Voxel abhängig vom Intensitätswert bestimmt wird. Dabei kann der User über ein weiteres Parameterfeld entscheiden ob der Größte, der Kleinste, der Erste oder die Summe aller gefunden Voxel als Wert für die Farbgebung benutzt wird. Die Einstellung bei der der maximale wert genommen wird ist hierbei der Standard. Des Weiteren kann der Nutzer einen Threshold setzen, bei dem alle Voxel die eine Intensitätswert niedriger als diesen haben ignoriert werden.
+\newline
+Es existieren noch deutlich mehr Eingabefelder, mit denen der Benutzer die Darstellung des Volumens verändern und anpassen kann. Diese werden jedoch, da sie im Kontext dieser Bachelorarbeit nicht von Interesse sind, nicht alle vorgestellt.
+\todo{evtl. raycasting}
 
 
 \begin{minipage}{0.60\textwidth}
@@ -47,8 +57,8 @@ Im Folgenden werden hauptsächlich die Module \textit{LHHistogram}, \textit{Clus
 
 \begin{figure}
 \centering 
-\includegraphics[width=\textwidth]{Logos/Ueberblick.png}
-\caption{Überblick über das Programm} 
+\includegraphics[width=\textwidth]{Logos/Ueberblick2.png}
+\caption{Überblick über den Ablauf} 
 \label{fig:ueberblick} 
 \end{figure}
 
@@ -82,10 +92,9 @@ Wurde jedoch das \textit{ClusterVolume} Modul aufgerufen, wird mit den beiden Cl
 Die Berechnung die in der \textit{LHClustering} Klasse geschieht nimmt das Volumen mit den LH-Werten entgegen und rechnet dieses aus Performancegründen, wie oben beschrieben, in ein ein Histogramm um. Dieser Schritt könnte gespart werden, wenn die Methode \textit{LHValueVolume} direkt ein Histogramm als Rückgabewert liefern würde. Dies würde auch das \textit{LHHistogram} Modul verbessern, da damit die Umrechnung in dieser Klasse ebenso hinfällig wird. Als Ergebnis der Clusteringfunktion \textit{ComputeLHClusters} wird eine Liste der Cluster zurückgegeben, wobei ein Cluster aus einer Liste von \textit{IVector3} besteht. Die Cluster werden nur als Liste der räumliche Informationen der Voxel gespeichert, da für den nächsten Clusteringschritt  lediglich diese Information benötigt wird. 
 
 
-Anschließend geht es in der \textit{SpatialClustering} Klasse mit der Berechnung der räumlichen Cluster weiter. Diese werden auf den Übergebenen Listen direkt  kalkuliert. Hierbei werden gefundene Cluster direkt aus der Liste entfernt.
+Anschließend geht es in der \textit{SpatialClustering} Klasse mit der Berechnung der räumlichen Cluster weiter. Diese werden aus dem Grund, dass wieder \textit{Meanshiftclustering} verwendet wird, mit einer ähnlichen Implementierung wie in der \textit{LHClustering} Klasse kalkuliert. Diesmal wird jedoch nicht auf einem Histogramm, sondern direkt auf den übergebenen Listen die Berechnung durchgeführt. Folglich muss für jede Iteration eines Mittelpunktes die gesamte Liste durch iteriert werden.
 \newline
 Als Ergebnis wird erneut eine Liste von Listen vom Typ \textit{IVector3} zurückgegeben.
-\todo{Räumlich Clustern beschreiben}
 
 
 Nachdem alle Cluster kalkuliert wurden, werden sie in einem Volumen gespeichert. Jeder Cluster bekommt dabei zunächst seine eigene ID beginnend bei eins. Das Volumen wird dann mit den verschiedenen IDs gefüllt. Dies geschieht indem für jeden Cluster an den Positionen der Punkte die jeweilige ID gespeichert wird. Alle anderen Voxel des Clustervolumen wird der Wert null zugewiesen. Dieses Volumen wird als binäre Datei gespeichert und ist das Ergebnis der ClusterVolume Moduls. Es ist bei diesem Modul sehr wichtig, dass es, wie es bei dem \textit{Dump} Befehl möglich ist, mit einem $u$ am Ende aufgerufen wird, da das Ergebnis sonst nicht vom Renderer dargestellt werden kann.

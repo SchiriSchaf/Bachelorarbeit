@@ -1,14 +1,11 @@
 ﻿Einleitung:
 
-Bild der Operation einfügen
-Intensitätswerte und CT erklären
 ------------------------------------------------------------------------------------------------
 State of the art:
 
 Das Wort Transferfunktion passend verwenden
-eindimensionale Transferfunktionen finden
-2D-tf auf histogramm beschreiben
-2D sg-tf finden -> Kniss
+Kniss beschreiben
+evtl nicht auf SG basierte 2D TF finden
 Image based überdenken -> weglassen oder mehr/bessere Paper finden -> umschreiben ist nötig
 ------------------------------------------------------------------------------------------------
 Methods:
@@ -16,12 +13,12 @@ Methods:
 ------------------------------------------------------------------------------------------------
 Design:
 
-Abbildung überarbeiten -> workbench und user mit reinnehmen
-Unity allgemein mehr beschreiben
+Neuse Seite noch schaffen
+Raycasting beschreiben???
+Clustering drüber schauen überarbeiten
 ------------------------------------------------------------------------------------------------
 Implementierung:
 
-Erwähnen, dass anfangs auf MRT Daten getestet wurde -> nur CT funktioniert
 ------------------------------------------------------------------------------------------------
 Evaluation:
 
@@ -55,12 +52,12 @@ Segmentieren häufiger verwenden -> statt visualisieren etc.
 ------------------------------------------------------------------------------------------------
 Bilder:
 
-Visualisierung MITK Workbench -> verfahren beschreiben -> technische dokue mit screenshots für den Anhang
+Visualisierung MITK Workbench -> technische doku mit screenshots für den Anhang
 Im Anhang mehr Screenshots von Visualisierungen
-Bilder schärfer machen
 ------------------------------------------------------------------------------------------------
 Fragen an Christian: -> Beim Zusenden fragen
 
 Paper von ihm
+Qualität der Screenshots verbessern?
 Wie lange braucht er?
 Treffen zum Besprechen?
