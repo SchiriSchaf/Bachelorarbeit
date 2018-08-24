@@ -27,7 +27,7 @@ Es existieren noch deutlich mehr Eingabefelder, mit denen der Benutzer die Darst
 \todo{evtl. raycasting}
 
 
-\begin{minipage}{0.60\textwidth}
+\begin{minipage}[H]{0.60\textwidth}
 \includegraphics[width=\textwidth]{Logos/Volume_UML.PNG}
 \captionof{figure}{UML-Diagramm des Volumens} 
 \label{fig:volume_uml} 
@@ -89,7 +89,7 @@ Bei der Erstellung des Histogramms im \textit{LHHistogram} Modul wird weiterhin 
 
 Wurde jedoch das \textit{ClusterVolume} Modul aufgerufen, wird mit den beiden Clusteringschritten fortgefahren.
 \newline
-Die Berechnung die in der \textit{LHClustering} Klasse geschieht nimmt das Volumen mit den LH-Werten entgegen und rechnet dieses aus Performancegründen, wie oben beschrieben, in ein ein Histogramm um. Dieser Schritt könnte gespart werden, wenn die Methode \textit{LHValueVolume} direkt ein Histogramm als Rückgabewert liefern würde. Dies würde auch das \textit{LHHistogram} Modul verbessern, da damit die Umrechnung in dieser Klasse ebenso hinfällig wird. Als Ergebnis der Clusteringfunktion \textit{ComputeLHClusters} wird eine Liste der Cluster zurückgegeben, wobei ein Cluster aus einer Liste von \textit{IVector3} besteht. Die Cluster werden nur als Liste der räumliche Informationen der Voxel gespeichert, da für den nächsten Clusteringschritt  lediglich diese Information benötigt wird. 
+Die Berechnung der LH-Cluster, die in der \textit{LHClustering} Klasse geschieht, nimmt das Volumen mit den LH-Werten entgegen und rechnet dieses aus Performancegründen, wie oben beschrieben, in ein ein Histogramm um. Dieser Schritt könnte gespart werden, wenn die Methode \textit{LHValueVolume} direkt ein Histogramm als Rückgabewert liefern würde. Dies würde auch das \textit{LHHistogram} Modul verbessern, da damit die Umrechnung in dieser Klasse ebenso hinfällig wird. Als Ergebnis der Clusteringfunktion \textit{ComputeLHClusters} wird eine Liste der Cluster zurückgegeben, wobei ein Cluster aus einer Liste von \textit{IVector3} besteht. Die Cluster werden nur als Liste der räumliche Informationen der Voxel gespeichert, da für den nächsten Clusteringschritt  lediglich diese Information benötigt wird. 
 
 
 Anschließend geht es in der \textit{SpatialClustering} Klasse mit der Berechnung der räumlichen Cluster weiter. Diese werden aus dem Grund, dass wieder \textit{Meanshiftclustering} verwendet wird, mit einer ähnlichen Implementierung wie in der \textit{LHClustering} Klasse kalkuliert. Diesmal wird jedoch nicht auf einem Histogramm, sondern direkt auf den übergebenen Listen die Berechnung durchgeführt. Folglich muss für jede Iteration eines Mittelpunktes die gesamte Liste durch iteriert werden.

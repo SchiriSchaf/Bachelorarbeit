@@ -4,9 +4,9 @@
 State of the art:
 
 Das Wort Transferfunktion passend verwenden
-Kniss beschreiben
 evtl nicht auf SG basierte 2D TF finden
-Image based überdenken -> weglassen oder mehr/bessere Paper finden -> umschreiben ist nötig
+Benutzer-zentrisch überarbeiten vllt. anderes Topic
+bei der Wahl benutzer-zentrisch erwähnen
 ------------------------------------------------------------------------------------------------
 Methods:
 
@@ -15,13 +15,15 @@ Design:
 
 Neuse Seite noch schaffen
 Raycasting beschreiben???
-Clustering drüber schauen überarbeiten
+Clustering drüber schauen, überarbeiten
+Generische Klasse begriffe richtig?
 ------------------------------------------------------------------------------------------------
 Implementierung:
 
 ------------------------------------------------------------------------------------------------
 Evaluation:
 
+MITK Technische Doku im Anhang erwähnen
 Nutzerstudie fertig machen + schreiben -> Fachbegriffe, Proseminar -> Infos über Teilnehmer
 ------------------------------------------------------------------------------------------------
 Fazit:
@@ -52,7 +54,6 @@ Segmentieren häufiger verwenden -> statt visualisieren etc.
 ------------------------------------------------------------------------------------------------
 Bilder:
 
-Visualisierung MITK Workbench -> technische doku mit screenshots für den Anhang
 Im Anhang mehr Screenshots von Visualisierungen
 ------------------------------------------------------------------------------------------------
 Fragen an Christian: -> Beim Zusenden fragen
