@@ -27,14 +27,15 @@ Es existieren noch deutlich mehr Eingabefelder, mit denen der Benutzer die Darst
 \todo{evtl. raycasting}
 
 
-\begin{minipage}[H]{0.60\textwidth}
-\includegraphics[width=\textwidth]{Logos/Volume_UML.PNG}
-\captionof{figure}{UML-Diagramm des Volumens} 
+\begin{figure}
+\centering
+\includegraphics[width=0.6\textwidth]{Logos/Volume_UML.PNG}
+\caption{UML-Diagramm des Volumens} 
 \label{fig:volume_uml} 
-\end{minipage}
-\begin{minipage}{0.39\textwidth}
+\end{figure}
+
+
 Die interne Speicherung des Volumens wird mit der generischen Klasse \textit{Volume} umgesetzt, deren Felder, Attribute und Methoden in \autoref{fig:volume_uml} zu sehen sind. Diese besitzt ein dreidimensionalen Array vom angegebenen generischen Datentyp, sowie Informationen über das Volumen, wie zum Beispiel Größe der Voxel oder Anzahl der Elemente pro Achse. Des Weiteren bietet die Klasse verschieden Funktionen um Informationen auszulesen oder zu bearbeiten. Zur Darstellung von dreidimensionale Koordinaten, werden die Klassen \textit{IVector3} und \textit{FVector3} benutzt. Diese stellen Vektoren dar, die entweder Integer, Ganzzahlen, oder Float, Dezimalzahlen, als $x,y$ und $z$ Werte speichern.
-\end{minipage}
 
 
 Die Interaktion des Benutzers mit dem Helper findet über eine Kommandozeile statt. Hierbei hat der Anwender die Befehle \textit{Load}, \textit{Dump}, \textit{Resample}, \textit{Info}, \textit{Write}, \textit{LHHistogram}, \textit{ClusterVolume} und \textit{MergeCluster} zur Auswahl. Dies ist im UML-Diagramm in \autoref{fig:modul_uml} zu sehen. Jedes Modul hat dabei seine eigene Syntax die mithilfe eines Help Befehls angezeigt werden kann.

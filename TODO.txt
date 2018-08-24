@@ -13,18 +13,16 @@ Methods:
 ------------------------------------------------------------------------------------------------
 Design:
 
-Neuse Seite noch schaffen
 Raycasting beschreiben???
 Clustering drüber schauen, überarbeiten
-Generische Klasse begriffe richtig?
+Generische Klasse Begriffe richtig?
 ------------------------------------------------------------------------------------------------
 Implementierung:
 
 ------------------------------------------------------------------------------------------------
 Evaluation:
 
-MITK Technische Doku im Anhang erwähnen
-Nutzerstudie fertig machen + schreiben -> Fachbegriffe, Proseminar -> Infos über Teilnehmer
+CT-Daten für Visualisierung evtl. nicht ausreichend
 ------------------------------------------------------------------------------------------------
 Fazit:
 

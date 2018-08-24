@@ -45,7 +45,6 @@ Eine erfolgreiche Visualisierung gelang in nur 3 der 15 Fälle und zwar bei zwei
 In \autoref{fig:norm1_s}, der Darstellung des ersten normalen Ventrikelsystems von der Seite, sind links über dem Hinterhorn der Seitenventrikel Punkte zu erkennen, die nicht zum Ventrikelsystem gehören. Auch bei den Visualisierungen der andern Ventrikelsysteme sind an mehreren Stellen solche Ausreißer zu erkennen. Diese können bei dem aktuellen Stand der Implementierung nicht entfernt werden und senken die Qualität der Darstellung. 
 
 
-
 \begin{minipage}[c]{0.49\textwidth}
 \includegraphics[width=\textwidth]{Logos/Normal2/Seite.PNG}
 \captionof{figure}{Visualisierung des zweiten normalen Ventrikelsystems von der Seite}
@@ -116,7 +115,7 @@ In Unity wurde dabei die Erweiterung zum hervorheben von Wertebereichen benutzt.
 \newline
 Das Ventrikelsystem ist zwar zu sehen, es gibt jedoch sehr viele Ausreißer, die es fast unmöglich machen die Ventrikel zu erkennen. Diese simple Vorgehensweise führt zu keinem gewünschtem Ergebnis.
 \newline
-In der MITK-Workbench gibt es verschiedene Segmentierungstools. Darunter ist ein Region Growing Tool, bei dem der Nutzer einen \textit{seed} Punkt in den Schnittbildern wählen kann. Über die verwendete Kostenfunktion werden keine Informationen genannt. Anschließend können die Löcher der Auswahl mit einem \textit{closing} Filter geschlossen und mit einem weiteren Tool ein geglättete 3D Ansicht des Ergebnis erzeugt werden. Screenshots des Ergebnisses sind in \autoref{fig:mitk_o} und \autoref{fig:mitk_v} zu sehen.
+In der MITK-Workbench gibt es verschiedene Segmentierungstools. Darunter ist ein Region Growing Tool, bei dem der Nutzer einen \textit{seed} Punkt in den Schnittbildern wählen kann. Über die verwendete Kostenfunktion werden keine Informationen genannt. Anschließend können die Löcher der Auswahl mit einem \textit{closing} Filter geschlossen und mit einem weiteren Tool ein geglättete 3D Ansicht des Ergebnis erzeugt werden. Screenshots des Ergebnisses sind in \autoref{fig:mitk_o} und \autoref{fig:mitk_v} zu sehen. Eine genaue Beschreibung, wie diese Tools zu nutzen sind, ist im Anhang diese Arbeit zu finden.
 \newline
 In dem von der Workbench erzeugte Ergebnis ist das Ventrikelsystem gut zu erkennen. Die Seitenventrikel sind vollständig und besitzen eine glatte Oberfläche. Sogar große Teile des dritten und vierten Ventrikels sind teil der Segmentierung. Allerdings sind auch ganze Bereiche hervorgehoben, die nicht zum Ventrikelsystem gehören. Diese könnten vom Benutzer manuell in jedem Schichtbild des Datensatzes entfernt werden, was jedoch sehr zeitaufwändig wäre.
 
@@ -148,21 +147,31 @@ In dem von der Workbench erzeugte Ergebnis ist das Ventrikelsystem gut zu erkenn
 \subsection{Nutzerstudie}
 
 
-Im Rahmen der Evaluation der Benutzerfreundlichkeit des Verfahrens wurde eine kleine Nutzerstudie mit ... Teilnehmern durchgeführt. Bei dieser wurden den Probanden zunächst der Ablauf und die vom Benutzer erforderlichen Schritte um eine Visualisierung des Ventrikelsystems zu erhalten durch eine Vorführung durch den Interviewer gezeigt. Anschließend mussten die Teilnehmer selbst das eben gelernte anwenden und das Programm selber ausführen. Dabei bekamen sie, wenn sie nicht weiterwussten, Hilfe vom Versuchsleiter. Als Abschluss füllten die Probanden einen NASA-TLX Bogen zu der Aufgabe aus. Die durchschnittlichen Ergebnisse der einzelnen Kategorien wird in \autoref{tab:ergebnis_nasa} gezeigt.
+Im Rahmen der Evaluation der Benutzerfreundlichkeit des Verfahrens wurde eine kleine Nutzerstudie mit 5 Teilnehmern durchgeführt. Die Probanden waren alle Studenten aus verschiedenen Studiengängen im Alter zwischen 22 und 26.
+\newline
+Bei dieser wurden den Teilnehmern zunächst der Ablauf und die vom Benutzer erforderlichen Schritte, um eine Visualisierung des Ventrikelsystems zu erhalten, mittels einer Vorführung durch den Interviewer gezeigt. Anschließend mussten die Probanden selbst das eben gelernte anwenden und das Programm selber ausführen. Dabei bekamen sie, wenn sie nicht weiterwussten, Hilfe vom Versuchsleiter.
+\newline
+Hinterher füllten die Teilnehmer einen NASA-TLX Bogen zu der Aufgabe aus. Dieser besteht aus zwei Parts. Als erstes muss der Befragte in den Kategorien Geistige Anforderung, Körperliche Anforderung, Zeitliche Anforderung, Leistung, Anstrengung und Frustration die auszuführende Aufgabe jeweils auf einer Skala von 5 bis 100 bewerten. Die Werte der Skalen wachsen dabei in Fünfer Schritten an. Diese Bewertung ergibt hinterher die Gewichtung der Kategorien.
+\newline
+Als zweites werden alle Kategorien paarweise miteinander verglichen und der Probanden muss angeben, welcher der beiden Kategorien für das Lösen der Aufgabe bedeutsamer war. Dadurch erhält jede Kategorie eine Anzahl an Klicks.
+\newline
+ Anschließend wird die Klickzahl durch 15, die Anzahl aller Klicks geteilt. Dadurch erhält man die Wichtung der Kateogrie. Diese Wichtungen werden mit deren jeweiligen Gewichtungen multipliziert und die Ergebnisse zur Gesamtbeanspruchung der Aufgabe aufaddiert.
+\newline
+Die durchschnittlichen Ergebnisse der einzelnen Kategorien werden in \autoref{tab:ergebnis_nasa} gezeigt.
 
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \resizebox{\columnwidth}{!}{
  \begin{tabular}{| c | c | c | c |}
   \hline
   Kategorie & Gewichtung & Klicks & Wichtung \\ \hline
-  Geistige Anforderung & 0&0 &0 \\ \hline
-  Körperliche Anforderung & 0& 0& 0\\ \hline
-  Zeitliche Anforderung &0 &0 &0 \\ \hline
-  Leistung &0 &0 & 0\\ \hline
-  Anstrengung &0 & 0& 0\\ \hline
-  Frustration &0 &0 & 0\\ \hline 
+  Geistige Anforderung & 39 & 4,8 & 0,32 \\ \hline
+  Körperliche Anforderung & 23 & 1,8 & 0,12\\ \hline
+  Zeitliche Anforderung & 29 & 1,2 & 0,078 \\ \hline
+  Leistung & 25 & 2,4 & 0,156\\ \hline
+  Anstrengung & 36 & 2,4 & 0,156\\ \hline
+  Frustration & 35 & 2,4 & 0,156\\ \hline 
  \end{tabular}
  }
 \caption{Durchschnittlichen Ergebnisse des NASA-TLX Bogens}
@@ -170,11 +179,19 @@ Im Rahmen der Evaluation der Benutzerfreundlichkeit des Verfahrens wurde eine kl
 \end{table}
 
 
-Der durchschnittliche Wert für die Gesamtbeanspruchung lag bei ... Personen ohne Programmiererfahrung ...
+Der durchschnittliche Wert für die Gesamtbeanspruchung lag bei 38,32. 
+
+
+Zunächst werden die Ergebnisse des ersten Teils betrachtet. Hierbei fällt als erstes auf, dass die bei Kategorien Geistige Anforderung, Anstrengung und Frustration durchschnittlichen die höchsten Bewertungen abgegeben wurden. Bei der Geistigen Anforderung und der Frustration gaben vor allem die Teilnehmer ohne oder mit nur wenig Programmiererfahrung höhere Werte an. Bei der Kategorie Anstrengung ist anzumerken, dass von zwei Probanden deutlich höhere Werte als vom Rest gegeben wurde. Alle anderen Kategorien wurden in etwa ähnlich bewertet.
+\newline
+Als nächstes werden die Ergebnisse des zweiten Parts diskutiert. Die höchste durchschnittliche Klickzahl wurde von der Kategorie Geistige Anforderung erzielt. Unabhängig von den Programmierkenntnissen der Probanden, wurde diese Kategorie als die deutlich bedeutsamste angesehen. Die anderen Kategorien unterscheiden sich nur geringfügig und hatten meist Klickzahlen zwischen null und drei.
+\newline
+Als letztes wird die Gesamtbeanspruchung betrachtet. Diese unterscheidet sich bei den Teilnehmern, vor allem durch die unterschiedliche Bewertung der Kategorien Geistige Anforderung und Frustration, sehr stark von einander. Die berechneten Gesamtbeanspruchungen lagen bei 14,6\; 27,3\; 40\; 40,6 und 63. Dies zeigt den großen Unterschied zwischen den Leuten, die viel Programmiererfahrungen besitzen, und denen, die wenig oder noch nie programmiert haben.
+\newline
+Die Benutzung einer Konsole fiel den Unerfahrenen vergleichsweise sehr schwer. Des Weiteren ist die Notwendigkeit die richtigen Suffixe und das $u$ beim \textit{ClusterVolume} Modul angeben zu müssen eine Hürde. Weiterhin wäre es einfacher wenn nur ein Programm verwendet werden muss.
 
  
-Trotz der Schwierigkeiten,  gaben die Probanden an, dass sie die Aufgabe mit einer guten ausführlichen Dokumentation auch alleine ohne Hilfe hinbekommen würden.
-
+Trotz der Schwierigkeiten, gaben alle Probanden, auch jene ohne Programmiererfahrung, an, dass sie die Aufgabe mit einer gut erklärten, ausführlichen Dokumentation alleine ohne Hilfe hinbekommen würden.
 
 \subsection{Berechnungszeit}
 
