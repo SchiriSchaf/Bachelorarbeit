@@ -5,8 +5,6 @@ State of the art:
 
 Das Wort Transferfunktion passend verwenden
 evtl nicht auf SG basierte 2D TF finden
-Benutzer-zentrisch überarbeiten vllt. anderes Topic
-bei der Wahl benutzer-zentrisch erwähnen
 ------------------------------------------------------------------------------------------------
 Methods:
 
@@ -14,11 +12,13 @@ Methods:
 Design:
 
 Raycasting beschreiben???
-Clustering drüber schauen, überarbeiten
+Räumlich Clustering überarbeiten
 Generische Klasse Begriffe richtig?
+Genaue beschreibung der Module -> Parameter zum aufrufen, vorher Volumen laden
 ------------------------------------------------------------------------------------------------
 Implementierung:
 
+Volumen als ref übergeben -> speicherplatz
 ------------------------------------------------------------------------------------------------
 Evaluation:
 
@@ -34,6 +34,7 @@ Ausblick:
 Allgemein:
 
 Abstract schreiben
+"man"s im der technischen Doku entfernen
 Lesefluss kontrolliern!!! -> überall Übergänge verwenden
 Widersprüche suchen und entfernen
 newlines und abschnitte einfügen
@@ -49,6 +50,7 @@ Sprache:
 Alle "man"s finden und entfernen
 Wertende Wörter z.b. gut, besser, etc. entfernen
 Segmentieren häufiger verwenden -> statt visualisieren etc.
+Englische Wörter immer gleich schreiben -> bsp. Region Growing
 ------------------------------------------------------------------------------------------------
 Bilder:
 
@@ -60,3 +62,4 @@ Paper von ihm
 Qualität der Screenshots verbessern?
 Wie lange braucht er?
 Treffen zum Besprechen?
+Englischen Wörter verwenden? Wie?

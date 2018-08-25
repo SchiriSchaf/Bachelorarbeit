@@ -33,6 +33,9 @@ Eine etwas komplexere eindimensionalen Transferfunktion wird im Paper von Drebin
 
 \subsection{Zweidimensionale Verfahren}
 
+
+
+
 Bei zweidimensionalen Transferfunktionen werden häufig als zweite Eingabegröße neben den Intensitätswerten die Länge der Gradienten hinzugezogen.
 \newline
 Ein frühes Beispiel für die Verwendung der Gradientenlänge, ist aus dem Jahr 1988 aus dem Paper von Levoy \cite{levoy1988display}. In diesem werden, mithilfe einer simplen Funktion, Voxeln Opazitätswerte abhängig von deren Intensitätswerten und Gradientenlängen zugewiesen.
@@ -66,7 +69,7 @@ Aus der geschätzten Größe und dem Intensitätswert wird ein zweidimensionales
 Das Verfahren eignet sich gut, um relativ große Strukturen zu erkennen, jedoch ist es unklar ob das relativ schmale Ventrikelsystem erkannt werden würde.
 
 
-Eine andere Idee Strukturen basierend auf räumlichen Informationen zu Segmentieren ist die Verwendung von Regiongrowing.
+Eine andere Idee Strukturen basierend auf räumlichen Informationen zu Segmentieren ist die Verwendung von Region Growing.
 \newline
 Beispielsweise wird im Paper von Huang \cite{huang2003rgvis} ein solches Regiongrowingverfahren vorgestellt.
 \newline
@@ -97,7 +100,7 @@ Eine weitere Arbeit \cite{correa2009visibility} von Correa und Ma beschäftigt s
 \newline
 Die Sichtbarkeit jedes Voxels wird abhängig vom Sichtpunkt auf das Volumen berechnet, indem die Opazität vom Standpunkt der Kamera bis hin zum Voxel akkumuliert wird. Anschließend wird ein Histogramm über die Sichtbarkeitswerte erstellt. Auf diesem kann der Benutzer eine Transferfunktion zur Bestimmung der optischen Visualisierung erstellen, bei der er ein direktes Feedback über die Darstellung erhält. Um das gewünschte Ergebnis zu erhalten, wäre jedoch ein sehr genaues Einstellen dieser Funktion von Nöten, was der User nur schwer umsetzten kann.
 \newline
-Aus diesem Grund wird eine Energiefunktion erstellt, die es zu minimieren gilt. Damit wird das Problem wie bei \cite{wu2007interactive} zu einem Optimierungsproblem, welches mithilfe von progressiver Suche gelöst werden kann. Der Anwender muss dafür lediglich ein Opazitätsfunktion angeben, die seine gewünschten Visualisierungsziele beschreibt. Hierbei kann er auch aus vorgefertigten Funktionen wählen.
+Aus diesem Grund wird eine Energiefunktion erstellt. Damit wird das Problem zu einem Optimierungsproblem, dem minimieren der Energiefunktion. Dies kann mithilfe von progressiver Suche gelöst werden. Der Anwender muss dafür lediglich ein Opazitätsfunktion angeben, die seine gewünschten Visualisierungsziele beschreibt. Hierbei kann er auch aus vorgefertigten Funktionen wählen.
 \newline
 Diese Histogramme wurde von Correa und Ma in einer erweiterten Arbeit \cite{correa2011visibility} nochmals verbessert. Sie führten multidimensionale Sichtbarkeitshistogramme ein, die beispielsweise auch die Gradientenlänge in Betracht ziehen. Des Weiteren stellen sie zwei Methoden zur Berechnung von Sichtpunkt unabhängigen Sichtbarkeitshistogrammen vor. Zum einen ein Omni-direktionales Sichtbarkeitshistogramm, bei dem die Sichtbarkeit von allen möglich Sichtpunkten berechnet wird. Und ein Radiales Sichtbarkeitshistogramm, bei dem radiale Strahlen verwendet werden. Dazu wird das kartesische in ein sphärisches Koordinatensystem umgerechnet.
 
@@ -128,12 +131,19 @@ Eine weitere Art Transferfunktionen anzuwenden, sind Benutzer-zentrische Verfahr
 Fang stellt in seinem Paper \cite{fang1998image} ein Verfahren vor, bei dem die  Transferfunktion eine Abfolge von verschieden 3D Bildverabteitungsverfahren ist, deren Parameter vom Benutzer angepasst werden können.
 
 
-Weiterhin gibt es auch Methoden, bei denen ein Hilfswerkzeug zum Einsatz kommt. Zum Beispiel kann der Benutzer im Paper von Reitinger: \cite{reitinger2004user} sich gezielt Bereiche des Volumens hervorheben lassen, indem er sie mit einem Stift auswählt. Hierbei wird die Intensität des ausgewählten Punktes als auch der räumliche Abstand zum Stift in Betracht gezogen.
+Weiterhin gibt es auch Methoden, bei denen ein Hilfswerkzeug zum Einsatz kommt. Zum Beispiel kann der Benutzer im Paper von Reitinger \cite{reitinger2004user} sich gezielt Bereiche des Volumens hervorheben lassen, indem er sie mit einem Stift auswählt. Hierbei wird die Intensität des ausgewählten Punktes als auch der räumliche Abstand zum Stift in Betracht gezogen.
 
 
-Wu und Qu stellen in ihrer Arbeit \cite{wu2007interactive} ein intuitives Verfahren zum verändern von Features von Transferfunktionen vor.
+Wu und Qu stellen in ihrer Arbeit \cite{wu2007interactive} ein intuitives Verfahren zum Verändern von Features von schon existierenden Transferfunktionen vor.
 \newline
-Der Benutzer lädt zwei verschiedene \textit{direct volume rendered images(DVRIs)} in das Programm. Hierbei wird ihm die jeweilige Visualisierung und Transferfunktion angezeigt. Der User kann entscheiden ob er gewisse Features der beiden DVRIs zu einem verschmelzen, aus beiden mischen oder einzelne löschen möchte. Die Zusammenführung geschieht im Anschluss mithilfe einer Energiefunktion, die die Ähnlichkeit zweier Bilder beschreibt. Das Zusammenführen wird somit zu einem Optimierungsproblem undzwar dem minimieren der Energiefunktion. Dieses Problem kann mithilfe eines stochastischen Suchalgorithmus gelöst werden. Der Anwender bekommt am eine Visualisierung mit allen gewünschten Features.
+Der Benutzer lädt zwei verschiedene \textit{direct volume rendered images(DVRIs)} in das Programm. Hierbei wird ihm die jeweilige Visualisierung und Transferfunktion angezeigt. Der User kann entscheiden ob er gewisse Features der beiden DVRIs zu einem verschmelzen, aus beiden mischen oder einzelne löschen möchte. Die Zusammenführung geschieht im Anschluss mithilfe einer Energiefunktion, die die Ähnlichkeit zweier Bilder beschreibt. Wie bei Correa und Ma \cite{correa2009visibility}, wird das Zusammenführen somit zu einem Optimierungsproblem und zwar dem minimieren der Energiefunktion. Dies wird im Paper mithilfe eines stochastischen Suchalgorithmus gelöst. Der Anwender erhält am Ende eine Visualisierung mit allen gewünschten Features.
+
+
+Die Arbeit von Buckner \cite{bruckner2005volumeshop} hingegen basiert auf zwei Volumen, eines in dem die Intensitätswerte gespeichert sind und eines, das vom Benutzer angegebene Regionen speichert. Der Anwender kann verschiedene Bereiche im Volumen auswählen. Die auswählten Voxel erhalten den Wert eins und die restlichen werden mit dem Wert null versehen.
+\newline
+Anschließend werden drei verschiedene Objekte für die Interaktion mit dem Volumen vorgestellt. Die \textit{selection}, die vom Benutzer ausgewählten Regionen, auf denen eine Transformation, wie Drehen oder Vergrößern, angewandt werden kann. Der \textit{ghost}, die zum ursprünglichen Ort der \textit{selection} korrespondierenden Punkte im Datenvolumen. Und der \textit{background}, der das restliche Datenvolumen repräsentiert.
+\newline
+Für diese 3 Objekte, wird jeweils mithilfe der Intensitätsfunktion des Volumens, eine Funktion erstellt, die für einen gegebenen Punkt die Zugehörigkeit zu den jeweiligen Objekten zurückgibt. In einem weiteren Schritt werden den Voxeln mithilfe einer Transferfunktion, die auf dem jeweiligen Grad an Dazugehörigkeit zu den verschiedenen Objekten beruht, Farb- und Opazitätswerte zugewiesen. Weiterhin werden zwei weitere Transferfunktionen erstellt, die auf Voxel angewandt werden, die eine Überlappung von zwei Objekten aufweisen.
 
 
 
@@ -178,6 +188,8 @@ Ein Verfahren wie von Lan \cite{lan2017improving} vorgeschlagen eignet sich deut
 Weiterhin wurden verschiedene Transferfunktionen vorgestellt, die auf den räumlichen Informationen der anzuzeigenden Regionen basieren. Die Implementation eines solchen Verfahrens würde vermutlich ebenfalls zu einer erfolgreichen Darstellung des Ventrikelsystems führen. Jedoch benötigt der Anwender für all diese Herangehensweisen nicht nur die Information wie das Ventrikelsystem aussieht, sondern auch wo es im Volumen zu finden ist. Folglich funktionieren diese Verfahren zwar, sind aber wenig intuitiv und benötigen ein gewisses Fachwissen seitens des Nutzers. Darum wurde sich gegen einen räumlichbasiertes Vorgehen entschieden.
 \newline
 Des Weiteren wurden Methoden basierend auf Machinelearning vorgestellt. Bei diesen, muss der Benutzer jedoch, ähnlich wie bei den Region Growing Verfahren im Volumen einzeichnen, welche Bereiche für ihn von Interesse sind und welche ihn explizit nicht interessieren. Dies kann vermutlich ebenfalls zu einer erfolgreichen Segmentierung führen. Es wurde sich jedoch wie beim Region Growing dagegen entschieden, da erneut sehr viel Interaktion vom Benutzer gefordert wird.
+\newline
+Dies ist ebenfalls der Fall, bei den Benutzer-zentrischen Transferfunktionen.
 \newline
 Aus diesen Gründen, wurde sich in dieser Arbeit auf die Implementierung des clusteringbasierten Verfahren von Nguyen \cite{nguyen2012clustering} festgelegt. Dieses eignet sich mit der Kantenerkennung sehr gut zum Segmentieren von gezielten Strukturen. Weiterhin muss der Benutzer, wenn die richtigen Parameter gefunden wurden, lediglich das Programm ausführen, ohne das Ventrikelsystem bei jedem Datensatz erneut selbst auswählen zu müssen. Ein weiterer Vorteil des clusteringbasierten Verfahrens sind die relativ geringen Berechnungszeiten im Vergleich zu vielen anderen sehr rechenaufwendigen Vorgehensweisen. 
 

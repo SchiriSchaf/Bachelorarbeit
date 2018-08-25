@@ -21,7 +21,7 @@ Anfangs liegen die CT-Daten der Volumen in mehreren Dateien als Schnittbilder im
 
 Die Darstellung von Volumendaten ist über den Renderer in Unity möglich. Der Benutzer hat hierbei mehrere Möglichkeiten Eingaben über Parameterfelder oder durch Drücken von Tasten zu machen und mit der Visualisierung zu interagieren. Zunächst muss er jedoch in das Parameterfeld \textit{Binary Data} via drag and drop eine binäre Volumendatei ziehen. Anschließend kann die Visualisierung gestartet werden. Hierbei hat der Nutzer die Möglichkeit die Kamera mit den Tasten $W$ $A$ $S$ $D$ zu bewegen als auch mit den seitlichen Pfeiltasten sowie der $Q$ und $E$ Taste das Volumen um verschiedene Achsen zu drehen. Die Position der Kamera sowie die Drehung des Volumens, kann ebenfalls durch verschiedene Parameterfeldern verändert werden.
 \newline
-Die Volumen, werden als Graubilder dargestellt, wobei die Helligkeit der einzelnen Voxel abhängig vom Intensitätswert bestimmt wird. Dabei kann der User über ein weiteres Parameterfeld entscheiden ob der Größte, der Kleinste, der Erste oder die Summe aller gefunden Voxel als Wert für die Farbgebung benutzt wird. Die Einstellung bei der der maximale wert genommen wird ist hierbei der Standard. Des Weiteren kann der Nutzer einen Threshold setzen, bei dem alle Voxel die eine Intensitätswert niedriger als diesen haben ignoriert werden.
+Die Volumen, werden als Graubilder dargestellt, wobei die Helligkeit der einzelnen Voxel abhängig vom Intensitätswert bestimmt wird. Dabei kann der User über ein weiteres Parameterfeld entscheiden ob der Größte, der Kleinste, der Erste oder die Summe aller gefunden Voxel als Wert für die Farbgebung benutzt wird. Der Standard ist hierbei, dass des maximale Wert genommen wird . Des Weiteren kann der Nutzer einen Threshold setzen, bei dem alle Voxel die eine Intensitätswert niedriger als diesen haben ignoriert werden.
 \newline
 Es existieren noch deutlich mehr Eingabefelder, mit denen der Benutzer die Darstellung des Volumens verändern und anpassen kann. Diese werden jedoch, da sie im Kontext dieser Bachelorarbeit nicht von Interesse sind, nicht alle vorgestellt.
 \todo{evtl. raycasting}
@@ -90,7 +90,7 @@ Bei der Erstellung des Histogramms im \textit{LHHistogram} Modul wird weiterhin 
 
 Wurde jedoch das \textit{ClusterVolume} Modul aufgerufen, wird mit den beiden Clusteringschritten fortgefahren.
 \newline
-Die Berechnung der LH-Cluster, die in der \textit{LHClustering} Klasse geschieht, nimmt das Volumen mit den LH-Werten entgegen und rechnet dieses aus Performancegründen, wie oben beschrieben, in ein ein Histogramm um. Dieser Schritt könnte gespart werden, wenn die Methode \textit{LHValueVolume} direkt ein Histogramm als Rückgabewert liefern würde. Dies würde auch das \textit{LHHistogram} Modul verbessern, da damit die Umrechnung in dieser Klasse ebenso hinfällig wird. Als Ergebnis der Clusteringfunktion \textit{ComputeLHClusters} wird eine Liste der Cluster zurückgegeben, wobei ein Cluster aus einer Liste von \textit{IVector3} besteht. Die Cluster werden nur als Liste der räumliche Informationen der Voxel gespeichert, da für den nächsten Clusteringschritt  lediglich diese Information benötigt wird. 
+Die Berechnung der LH-Cluster findet in der \textit{LHClustering} Klasse statt. Hierbei nimmt die Funktion \textit{ComputeLHClusters} das Volumen mit den LH-Werten entgegen und rechnet dieses aus Performancegründen, mit dem gleichen Vorgehen, welches im \textit{LHHistogram} Modul benutzt wurde, in ein Histogramm um. Dieser Schritt könnte gespart werden, wenn die Methode \textit{LHValueVolume} direkt ein Histogramm als Rückgabewert liefern würde. Dies würde auch das \textit{LHHistogram} Modul verbessern, da damit die Umrechnung in dieser Klasse ebenso gespart werden könnte. Als Ergebnis der Clusteringfunktion wird eine Liste der Cluster zurückgegeben. Ein Cluster besteht hierbei aus einer Liste von \textit{IVector3}. Die Cluster werden nur als Liste der räumliche Informationen der Voxel gespeichert, da für den nächsten Clusteringschritt  lediglich diese Information benötigt wird. 
 
 
 Anschließend geht es in der \textit{SpatialClustering} Klasse mit der Berechnung der räumlichen Cluster weiter. Diese werden aus dem Grund, dass wieder \textit{Meanshiftclustering} verwendet wird, mit einer ähnlichen Implementierung wie in der \textit{LHClustering} Klasse kalkuliert. Diesmal wird jedoch nicht auf einem Histogramm, sondern direkt auf den übergebenen Listen die Berechnung durchgeführt. Folglich muss für jede Iteration eines Mittelpunktes die gesamte Liste durch iteriert werden.
@@ -98,17 +98,25 @@ Anschließend geht es in der \textit{SpatialClustering} Klasse mit der Berechnun
 Als Ergebnis wird erneut eine Liste von Listen vom Typ \textit{IVector3} zurückgegeben.
 
 
-Nachdem alle Cluster kalkuliert wurden, werden sie in einem Volumen gespeichert. Jeder Cluster bekommt dabei zunächst seine eigene ID beginnend bei eins. Das Volumen wird dann mit den verschiedenen IDs gefüllt. Dies geschieht indem für jeden Cluster an den Positionen der Punkte die jeweilige ID gespeichert wird. Alle anderen Voxel des Clustervolumen wird der Wert null zugewiesen. Dieses Volumen wird als binäre Datei gespeichert und ist das Ergebnis der ClusterVolume Moduls. Es ist bei diesem Modul sehr wichtig, dass es, wie es bei dem \textit{Dump} Befehl möglich ist, mit einem $u$ am Ende aufgerufen wird, da das Ergebnis sonst nicht vom Renderer dargestellt werden kann.
+Nachdem alle Cluster kalkuliert wurden, werden sie in der \textit{ClusterVolume} Klasse in einem Volumen gespeichert. Jeder Cluster bekommt dabei zunächst eine einzigartige ID. Die IDs beginnen bei eins und werden einfach hochgezählt. Das Volumen wird anschließend mit den verschiedenen IDs gefüllt. Dies geschieht indem für jeden Cluster an den Positionen der Punkte die jeweilige ID gespeichert wird. Alle anderen Voxeln des Clustervolumens wird der Wert null zugewiesen. Dieses Volumen wird als binäre Datei gespeichert und ist das Ergebnis des \textit{ClusterVolume} Moduls. Es ist bei diesem Modul sehr wichtig, dass es, wie es bei dem \textit{Dump} Befehl möglich ist, mit einem $u$ am Ende aufgerufen wird, da das Ergebnis sonst nicht vom Renderer eingelesen werden kann.
 
 
 Das Ergebnis muss anschließend vom Nutzer in Unity geladen werden.
 \newline
-Hierbei kommt die von dieser Arbeit vorgenommenen Anpassung am Renderer zum Einsatz. Dadurch ist es dem Benutzer möglich über ein Eingabefeld während der Visualisierung einen Wert, oder einen Wertebereich anzugeben. Dieser wird dann in einer gewählten Farbe, standardmäßig rot, hervorgehoben. Dies muss der Anwender nutzen, um die IDs, die das Ventrikelsystem beschreiben, zu finden.
-
-
-Hat er dies getan kann er mit dem\textit{MergeCluster} Modul des Helpers das Ergebnis zusammenfügen und die finale Visualisierung erhalten. Beim Aufruf muss der Nutzer das Intensitätsvolumen, das Clustervolumen mit den IDs und die ausgewählten IDs als Parameter übergeben. Anschließend wird an den Stellen der ClusterIDs die Werte im Intensitäsvolumen mit dem Wert 5000 überschrieben, da nach dem beschriebenen Werteshift ins positive der maximale Intensitätswert bei ungefähr 4500 liegt. Dies erhöht das Maximum des Volumens nur gering und lässt es zu die zu visualisierenden Bereiche klar vom Rest abzugrenzen. Dieses Volumen wird erneut als binäre Datei gespeichert.
+Hierbei kommt die in dieser Arbeit vorgenommenen Anpassung am Renderer zum Einsatz. Es wurde zunächst ein Dropdown Menü mit den drei Elementen \textit{Default}, \textit{SpecificValue} und \textit{SpecificValueRange} hinzugefügt. Über dieses, kann der Benutzer auswählen, ob er die Standardmäßige Visualisierung, wie am Anfang dieses Kapitels beschrieben haben möchte, oder ob zusätzlich ein spezieller Wert oder ein Wertebereich hervorgehoben werden soll. Der Wert und der Wertebereich können über Eingabefelder angegeben werden.
 \newline
-Als letzten Schritt kann der Benutzer die finale binäre Datei in Unity laden. Stellt er den Wert der eben erklärten Erweiterung des Renderer auf 5000, wird das Ventrikelsystem in den ursprünglichen Volumendaten rot hervorgehoben.
+Die Visualisierung des Volumens ist im Falle, dass einer der beiden neuen Modi ausgewählt wurde gleich mit dem Standard, jedoch mit dem Unterschied, dass der angegebene Wert oder Wertebereich in einer gewählten Farbe, normalerweise rot, dargestellt wird. Die Farbe kann hierbei über ein weiteres Eingabefeld angegeben werden.
+\newline
+Diese Modi muss der Anwender nutzen, um alle Cluster, die aus Voxeln bestehen, die zum Ventrikelsystem gehören, zu finden und sich deren ID zu notieren.
+
+
+Hat er dies getan kann er mit dem \textit{MergeCluster} Modul des Helpers das Ergebnis zusammenfügen und die finale Visualisierung erstellen.
+\newline
+Beim Aufruf muss das Intensitätsvolumen bereits geladen sein und der Benutzer das Clustervolumen, die ausgewählten IDs und ein Zielpfad als Parameter übergeben.
+\newline
+In der \textit{Call} Methode der \textit{MergeCluster} Klasse wird anschließend an den Stellen der ClusterIDs die Werte im Intensitäsvolumen mit dem Wert 5000 überschrieben, mit der Begründung, dass nach dem beschriebenen Verschieben aller Werte ins positive der maximale Intensitätswert bei ungefähr 4500 liegt. Dies erhöht folglich das Maximum des Volumens, und damit die Darstellung im Renderer nur gering, und lässt es zu, die zu visualisierenden Bereiche klar vom Rest abzugrenzen. Dieses Volumen wird erneut als binäre Datei im Zielpfad abgespeichert.
+\newline
+Als letzten Schritt kann der Benutzer die finale binäre Datei in Unity laden. Anschließend muss er den \textit{SpecificValue} Modus auswählen und den hervorzuhebenden Wert auf 5000 setzten.
 
 
 
