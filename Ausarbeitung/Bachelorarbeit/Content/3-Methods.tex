@@ -10,7 +10,11 @@ Diese Arbeit orientiert sich an dem zweistufigen Clusteringverfahren aus dem Pap
 
 Zuerst müssen die Gradienten aller Voxel berechnet werden. Wie im Paper beschrieben wurde auch in dieser Arbeit Hong's Methode \cite{hong2003method} dafür gewählt. Diese ist ein approximationsbasiertes Verfahren zur Berechnung von Gradienten eines Volumens. 
 \newline
-In Hong's Verfahren wird zur Berechnung der Gradienten die lokale 4x4x4 Nachbarschaft des betrachteten Punktes hinzugezogen. Hierbei ist zu beachten, dass es nicht möglich ist, den Gradienten für einen Voxel direkt zu berechnen. Der Gradient drückt die Veränderung der Intensitätswerte im Raum aus, folglich kann er immer nur zwischen zwei Punkten berechnet werden. Deshalb liegt er im Falle eines dreidimensionalen Volumens im Zentrum eins Würfels, der von 8 benachbarten Voxeln aufgespannt wird. In \autoref{fig:nachbarschaft} ist zu erkennen, wie der Gradient im Zentrum der acht Voxel liegt. Des Weiteren ist die 4x4x4 Nachbarschaft in Form der durchnummerierten Punkte zu sehen.
+In Hong's Verfahren wird zur Berechnung der Gradienten die lokale 4x4x4 Nachbarschaft des betrachteten Punktes hinzugezogen.
+\newline
+Hierbei ist zu beachten, dass es nicht möglich ist, den Gradienten für einen Voxel direkt zu berechnen. Der Gradient drückt die Veränderung der Intensitätswerte im Raum aus, folglich kann er immer nur zwischen zwei Punkten berechnet werden. Deshalb liegt er im Falle eines dreidimensionalen Volumens im Zentrum eins Würfels, der von 8 benachbarten Voxeln aufgespannt wird.
+\newline
+In \autoref{fig:nachbarschaft} ist zu erkennen, wie der Gradient im Zentrum der acht Voxel liegt. Des Weiteren ist die 4x4x4 Nachbarschaft in Form der durchnummerierten Punkte zu sehen.
 \newline
 
 \begin{figure}[!h] 
@@ -21,15 +25,17 @@ In Hong's Verfahren wird zur Berechnung der Gradienten die lokale 4x4x4 Nachbars
 \end{figure}
 
 
-Die Funktionen für die Intensitätswerte wird im Paper mit:
+Die Funktionen der Intensitätswerte wird im Paper mit:
 \begin{equation}
 	f(x,y,z) = Ax^{2}+By^{2}+Cz^{2}+2Fyz+2Gzx+2Hxy+2Ix+2Jy+2Kz+D
 \end{equation}
-approximiert. Da der Gradient die Ableitung der Intensitätsfunktion ist, muss diese abgeleitet werden, um dreidimensionalen Gradientenvektor $n$ zu erhalten:
+approximiert.
+\newline
+Da der Gradient die Ableitung der Intensitätsfunktion ist, muss diese abgeleitet werden, um dreidimensionalen Gradientenvektor $n$ zu erhalten:
 \begin{equation}
 	n = [Ax+Gz+Hy+I, By+Fz+Hx+J, Cz + Fy + Gx + K]
 \end{equation}
-Um den Gradienten zu Berechnen müssen die Parameter $A,B,C,E,F,G,H,I,J,K$  berechnet werden. Dies wird mithilfe der Methode der kleinsten Quadrate und der im Paper vorgestellten \textit{error distance}, die die Entfernung zwischen einem berechneten Datenpunkt und seinem korrespondierenden Punkt in den tatsächlichen Daten beschreibt, umgesetzt.
+Um den Gradienten zu berechnen müssen folglich die Parameter $A,B,C,E,F,G,H,I,J,K$ kalkuliert werden. Dies wird mithilfe der Methode der kleinsten Quadrate und der im Paper vorgestellten \textit{error distance}, die die Entfernung zwischen einem berechneten Datenpunkt und seinem korrespondierenden Punkt in den tatsächlichen Daten beschreibt, umgesetzt.
 \newline
 Wurden die Parameter berechnet kann der Gradient $[X, Y, Z]$ des Punktes $[x, y, z]$ mit folgender Formel kalkuliert werden:
 
@@ -61,32 +67,52 @@ Wurden die Parameter berechnet kann der Gradient $[X, Y, Z]$ des Punktes $[x, y,
 
 \subsection{LH-Werte}
 
-Als nächster Schritt, nach der Kalkulation der Gradienten, folgt die Berechnung der Low- und High-Werte. Dazu wird für jeden Voxel im Volumen in Richtung des Gradienten integriert. Hierfür wurde, wie auch von Nguyen, Heun's Methode, eine modifizierte Euler Methode, verwendet. Die für die Integration benutzte Formel lautet:
+Als nächster Schritt, nach der Kalkulation der Gradienten, folgt die Berechnung der Low- und High-Werte. Dazu wird für jeden Voxel im Volumen in Richtung des Gradienten integriert.
+\newline
+Hierfür wurde, wie auch von Nguyen, Heun's Methode, eine modifizierte Euler Methode, verwendet. Die für die Integration benutzte Formel lautet:
 \begin{equation}
 	u_{i+1} = u_{i} + \frac{1}{2}d(\triangledown f (u_{i}) + \triangledown f(u_{i}+d \triangledown f(u_{i}))) 
 \end{equation}
 Hierbei sind $u_{i}$ und $u_{i+1}$ die Positionen des aktuellen, beziehungsweise des nächsten Voxels. $\triangledown f(x)$ beschreibt den normalisierten Gradienten für die High-Werte und den normalisierten inversen Gradienten für die Low-Werte an Stelle $x$ . $d$ steht für die Schrittweite, die in dieser Arbeit auf einen Voxel festgelegt wurde.
-Die Integration stoppt, wenn eine lokale Extremstelle oder ein Wendepunkt erreicht wird. Dies ist daran zu erkennen, dass die Länge des Gradienten an dieser Stelle null ist. Bei MRT-Daten muss ein Grenzwert festgelegt werden, da Gradienten nie null werden. Bei CT-Daten ist dies jedoch kein Problem. Wird ein solcher Punkt erreicht, wird der Intensitätswert dieses Voxels als Ergebnis für den Low- beziehungsweise High-Wert des Startvoxel gespeichert.
+\newline
+Die Integration stoppt, wenn eine lokale Extremstelle oder ein Wendepunkt erreicht wird. Diese sind daran zu erkennen, dass die Längen der Gradienten an diesen Stellen null sind.
+\newline
+Wird ein solcher Punkt erreicht, wird der Intensitätswert dieses Voxels als Ergebnis für den Low- beziehungsweise High-Wert des Startvoxel gespeichert.
 \newline
 Anschließend wird ein LH-Histogramm mit allen berechneten LH-Wertpaaren erstellt. Hierbei sind auf der x-Achse die Low-Werte und auf der y-Achse die High-Werte angesiedelt. Die Werte der Achsen reichen von null bis zum jeweiligen Maximum des Low- beziehungsweise High-Werte.
 
 \subsection{LH-Clustering}
 
-Als nächstes, wird der erste Clusteringschritt berechnet. Dieser findet im LH-Raum statt, genauer wird er auf dem eben berechneten LH-Histogramm angewendet. Dabei kommt \textit{Meanshiftclustering} zum Einsatz. Der Ablauf davon geschieht wie folgt.
-Vor dem Clustering muss eine Bandweite und ein Thresholdwert bestimmt werden, welche die Sensitivität des Clusterings festlegen. Die Bandweite liegt im Paper von Nguyen \cite{nguyen2012clustering} bei 7\% - 9\% des maximalen LH-Wertes und der Threshold bei 0,01. Anschließend kann das LH-Clustering auf jeden Punkt im Histogramm angewandt werden.
+Als nächstes, wird der erste Clusteringschritt berechnet. Dieser findet über dem LH-Raum, genauer gesagt auf dem eben berechneten LH-Histogramm statt. Dafür wird \textit{Meanshiftclustering} verwendet.
 \newline
-Für einen beliebigen Punkt, werden alle Punkte die innerhalb des Radius der Bandbreite liegen gespeichert. Diese Punkte bilden nun den gefundenen Cluster. Von diesem Cluster wird der neue Mittelpunkt, der jeweilige Mittelwert der beiden Koordinaten, berechnet. Um diesen Punkt wird erneut mit selben Radius alle Punkte die bisher nicht zu dem Cluster gehören gesucht und hinzugefügt. Dies geschieht solange, bis der Abstand des neu kalkulierte Mittelpunkt zum alten weniger als der Thresholdwert multipliziert mit die Bandweite ist. 
-Nachdem dieses Prozedere für jeden Punkt im Histogramm ausgeführt wird, gibt es viele verschiedene Cluster. In einem nächsten Schritt, werden alle Cluster die sehr nah beieinander liegen verschmolzen. Dies betrifft jene Cluster, deren Mittelpunkte eine Distanz kleiner als die Hälfte der Bandweite zueinander haben.
+Vor dem Berechnen der Cluster muss zunächst eine Bandweite sowie ein Thresholdwert bestimmt werden, welche die Sensitivität des Clusterings festlegen.
+\newline
+Die von Nguyen \cite{nguyen2012clustering} verwendete Bandweite liegt bei 7\% bis 9\% des maximalen LH-Wertes und der Threshold bei 0,01. Anschließend kann die Kalkulation der Cluster beginnen.
+\newline
+Für einen beliebigen Punkt, werden alle Punkte die innerhalb des Radius der Bandbreite liegen gespeichert. Diese Punkte bilden den gefundenen Cluster. Von diesem Cluster wird der Mittelpunkt berechnet, indem jeweils die L- und die H-Werte aller Punkte des Clusters aufaddiert und durch die Anzahl der Punkte geteilt wird.
+\newline
+Um den neuen Mittelpunkt werden wieder alle Punkte, die innerhalb des Radius liegen und noch nicht zum Cluster gehören, hinzugefügt und anschließend erneut ein neuer Mittelpunkt berechnet.
+\newline
+Dies geschieht solange, bis der Abstand des neu kalkulierte Mittelpunkt zum alten kleiner als der Thresholdwert multipliziert mit die Bandweite ist. 
+\newline
+Nachdem dieses Prozedur für jeden Punkt im Histogramm ausgeführt wurde, existieren viele Cluster, die sehr ähnliche Punkte besitzen.
+\newline
+Um dies zu unterbinden werden in einem nächsten Schritt alle Cluster die sehr nah beieinander liegen verschmolzen. Dies betrifft jene Cluster, deren Mittelpunkte eine Distanz kleiner als die Hälfte der Bandweite zueinander haben.
 
 \subsection{Räumliches-Clustering}
 
-Als letzten Schritt, wird erneut auf jedem eben entstandenen Cluster \textit{Meanshiftclustering} angewendet. Dabei wird auf jedem Cluster einzeln und unabhängig von den anderen Clustern geclustert. Außerdem werden diesmal die räumlichen Informationen der Punkte in Betracht gezogen. Hierzu müssen zunächst erneut die beiden Parameter Bandweite und Threshold definiert werden. Das Clustering läuft wie zuvor im LH-Raum ab, nur wird statt im zweidimensionalem Raum mit einem zweidimensionalem Kreis im dreidimensionalem Raum des Volumens mit einer dreidimensionalen Kugel geclustert. Des Weiteren findet am Ende der Berechnung der Cluster keine Verschmelzung statt, da dies den Sinn der beiden verschiedenen Clusteringschritte zerstören würde. In den finalen Cluster haben alle Punkte jeweils ähnliche LH-Werte und liegen im Volumen nah beieinander. Würde man diese Cluster anhand ihrer räumlichen Informationen verschmelzen, haben die Punkte keine ähnlichen LH-Werte mehr und der erste Clusteringschritt wäre umsonst gewesen.
+Als letzten Schritt, wird erneut auf jedem eben entstandenen Cluster \textit{Meanshiftclustering} angewendet. Dabei wird auf jedem Cluster einzeln und unabhängig von den anderen Clustern geclustert. Außerdem werden diesmal die räumlichen Informationen der Punkte in Betracht gezogen.
+\newline
+Hierzu müssen zunächst erneut die beiden Parameter Bandweite und Threshold definiert werden.
+\newline
+Anschließend läuft das Clusteringt wie zuvor im LH-Raum ab, mit dem Unterschied, dass statt im zweidimensionalem Raum mit einem zweidimensionalem Kreis im dreidimensionalem Raum des Volumens mit einer dreidimensionalen Kugel nach Voxeln gesucht wird.
+\newline
+Des Weiteren findet am Ende der Berechnung der Cluster keine Verschmelzung statt, da dies den Sinn der beiden verschiedenen Clusteringschritte zerstören würde. In den finalen Cluster haben alle Punkte jeweils ähnliche LH-Werte und liegen im Volumen nah beieinander.
+\newline
+Würden diese Cluster anhand ihrer räumlichen Informationen verschmolzen werden, hätten die Punkte keine ähnlichen LH-Werte mehr und der erste Clusteringschritt wäre umsonst gewesen.
 
 
 
 
-
-
-
-Der vorgestellte dritte hierarchische Clusteringsschritt wurde in dieser Arbeit nicht angewendet. Dies geschah aus dem Grund, dass bei diesem immer die beiden Cluster die sich am nächsten sind verschmolzen werden. Dies ist für die Aufgabe das Ventrikelsystem hervorzuheben nicht zielführend, da dieses mitten im Gehirn neben sehr vielen andern Cluster liegt. Folglich würde es relativ schnell mit andern Clustern verschmolzen werden.
+Der vorgestellte dritte hierarchische Clusteringsschritt wurde in dieser Arbeit nicht angewendet. Dies wurde aus dem Grund entschieden, dass bei diesem immer die beiden Cluster die sich am nächsten sind verschmolzen werden. Dies ist für die Aufgabe das Ventrikelsystem hervorzuheben nicht zielführend, da dieses mitten im Gehirn neben sehr vielen andern Cluster liegt. Folglich würde es relativ schnell mit andern Clustern verschmolzen werden.
 

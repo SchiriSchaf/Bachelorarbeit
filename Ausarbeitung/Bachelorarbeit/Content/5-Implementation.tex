@@ -8,8 +8,6 @@
 
 Nachdem im letzten Kapitel das Softwaredesign besprochen wurde, beschäftigt sich das Kommende mit der Implementierung an sich.
 \newline
-Die vorgestellten Module erben alle von der abstrakten \textit{BaseModule} Klasse, die es ihnen vorschreibt, eine \textit{Call} sowie eine \textit{PrintHelp} Methode zu implementieren.
-\newline
 Ruft der Benutzer ein Modul des Helpers über den jeweiligen Befehl in der Konsole auf, so wird die jeweilige \textit{Call} Methode, mit denen vom Benutzer gegebenen Parameter, ausgeführt.
 \newline
 Es existiert für jeden der Berechnungsschritte der Gradienten, LH-Werte, LH-Cluster und Räumlichen-Cluster eine eigene statische Klasse, die eine öffentliche Methode besitzt. Diese berechnet für die gegebenen Parameter den jeweiligen Schritt und gibt das Ergebnis zurück. 

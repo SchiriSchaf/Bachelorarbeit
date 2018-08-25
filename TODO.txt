@@ -3,18 +3,16 @@
 ------------------------------------------------------------------------------------------------
 State of the art:
 
-Das Wort Transferfunktion passend verwenden
 evtl nicht auf SG basierte 2D TF finden
 ------------------------------------------------------------------------------------------------
 Methods:
 
+Einleitung neu
 ------------------------------------------------------------------------------------------------
 Design:
 
 Raycasting beschreiben???
-Räumlich Clustering überarbeiten
 Generische Klasse Begriffe richtig?
-Genaue beschreibung der Module -> Parameter zum aufrufen, vorher Volumen laden
 ------------------------------------------------------------------------------------------------
 Implementierung:
 
@@ -33,6 +31,7 @@ Ausblick:
 ------------------------------------------------------------------------------------------------
 Allgemein:
 
+CT-Scan irendwo erwähnen
 Abstract schreiben
 "man"s im der technischen Doku entfernen
 Lesefluss kontrolliern!!! -> überall Übergänge verwenden
@@ -62,4 +61,5 @@ Paper von ihm
 Qualität der Screenshots verbessern?
 Wie lange braucht er?
 Treffen zum Besprechen?
-Englischen Wörter verwenden? Wie?
+Englische Wörter verwenden? Wie?
+Abbildung Ventrikelsystem verändert wie erwähnen?
