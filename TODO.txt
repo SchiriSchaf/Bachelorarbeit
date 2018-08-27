@@ -7,39 +7,27 @@ evtl nicht auf SG basierte 2D TF finden
 ------------------------------------------------------------------------------------------------
 Methods:
 
-Einleitung neu
 ------------------------------------------------------------------------------------------------
 Design:
 
-Raycasting beschreiben???
-Generische Klasse Begriffe richtig?
 ------------------------------------------------------------------------------------------------
 Implementierung:
 
-Volumen als ref übergeben -> speicherplatz
 ------------------------------------------------------------------------------------------------
 Evaluation:
 
-CT-Daten für Visualisierung evtl. nicht ausreichend
 ------------------------------------------------------------------------------------------------
 Fazit:
 
-Vorherige Kapitel checken und Bezug nehmen
 ------------------------------------------------------------------------------------------------
 Ausblick:
 
 ------------------------------------------------------------------------------------------------
 Allgemein:
 
-CT-Scan irendwo erwähnen
+CT-Scan irgendwo erwähnen
 Abstract schreiben
-"man"s im der technischen Doku entfernen
 Lesefluss kontrolliern!!! -> überall Übergänge verwenden
-Widersprüche suchen und entfernen
-newlines und abschnitte einfügen
-Arbeit -> Bachelorarbeit andere Synonyme
-Fehlende Refs und Cites einfügen
-Einheitlich, was kursiv ist.
 Bilder, Tabellen etc. an die richtigen Stellen im Text schieben
 UML Diagrammte testen ob diese UML konform sind
 
@@ -53,7 +41,6 @@ Englische Wörter immer gleich schreiben -> bsp. Region Growing
 ------------------------------------------------------------------------------------------------
 Bilder:
 
-Im Anhang mehr Screenshots von Visualisierungen
 ------------------------------------------------------------------------------------------------
 Fragen an Christian: -> Beim Zusenden fragen
 
@@ -63,3 +50,5 @@ Wie lange braucht er?
 Treffen zum Besprechen?
 Englische Wörter verwenden? Wie?
 Abbildung Ventrikelsystem verändert wie erwähnen?
+Zeitraum angeben von wann bis wann?
+Wie genau die zusammenfassung/ abstract am anfang? in englisch und deutsch?

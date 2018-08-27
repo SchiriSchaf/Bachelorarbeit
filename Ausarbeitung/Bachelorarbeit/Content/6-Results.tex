@@ -7,14 +7,20 @@
 
 
 
-Diese Kapitel beschäftigt sich mit den Ergebnissen und der Evaluation dieser Bachelorarbeit. Die Ergebnisse der Visualisierung sind in mehreren Abbildungen zu sehen. Die Evaluation teilt sich folgendermaßen auf. Als erstes werden die Ergebnisse der Visualisierung des Ventrikelsystems gezeigt und evaluiert. Dabei wurde für die Auswertung ein Interview mit einem Arzt durchgeführt. Danach wird eine Nutzerstudie vorgestellt, die die Benutzerfreundlichkeit des Systems testet. Als letztes wird die Berechnungszeit der Implementierung besprochen.
+Diese Kapitel beschäftigt sich mit den Ergebnissen die die Implementierung erzeugt und der Evaluation des Verfahrens. Der Abschnitt teilt sich dabei folgendermaßen auf.
+\newline
+Als erstes werden die Ergebnisse der Visualisierung des Ventrikelsystems gezeigt und evaluiert. Dabei wurde für die Auswertung ein Interview mit einem Arzt durchgeführt. Danach wird eine Nutzerstudie vorgestellt, die die Benutzerfreundlichkeit des Systems testet. Als letztes wird die Berechnungszeit der Implementierung besprochen.
 
 
 \subsection{Visualisierung}
 
-Die in diesem Unterkapitel gezeigten Visualisierungen wurde alle auf Volumen mit einer Auflösung von 256x101x256 Pixeln berechnet. Aus dem Grund, dass dies ein gute Balance zwischen der Auflösung und der Berechnungszeit der Ergebnisse darstellt. Im Unterkapitel  Berechnungszeiten wird dies genauer beschrieben. Bevor die Visualisierung ausgewertet werden kann, wird zunächst das Ventrikelsystem erläutert.
+Die in diesem Unterkapitel gezeigten Visualisierungen wurde alle auf Volumen mit einer Auflösung von 256x101x256 Pixeln berechnet. Aus dem Grund, dass dies ein gute Balance zwischen der Auflösung und der Berechnungszeit der Ergebnisse darstellt. Im Unterkapitel Berechnungszeit wird dies genauer beschrieben. Bevor die Visualisierung ausgewertet werden kann, muss zunächst das Ventrikelsystem erläutert werden.
 \newline
-In \autoref{fig:ventrik} ist das Ventrikelsystem zu sehen. Dieses besteht aus vier verschiedenen Ventrikeln. Zum einen der linke und der rechte Seitenventrikel, oberen beiden Bögen, die in der Abbildung zu sehen sind. Zum anderen der dritte und vierte Ventrikel, die zwischen den beiden Seitenventrikeln liegen und nach unten weggehen. Die Seitenventrikel bestehen aus einem Vorderhorn, Nr. 1,  einem Hinterhorn, Nr. 2, und einem Unterhorn, Nr. 3. Der dritte Ventrikel ist mit der Nummer 4 und der vierte Ventrikel mit der Nummer 5 versehen.
+In \autoref{fig:ventrik} ist das Ventrikelsystem zu sehen. Dieses besteht aus vier verschiedenen Ventrikeln.
+\newline
+Zum einen der linke und der rechte Seitenventrikel, die oberen beiden Bögen, die in der Abbildung zu sehen sind. Zum anderen der dritte und vierte Ventrikel, die zwischen den beiden Seitenventrikeln liegen und nach unten weggehen.
+\newline
+Die Seitenventrikel bestehen aus einem Vorderhorn, Nr. 1,  einem Hinterhorn, Nr. 2, und einem Unterhorn, Nr. 3. Der dritte Ventrikel ist mit der Nummer 4 und der vierte Ventrikel mit der Nummer 5 versehen.
 \newline
 Bei der Ventrikelpunktion, wird einer der beiden Seitenventrikel im vorderen Bereich punktiert. Dies macht vor allem die Darstellung der Seitenventrikel relevant.
 
@@ -26,9 +32,19 @@ Bei der Ventrikelpunktion, wird einer der beiden Seitenventrikel im vorderen Ber
 \end{figure}
 
 
-Das Verfahren wurde an 15 verschiedenen CT-Datensätzen von der Uni Ulm getestet. Darunter waren verschiedene Ventrikelsysteme. Vier der Datensätze waren von Menschen mit einem normalen Ventrikelsystem, vier andere wiesen ein sehr schlankes System auf. Weiterhin litten zwei Patienten unter Atrophie, einem, oft durch das Alter verursachtem, Schwund an Gehirnmasse. Zwei andere Datensätze waren von Leuten, die unter einem Mittellinienshift litten. Dies bezeichnet die Verschiebung der Mittellinie der Ventrikelsystems, was beispielsweise durch einen Schlag auf den Kopf hervorgerufen werden kann. Weiterhin gab es Daten, von einer Hirnblutung, und einem Hydrocephalus, einer Aufstauung von Nervenwasser im Kopf. Als letztes gab es noch Daten eines deformierten Ventrikelsystems, ausgelöst durch Wassereinlagerungen im Gehirn.
+Das Verfahren wurde an 15 verschiedenen CT-Datensätzen der Uni Ulm getestet. Darunter waren verschiedene Ventrikelsysteme.
 \newline
-Eine erfolgreiche Visualisierung gelang in nur 3 der 15 Fälle und zwar bei zwei Datensätzen mit normalen Ventrikeln und einem von einem Patient, der unter Atrophie leidet. In \autoref{fig:norm1_s} und \autoref{fig:norm1_u} ist die Visualisierung des ersten normalen Ventrikelsystems, in \autoref{fig:norm2_s} und \autoref{fig:norm2_u} die Visualisierung des zweiten normalen Ventrikelsystems und schließlich in \autoref{fig:atro_s} und \autoref{fig:atro_u} die Visualisierung des Ventrikelsystems des Patienten mit Atrophie zu sehen. Die Abbildungen zeigen Screenshots aus der Darstellung in Unity, jeweils aus den Perspektiven von der Seite und von oben.
+Vier der Datensätze waren von Menschen mit einem normalen Ventrikelsystem, vier andere wiesen ein sehr schlankes System auf. Weiterhin litten zwei Patienten unter Atrophie, einem, oft durch das Alter verursachtem, Schwund an Gehirnmasse.
+\newline
+Zwei andere Datensätze waren von Leuten, die unter einem Mittellinienshift litten. Dies bezeichnet die Verschiebung der Mittellinie der Ventrikelsystems, was beispielsweise durch einen Schlag auf den Kopf hervorgerufen werden kann.
+\newline
+Des Weiteren gab es Daten, von einer Hirnblutung, und einem Hydrocephalus, einer Aufstauung von Nervenwasser im Kopf. Als letztes gab es noch Daten eines deformierten Ventrikelsystems, ausgelöst durch Wassereinlagerungen im Gehirn.
+\newline
+Eine erfolgreiche Visualisierung gelang in nur 3 der 15 Fälle und zwar bei zwei Datensätzen mit normalen Ventrikeln und einem von einem Patient, der unter Atrophie leidet.
+\newline
+In \autoref{fig:norm1_s} und \autoref{fig:norm1_u} ist die Visualisierung des ersten normalen Ventrikelsystems, in \autoref{fig:norm2_s} und \autoref{fig:norm2_u} die Visualisierung des zweiten normalen Ventrikelsystems und schließlich in \autoref{fig:atro_s} und \autoref{fig:atro_u} die Visualisierung des Ventrikelsystems des Patienten mit Atrophie zu sehen.
+\newline
+Die Abbildungen zeigen Screenshots aus der Darstellung in Unity, jeweils aus den Perspektiven von der Seite und von oben.
 
 \begin{minipage}[c]{0.49\textwidth}
 \includegraphics[width=\textwidth]{Logos/Normal1/Seite.PNG}
@@ -72,7 +88,9 @@ In \autoref{fig:norm1_s}, der Darstellung des ersten normalen Ventrikelsystems v
 
 
 
-Für die drei erfolgreich visualisierten Daten wurde zur Evaluation ein Arzt von der Uniklinik Ulm interviewt. Diesem wurden die Visualisierungen direkt in Unity vorgeführt. Während der Vorführung konnte der Mediziner selbst die Kamera durch die Darstellung lenken und das Ergebnis aus verschiedenen Blickwinkeln betrachten. Anschließend bewertete er die Qualität der Ergebnisse, indem er drei verschiedenen Fragen zu den Darstellungen beantwortete. Er musste dabei seine Antwort immer auf einer Skala von 1 bis 5 angeben.
+Für die drei erfolgreich visualisierten Daten wurde zur Evaluation ein Arzt von der Uniklinik Ulm interviewt. Diesem wurden die Visualisierungen direkt in Unity vorgeführt. Während der Vorführung konnte der Mediziner selbst die Kamera durch die Darstellung lenken und das Ergebnis aus verschiedenen Blickwinkeln betrachten.
+\newline
+Anschließend bewertete er die Qualität der Ergebnisse, indem er drei verschiedenen Fragen zu den Darstellungen beantwortete. Er musste dabei seine Antwort immer auf einer Skala von 1 bis 5 angeben.
 \newline
 Die Fragen lauteten:
 \begin{itemize}
@@ -82,10 +100,15 @@ Die Fragen lauteten:
 \end{itemize}
 
 
-Die Ergebnisse der Antworten des Arztes werden in \autoref{tab:ergebnis_arzt} gezeigt. Allgemein merkte der Mediziner jedoch an, dass bei jeder Visualisierung, die durch das Verfahren erzeugt wurde, nur der linke und rechte Seitenventrikel zu sehen war. Die deutlich schmaleren dritten und vierten Ventrikel und die Unterhörner der Seitenventrikel fehlten bei den Darstellungen komplett. Er erklärte jedoch, dass diese bei einem gesunden Menschen jedoch sehr dünn und deshalb anhand von CT-Daten schwer zu segmentieren seien. Weiterhin sind, wie schon erwähnt, die Seitenventrikel entscheidend für eine erfolgreiche Punktion. In folge dessen, wurde sich darauf geeinigt, dass die Beantwortung der zweiten Frage, nach der Vollständigkeit des Ventrikelsystems, lediglich auf die Vollständigkeit der beiden Seitenventrikel bezogen ist.
+Die Ergebnisse der Antworten des Arztes werden in \autoref{tab:ergebnis_arzt} gezeigt. Allgemein merkte der Mediziner jedoch an, dass bei jeder Visualisierung, die durch das Verfahren erzeugt wurde, nur der linke und rechte Seitenventrikel zu sehen war. Die deutlich schmaleren dritten und vierten Ventrikel und die Unterhörner der Seitenventrikel fehlten bei den Darstellungen komplett.
+\newline
+Er erklärte jedoch, dass diese bei einem gesunden Menschen sehr dünn und deshalb anhand von CT-Daten schwer zu segmentieren seien. Weiterhin sind, wie schon erwähnt, die Seitenventrikel entscheidend für eine erfolgreiche Punktion.
+\newline
+In folge dessen, wurde sich darauf verständigt, dass die Beantwortung der zweiten Frage, nach der Vollständigkeit des Ventrikelsystems, lediglich auf die Vollständigkeit der beiden Seitenventrikel bezogen ist.
 
 \begin{table}[h]
 \centering
+\tiny
 \resizebox{\columnwidth}{!}{
  \begin{tabular}{| c | c | c | c |}
   \hline
@@ -100,24 +123,20 @@ Die Ergebnisse der Antworten des Arztes werden in \autoref{tab:ergebnis_arzt} ge
 \end{table}
 
 
-Die Bewertung des ersten normalen Ventrikelsystems fiel positiv mit 11 von möglichen 15 Punkten aus. Das Ventrikelsystem war als solches klar und deutlich zu erkennen, jedoch fehlte ein Teil der Hinterhörner. Bis auf diese waren die Seitenventrikel jedoch vollständig zu sehen. Weiterhin war die Segmentierung nicht exakt, da es mehrere kleine Ausreißer gab.
+Die Bewertung des ersten normalen Ventrikelsystems fiel positiv mit 11 von 15 möglichen Punkten aus. Das Ventrikelsystem war als solches klar und deutlich zu erkennen, jedoch fehlte ein Teil der Hinterhörner. Bis auf diese waren die Seitenventrikel jedoch vollständig zu sehen. Weiterhin war die Segmentierung nicht exakt, da es mehrere kleine Ausreißer gab.
 \newline
 Das zweite normale Ventrikelsystem, war ebenfalls klar zu erkennen. Jedoch wurde fast ausschließlich der linke Seitenventrikel segmentiert. Die Bewertung der Vollständigkeit fiel mit einer vier so hoch aus, da der eine Seitenventrikel sehr klar, deutlich und vollständig zu sehen war. Der Arzt sagte, dass dieser besser und glatter als die des ersten normalen Ventrikelsystems sein, da auch das Hinterhorn zu erkennen ist. 
 \newline
-In einem Gehirn eines unter Atrophie leidenden Menschen, ist deutlich mehr Liquor, als bei einem gesunden Menschen, zu finden. Diese Flüssigkeiten werden vom Verfahren ebenfalls erkannt, weshalb die Segmentierung etwas verschwommen erscheint und nicht die kompletten Seitenventrikel erfasst werden. Jedoch vermutete der Arzt, dass viele der Ausreißer zum dritten Ventrikel gehören, da sich dieses, wie alle Ventrikel bei einer Atrophie, weitet. Trotz der Flüssigkeiten im Gehirn war das Ventrikelsystem in der Darstellung deutlich zu erkennen.
+In einem Gehirn eines unter Atrophie leidenden Menschen, ist deutlich mehr Liquor, als bei einem gesunden Menschen, zu finden. Diese Flüssigkeiten werden vom Verfahren ebenfalls erkannt, weshalb die Segmentierung etwas verschwommen erscheint und nicht die kompletten Seitenventrikel erfasst werden. Jedoch vermutete der Arzt, dass viele der Ausreißer zum dritten Ventrikel gehören könnten, da sich dieses, wie alle Ventrikel bei einer Atrophie, weitet. Trotz der Flüssigkeiten im Gehirn war das Ventrikelsystem in der Darstellung deutlich zu erkennen.
 \newline
  Im Allgemeinen sagte der Mediziner, dass das Ventrikelsystem bei allen Visualisierungen als solches eindeutig zu erkennen sei. Er bemängelte jedoch, dass die Darstellungen nicht glatt genug sei und zu viele Ausreißer besitzen.
 
 
 Zur weiteren Auswertung der Ergebnisse wurde das erste normale Ventrikelsystem aus \autoref{fig:norm1_s} und \autoref{fig:norm1_u} in Unity und mit der MITK-Workbench, die auch zum Umwandeln der DICOM-Dateien benutzt wurde, visualisiert.
 \newline
-In Unity wurde dabei die Erweiterung zum hervorheben von Wertebereichen benutzt. Diese wurde auf 1025 bis 1030 eingestellt, da das Ventrikelsystem Intensitätswerte in diesem Bereich hat. Die Ergebnisse sind in \autoref{fig:unity_s} und \autoref{fig:unity_u} zu sehen. Dieses Vorgehen entspricht einer simplen eindimensionalen Transferfunktion, die abhängig von den Intensitätswerten Voxel einfärbt.
+In Unity wurde dabei die Erweiterung zum hervorheben von Wertebereichen benutzt. Diese wurde auf 1025 bis 1030 eingestellt, da das Ventrikelsystem Intensitätswerte in diesem Bereich hat. Dieses Vorgehen entspricht einer simplen eindimensionalen Transferfunktion, die abhängig von den Intensitätswerten Voxel einfärbt.
 \newline
-Das Ventrikelsystem ist zwar zu sehen, es gibt jedoch sehr viele Ausreißer, die es fast unmöglich machen die Ventrikel zu erkennen. Diese simple Vorgehensweise führt zu keinem gewünschtem Ergebnis.
-\newline
-In der MITK-Workbench gibt es verschiedene Segmentierungstools. Darunter ist ein Region Growing Tool, bei dem der Nutzer einen \textit{seed} Punkt in den Schnittbildern wählen kann. Über die verwendete Kostenfunktion werden keine Informationen genannt. Anschließend können die Löcher der Auswahl mit einem \textit{closing} Filter geschlossen und mit einem weiteren Tool ein geglättete 3D Ansicht des Ergebnis erzeugt werden. Screenshots des Ergebnisses sind in \autoref{fig:mitk_o} und \autoref{fig:mitk_v} zu sehen. Eine genaue Beschreibung, wie diese Tools zu nutzen sind, ist im Anhang diese Arbeit zu finden.
-\newline
-In dem von der Workbench erzeugte Ergebnis ist das Ventrikelsystem gut zu erkennen. Die Seitenventrikel sind vollständig und besitzen eine glatte Oberfläche. Sogar große Teile des dritten und vierten Ventrikels sind teil der Segmentierung. Allerdings sind auch ganze Bereiche hervorgehoben, die nicht zum Ventrikelsystem gehören. Diese könnten vom Benutzer manuell in jedem Schichtbild des Datensatzes entfernt werden, was jedoch sehr zeitaufwändig wäre.
+Die Ergebnisse sind in \autoref{fig:unity_s} und \autoref{fig:unity_u} zu sehen. Das Ventrikelsystem ist zwar zu sehen, es gibt jedoch sehr viele Ausreißer, die es fast unmöglich machen die Ventrikel eindeutig zu erkennen. Diese simple Vorgehensweise führt zu keinem gewünschtem Ergebnis.
 
 
 \begin{minipage}[c]{0.49\textwidth}
@@ -130,6 +149,17 @@ In dem von der Workbench erzeugte Ergebnis ist das Ventrikelsystem gut zu erkenn
 \captionof{figure}{Visualisierung des zweiten normalen Ventrikelsystems von Unten mithilfe von Unity}
 \label{fig:unity_u}
 \end{minipage}
+
+
+In der MITK-Workbench gibt es verschiedene Segmentierungstools. Darunter ist ein Region Growing Tool, bei dem der Nutzer einen \textit{seed} Punkt in den Schnittbildern wählen kann. Über die verwendete Kostenfunktion werden keine Informationen genannt.
+\newline
+Anschließend können die Löcher der Auswahl mit einem \textit{closing} Filter geschlossen und mit einem weiteren Tool ein geglättete 3D Ansicht des Ergebnis erzeugt werden.
+\newline
+Screenshots der Ergebnisse sind in \autoref{fig:mitk_o} und \autoref{fig:mitk_v} zu sehen. Eine genaue Beschreibung, über das Anwenden der Tools, ist im Anhang diese Arbeit zu finden.
+\newline
+In dem von der Workbench erzeugte Ergebnis ist das Ventrikelsystem gut zu erkennen. Die Seitenventrikel sind vollständig und besitzen eine glatte Oberfläche. Sogar große Teile des dritten und vierten Ventrikels sind teil der Segmentierung.
+\newline
+Allerdings sind auch ganze Bereiche hervorgehoben, die nicht zum Ventrikelsystem gehören. Diese könnten vom Benutzer manuell in jedem Schichtbild des Datensatzes entfernt werden, was jedoch sehr zeitaufwändig wäre.
 
 
 \begin{minipage}[c]{0.49\textwidth}
@@ -147,15 +177,17 @@ In dem von der Workbench erzeugte Ergebnis ist das Ventrikelsystem gut zu erkenn
 \subsection{Nutzerstudie}
 
 
-Im Rahmen der Evaluation der Benutzerfreundlichkeit des Verfahrens wurde eine kleine Nutzerstudie mit 5 Teilnehmern durchgeführt. Die Probanden waren alle Studenten aus verschiedenen Studiengängen im Alter zwischen 22 und 26.
+Im Rahmen der Evaluation der Benutzerfreundlichkeit des Verfahrens wurde eine kleine Nutzerstudie mit 5 Teilnehmern durchgeführt. Die Probanden waren alle Studenten aus verschiedenen Studiengängen im Alter zwischen 22 und 26 Jahren.
 \newline
-Bei dieser wurden den Teilnehmern zunächst der Ablauf und die vom Benutzer erforderlichen Schritte, um eine Visualisierung des Ventrikelsystems zu erhalten, mittels einer Vorführung durch den Interviewer gezeigt. Anschließend mussten die Probanden selbst das eben gelernte anwenden und das Programm selber ausführen. Dabei bekamen sie, wenn sie nicht weiterwussten, Hilfe vom Versuchsleiter.
+Als erstes wurden den Teilnehmern der Ablauf und die vom Benutzer erforderlichen Schritte, um eine Visualisierung des Ventrikelsystems zu erhalten, mittels einer Vorführung durch den Interviewer gezeigt.
+\newline
+Anschließend mussten die Probanden selbst das eben gelernte anwenden und das Programm selber ausführen. Dabei bekamen sie, wenn sie nicht weiterwussten, Hilfe vom Versuchsleiter.
 \newline
 Hinterher füllten die Teilnehmer einen NASA-TLX Bogen zu der Aufgabe aus. Dieser besteht aus zwei Parts. Als erstes muss der Befragte in den Kategorien Geistige Anforderung, Körperliche Anforderung, Zeitliche Anforderung, Leistung, Anstrengung und Frustration die auszuführende Aufgabe jeweils auf einer Skala von 5 bis 100 bewerten. Die Werte der Skalen wachsen dabei in Fünfer Schritten an. Diese Bewertung ergibt hinterher die Gewichtung der Kategorien.
 \newline
 Als zweites werden alle Kategorien paarweise miteinander verglichen und der Probanden muss angeben, welcher der beiden Kategorien für das Lösen der Aufgabe bedeutsamer war. Dadurch erhält jede Kategorie eine Anzahl an Klicks.
 \newline
- Anschließend wird die Klickzahl durch 15, die Anzahl aller Klicks geteilt. Dies ergibt die die Wichtung der Kategorie. Diese Wichtungen werden mit deren jeweiligen Gewichtungen multipliziert und die Ergebnisse zur Gesamtbeanspruchung der Aufgabe aufaddiert.
+Anschließend wird die Klickzahl durch 15, die Anzahl aller Klicks geteilt. Dies ergibt die die Wichtung der Kategorie. Diese Wichtungen werden mit deren jeweiligen Gewichtungen multipliziert und die Ergebnisse zur Gesamtbeanspruchung der Aufgabe aufaddiert.
 \newline
 Die durchschnittlichen Ergebnisse der einzelnen Kategorien werden in \autoref{tab:ergebnis_nasa} gezeigt.
 
@@ -182,24 +214,42 @@ Die durchschnittlichen Ergebnisse der einzelnen Kategorien werden in \autoref{ta
 Der durchschnittliche Wert für die Gesamtbeanspruchung lag bei 38,32. 
 
 
-Zunächst werden die Ergebnisse des ersten Teils betrachtet. Hierbei fällt als erstes auf, dass die bei Kategorien Geistige Anforderung, Anstrengung und Frustration durchschnittlichen die höchsten Bewertungen abgegeben wurden. Bei der Geistigen Anforderung und der Frustration gaben vor allem die Teilnehmer ohne oder mit nur wenig Programmiererfahrung höhere Werte an. Bei der Kategorie Anstrengung ist anzumerken, dass von zwei Probanden deutlich höhere Werte als vom Rest gegeben wurde. Alle anderen Kategorien wurden in etwa ähnlich bewertet.
+Zunächst werden die Ergebnisse des ersten Teils betrachtet. Hierbei fällt als erstes auf, dass die bei Kategorien Geistige Anforderung, Anstrengung und Frustration durchschnittlichen die höchsten Bewertungen abgegeben wurden.
 \newline
-Als nächstes werden die Ergebnisse des zweiten Parts diskutiert. Die höchste durchschnittliche Klickzahl wurde von der Kategorie Geistige Anforderung erzielt. Unabhängig von den Programmierkenntnissen der Probanden, wurde diese Kategorie als die deutlich bedeutsamste angesehen. Die anderen Kategorien unterscheiden sich nur geringfügig und hatten meist Klickzahlen zwischen null und drei.
+Bei der Geistigen Anforderung und der Frustration gaben vor allem die Teilnehmer ohne oder mit nur wenig Programmiererfahrung höhere Werte an. Bei der Kategorie Anstrengung ist anzumerken, dass von zwei Probanden deutlich höhere Werte als vom Rest gegeben wurde.
 \newline
-Als letztes wird die Gesamtbeanspruchung betrachtet. Diese unterscheidet sich bei den Teilnehmern, vor allem durch die unterschiedliche Bewertung der Kategorien Geistige Anforderung und Frustration, sehr stark von einander. Die berechneten Gesamtbeanspruchungen lagen bei 14,6\; 27,3\; 40\; 40,6 und 63. Dies zeigt den großen Unterschied zwischen den Leuten, die viel Programmiererfahrungen besitzen, und denen, die wenig oder noch nie programmiert haben.
+Alle anderen Kategorien wurden in etwa ähnlich bewertet.
+
+
+Als nächstes werden die Ergebnisse des zweiten Parts diskutiert. Die höchste durchschnittliche Klickzahl wurde von der Kategorie Geistige Anforderung erzielt. Unabhängig von den Programmierkenntnissen der Probanden, wurde diese Kategorie als die deutlich bedeutsamste angesehen.
 \newline
-Die Benutzung einer Konsole fiel den Unerfahrenen vergleichsweise sehr schwer. Des Weiteren ist die Notwendigkeit die richtigen Suffixe und das $u$ beim \textit{ClusterVolume} Modul angeben zu müssen eine Hürde. Weiterhin wäre es einfacher wenn nur ein Programm verwendet werden muss.
+Die anderen Kategorien unterscheiden sich nur geringfügig und hatten meist Klickzahlen zwischen null und drei.
+
+
+Als letztes wird die Gesamtbeanspruchung betrachtet. Dieser unterscheidet sich bei den Teilnehmern, vor allem durch die unterschiedliche Bewertung der Kategorien Geistige Anforderung und Frustration, sehr stark von einander.
+\newline
+Die berechneten Gesamtbeanspruchungen lagen bei 14,6\; 27,3\; 40\; 40,6 und 63. Dies zeigt den großen Unterschied zwischen den Leuten, die viel Programmiererfahrungen besitzen, und denen, die wenig oder noch nie programmiert haben.
+
+
+Die Benutzung einer Konsole fiel den Unerfahrenen vergleichsweise sehr schwer. Des Weiteren ist die Notwendigkeit die richtigen Suffixe und das $u$ beim \textit{ClusterVolume} Modul angeben zu müssen eine Hürde. Weiterhin wäre es einfacher wenn nur ein Programm verwendet werden müsste.
 
  
-Trotz der Schwierigkeiten, gaben alle Probanden, auch jene ohne Programmiererfahrung, an, dass sie die Aufgabe mit einer gut erklärten, ausführlichen Dokumentation alleine ohne Hilfe hinbekommen würden.
+Trotz der Schwierigkeiten, gaben alle Probanden, auch jene ohne Programmiererfahrung, an, dass sie die Aufgabe mit einer gut erklärten, ausführlichen Dokumentation alleine, ohne weitere Hilfe zu benötigen, hinbekommen würden.
 
+\newpage
 \subsection{Berechnungszeit}
 
-Die folgenden Zeitmessungen wurde alle auf einem Computer mit einem 3.70GHz  Intel Core(TM) i7-8700K CPU mit 32GB RAM ausgeführt.
+Die in diesem Unterkapitel vorgestellten Zeitmessungen wurde alle auf einem Computer mit einem 3.70GHz  Intel Core(TM) i7-8700K CPU mit 32GB RAM ausgeführt.
 \newline
-Um die Berechnungszeit des Systems evaluieren zu können, wurde die Kalkulation des gesamten Clusteringverfahrens sowie die Berechnung des LH-Histogramms auf drei Volumen verschiedener Größen durchgeführt. Damit der Vergleich nicht von unterschiedlichen Volumendaten verfälscht wird, wurden alle Volumen aus dem gleichen CT-Datensatz generiert. Dabei wurde die Originalgröße mit einer Auflösung von 512x201x512 Pixeln mithilfe des Resamplemoduls des Helpers verkleinert. Die beiden anderen Volumengrößen haben dabei die  Hälfte, mit 256x101x256 Pixeln, und Dreiviertel, mit 384x151x384 Pixeln, der Auflösungen des Originalvolumens. Es war geplant, dass noch ein viertes Volumen zum Vergleich hinzugezogen wird.Jedoch war es aus einem unbekannten Fehler leider nicht möglich die beiden Berechnungen mit dem gevierteltem Originalvolumen durchzuführen. Des Weiteren funktioniert für beim Originalvolumen lediglich die Berechnung des LH-Histogramms. Die Kalkulation des Clusteringverfahrens war nicht möglich, vermutlich aus dem Grund, dass bei dieser hohen Auflösung es zu viele Daten für die aktuelle Implementierung zu berechnen gibt.
+Um die Berechnungszeit des Systems evaluieren zu können, wurde die Kalkulation des gesamten Clusteringverfahrens sowie die Berechnung des LH-Histogramms auf drei Volumen verschiedener Größen durchgeführt. Damit der Vergleich nicht von unterschiedlichen Volumendaten verfälscht wird, wurden alle Volumen aus dem gleichen CT-Datensatz generiert.
 \newline
-Die Berechnungszeit hängt stark von der Größe des Eingabevolumens ab. Die ist in \autoref{tab:ueberblick_zeit} sehr gut zu erkennen. Diese zeigt einen Überblick über die ungefähren Berechnungszeiten der verschiedenen Volumengrößen.
+Dabei wurde die Originalgröße, die ein Auflösung von 512x201x512 Pixeln besitzt, mithilfe des Resamplemoduls des Helpers verkleinert. Die beiden anderen Volumengrößen haben dabei die  Hälfte, mit 256x101x256 Pixeln, und Dreiviertel, mit 384x151x384 Pixeln, der Auflösungen des Originalvolumens.
+\newline
+Es war geplant, dass noch ein viertes Volumen zum Vergleich hinzugezogen wird. Jedoch war es aus einem unbekannten Fehler nicht möglich die beiden Berechnungen mit dem gevierteltem Volumen durchzuführen.
+\newline
+Des Weiteren funktionierte beim Originalvolumen lediglich die Berechnung des LH-Histogramms. Die Kalkulation des Clusteringverfahrens war nicht möglich, vermutlich aus dem Grund, dass bei dieser hohen Auflösung es zu viele Daten für die aktuelle Implementierung zu berechnen gab.
+\newline
+Die Berechnungszeit hängt stark von der Größe des Eingabevolumens ab. Die ist in \autoref{tab:ueberblick_zeit} sehr gut zu erkennen. Diese zeigt einen Überblick über die  Berechnungszeiten der verschiedenen Volumengrößen.
 
 
 \begin{table}[h]
@@ -218,9 +268,13 @@ Die Berechnungszeit hängt stark von der Größe des Eingabevolumens ab. Die ist
 \end{table}
 
 
-Dabei ist wichtig zu beachten, dass die Zeit zur Berechnung der LH-Histogramme die gleiche Zeit wie die Kalkulation der LH-Werte im gesamten Verfahren benötigt. Die Berechnungsdauer der Gradienten ist hierbei zirka doppelt so lange wie die der LH-Werte. Wird die Berechnungszeit des Histogramms von der Kalkulationszeit des gesamten Verfahrens abgezogen, kommt die Zeit, die die beiden Clusteringschritte benötigen heraus.
+Dabei ist wichtig zu beachten, dass die Zeit zur Berechnung der LH-Histogramme die gleiche Zeit wie die Kalkulation der LH-Werte im gesamten Verfahren benötigt. Die Berechnungsdauer der Gradienten ist hierbei zirka doppelt so lange wie die der LH-Werte. Wird die Berechnungszeit des Histogramms von der Kalkulationszeit des gesamten Verfahrens abgezogen, ergibt dies die Zeit die die Beiden Clusteringschritte benötigen.
 \newline
-Eine interessante Beobachtung hierbei ist, dass die Berechnung der LH-Histogramme abhängig von der Anzahl der Pixel gesehen in etwa gleich schnell abläuft. Das halbe Volumen hat eine Gesamtpixelzahl von ungefähr 6,6 Millionen, das dreiviertel Volumen von zirka 22,2 Millionen und das Original von grob 52,6 Millionen Pixeln. Wird die Anzahl an Pixeln die pro Sekunde bei der LH-Wert Berechnung bearbeitet werden für diese drei Volumen berechnet, so ist zu beobachten, dass keine großen Unterschied zwischen den Zeiten existiert. Das Halbe bearbeitet etwa 220 Tausend, das Dreiviertel ungefähr 247 Tausend und das Ganze 234 Tausend Pixel pro Sekunde. Der kleine Unterschied in der Rate lässt sich einerseits durch Volumen unabhängige Berechnungen, und andererseits durch Messfehler erklären. Folglich kann die Aussage getroffen werden, dass die Berechnungszeit der LH-Werte bei dieser Implementierung in etwa linear mit der Anzahl an Eingabepixeln wächst.
+Eine interessante Beobachtung hierbei ist, dass die Berechnung der LH-Histogramme abhängig von der Anzahl der Pixel gesehen in etwa gleich schnell abläuft. Das halbe Volumen hat eine Gesamtpixelzahl von ungefähr 6,6 Millionen, das dreiviertel Volumen von zirka 22,2 Millionen und das Original von grob 52,6 Millionen Pixeln.
+\newline
+Wird die Anzahl an Pixeln die pro Sekunde bei der LH-Wert Berechnung bearbeitet werden für diese drei Volumen berechnet, so ist zu beobachten, dass keine großen Unterschied zwischen den Zeiten existiert.
+\newline
+Das Halbe bearbeitet etwa 220 Tausend, das Dreiviertel ungefähr 247 Tausend und das Ganze 234 Tausend Pixel pro Sekunde. Der kleine Unterschied in der Rate lässt sich einerseits durch von der Volumengröße unabhängige Berechnungen, und andererseits durch Messfehler erklären. Folglich kann die Aussage getroffen werden, dass die Berechnungszeit der LH-Werte bei dieser Implementierung in etwa linear mit der Anzahl an Eingabepixeln wächst.
 \newline
 Auf der anderen Seite ist jedoch auch zu erkennen, dass die beiden Clusteringschritte mit zunehmender Eingabegröße deutlich langsamer werden. Das Clustering des halben Volumens dauerte 20 Sekunden und hat damit eine Verarbeitungsrate von zirka 330 Tausend Pixeln pro Sekunde. Hingegen dauert es beim dreiviertel Volumen 290 Sekunden und erreicht damit gerade einmal einen Rate von 76 Tausend Pixeln pro Sekunde. Es benötigt also 14,5 mal so viel Zeit für die 3,3 fache Anzahl an Pixeln.
 

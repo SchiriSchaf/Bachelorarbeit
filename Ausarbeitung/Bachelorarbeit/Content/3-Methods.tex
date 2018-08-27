@@ -3,16 +3,15 @@
 \label{sec:methods}
 %% ==============================
 
-
-Diese Arbeit orientiert sich an dem zweistufigen Clusteringverfahren aus dem Paper von Nguyen \cite{nguyen2012clustering}. In diesem Kapitel werden dabei die verschiedenen verwendeten Methoden und Verfahren vorgestellt.
+Nachdem beschlossen wurde, dass diese Arbeit sich an dem Clusteringverfahren aus dem Paper von Nguyen \cite{nguyen2012clustering} orientiert, werden in diesem Kapitel die verschiedenen verwendeten Methoden vorgestellt.
 
 \subsection{Gradient}
 
-Zuerst müssen die Gradienten aller Voxel berechnet werden. Wie im Paper beschrieben wurde auch in dieser Arbeit Hong's Methode \cite{hong2003method} dafür gewählt. Diese ist ein approximationsbasiertes Verfahren zur Berechnung von Gradienten eines Volumens. 
+Zuerst müssen die Gradienten aller Voxel berechnet werden. Dafür wurde Hong's Methode \cite{hong2003method} gewählt. Diese ist ein approximationsbasiertes Verfahren zur Berechnung von Gradienten eines Volumens. 
 \newline
 In Hong's Verfahren wird zur Berechnung der Gradienten die lokale 4x4x4 Nachbarschaft des betrachteten Punktes hinzugezogen.
 \newline
-Hierbei ist zu beachten, dass es nicht möglich ist, den Gradienten für einen Voxel direkt zu berechnen. Der Gradient drückt die Veränderung der Intensitätswerte im Raum aus, folglich kann er immer nur zwischen zwei Punkten berechnet werden. Deshalb liegt er im Falle eines dreidimensionalen Volumens im Zentrum eins Würfels, der von 8 benachbarten Voxeln aufgespannt wird.
+Hierbei ist zu beachten, dass es nicht möglich ist, den Gradienten für einen Voxel direkt zu berechnen. Der Gradient drückt die Veränderung der Intensitätswerte im Raum aus, folglich kann er immer nur zwischen mehreren Punkten berechnet werden. Deshalb liegt er im Falle eines dreidimensionalen Volumens im Zentrum eins Würfels, der von 8 benachbarten Voxeln aufgespannt wird.
 \newline
 In \autoref{fig:nachbarschaft} ist zu erkennen, wie der Gradient im Zentrum der acht Voxel liegt. Des Weiteren ist die 4x4x4 Nachbarschaft in Form der durchnummerierten Punkte zu sehen.
 \newline
@@ -67,23 +66,25 @@ Wurden die Parameter berechnet kann der Gradient $[X, Y, Z]$ des Punktes $[x, y,
 
 \subsection{LH-Werte}
 
-Als nächster Schritt, nach der Kalkulation der Gradienten, folgt die Berechnung der Low- und High-Werte. Dazu wird für jeden Voxel im Volumen in Richtung des Gradienten integriert.
+Als nächster Schritt folgt die Berechnung der Low- und High-Werte. Dazu wird für jeden Voxel im Volumen in Richtung des Gradienten integriert.
 \newline
-Hierfür wurde, wie auch von Nguyen, Heun's Methode, eine modifizierte Euler Methode, verwendet. Die für die Integration benutzte Formel lautet:
+Hierfür wurde Heun's Methode, eine modifizierte Euler Methode, verwendet. Die für die Integration benutzte Formel lautet:
 \begin{equation}
 	u_{i+1} = u_{i} + \frac{1}{2}d(\triangledown f (u_{i}) + \triangledown f(u_{i}+d \triangledown f(u_{i}))) 
 \end{equation}
-Hierbei sind $u_{i}$ und $u_{i+1}$ die Positionen des aktuellen, beziehungsweise des nächsten Voxels. $\triangledown f(x)$ beschreibt den normalisierten Gradienten für die High-Werte und den normalisierten inversen Gradienten für die Low-Werte an Stelle $x$ . $d$ steht für die Schrittweite, die in dieser Arbeit auf einen Voxel festgelegt wurde.
+Hierbei sind $u_{i}$ und $u_{i+1}$ die Positionen des aktuellen, beziehungsweise des nächsten Voxels. $\triangledown f(x)$ beschreibt den normalisierten Gradienten bei der Berechnung der High-Werte und den normalisierten inversen Gradiente bei der Berechnung der Low-Werte des Punktes $x$ . $d$ steht für die Schrittweite, die in dieser Arbeit auf einen Voxel festgelegt wurde.
 \newline
 Die Integration stoppt, wenn eine lokale Extremstelle oder ein Wendepunkt erreicht wird. Diese sind daran zu erkennen, dass die Längen der Gradienten an diesen Stellen null sind.
 \newline
-Wird ein solcher Punkt erreicht, wird der Intensitätswert dieses Voxels als Ergebnis für den Low- beziehungsweise High-Wert des Startvoxel gespeichert.
+Wird ein solcher Punkt erreicht, wird der Intensitätswert des aktuell besuchten Voxels als Ergebnis für den Low- beziehungsweise High-Wert des Startvoxel gespeichert.
 \newline
-Anschließend wird ein LH-Histogramm mit allen berechneten LH-Wertpaaren erstellt. Hierbei sind auf der x-Achse die Low-Werte und auf der y-Achse die High-Werte angesiedelt. Die Werte der Achsen reichen von null bis zum jeweiligen Maximum des Low- beziehungsweise High-Werte.
+Anschließend wird ein LH-Histogramm mit allen berechneten LH-Wertpaaren erstellt. Hierbei sind auf der x-Achse die Low-Werte und auf der y-Achse die High-Werte angesiedelt. Die Werte der Achsen reichen von null bis zum jeweiligen Maximum der Low- beziehungsweise High-Werte.
+
+
 
 \subsection{LH-Clustering}
 
-Als nächstes, wird der erste Clusteringschritt berechnet. Dieser findet über dem LH-Raum, genauer gesagt auf dem eben berechneten LH-Histogramm statt. Dafür wird \textit{Meanshiftclustering} verwendet.
+Als nächstes, wird der erste Clusteringschritt durchgeführt. Dieser findet über dem LH-Raum, genauer gesagt auf dem eben berechneten LH-Histogramm statt. Dafür wird \textit{Meanshiftclustering} verwendet.
 \newline
 Vor dem Berechnen der Cluster muss zunächst eine Bandweite sowie ein Thresholdwert bestimmt werden, welche die Sensitivität des Clusterings festlegen.
 \newline
@@ -93,11 +94,13 @@ Für einen beliebigen Punkt, werden alle Punkte die innerhalb des Radius der Ban
 \newline
 Um den neuen Mittelpunkt werden wieder alle Punkte, die innerhalb des Radius liegen und noch nicht zum Cluster gehören, hinzugefügt und anschließend erneut ein neuer Mittelpunkt berechnet.
 \newline
-Dies geschieht solange, bis der Abstand des neu kalkulierte Mittelpunkt zum alten kleiner als der Thresholdwert multipliziert mit die Bandweite ist. 
+Dies geschieht solange, bis die Distanz des neu kalkulierte Mittelpunkt zum alten kleiner als der Thresholdwert multipliziert mit die Bandweite ist. 
 \newline
-Nachdem dieses Prozedur für jeden Punkt im Histogramm ausgeführt wurde, existieren viele Cluster, die sehr ähnliche Punkte besitzen.
+Nachdem diese Prozedur für jeden Punkt im Histogramm ausgeführt wurde, existieren viele Cluster, die oftmals aus vielen gleichen Punkten bestehen.
 \newline
 Um dies zu unterbinden werden in einem nächsten Schritt alle Cluster die sehr nah beieinander liegen verschmolzen. Dies betrifft jene Cluster, deren Mittelpunkte eine Distanz kleiner als die Hälfte der Bandweite zueinander haben.
+
+
 
 \subsection{Räumliches-Clustering}
 
@@ -113,6 +116,11 @@ Würden diese Cluster anhand ihrer räumlichen Informationen verschmolzen werden
 
 
 
+\subsection{Hierarchisches-Clustering}
 
-Der vorgestellte dritte hierarchische Clusteringsschritt wurde in dieser Arbeit nicht angewendet. Dies wurde aus dem Grund entschieden, dass bei diesem immer die beiden Cluster die sich am nächsten sind verschmolzen werden. Dies ist für die Aufgabe das Ventrikelsystem hervorzuheben nicht zielführend, da dieses mitten im Gehirn neben sehr vielen andern Cluster liegt. Folglich würde es relativ schnell mit andern Clustern verschmolzen werden.
+Der vorgestellte dritte hierarchische Clusteringsschritt wurde in dieser Arbeit nicht angewendet. Dies wurde aus dem Grund entschieden, dass bei diesem immer die beiden Cluster die sich am nächsten sind verschmolzen werden.
+ \newline
+Dies ist für die Aufgabe das Ventrikelsystem hervorzuheben nicht zielführend. Wird das System als ein oder mehrere Cluster erkannt, liegen diese mitten im Gehirn neben sehr vielen anderen Clustern.
+\newline
+Da das Ventrikelsystem sehr länglich ist, ist es bei der Verschmelzung unwahrscheinlich, dass die zum dazugehörigen Cluster nur miteinander verschmolzen werden. Sie würden vermutlich meistens mit anderen umliegenden Strukturen verschmolzen werden.
 
