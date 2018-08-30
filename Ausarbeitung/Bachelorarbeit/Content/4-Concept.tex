@@ -4,18 +4,16 @@
 %% ==============================
 
 
-Nachdem im vorherigen Kapitel die verschieden Methoden die genutzt werden vorgestellt wurden, beschäftigt sich dieser Abschnitt mit dem Softwaredesign der Implementierung dieser Methoden.
+Nachdem im vorherigen Kapitel die verschieden Methoden die genutzt werden vorgestellt wurden, beschäftigt sich dieser Abschnitt mit dem Softwaredesign.
 \newline
 Die Implementierung dieser Bachelorarbeit teilt sich dabei in zwei verschieden Programme auf. Zum einen den sogenannten \textit{VolumeRenderHelper}, der für das Laden, Umwandeln, Verarbeiten und Speichern der Volumendaten zuständig ist.
 \newline
 Zum anderen das Unityprogramm \textit{VolumeRenderer}, welches zur Visualisierung der vom \textit{VolumeRenderHelper} erzeugten Daten dient. Diese beiden Programme existierten bereits vor dieser Arbeit und sind in Vorarbeiten des IPRs entstanden.
 
 
-In dieser Bachelorarbeit wurde der \textit{VolumeRenderHelper} um die vorgestellte Transferfunktion erweitert und der \textit{VolumeRenderer} geringfügig angepasst. Da beide Programme in \textit{csharp} geschrieben sind, wurden auch der Code, der im Laufe dieser Bachelorarbeit entstand, in \textit{csharp geschriebn}. Als Entwicklerumgebung wurde dementsprechend \textit{Visual Studio 2017} von Microsoft verwendet.
+In dieser Bachelorarbeit wurde der \textit{VolumeRenderHelper} um die vorgestellte Transferfunktion erweitert und der \textit{VolumeRenderer} geringfügig angepasst. Da beide Programme in \textit{C\#} geschrieben sind, wurden auch der Code, der im Laufe dieser Bachelorarbeit entstand, in \textit{C\#} geschrieben. Als Entwicklerumgebung wurde \textit{Visual Studio 2017} von Microsoft verwendet.
 \newline
-Die Beiden Programme werden im folgenden als Helper und Renderer bezeichnet.
-\newline
-Weiterhin wurde ein Pythonskript \textit{PlotHelper} geschrieben, um LH-Histogramme anzuzeigen.
+Die Beiden Programme werden im folgenden als Helper und Renderer bezeichnet. Weiterhin wurde ein Pythonskript \textit{PlotHelper} geschrieben, um LH-Histogramme anzuzeigen.
 
 
 Anfangs liegen die CT-Daten der Volumen in mehreren Dateien als Schnittbilder im DICOM Format vor. Diese werden mithilfe der \textit{Medical Imaging Interaction Toolkit} (kurz: \textit{MITK}) \textit{Workbench} \cite{mitk} zu einer einzelnen Datei im .nrrd Format umgewandelt, da Volumen nur in diesem Format, oder als binäre Datei, vom Helper eingelesen werden können.

@@ -7,9 +7,7 @@ Nachdem beschlossen wurde, dass diese Arbeit sich an dem Clusteringverfahren aus
 
 \subsection{Gradient}
 
-Zuerst müssen die Gradienten aller Voxel berechnet werden. Dafür wurde Hong's Methode \cite{hong2003method} gewählt. Diese ist ein approximationsbasiertes Verfahren zur Berechnung von Gradienten eines Volumens. 
-\newline
-In Hong's Verfahren wird zur Berechnung der Gradienten die lokale 4x4x4 Nachbarschaft des betrachteten Punktes hinzugezogen.
+Zuerst müssen die Gradienten aller Voxel berechnet werden. Dafür wurde Hong's Methode \cite{hong2003method} gewählt. Diese ist ein Approximation-basiertes Verfahren zur Berechnung von Gradienten eines Volumens. Dafür wird die lokale 4x4x4 Nachbarschaft des Punktes betrachtet.
 \newline
 Hierbei ist zu beachten, dass es nicht möglich ist, den Gradienten für einen Voxel direkt zu berechnen. Der Gradient drückt die Veränderung der Intensitätswerte im Raum aus, folglich kann er immer nur zwischen mehreren Punkten berechnet werden. Deshalb liegt er im Falle eines dreidimensionalen Volumens im Zentrum eins Würfels, der von 8 benachbarten Voxeln aufgespannt wird.
 \newline
@@ -24,6 +22,7 @@ In \autoref{fig:nachbarschaft} ist zu erkennen, wie der Gradient im Zentrum der 
 \end{figure}
 
 
+Da der Gradient die Änderung der Intensitätswerte im Raum angibt, ist er die Ableitung der Intensitätsfunktion. Um den Gradienten zu berechnen, muss folglich diese abgeleitet werden. 
 Die Funktionen der Intensitätswerte wird im Paper mit:
 \begin{equation}
 	f(x,y,z) = Ax^{2}+By^{2}+Cz^{2}+2Fyz+2Gzx+2Hxy+2Ix+2Jy+2Kz+D
@@ -31,12 +30,19 @@ Die Funktionen der Intensitätswerte wird im Paper mit:
 approximiert.
 \newline
 Da der Gradient die Ableitung der Intensitätsfunktion ist, muss diese abgeleitet werden, um dreidimensionalen Gradientenvektor $n$ zu erhalten:
+
 \begin{equation}
-	n = [Ax+Gz+Hy+I, By+Fz+Hx+J, Cz + Fy + Gx + K]
+	n =\begin{bmatrix}
+           Ax+Gz+Hy+I \\
+            By+Fz+Hx+J \\
+           Cz + Fy + Gx + K
+         \end{bmatrix} 
 \end{equation}
+
 Um den Gradienten zu berechnen müssen folglich die Parameter $A,B,C,E,F,G,H,I,J,K$ kalkuliert werden. Dies wird mithilfe der Methode der kleinsten Quadrate und der im Paper vorgestellten \textit{error distance}, die die Entfernung zwischen einem berechneten Datenpunkt und seinem korrespondierenden Punkt in den tatsächlichen Daten beschreibt, umgesetzt.
 \newline
 Wurden die Parameter berechnet kann der Gradient $[X, Y, Z]$ des Punktes $[x, y, z]$ mit folgender Formel kalkuliert werden:
+
 
 \begin{align}
 \begin{bmatrix}
@@ -60,7 +66,6 @@ Wurden die Parameter berechnet kann der Gradient $[X, Y, Z]$ des Punktes $[x, y,
            2K
          \end{bmatrix}
   \end{align}
-
 
 
 
@@ -104,9 +109,7 @@ Um dies zu unterbinden werden in einem nächsten Schritt alle Cluster die sehr n
 
 \subsection{Räumliches-Clustering}
 
-Als letzten Schritt, wird erneut auf jedem eben entstandenen Cluster \textit{Meanshiftclustering} angewendet. Dabei wird auf jedem Cluster einzeln und unabhängig von den anderen Clustern geclustert. Außerdem werden diesmal die räumlichen Informationen der Punkte in Betracht gezogen.
-\newline
-Hierzu müssen zunächst erneut die beiden Parameter Bandweite und Threshold definiert werden.
+Als letzten Schritt, wird erneut auf jedem eben entstandenen Cluster \textit{Meanshiftclustering} angewendet. Dabei wird auf jedem Cluster einzeln und unabhängig von den anderen Clustern geclustert. Außerdem werden diesmal die räumlichen Informationen der Punkte in Betracht gezogen. Hierzu müssen zunächst erneut die beiden Parameter Bandweite und Threshold definiert werden.
 \newline
 Anschließend läuft das Clusteringt wie zuvor im LH-Raum ab, mit dem Unterschied, dass statt im zweidimensionalem Raum mit einem zweidimensionalem Kreis im dreidimensionalem Raum des Volumens mit einer dreidimensionalen Kugel nach Voxeln gesucht wird.
 \newline

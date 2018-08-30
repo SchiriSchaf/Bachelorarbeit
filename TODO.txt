@@ -1,12 +1,15 @@
 ﻿Einleitung:
 
+Bild Quelle richtig angeben
 ------------------------------------------------------------------------------------------------
 State of the art:
 
-evtl nicht auf SG basierte 2D TF finden
+1D überarbeiten
+Machinelearning Absatz überarbeiten
 ------------------------------------------------------------------------------------------------
 Methods:
 
+Quelle vom Bild angeben
 ------------------------------------------------------------------------------------------------
 Design:
 
@@ -25,9 +28,7 @@ Ausblick:
 ------------------------------------------------------------------------------------------------
 Allgemein:
 
-CT-Scan irgendwo erwähnen
 Abstract schreiben
-Lesefluss kontrolliern!!! -> überall Übergänge verwenden
 Bilder, Tabellen etc. an die richtigen Stellen im Text schieben
 UML Diagrammte testen ob diese UML konform sind
 
@@ -46,9 +47,6 @@ Fragen an Christian: -> Beim Zusenden fragen
 
 Paper von ihm
 Qualität der Screenshots verbessern?
-Wie lange braucht er?
-Treffen zum Besprechen?
-Englische Wörter verwenden? Wie?
 Abbildung Ventrikelsystem verändert wie erwähnen?
 Zeitraum angeben von wann bis wann?
 Wie genau die zusammenfassung/ abstract am anfang? in englisch und deutsch?

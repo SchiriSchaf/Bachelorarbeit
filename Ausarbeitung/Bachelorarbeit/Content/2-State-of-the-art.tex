@@ -11,24 +11,20 @@
 
 Das Gebiet der Transferfunktionen ist bereits weit erforscht und es existieren viele unterschiedliche Methoden und Herangehensweisen um medizinische Daten abhängig von verschiedenen Problemstellungen passend darzustellen.
 \newline
-Dabei ist zwischen dem Level an Automation eines Systems zu unterscheiden. Hierbei gibt es vollautomatische Verfahren, bei denen keine Interaktion mit dem Benutzer von Nöten ist, semiautomatische Verfahren bei denen der Benutzer noch an gewissen Stellschrauben drehen kann um das Ergebnis zu beeinflussen und manuelle Verfahren, bei denen der Anwender vieles selbst einstellen muss.
-\newline
-Transferfunktionen unterscheiden sich weiterhin in ihrer Dimensionalität. Es existieren ein- zwei- und allgemein -mehrdimensionale Transferfunktionen.
+Dabei ist zwischen dem Level an Automation eines Systems zu unterscheiden. Hierbei gibt es vollautomatische Verfahren, bei denen keine Interaktion mit dem Benutzer von Nöten ist, semiautomatische Verfahren bei denen der Benutzer noch an gewissen Stellschrauben drehen kann um das Ergebnis zu beeinflussen und manuelle Verfahren, bei denen der Anwender vieles selbst einstellen muss. Transferfunktionen unterscheiden sich weiterhin in ihrer Dimensionalität. Es existieren ein- zwei- und allgemein -mehrdimensionale Transferfunktionen.
 \newline
 Des Weiteren sind die Grundlagen auf denen die Berechnungen ruhen teils völlig verschieden. Manche Verfahren basieren auf den Intensitätswerten oder deren Änderung im gegebenen Volumen. Andere basieren auf der Größe der Features die für den Nutzer von Interesse sind. Wieder andere sind Benutzer-zentrisch orientiert oder wenden Machinelearning an um zu einem gewünschten Ergebnis zu gelangen.
 \newline
-In diesem Abschnitt wird ein Überblick über die unterschiedlichen Vorgehensweisen von Transferfunktionen gegeben. Dazu werden diese im Folgenden in die Kategorien Eindimensionale, Zweidimensionale, Räumlichbasierte, Machinelearning, Benutzer-zentrische und Clusteringbasierte Verfahren aufgeteilt.
+In diesem Abschnitt wird ein Überblick über die unterschiedlichen Vorgehensweisen von Transferfunktionen gegeben. Dazu werden diese im Folgenden in die Unterkapitel Eindimensionale, Zweidimensionale, Raum-basierte, Machinelearning, Benutzer-zentrische und Clustering-basierte Verfahren aufgeteilt.
 \newline
-Dabei ist jedoch zu beachten, dass die Kategorien lediglich einer übersichtlichen Struktur dieses Abschnitts dienen. Die Kategorien hätten anders gewählt werden können. Des Weiteren können manche Verfahren nicht eindeutig in die hier genannte Unterteilung eingeteilt werden, da eine Mehrfachnennung möglich wäre.
+Eine Einteilung in verschieden Kategorien fällt dabei schwer, da viele der Verfahren mehrere der genannten Herangehensweisen verbinden. Aus diesem Grund können manche Verfahren nicht eindeutig in die hier genannte Unterteilung eingeteilt werden, da eine Mehrfachnennung möglich wäre.
 
 
 \subsection{Eindimensionale Verfahren}
 
-Die einfachste Form der Transferfunktionen, sind die eindimensionalen Transferfunktionen. Meistens werden in diesen, den Voxeln Farbe und Okklusion nur abhängig von deren Intensitätswerten zugeteilt.
+Die einfachste Form einer Transferfunktionen, ist eine eindimensionale. Bei dieser wird einem Voxel Farbe und Okklusion nur abhängig von dessen Intensitätswerten zugeteilt.
 \newline
-Abgesehen von den niedrigen Berechnungszeiten, sind diese jedoch aus mehreren Gründen suboptimal um das Ventrikelsystem zu segmentieren.
-\newline
-Medizinischen Daten werden gemessen und haben deshalb meist ein Rauschen, was die genaue Darstellung erschwert. Weiterhin sind die Intensitätswerte verschiedener Bereiche nah beieinander oder gar gleich. Deshalb sind eindimensionale Transferfunktionen unpraktisch um verschiedene Materialien kenntlich zu machen.
+Abgesehen von den niedrigen Berechnungszeiten, eigenen sich diese aus mehreren Gründen nicht, um das Ventrikelsystem zu segmentieren. Medizinischen Daten werden gemessen und haben deshalb meist ein Rauschen, was die genaue Darstellung erschwert. Weiterhin sind die Intensitätswerte verschiedener Bereiche nah beieinander oder gar gleich. Deshalb sind eindimensionale Transferfunktionen unpraktisch um verschiedene Materialien kenntlich zu machen.
 \newline
 Trotzdem sind eindimensionale Transferfunktionen weit verbreitet und werden häufig benutzt, da sie oft bei Softwarepaketen inklusive sind.
 
@@ -37,13 +33,9 @@ Eine etwas komplexere eindimensionalen Transferfunktion wird im Paper von Drebin
 
 
 
-
 \subsection{Zweidimensionale Verfahren}
 
-
-
-
-Bei zweidimensionalen Transferfunktionen werden häufig als zweite Eingabegröße neben den Intensitätswerten die Länge der Gradienten hinzugezogen.
+Bei zweidimensionalen Transferfunktionen werden häufig als zweite Eingabegröße neben den Intensitätswerten die Länge der Gradienten hinzugezogen. Der Gradient eines Voxels, ist ein Vektor, der in die Richtung der größten Änderung der Intensitätswerte zeigt.
 \newline
 Ein frühes Beispiel für die Verwendung der Gradientenlänge, ist aus dem Jahr 1988 aus dem Paper von Levoy \cite{levoy1988display}. In diesem werden, mithilfe einer simplen Funktion, Voxeln Opazitätswerte abhängig von deren Intensitätswerten und Gradientenlängen zugewiesen.
 
@@ -63,11 +55,11 @@ Wenn der Benutzer eine Region ausgewählt hat, werden zunächst alle Strukturen 
 \newline
 Anschließend werden Löcher, die beim Aufteilen der Strukturen entstehen mithilfe von einem Dilatationsoperator geschlossen. Als letztes wird den unterschiedlichen Strukturen verschiedene Farben und Okklusionen zugewiesen.
 \newline
-Das Vorgehen von Lan führt zwar zu guten Ergebnissen und wurde sogar schon am Ventrikelsystem getestet. Jedoch wäre die Implementierung des Verfahrens mit der Unterscheidung der Klassen und den verschiedenen Algorithmen zum Teilen der Strukturen, Schließen von Löchern etc. sehr zeitaufwändig und damit im Rahmen dieser Bachelorarbeit  nicht umsetzbar.
+Das Vorgehen von Lan führt zwar zu guten Ergebnissen und wurde sogar schon am Ventrikelsystem getestet, jedoch wäre die Implementierung des Verfahrens mit der Unterscheidung der Klassen und den verschiedenen Algorithmen zum Teilen der Strukturen, Schließen von Löchern etc. sehr zeitaufwändig und damit im Rahmen dieser Bachelorarbeit  nicht umsetzbar.
 
 
 
-\subsection{Räumlichbasierte Verfahren}
+\subsection{Raum-basierte Verfahren}
 
 In der Arbeit von Wesarg und Kirschner \cite{wesarg2009structure, wesarg20102d} wird das \textit{Stucture-Size-Enhanced Histogram} vorgestellt.
 \newline
@@ -75,22 +67,18 @@ Zur Berechnung des Histogramms  muss für jeden Voxel die Strukturgröße abgesc
 \newline
 Der erste Schritt hat eine Länge von einem Voxel, der zweite von zwei Voxeln, der dritte von vier Voxeln... und so weiter. Die Schrittweite verdoppelt sich mit jedem weiteren Schritt bis hin zur Hälfte der Größe des gesamten Volumens. Hierbei kann ein Schritt trotzdem nur ausgeführt werden, wenn alle Voxel auf dem Weg das Kriterium erfüllen. Die Akkumulation alle Werte ergibt die geschätzte Größe der Struktur des Voxels. Dabei wird, um das Ergebnis weiterhin zu verbessern,  jeweils nur der kleinere Wert von zwei entgegengesetzten Richtungen in der Berechnung verwendet. 
 \newline
-Aus der geschätzten Größe und dem Intensitätswert wird ein zweidimensionales Histogramm erstellt. Abhängig von der euklidischen Distanz der Kästchen des Histogramms zu einem vom Benutzer gegebenen Punkt, werden die Farbwerte der einzelnen Voxel in einer Tabelle nachgeschaut.
+Aus der geschätzten Größe und dem Intensitätswert wird ein zweidimensionales Histogramm erstellt. Abhängig von der euklidischen Distanz der Kästchen des Histogramms zu einem vom Benutzer gegebenen Punkt, werden die Farbwerte der einzelnen Voxel aus einer Farbtabelle ausgelesen.
 \newline
 Das Verfahren eignet sich gut, um relativ große Strukturen zu erkennen, jedoch ist es unklar ob das relativ schmale Ventrikelsystem erkannt werden würde.
 
 
 Eine andere Idee Strukturen basierend auf räumlichen Informationen zu Segmentieren ist die Verwendung von Region Growing.
 \newline
-Beispielsweise wird im Paper von Huang \cite{huang2003rgvis} ein solches Regiongrowingverfahren vorgestellt.
+Beispielsweise wird im Paper von Huang \cite{huang2003rgvis} ein solches Regiongrowingverfahren vorgestellt. Der Benutzer kann einen Punkt von Interesse im Volumen wählen, den sogenannten \textit{seed}. Es werden alle 26 Nachbarn des \textit{seeds} besucht und anhand einer Kostenfunktion, die den entsprechenden Wert des besuchten Voxels und des \textit{seed}-Voxels vergleicht, entschieden ob sie zu der Region dazugehören oder nicht. Sind sie Teil der Struktur werden auch ihre Nachbarn besucht und alle passenden Voxel zu der Region hinzugefügt. Diese Vorgang wiederholt sich so lange bis alle Voxel gefunden wurden, oder ein anderes internes Abbruchkriterium erfüllt wurde.
 \newline
-Der Benutzer kann einen Punkt von Interesse im Volumen wählen, den sogenannten \textit{seed}. Es werden alle 26 Nachbarn des \textit{seeds} besucht und anhand einer Kostenfunktion, die den entsprechenden Wert des besuchten Voxels und des \textit{seed}voxels vergleicht, entschieden ob sie zu der Region dazugehören oder nicht. Sind sie Teil der Struktur werden auch ihre Nachbarn besucht und alle passenden Voxel zu der Region hinzugefügt. Diese Vorgang wiederholt sich so lange bis alle Voxel gefunden wurden, oder ein anderes internes Abbruchkriterium erfüllt wurde.
+Es stehen dem Anwender drei verschiedene Kostenfunktionen zu Verfügung. Die erste Funktion bezieht sich auf die Intensitätswerte der Voxel, die Zweite auf die Länge der jeweiligen Gradienten und bei der Dritten werden die Gewichte der Voxel verglichen, die vorher vom Benutzer definiert werden müssen.
 \newline
-Es stehen dem Anwender 3 verschiedene Kostenfunktionen zu Verfügung.
-\newline
-Die erste Funktion bezieht sich auf die Intensitätswerte der Voxel, die Zweite auf die Länge der jeweiligen Gradienten und bei der Dritten werden die Gewichte der Voxel verglichen, die vorher vom Benutzer definiert werden müssen.
-\newline
-In einem Nachbearbeitungsschritt ist es anschließend noch möglich unpassende Elemente zu entfernen, wenn beispielsweise eine ganze weitere Struktur auch visualisiert wird, da sie über eine kleine Brücke von ein bis zwei Voxeln mit der eigentlich gesuchten Struktur verbunden ist.
+In einem Nachbearbeitungsschritt ist es anschließend noch möglich Elemente, die nicht zur Struktur von Interesse gehört, zu entfernen, wenn beispielsweise eine ganze weitere Struktur auch visualisiert wird, da sie über eine kleine Brücke von ein bis zwei Voxeln mit der eigentlich gesuchten Struktur verbunden ist.
 \newline
 Da das Regiongrowing sehr zeitaufwändig ist, kann der Anwender auswählen, dass er zunächst nur eine gewisse Teil der Region sich errechnen lässt.
 
@@ -193,7 +181,7 @@ Weiterhin wurden zwei weitere Transferfunktionen erstellt, die auf Voxel angewan
 
 
 
-\subsection{Clusteringbasierte Verfahren}
+\subsection{Clustering-basierte Verfahren}
 
 Sereda baut seine Arbeit \cite{sereda2006visualization} auf den von Serlie \cite{serlie2003computed} vorgestellten LH-Histogrammen auf und zeigt wie es mithilfe von ihnen möglich ist Objekte zu klassifizieren.
 \newline
