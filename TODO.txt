@@ -10,6 +10,9 @@ Machinelearning Absatz überarbeiten
 Methods:
 
 Quelle vom Bild angeben
+Überarbeitung Gradient nochmal lesen -> Formel richtig formatieren
+Allgemein nochmal drüber lesen -> wichtiges Kapitel
+Clustering neu beschreiben -> ausführlicher, einfacher
 ------------------------------------------------------------------------------------------------
 Design:
 
