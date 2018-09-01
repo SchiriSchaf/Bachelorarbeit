@@ -9,7 +9,6 @@ Machinelearning Absatz überarbeiten
 ------------------------------------------------------------------------------------------------
 Methods:
 
-Quelle vom Bild angeben
 Überarbeitung Gradient nochmal lesen -> Formel richtig formatieren
 Allgemein nochmal drüber lesen -> wichtiges Kapitel
 Clustering neu beschreiben -> ausführlicher, einfacher
@@ -19,9 +18,12 @@ Design:
 ------------------------------------------------------------------------------------------------
 Implementierung:
 
+Code nochmal drüber schauen ob alles ok ist -> einrücken etc. -> vllt. leerzeilen für die Übersicht einfügen
+Zeilennummern erwähnen
 ------------------------------------------------------------------------------------------------
 Evaluation:
 
+Screenshots neu machen -> Höhen anpassen
 ------------------------------------------------------------------------------------------------
 Fazit:
 

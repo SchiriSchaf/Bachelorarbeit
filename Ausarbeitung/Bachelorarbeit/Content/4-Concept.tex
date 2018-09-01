@@ -72,7 +72,7 @@ Das Modul \textit{MergeCluster} dient der Verschmelzung der gewünschten IDs mit
 \begin{figure}
 \centering 
 \includegraphics[width=\textwidth]{Logos/Ueberblick2.png}
-\caption{Überblick über den Ablauf} 
+\caption{Aktivitätsdiagramm über den Prozessablauf} 
 \label{fig:ueberblick} 
 \end{figure}
 
@@ -82,7 +82,7 @@ Diese ist eine Implementierung des Verfahren von Hong \cite{hong2003method}. Zur
 \newline
 In \autoref{fig:shift} ist dazu ein zweidimensionales Beispiel zu sehen. Die Daten werden hierbei jeweils in der Ecken der Gitter gespeichert. Die Gradienten werden, da es sich um einen zweidimensionalen Fall hält, jeweils in der Mitte von vier benachbarten Punkten berechnet.
 \newline
-Die Dimension der Intensitätswerte ist 5x5, in der Abbildung in schwarz zu sehen. Nachdem die Gradienten berechnet wurde, ist zu erkennen, dass die das Gitter der Gradienten eine Dimension von 4x4 besitzt, in der Abbildung in rot zu sehen.
+Die Dimension der Intensitätswerte ist 5x5, in der Abbildung in schwarz zu sehen. Nachdem die Gradienten berechnet wurden, ist zu erkennen, dass die das Gitter der Gradienten eine Dimension von 4x4 besitzt, in der Abbildung in rot zu sehen.
 \newline
 Als Ergebnis der \textit{CalcGradientVolume} Funktion wird ein Volumen vom Typen \textit{FVector3} zurückgegeben.
 
@@ -107,54 +107,32 @@ Hat der Benutzer das Modul \textit{LHHistogram} aufgerufen, wird im Anschluss da
 \newline
 An dieser Stelle kommt das Pythonskript \textit{PlotHelper} zum Einsatz. Dieses lädt die .csv Datei und visualisiert das LH-Histogramm mithilfe einer kalt-zu-heiß-Farbrampe in einem zweidimensionalem Koordinatensystem.
 \newline
-Ein Bespiel davon ist in \autoref{fig:lh_histo} im Kapitel \nameref{sec:implementation} zu sehen.
-\newline
-Hierbei ist zu beachten, dass das Histogramm abhängig von der Häufigkeit des Vorkommens eines LH-Wertpaares im Volumen gebildet wird. Diese werden im jeweils dazu passenden Kästchen des Koordinatensystems gespeichert.
-\newline
-Dies ist ein simplerer Vorgehen, als das im Paper von Nguyen \cite{nguyen2012clustering} benutzten Erstellen des Histogramms abhängig von einer für jeden Voxel berechneten Gewichtung.
+Ein Beispiel davon ist in \autoref{fig:lh_histo} im Kapitel \nameref{sec:implementation} zu sehen. Hierbei ist zu beachten, dass das Histogramm abhängig von der Häufigkeit des Vorkommens eines LH-Wertpaares im Volumen gebildet wird. Diese werden im jeweils dazu passenden Kästchen des Koordinatensystems gespeichert. Dies ist ein simplerer Vorgehen, als das im Paper von Nguyen \cite{nguyen2012clustering} benutzten Erstellen des Histogramms abhängig von einer für jeden Voxel berechneten Gewichtung.
 \newline
 Da die Arbeit an der Implementierung zeitlich beschränkt war, wurde diese Gewichtung, die einzig und allein einer genaueren Darstellung des für das Verfahren irrelevante LH-Histogramm dient, vernachlässigt. Die Gewichtung ist für das Clustering belanglos, da dort ein Histogramm wie eben beschrieben, abhängig von der Häufigkeit der LH-Werte verwendet wird.
 \newline
 Bei der Erstellung des Histogramms im \textit{LHHistogram} Modul wird weiterhin der Logarithmus der Anzahl der Einträge jedes Kästchens genommen. Dies geschieht aus dem Grund der großen Diskrepanz zwischen der Anzahl der Einträge an den meisten Stellen im Histogramm im Vergleich zu dem Maximum. Dies lässt bei der Darstellung mit einer Farbrampe fast alles mit der Farbe des Minimums anzeigen. Da die Logarithmusfunktion für schnell wachsende Zahlen nur sehr langsam steigt, eignet sie sich dafür, diesen großen Unterschied anzupassen.
 
 
-Wurde das \textit{ClusterVolume} Modul aufgerufen, wird mit den beiden Clusteringschritten fortgefahren.
-\newline
-Die Berechnung der LH-Cluster findet in der \textit{LHClustering} Klasse statt. Hierbei nimmt die Funktion \textit{ComputeLHClusters} das Volumen mit den LH-Werten entgegen und rechnet dieses aus Performancegründen, mit dem gleichen Vorgehen, welches im \textit{LHHistogram} Modul benutzt wurde, in ein Histogramm um. Jedoch wird nicht der Logarithmus der Einträge genommen.
-\newline
-Dieser Schritt könnte gespart werden, wenn die Methode \textit{LHValueVolume} direkt ein Histogramm als Rückgabewert liefern würde. Eine solche Änderung würde auch das \textit{LHHistogram} Modul verbessern, da damit die Umrechnung, die in dieser Klasse geschieht, ebenso gespart werden könnte.
+Wurde das \textit{ClusterVolume} Modul aufgerufen, wird mit den beiden Clusteringschritten fortgefahren. Die Berechnung der LH-Cluster findet in der \textit{LHClustering} Klasse statt. Hierbei nimmt die Funktion \textit{ComputeLHClusters} das Volumen mit den LH-Werten entgegen und rechnet dieses aus Performancegründen, mit dem gleichen Vorgehen, welches im \textit{LHHistogram} Modul benutzt wurde, in ein Histogramm um. Jedoch wird nicht der Logarithmus der Einträge genommen. Dieser Schritt könnte gespart werden, wenn die Methode \textit{LHValueVolume} direkt ein Histogramm als Rückgabewert liefern würde. Eine solche Änderung würde auch das \textit{LHHistogram} Modul verbessern, da damit die Umrechnung, die in dieser Klasse geschieht, ebenso gespart werden könnte.
 \newline
 Als Ergebnis der Clusteringfunktion wird eine Liste der Cluster zurückgegeben. Ein Cluster besteht hierbei aus einer Liste von \textit{IVector3}. Die Cluster werden nur als Liste der räumliche Informationen der Voxel gespeichert, da für den nächsten Clusteringschritt  lediglich diese Information benötigt wird. 
 
 
-Anschließend geht es in der Funktion \textit{ComputeIDs} der \textit{SpatialClustering} Klasse mit der Berechnung der räumlichen Cluster weiter. Diese werden mit einer ähnlichen Implementierung wie in der \textit{LHClustering} Klasse kalkuliert. Diesmal wird jedoch kein Histogramm für das Clustering erstellt, sondern die Berechnung direkt auf den übergebenen Listen durchgeführt.
-\newline
-Des Weiteren wurde eine Mindestgröße für die entstehenden Cluster festgelegt, um kleine unbedeutende Cluster zu entfernen.
-\newline
-Als Ergebnis wird erneut eine Liste von Listen vom Typ \textit{IVector3} zurückgegeben.
+Anschließend geht es in der Funktion \textit{ComputeIDs} der \textit{SpatialClustering} Klasse mit der Berechnung der räumlichen Cluster weiter. Diese werden mit einer ähnlichen Implementierung wie in der \textit{LHClustering} Klasse kalkuliert. Diesmal wird jedoch kein Histogramm für das Clustering erstellt, sondern die Berechnung direkt auf den übergebenen Listen durchgeführt. Des Weiteren wurde eine Mindestgröße für die entstehenden Cluster festgelegt, um kleine unbedeutende Cluster zu entfernen. Als Ergebnis wird erneut eine Liste von Listen vom Typ \textit{IVector3} zurückgegeben.
 
 
-Nachdem alle Cluster kalkuliert wurden, werden sie in der \textit{ClusterVolume} Klasse in einem Volumen gespeichert. Jeder Cluster bekommt dabei zunächst eine einzigartige ID. Die IDs beginnen bei eins und werden hochgezählt.
-\newline
-Anschließend wird das Volumen mit den verschiedenen IDs gefüllt. Dies geschieht indem für jeden Cluster an den Positionen der Punkte die jeweilige ID gespeichert wird. Alle anderen Voxeln des Clustervolumens wird der Wert null zugewiesen.
+Nachdem alle Cluster kalkuliert wurden, werden sie in der \textit{ClusterVolume} Klasse in einem Volumen gespeichert. Jeder Cluster bekommt dabei zunächst eine einzigartige ID. Die IDs beginnen bei eins und werden hochgezählt. Anschließend wird das Volumen mit den verschiedenen IDs gefüllt. Dies geschieht indem für jeden Cluster an den Positionen der Punkte die jeweilige ID gespeichert wird. Alle anderen Voxeln des Clustervolumens wird der Wert null zugewiesen.
 \newline
 Dieses Volumen wird als binäre Datei gespeichert und ist das Ergebnis des \textit{ClusterVolume} Moduls. Es ist bei diesem Modul sehr wichtig, dass es, wie es bei dem \textit{Dump} Befehl möglich ist, mit einem $u$ am Ende aufgerufen wird, da das Ergebnis sonst nicht vom Renderer eingelesen werden kann.
 
 
-Das Ergebnis muss anschließend vom Nutzer in Unity geladen werden.
+Das Ergebnis muss anschließend vom Nutzer in Unity geladen werden. Hierbei kommt die in dieser Arbeit vorgenommenen Anpassung am Renderer zum Einsatz.
 \newline
-Hierbei kommt die in dieser Arbeit vorgenommenen Anpassung am Renderer zum Einsatz.
-\newline
-Hier hat der Benutzer durch die Erweiterung die Möglichkeit einen speziellen Wert oder einen Wertebereich hervorzuheben.
-\newline
-Mithilfe dessen muss der Anwender alle Cluster die zum Ventrikelsystem gehören finden und sich deren IDs zu notieren.
+Hier hat der Benutzer durch die Erweiterung die Möglichkeit einen speziellen Wert oder einen Wertebereich hervorzuheben. Mithilfe dessen muss der Anwender alle Cluster die zum Ventrikelsystem gehören finden und sich deren IDs zu notieren.
 
 
-Hat er dies getan kann er mit dem \textit{MergeCluster} Modul des Helpers das Ergebnis zusammenfügen und die finale Visualisierung erstellen.
-\newline
-Beim Aufruf muss das Intensitätsvolumen bereits geladen sein und der Benutzer das Clustervolumen, die ausgewählten IDs und ein Zielpfad als Parameter übergeben.
-\newline
-In der \textit{Call} Methode der \textit{MergeCluster} Klasse wird anschließend an den Stellen im Volumen, an denen die entsprechenden IDs gespeichert sind, die Werte im Intensitäsvolumen auf 5000 gesetzt.
+Hat er dies getan kann er mit dem \textit{MergeCluster} Modul des Helpers das Ergebnis zusammenfügen und die finale Visualisierung erstellen. Beim Aufruf muss das Intensitätsvolumen bereits geladen sein und der Benutzer das Clustervolumen, die ausgewählten IDs und ein Zielpfad als Parameter übergeben. In der \textit{Call} Methode der \textit{MergeCluster} Klasse wird anschließend an den Stellen im Volumen, an denen die entsprechenden IDs gespeichert sind, die Werte im Intensitäsvolumen auf 5000 gesetzt.
 \newline
 Nach dem beschriebenen Verschieben aller Werte ins positive, liegt der maximale Intensitätswert bei ungefähr 4500. Folglich erhöht das Hinzufügen des Wertes 5000 das Maximum des Volumens, und damit die Darstellung im Renderer nur gering, und lässt es zu, die segmentierten Bereiche klar vom Rest abzugrenzen. Dieses Volumen wird erneut als binäre Datei im Zielpfad abgespeichert.
 

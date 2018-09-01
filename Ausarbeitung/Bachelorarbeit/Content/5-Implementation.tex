@@ -24,22 +24,47 @@ Die Implementierung der Klassen und deren Methoden ist das Thema dieses Kapitels
 
 \subsection{Gradient}
 
-Bei der  Kalkulation der Gradienten wird parallel über jeden Voxel im Intensitätsvolumen iteriert und für jeden die Implementierung von Hong's Methode \cite{hong2003method} aufgerufen.
+Bei der  Kalkulation der Gradienten wird parallel über jeden Voxel im Intensitätsvolumen iteriert und für jeden die Implementierung von \cite{hong2003method} aufgerufen.
 \newline
 Für die Berechnung der Methode wird eine Gewichtung und die Koordinaten aller 64 Punkte im Koordinatensystem der lokalen Nachbarschaft benötigt. Da das gesamte Volumen die selbe Voxellänge hat und die Koordinaten in der lokalen Nachbarschaft immer gleich sind, können diese beiden Werte für alle 64 Nachbarn einmalig in einem Vorverarbeitungsschritt berechnet werden. Sie werden dabei in einem 64 Elemente großes Array, mit der gleichen Nummerierung wie in \autoref{fig:nachbarschaft} gezeigt, gespeichert. Bei der Kalkulation jedes Gradienten müssen lediglich die beiden Arrays durch iteriert werden um die entsprechenden Gewichtung und Koordinate  des Nachbars zu erhalten
 
 \subsection{LH-Werte}
 
-In \autoref{fig:lh_code} ist der Code zur Berechnung der High-Werte zu sehen. Der Code liegt innerhalb einer while-Schleife, die so lange aufgerufen wird, bis die Berechnung des Low- und des High-Wertes abgeschlossen, also \textit{LisFinished} und \textit{HisFinished} true sind.
+In \autoref{lst:lh_code} ist der Code zur Berechnung der High-Werte zu sehen. Der Code liegt innerhalb einer while-Schleife, die so lange aufgerufen wird, bis die Berechnung des Low- und des High-Wertes abgeschlossen, also \textit{LisFinished} und \textit{HisFinished} true sind.
 \newline
 Die Berechnung des Low-Wertes ist ebenfalls in der Schleife und sieht bis auf die Richtung der neuen \textit{absVector} und \textit{secondAbsVector} gleich aus. Folglich sind alle hier gegebenen Erklärung und Anmerkungen ebenso auf die Berechnung der Low-Werte zu beziehen.
 
 
-\begin{figure}[!h] 
-\includegraphics[width=1.2\textwidth]{Logos/LH_Code.PNG}
-\caption{Implementierung der Berechnung der High-Werte} 
-\label{fig:lh_code} 
-\end{figure}
+
+
+\begin{lstlisting}[caption = Code zur Berechnung der High-Werte, label = lst:lh_code]
+if (!HisFinished){
+		FVector3 absVectorH = volumeVectors[xH, yH, zH];
+		FVector3 absVectorHNormalized = absVectorH.Normalize();
+		int tempNewXH = (((int)Math.Ceiling(xH + (stepSize * absVectorHNormalized.X))));
+		int tempNewYH = (((int)Math.Ceiling(yH + (stepSize * absVectorHNormalized.Y))));
+		int tempNewZH = (((int)Math.Ceiling(zH + (stepSize * absVectorHNormalized.Z))));
+		if (tempNewXH < volumeVectors.Dimension.X && tempNewYH < volumeVectors.Dimension.Y && tempNewZH < volumeVectors.Dimension.Z && !(tempNewXH < 0) && !(tempNewYH < 0) && !(tempNewZH < 0)){
+				secondAbsVectorH = volumeVectors[tempNewXH, tempNewYH, tempNewZH].Normalize();
+				highestIntensity.Add(gradientIntensity[xH, yH, zH]);
+				if (absVectorH.Length() < extremumLength){
+						HisFinished = true;
+				}else{
+						if (highestIntensity[highestIntensity.Count - 1] == highestIntensity[highestIntensity.Count - 2] && highestIntensity.Count > 3){
+						HisFinished = true;
+						}
+						xH = (((int)Math.Ceiling(xH + 0.5 * stepSize * (absVectorHNormalized.X + secondAbsVectorH.X))));
+						yH = (((int)Math.Ceiling(yH + 0.5 * stepSize * (absVectorHNormalized.Y + secondAbsVectorH.Y))));
+						zH = (((int)Math.Ceiling(zH + 0.5 * stepSize * (absVectorHNormalized.Z + secondAbsVectorH.Z))));
+						if (xH > volumeVectors.Dimension.X-1 || yH > volumeVectors.Dimension.Y-1 || zH > volumeVectors.Dimension.Z-1|| xH < 0 || yH < 0 || zH < 0){
+								HisFinished = true;
+						}
+				}
+		}else{
+				HisFinished = true;
+		}
+}
+\end{lstlisting}
 
 
 Am Anfang eines Durchlaufes wird der normalisierte Gradienten des aktuellen Punktes in \textit{absVectorNormalized} gespeichert. Anschließend wird der Punkt des zweiten normalisierten Vektors berechnet. Liegt dieser außerhalb des Volumens, so wird die Integration beendet. Liegt er jedoch innerhalb des Volumens, so wird der \textit{secondAbsVector} ausgelesen und der Intensitätswert des aktuellen Punktes zu der Liste \textit{highestIntensity} hinzugefügt. Ist der Gradient des aktuellen Punktes kleiner als die \textit{extremumLength}, welche im Falle von CT-Daten bei null liegt, wird die Integration beendet.
@@ -126,7 +151,7 @@ Dies macht das genaue Clustern über diesen speziellen Bereich notwendig.
 
 \begin{figure}[H] 
 \includegraphics[width=0.9\textwidth]{Logos/LHHistogram_a.png}
-\caption{Beispiel eine LH-Histogramms} 
+\caption{LH-Histogramm} 
 \label{fig:lh_histo} 
 \end{figure}
 
@@ -136,14 +161,41 @@ Dies macht das genaue Clustern über diesen speziellen Bereich notwendig.
 In der statischen Klasse \textit{SpatialClustering} ist die Implementierung zur Berechnung der räumlichen Cluster und dem Clustervolumen der IDs zu finden.
 
 
-\begin{figure}[!h] 
-\includegraphics[width=1.2\textwidth]{Logos/Spatial_Code.PNG}
-\caption{Implementierung der Berechnung der Gewichte und Koordinaten} 
-\label{fig:spatclust_code} 
-\end{figure}
+\begin{lstlisting}[caption = Code zur Berechnung der räumlichen Cluster, label = lst:spatclust_code]
+List<IVector3> currentSpatialCluster = new List<IVector3>();
+            List<List<IVector3>> resultClusters = new List<List<IVector3>>();
+            FVector3 midPoint;
+            HashSet<IVector3> toRemove = new HashSet<IVector3>();
+            while (LHClusters2[i].Count > ClusterSizeMin)
+            {
+                midPoint = LHClusters2[i].ElementAt(0);
+                bool nothingMoreFound = false;
+                while (!nothingMoreFound)
+                {
+                    foreach( IVector3 current in LHClusters2[i]){
+                        if (InDistance(midPoint, current)){
+                            currentSpatialCluster.Add(current);
+                            toRemove.Add(current);
+                        }
+                    }
+                    foreach(IVector3 remove in toRemove){
+                        LHClusters2[i].Remove(remove);
+                    }
+                    toRemove.Clear();
+                    FVector3 newMidPoint = NewMidpoint(currentSpatialCluster);
+                    if (MinimumDistance > (SpatialDistance(newMidPoint, midPoint))) nothingMoreFound = true;
+                    else midPoint = newMidPoint;
+                }
+                if (currentSpatialCluster.Count > ClusterSizeMin) resultClusters.Add(new List<IVector3>(currentSpatialCluster));
+                currentSpatialCluster.Clear();
+            }
+            currentSpatialCluster.Clear();
+            return resultClusters;
+
+\end{lstlisting}
 
 
-Die Kalkulation der räumlichen Clustern wurde dabei, wie die Berechnung der LH-Cluster, mit einer parallelen for-Schleife realisiert. Diese iteriert über die LH-Cluster und ruft für jeden Cluster die in \autoref{fig:spatclust_code} gezeigte Funktion auf. Die Cluster sind in der globalen Liste \textit{LHClusters} gespeichert. Sie haben den Typ einer Liste von \textit{IVector3}. 
+Die Kalkulation der räumlichen Clustern wurde dabei, wie die Berechnung der LH-Cluster, mit einer parallelen for-Schleife realisiert. Diese iteriert über die LH-Cluster und ruft für jeden Cluster die in \autoref{lst:spatclust_code} gezeigte Funktion auf. Die Cluster sind in der globalen Liste \textit{LHClusters} gespeichert. Sie haben den Typ einer Liste von \textit{IVector3}. 
 \newline
 Die Suche nach Clustern liegt in einer while-Schleife, die so lange ausgeführt wird, solange der LH-Cluster genug Elemente hat, damit ein Cluster mit der Mindestgröße an Elementen gefunden werden kann. 
 \newline

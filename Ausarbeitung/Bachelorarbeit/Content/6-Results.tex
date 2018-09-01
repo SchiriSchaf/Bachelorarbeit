@@ -20,14 +20,14 @@ In \autoref{fig:ventrik} ist das Ventrikelsystem zu sehen. Dieses besteht aus vi
 \newline
 Zum einen der linke und der rechte Seitenventrikel, die oberen beiden Bögen, die in der Abbildung zu sehen sind. Zum anderen der dritte und vierte Ventrikel, die zwischen den beiden Seitenventrikeln liegen und nach unten weggehen.
 \newline
-Die Seitenventrikel bestehen aus einem Vorderhorn, Nr. 1,  einem Hinterhorn, Nr. 2, und einem Unterhorn, Nr. 3. Der dritte Ventrikel ist mit der Nummer 4 und der vierte Ventrikel mit der Nummer 5 versehen.
+Die Seitenventrikel bestehen aus einem Vorderhorn, Nr. 1a,  einem Hinterhorn, Nr. 1b, und einem Unterhorn, Nr. 2. Der dritte Ventrikel ist mit der Nummer 3 und der vierte Ventrikel mit der Nummer 4 versehen.
 \newline
 Bei der Ventrikelpunktion, wird einer der beiden Seitenventrikel im vorderen Bereich punktiert. Dies macht vor allem die Darstellung der Seitenventrikel relevant.
 
 \begin{figure}[!h] 
 \centering 
-\includegraphics[width=0.75\textwidth]{Logos/Ventrikelsystem_V2.png}
-\caption{Zeichnung des Ventrikelsystems  \\  Quelle:$ http://www.kiefer-saarland.com/anatomie\_physiologie.htm$} 
+\includegraphics[width=0.75\textwidth]{Logos/Ventrikelsystem_V3.png}
+\caption{Zeichnung des Ventrikelsystems  \\  Frei nach \protect\cite{ventrik}} 
 \label{fig:ventrik} 
 \end{figure}
 
@@ -46,27 +46,42 @@ In \autoref{fig:norm1_s} und \autoref{fig:norm1_u} ist die Visualisierung des er
 \newline
 Die Abbildungen zeigen Screenshots aus der Darstellung in Unity, jeweils aus den Perspektiven von der Seite und von oben.
 
-\begin{minipage}[c]{0.49\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width=\textwidth]{Logos/Normal1/Seite.PNG}
 \captionof{figure}{Visualisierung des ersten normalen Ventrikelsystems von der Seite}
 \label{fig:norm1_s}
 \end{minipage}
-\begin{minipage}[c]{0.49\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width=\textwidth]{Logos/Normal1/Unten.PNG}
 \captionof{figure}{Visualisierung des ersten normalen Ventrikelsystems von Unten}
 \label{fig:norm1_u}
 \end{minipage}
 
+\begin{figure}[H]
+\begin{minipage}[b]{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth, height=.9\linewidth]{Logos/Normal1/Seite.PNG}
+  \caption{A figure}
+  \label{fig:test1}
+\end{minipage}%
+\begin{minipage}[b]{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth, height=.9\linewidth]{Logos/Normal1/Unten.PNG}
+  \caption{Another figure}
+  \label{fig:test2}
+\end{minipage}
+\end{figure}
+
 
 In \autoref{fig:norm1_s}, der Darstellung des ersten normalen Ventrikelsystems von der Seite, sind links über dem Hinterhorn der Seitenventrikel Punkte zu erkennen, die nicht zum Ventrikelsystem gehören. Auch bei den Visualisierungen der andern Ventrikelsysteme sind an mehreren Stellen solche Ausreißer zu erkennen. Diese können bei dem aktuellen Stand der Implementierung nicht entfernt werden und senken die Qualität der Darstellung. 
 
 
-\begin{minipage}[c]{0.49\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width=\textwidth]{Logos/Normal2/Seite.PNG}
 \captionof{figure}{Visualisierung des zweiten normalen Ventrikelsystems von der Seite}
 \label{fig:norm2_s}
 \end{minipage}
-\begin{minipage}[c]{0.49\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width=\textwidth]{Logos/Normal2/Unten.PNG}
 \captionof{figure}{Visualisierung des zweiten normalen Ventrikelsystems von Unten}
 \label{fig:norm2_u}
@@ -74,12 +89,12 @@ In \autoref{fig:norm1_s}, der Darstellung des ersten normalen Ventrikelsystems v
 
 
 
-\begin{minipage}[c]{0.49\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width=\textwidth]{Logos/Atrophie/Seite.PNG}
 \captionof{figure}{Visualisierung des Atrophie Ventrikelsystems von der Seite}
 \label{fig:atro_s}
 \end{minipage}
-\begin{minipage}[c]{0.49\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width=\textwidth]{Logos/Atrophie/Unten.PNG}
 \captionof{figure}{Visualisierung des Atrophie Ventrikelsystems von Unten}
 \label{fig:atro_u}
@@ -139,12 +154,12 @@ In Unity wurde dabei die Erweiterung zum hervorheben von Wertebereichen benutzt.
 Die Ergebnisse sind in \autoref{fig:unity_s} und \autoref{fig:unity_u} zu sehen. Das Ventrikelsystem ist zwar zu sehen, es gibt jedoch sehr viele Ausreißer, die es fast unmöglich machen die Ventrikel eindeutig zu erkennen. Diese simple Vorgehensweise führt zu keinem gewünschtem Ergebnis.
 
 
-\begin{minipage}[c]{0.49\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width=\textwidth]{Logos/Normal1_Unity/Seite.PNG}
 \captionof{figure}{Visualisierung des ersten normalen Ventrikelsystems von der Seite mithilfe von Unity}
 \label{fig:unity_s}
 \end{minipage}
-\begin{minipage}[c]{0.49\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width=\textwidth]{Logos/Normal1_Unity/Unten.PNG}
 \captionof{figure}{Visualisierung des zweiten normalen Ventrikelsystems von Unten mithilfe von Unity}
 \label{fig:unity_u}
@@ -162,12 +177,12 @@ In dem von der Workbench erzeugte Ergebnis ist das Ventrikelsystem gut zu erkenn
 Allerdings sind auch ganze Bereiche hervorgehoben, die nicht zum Ventrikelsystem gehören. Diese könnten vom Benutzer manuell in jedem Schichtbild des Datensatzes entfernt werden, was jedoch sehr zeitaufwändig wäre.
 
 
-\begin{minipage}[c]{0.49\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width=\textwidth]{Logos/Normal1_MITK/Oben.PNG}
 \captionof{figure}{Visualisierung des ersten normalen Ventrikelsystems von Oben mithilfe von MITK}
 \label{fig:mitk_o}
 \end{minipage}
-\begin{minipage}[c]{0.49\textwidth}
+\begin{minipage}[t]{0.49\textwidth}
 \includegraphics[width=\textwidth]{Logos/Normal1_MITK/Schraeg_Vorne.PNG}
 \captionof{figure}{Visualisierung des ersten normalen Ventrikelsystems von Vorne mithilfe von MITK}
 \label{fig:mitk_v}

@@ -48,6 +48,51 @@
 %% | Listings    |
 %% --------------
 %%\usepackage{algorithm}		  % Code-Listings
+\usepackage{listings}
+
+\lstdefinestyle{csharp} {
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\footnotesize\ttfamily},
+  numberstyle={\tiny},
+  numbers=left,
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  morecomment = [l]{//}, 
+  morecomment = [l]{///},
+  morecomment = [s]{/*}{*/},
+  morestring=[b]", 
+  sensitive = true,
+  morekeywords = {async, await, abstract,  
+    event,  new,  struct,
+    as,  explicit,  null,  switch,
+    base,  extern,  object,  this,
+    bool,  false,  operator,  throw,
+    break,  finally,  out,  true,
+    byte,  fixed,  override,  try,
+    case,  float,  params,  typeof,
+    catch,  for,  private,  uint,
+    char,  foreach,  protected,  ulong,
+    checked,  goto,  public,  unchecked,
+    class,  if,  readonly,  unsafe,
+    const,  implicit,  ref,  ushort,
+    continue,  in,  return,  using,
+    decimal,  int,  sbyte,  virtual,
+    default,  interface,  sealed,  volatile,
+    delegate,  internal,  short,  void,
+    do,  is,  sizeof,  while,
+    double,  lock,  stackalloc,   
+    else,  long,  static,   
+    enum,  namespace,  string }
+}
+\lstset{style=csharp}
+
 \usepackage{algorithm2e}	  % Code-Listings
 % see http://www.ctan.org/tex-archive/macros/latex/contrib/algorithm2e/algorithm2e.pdf
 % for more sophisticated algorithm listings
