@@ -7,22 +7,14 @@
 
 
 
-Diese Kapitel beschäftigt sich mit den Ergebnissen die die Implementierung erzeugt und der Evaluation des Verfahrens. Der Abschnitt teilt sich dabei folgendermaßen auf.
-\newline
-Als erstes werden die Ergebnisse der Visualisierung des Ventrikelsystems gezeigt und evaluiert. Dabei wurde für die Auswertung ein Interview mit einem Arzt durchgeführt. Danach wird eine Nutzerstudie vorgestellt, die die Benutzerfreundlichkeit des Systems testet. Als letztes wird die Berechnungszeit der Implementierung besprochen.
+Dieses Kapitel beschäftigt sich mit den Ergebnissen der Segmentierung, sowie mit der Evaluation des Verfahrens. Der Abschnitt teilt sich dabei folgendermaßen auf. Als erstes werden die Ergebnisse der Visualisierung des Ventrikelsystems gezeigt und evaluiert. Dabei wurde für die Auswertung ein Interview mit einem Arzt durchgeführt. Danach wird eine Nutzerstudie vorgestellt, die die Benutzerfreundlichkeit des Systems testet. Als letztes wird die Berechnungszeit der Implementierung besprochen.
 
 
 \subsection{Visualisierung}
 
-Die in diesem Unterkapitel gezeigten Visualisierungen wurde alle auf Volumen mit einer Auflösung von 256x101x256 Pixeln berechnet. Aus dem Grund, dass dies ein gute Balance zwischen der Auflösung und der Berechnungszeit der Ergebnisse darstellt. Im Unterkapitel Berechnungszeit wird dies genauer beschrieben. Bevor die Visualisierung ausgewertet werden kann, muss zunächst das Ventrikelsystem erläutert werden.
-\newline
-In \autoref{fig:ventrik} ist das Ventrikelsystem zu sehen. Dieses besteht aus vier verschiedenen Ventrikeln.
-\newline
-Zum einen der linke und der rechte Seitenventrikel, die oberen beiden Bögen, die in der Abbildung zu sehen sind. Zum anderen der dritte und vierte Ventrikel, die zwischen den beiden Seitenventrikeln liegen und nach unten weggehen.
-\newline
-Die Seitenventrikel bestehen aus einem Vorderhorn, Nr. 1a,  einem Hinterhorn, Nr. 1b, und einem Unterhorn, Nr. 2. Der dritte Ventrikel ist mit der Nummer 3 und der vierte Ventrikel mit der Nummer 4 versehen.
-\newline
-Bei der Ventrikelpunktion, wird einer der beiden Seitenventrikel im vorderen Bereich punktiert. Dies macht vor allem die Darstellung der Seitenventrikel relevant.
+\subsubsection{Ventrikelsystem}
+
+Bevor die Visualisierungen ausgewertet werden können, muss zunächst das Ventrikelsystem erläutert werden. In \autoref{fig:ventrik} ist das Ventrikelsystem zu sehen. Dieses besteht aus vier verschiedenen Ventrikeln. Zum einen der linke und der rechte Seitenventrikel, die oberen beiden Bögen, die in der Abbildung zu sehen sind. Zum anderen der dritte und vierte Ventrikel, die zwischen den beiden Seitenventrikeln liegen und nach unten weggehen. Die Seitenventrikel bestehen aus einem Vorderhorn, Nr. 1a,  einem Hinterhorn, Nr. 1b, und einem Unterhorn, Nr. 2. Der dritte Ventrikel ist mit der Nummer 3 und der vierte Ventrikel mit der Nummer 4 versehen. Bei der Ventrikelpunktion, wird einer der beiden Seitenventrikel im vorderen Bereich punktiert. Dies macht vor allem die Darstellung der Seitenventrikel relevant.
 
 \begin{figure}[!h] 
 \centering 
@@ -32,15 +24,9 @@ Bei der Ventrikelpunktion, wird einer der beiden Seitenventrikel im vorderen Ber
 \end{figure}
 
 
-Das Verfahren wurde an 15 verschiedenen CT-Datensätzen der Uni Ulm getestet. Darunter waren verschiedene Ventrikelsysteme.
-\newline
-Vier der Datensätze waren von Menschen mit einem normalen Ventrikelsystem, vier andere wiesen ein sehr schlankes System auf. Weiterhin litten zwei Patienten unter Atrophie, einem, oft durch das Alter verursachtem, Schwund an Gehirnmasse.
-\newline
-Zwei andere Datensätze waren von Leuten, die unter einem Mittellinienshift litten. Dies bezeichnet die Verschiebung der Mittellinie der Ventrikelsystems, was beispielsweise durch einen Schlag auf den Kopf hervorgerufen werden kann.
-\newline
-Des Weiteren gab es Daten, von einer Hirnblutung, und einem Hydrocephalus, einer Aufstauung von Nervenwasser im Kopf. Als letztes gab es noch Daten eines deformierten Ventrikelsystems, ausgelöst durch Wassereinlagerungen im Gehirn.
-\newline
-Eine erfolgreiche Visualisierung gelang in nur 3 der 15 Fälle und zwar bei zwei Datensätzen mit normalen Ventrikeln und einem von einem Patient, der unter Atrophie leidet.
+\subsubsection{Visualisierungen}
+
+Die in diesem Unterkapitel gezeigten Visualisierungen wurde alle auf Volumen mit einer Auflösung von 256x101x256 Pixeln berechnet. Aus dem Grund, dass dies ein gute Balance zwischen der Auflösung und der Berechnungszeit der Ergebnisse darstellt. Im Unterkapitel Berechnungszeit wird dies genauer beschrieben.
 \newline
 In \autoref{fig:norm1_s} und \autoref{fig:norm1_u} ist die Visualisierung des ersten normalen Ventrikelsystems, in \autoref{fig:norm2_s} und \autoref{fig:norm2_u} die Visualisierung des zweiten normalen Ventrikelsystems und schließlich in \autoref{fig:atro_s} und \autoref{fig:atro_u} die Visualisierung des Ventrikelsystems des Patienten mit Atrophie zu sehen.
 \newline
@@ -100,10 +86,24 @@ In \autoref{fig:norm1_s}, der Darstellung des ersten normalen Ventrikelsystems v
 \label{fig:atro_u}
 \end{minipage}
 
+\subsubsection{Datensätze}
+
+Das Verfahren wurde an 15 verschiedenen CT-Datensätzen der Uni Ulm getestet. Darunter waren verschiedene Ventrikelsysteme.
+\newline
+Vier der Datensätze waren von Menschen mit einem normalen Ventrikelsystem, vier andere wiesen ein sehr schlankes System auf. Weiterhin litten zwei Patienten unter Atrophie, einem, oft durch das Alter verursachtem, Schwund an Gehirnmasse.
+\newline
+Zwei andere Datensätze waren von Leuten, die unter einem Mittellinienshift litten. Dies bezeichnet die Verschiebung der Mittellinie der Ventrikelsystems, was beispielsweise durch einen Schlag auf den Kopf hervorgerufen werden kann.
+\newline
+Des Weiteren gab es Daten, von einer Hirnblutung, und einem Hydrocephalus, einer Aufstauung von Nervenwasser im Kopf. Als letztes gab es noch Daten eines deformierten Ventrikelsystems, ausgelöst durch Wassereinlagerungen im Gehirn.
 
 
+Da die Aufgabe das Ventrikelsystem anhand von CT-Daten automatisiert zu segmentieren sehr komplex ist, kam es bei Patienten mit besonderen Ventrikelsystemen zu Problemen. Da das Verfahren Strukturen anhand ihrer Grenzen erkennt, war es nicht möglich schlanke Ventrikelsysteme zu segmentieren. Da diese sehr dünn sind können sie nicht als Struktur erkannt werden.
+Atrophie ist ein, oft durch das Alter verursachter, Schwund an Gehirnmasse. Bei diesem weitet sich das Ventrikelsystem und es ist im allgemeinem mehr Liquor im Gehirn zu finden. Dadurch war es bei einem der beiden Datensätze nicht möglich, das Ventrikelsystem zu segmentieren, da durch die viele Flüssigkeit im Gehirn die Grenze zwischen dem System und der umliegenden Hirnmasse nicht klar auszumachen ist.
 
-Für die drei erfolgreich visualisierten Daten wurde zur Evaluation ein Arzt von der Uniklinik Ulm interviewt. Diesem wurden die Visualisierungen direkt in Unity vorgeführt. Während der Vorführung konnte der Mediziner selbst die Kamera durch die Darstellung lenken und das Ergebnis aus verschiedenen Blickwinkeln betrachten.
+
+\subsubsection{Interview mit einem Arzt}
+
+Um die Qualität erzeugten Segmentierungen zu evaluieren, wurde ein Arzt von der Uniklinik Ulm interviewt. Diesem wurden die drei gezeigten Visualisierungen direkt in Unity vorgeführt. Während der Vorführung konnte der Mediziner selbst die Kamera durch die Darstellung lenken und das Ergebnis aus verschiedenen Blickwinkeln betrachten.
 \newline
 Anschließend bewertete er die Qualität der Ergebnisse, indem er drei verschiedenen Fragen zu den Darstellungen beantwortete. Er musste dabei seine Antwort immer auf einer Skala von 1 bis 5 angeben.
 \newline
@@ -144,8 +144,9 @@ Das zweite normale Ventrikelsystem, war ebenfalls klar zu erkennen. Jedoch wurde
 \newline
 In einem Gehirn eines unter Atrophie leidenden Menschen, ist deutlich mehr Liquor, als bei einem gesunden Menschen, zu finden. Diese Flüssigkeiten werden vom Verfahren ebenfalls erkannt, weshalb die Segmentierung etwas verschwommen erscheint und nicht die kompletten Seitenventrikel erfasst werden. Jedoch vermutete der Arzt, dass viele der Ausreißer zum dritten Ventrikel gehören könnten, da sich dieses, wie alle Ventrikel bei einer Atrophie, weitet. Trotz der Flüssigkeiten im Gehirn war das Ventrikelsystem in der Darstellung deutlich zu erkennen.
 \newline
- Im Allgemeinen sagte der Mediziner, dass das Ventrikelsystem bei allen Visualisierungen als solches eindeutig zu erkennen sei. Er bemängelte jedoch, dass die Darstellungen nicht glatt genug sei und zu viele Ausreißer besitzen.
+Im Allgemeinen bemängelte der Arzt, dass die Darstellungen nicht glatt genug sei und viele Ausreißer existieren. Jedoch sagte der Mediziner, dass das Ventrikelsystem bei allen Segmentierungen eindeutig zu erkennen sei.
 
+\subsubsection{Weitere Auswertungen}
 
 Zur weiteren Auswertung der Ergebnisse wurde das erste normale Ventrikelsystem aus \autoref{fig:norm1_s} und \autoref{fig:norm1_u} in Unity und mit der MITK-Workbench, die auch zum Umwandeln der DICOM-Dateien benutzt wurde, visualisiert.
 \newline
