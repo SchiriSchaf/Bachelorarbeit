@@ -137,6 +137,7 @@ Dies macht das genaue Clustern über diesen speziellen Bereich notwendig.
 \end{figure}
 
 
+
 \subsection{Räumliches-Clustering}
 
 In der statischen Klasse \textit{SpatialClustering} ist die Implementierung zur Berechnung der räumlichen Cluster und dem Clustervolumen der IDs zu finden.
@@ -190,7 +191,7 @@ Anschließend wird in der Funktion \textit{ComputeIDs}, der die Cluster als Para
 
 \subsection{Unity}
 
-Die Erweiterung die am Renderer vorgenommen wurden, wurden im Shader programmiert. Zuerst wurde eine drop-down-list hinzugefügt, über die der Nutzer zwischen den Modi \textit{Default}, \textit{SpecificValue} und \textit{SpecificValueRange} wählen kann.
+Die Erweiterung die am Renderer vorgenommen wurden, wurden im Shader programmiert. Die dazugehörigen hinzugefügten Parameterfelder sind in \autoref{fig:unity_para} zu sehen. Zuerst wurde eine drop-down-Liste \textit{Volume coloring method}  hinzugefügt, über die der Nutzer zwischen den Modi \textit{Default}, \textit{SpecificValue} und \textit{SpecificValueRange} wählen kann.
 
 
 \begin{figure}[h]
@@ -203,7 +204,7 @@ Die Erweiterung die am Renderer vorgenommen wurden, wurden im Shader programmier
 
 Weiterhin wurden drei Textfelder hinzugefügt, über die es dem Anwender möglich ist den spezifischen Wert als auch den Wertebereich anzugeben. Des Weiteren wurde noch ein Farbfeld hinzugefügt, mit welchem die Farbe, in der hervorgehobenen Bereiche dargestellt wird, anzeigt wird und vom Benutzer verändert werden kann.
 \newline
-Der \textit{Default} Modus steht hierbei für die schon vorher dagewesene Implementierung der Farbgebung. Diese wurde weitestgehend in den beiden anderen beiden Modi übernommen. Der Unterschied besteht jedoch darin, dass wenn ein Voxel bei \textit{SpeicifcValue} mit dem spezifischen Wert, oder bei \textit{SpecificValueRange} innerhalb des Wertebereichs gefunden wird, dieser in der Farbe des Farbfeldes angezeigt wird. Alle andern Voxel bekommen die selbe Farbe, die sie auch im \textit{Default} Modus erhalten würden.
+Der \textit{Default} Modus steht hierbei für die schon vorher dagewesene Implementierung der Farbgebung mit verschiedenen Grauwerten. Diese wurde weitestgehend in den beiden anderen beiden Modi übernommen. Der Unterschied besteht jedoch darin, dass wenn ein Voxel bei \textit{SpecificValue} mit dem spezifischen Wert, oder bei \textit{SpecificValueRange} innerhalb des Wertebereichs gefunden wird, dieser in der Farbe des Farbfeldes angezeigt wird. Alle andern Voxel bekommen die selbe Farbe, die sie auch im \textit{Default} Modus erhalten würden.
 
 
 

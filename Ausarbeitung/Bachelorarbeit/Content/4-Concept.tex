@@ -19,7 +19,7 @@ Anfangs liegen die CT-Daten der Volumen in mehreren Dateien als Schnittbilder im
 \textit{MITK} ist ein kostenloses open-source System zur Entwicklung von medizinischer Bildverarbeitungssoftware und wurde vom Deutschen Krebsforschungszentrum entwickelt. Dessen \textit{Workbench} bietet zum einen, das eben vorgestellte Laden und Umwandeln von DICOM Dateien, zum anderen auch diverse Segmentierungstools.
 
 
-Die Darstellung von Volumendaten ist über den Renderer in Unity möglich. Der Benutzer hat hierbei mehrere Möglichkeiten Eingaben über Parameterfelder oder mithilfe der Tastatur zu machen und mit der Visualisierung zu interagieren. Zunächst muss er jedoch in das Parameterfeld \textit{Binary Data} via drag and drop eine binäre Volumendatei ziehen.
+Die Darstellung von Volumendaten ist über den Renderer in Unity möglich. Der Benutzer hat hierbei mehrere Möglichkeiten Eingaben über Parameterfelder, wie beispielsweise in \autoref{fig:unity_para} zu sehen, oder mithilfe der Tastatur zu machen und mit der Visualisierung zu interagieren. Zunächst muss er jedoch in das Parameterfeld \textit{Binary Data} via drag and drop eine binäre Volumendatei ziehen.
 Anschließend kann die Visualisierung gestartet werden. Hierbei hat der Nutzer die Möglichkeit die Kamera mit den Tasten $W$ $A$ $S$ $D$ zu bewegen als auch mit den seitlichen Pfeiltasten sowie der $Q$ und $E$ Taste das Volumen um verschiedene Achsen zu drehen. Die Position der Kamera sowie die Drehung des Volumens, kann ebenfalls durch entsprechende Parameterfelder verändert werden.
 Die Volumen, werden als Graubilder dargestellt, wobei die Helligkeit der einzelnen Voxel abhängig vom Intensitätswert bestimmt wird. Dabei kann der User über ein weiteres Parameterfeld entscheiden ob der Größte, der Kleinste, der Erste oder die Summe aller gefunden Voxel als Wert für die Farbgebung benutzt wird. Der Standard ist hierbei, dass des maximale Wert genommen wird .
 \newline
@@ -36,7 +36,7 @@ Es existieren noch deutlich mehr Eingabefelder, mit denen der Benutzer die Darst
 
 
 Die interne Speicherung des Volumens im Helper wird mit der generischen Klasse \textit{Volume} umgesetzt, deren Felder, Attribute und Methoden in \autoref{fig:volume_uml} zu sehen sind. Diese besitzt ein dreidimensionalen Array vom angegebenen generischen Datentyp, sowie Informationen über das Volumen, wie zum Beispiel Größe der Voxel oder Anzahl der Elemente pro Achse.
-Des Weiteren bietet die Klasse verschieden Funktionen um Informationen auszulesen oder zu bearbeiten. Zur Darstellung von dreidimensionale Koordinaten, werden die Klassen \textit{IVector3} und \textit{FVector3} benutzt. Diese stellen Vektoren dar, die entweder Integer, Ganzzahlen, oder Float, Dezimalzahlen, als $x,y$ und $z$ Werte speichern.
+Des Weiteren bietet die Klasse verschieden Funktionen um Informationen auszulesen oder zu bearbeiten. Zur Darstellung von dreidimensionale Koordinaten, werden die Klassen \textit{IVector3} und \textit{FVector3} benutzt. Diese stellen Vektoren dar, die entweder Integer, Ganzzahlen, oder Float, Dezimalzahlen, als $x$, $y$ und $z$ Werte speichern.
 
 
 Die Interaktion des Benutzers mit dem Helper findet über eine Kommandozeile statt. Hierbei hat der Anwender die Befehle \textit{Load}, \textit{Dump}, \textit{Resample}, \textit{Info}, \textit{Write}, \textit{LHHistogram}, \textit{ClusterVolume} und \textit{MergeCluster} zur Auswahl. Jedes Modul hat dabei Parameter, die beim Aufruf angegeben werden müssen. Wird ein Befehl mit einem Help dahinter aufgerufen, wird die richtige Benutzung des Moduls erklärt.
