@@ -6,46 +6,24 @@
 
 Nachdem die Ergebnisse im vorherigen Kapitel gezeigt und evaluiert wurden, wird in diesem ein Fazit gezogen.
 \newline
-Das Ziel der Bachelorarbeit, war die Implementierung eines Verfahrens zur erfolgreiche Visualisierung des Ventrikelsystem basierend auf Volumendaten. Dieses Ziel wurde erfüllt, jedoch mit deutlichen Abstrichen.
+Das Ziel der Bachelorarbeit, war die Implementierung eines Verfahrens zur erfolgreiche Segmentierung des Ventrikelsystem basierend auf Volumendaten. Dieses Ziel wurde erfüllt.
+\newline
+Das Ventrikelsystem ist in den Visualisierungen deutlich sehen und als solches auch klar zu identifizieren. Die beiden für die Operation essentiell wichtigen Seitenventrikel werden hervorgehoben.
+Es fehlten zwar bei allen Visualisierungen der dritte und vierte Ventrikel, jedoch sind diese für die Ventrikelpunktion nicht von Nöten. Das Hervorheben soll den Arzt im Operationssaal assistieren. Dazu sollte ihm nach Möglichkeit nur für den Eingriff relevante Informationen angezeigt werden. Er könnte die  Übersicht verlieren, wenn ihm der, für die Operation irrelevanten, dritte und vierte Ventrikel angezeigt werden würden. Dies würde einen erfolgreichen Eingriff gefährden.
+\newline
+Das Verfahren konnte bei mehreren Datensätzen zu keiner erfolgreichen Segmentierung gelangen. Dies lag jedoch an der Besonderheit der verschiedenen Datensätze, bei denen es oftmals schwer bis nicht möglich war nur anhand der CT-Daten zu einer Segmentierung zu gelangen.
+\newline
+Die Schritte, die vom Benutzer ausgeführt werden müssen, um zu einem Ergebnis zu gelangen, sind wenig intuitiv. Er benötigt Wissen darüber welche Befehle wann im Helper ausgeführt werden müssen deren Syntax und die passenden Dateiformate. Außerdem muss der Anwender die passenden IDs manuell finden, was zeitaufwändig sein kann.
+\newline
+Trotzdem zeigte die Nutzerstudie, dass selbst Menschen ohne Programmiererfahrung die Aufgabe bewältigen können. Des Weiteren ist die Ausführung des Verfahrens mit einer guten Dokumentation auch ohne weitere Hilfe durchführbar. Nach einer kleinen Eingewöhnungsphase sollte das Durchführen für den Anwender kein Problem darstellen.
+Trotzdem könnte versucht werden, die Anwendung einfacher und intuitiver zu gestalten. Dies ist noch nicht geschehen, da beim Arbeiten an der Implementierung die Funktionalität oberste Priorität hatte.
+\newline
+Schließlich wird noch die Verarbeitungsgeschwindigkeit des Verfahren betrachtet. Diese ist für die kleineren Auflösungen relativ schnell. Die benötigte Zeit zur Berechnung der Cluster wächst jedoch nicht linear mit der Größe der Eingabe. Hierbei ist jedoch unklar, ob dies an der Implementierung oder an dem Verfahren an sich liegt, da über die Laufzeit des \textit{Meanshiftclustering} keine Informationen vorliegen.
 
 
-Zunächst gilt es die Robustheit der Implementierung zu betrachten. Es konnte nur in 3 von 15 Fällen das Ventrikelsystem erfolgreich visualisiert werden. Zwar waren diese Daten meist von besonderen Arten, jedoch konnte auch bei den normalen Ventrikeln nur in 50\% der Fälle ein zufriedenstellendes Ergebnis erzielt werden. Weiterhin war es nur für bestimmte Auflösungen überhaupt möglich die Berechnung der Cluster durchzuführen.
+Zusammenfassend lässt sich sagen, dass die Bachelorarbeit zu einem positiven Ergebnis gelangt ist. Es war möglich die, im Kontext des HoloMed Projektes, wichtigen Bereiche des Ventrikelsystems zu segmentieren und hervorzuheben.
 \newline
-Die Robustheit des Systems ist folglich verbesserungswürdig. Die Segmentierung funktioniert, jedoch in nur sehr wenigen Fällen.
-
-
-In den Fällen, in denen die Visualisierung geglückt ist, waren die Ergebnisse von einer guten Qualität. Das Ventrikelsystem war deutlich zu sehen und als solches auch klar zu identifizieren.
-\newline
-Es fehlten zwar bei allen Visualisierungen der dritte und vierte Ventrikel, jedoch sind diese für die Ventrikelpunktion nicht von Nöten. Dem Arzt, dem die Visualisierung des Ventrikelsystems im Operationssaal assistieren soll, sollten womöglich nur die relevanten Informationen angezeigt werden, damit diese stets übersichtlich bleiben und ihn nicht im schlimmsten Fall zusätzlich verwirren.
-\newline
-Jedoch fehlten auch bei den Seitenventrikel teils kleine, teils große Stücke in der Visualisierung. Des Weiteren gab es viele Ausreißer, die vom interviewten Arzt als störend empfunden wurden.
-\newline
-Weiterhin sind die Ergebnisse nicht glatt, sondern haben in der hervorgehobenen Struktur kleine Löcher und Unreinheiten.
-\newline
-Für die Zeit die für die Implementierung zur Verfügung stand, sind die Ergebnisse bereits solide. Sie benötigen jedoch an mehreren Stellen einer Verbesserung und müssten um weiter Verfahren erweitert werden, um ein sehr gutes Ergebnis zu erzielen.
-
-
-Die Schritte, die vom Benutzer ausgeführt werden müssen, um zu einem Ergebnis zu gelangen, sind wenig intuitiv. Er benötigt Wissen darüber welche Befehle wann im Helper ausgeführt werden müssen und deren Syntax.
-\newline
-Weiterhin muss er selbst Dateien in speziellen Formaten speichern und laden. Außerdem muss der Anwender die passenden IDs manuell finden, was zeitaufwändig sein kann.
-\newline
-Im Bezug auf die Nutzerfreundlichkeit benötigt das Verfahren viel Überarbeitung, da es bisher schwer zu bedienen ist.
-\newline
-Dies ist aktuell jedoch der Fall, aus dem Grund, dass das Funktionieren der Methode oberste Priorität beim Programmierung hatte. Aus der schon mehrfach erwähnten Zeitknappheit wurde die Benutzerfreundlichkeit deshalb zunächst vernachlässigt.
-
-
-Schließlich wird noch die Verarbeitungsgeschwindigkeit des Verfahren betrachtet.
-\newline
-Diese ist für die kleineren Auflösungen relativ schnell. Die benötigte Zeit zur Berechnung der Cluster wächst jedoch nicht linear mit der Größe der Eingabe.
-\newline
-Hierbei ist jedoch unklar, ob dies an der Implementierung oder an dem Verfahren an sich liegt, da über die Laufzeit der Meanshiftclustering keine Informationen vorliegen.
-
-
-Zusammenfassend lässt sich sagen, dass die Bachelorarbeit zu einem positiven Ergebnis gelangt ist. Zwar gibt es noch viele Stellen, an denen Verbesserungen vorgenommen werden können, aber es war möglich die, im Kontext des HoloMed Projektes, wichtigen Bereiche des Ventrikelsystems zu segmentieren und hervorzuheben.
-\newline
-Wenn die eben erwähnten Probleme verbessert werden, wird es voraussichtlich mit diesem clusteringbasierten Verfahren konsistent möglich sein, gute Segmentierungen des Ventrikelsystems zu berechnen.
-\newline
-Ein Ausblick wie die verschiedenen genannten Probleme behoben und die Implementierung an vielen Stellen verbessert werden kann wird im nächsten Kapitel gegeben.
+In einer anschließenden Arbeit kann das Verfahren noch weiter verbessert werden. Ein Ausblick wie die verschiedenen genannten Probleme behoben und verbessert werden können wird im nächsten Kapitel gegeben.
 
 
 

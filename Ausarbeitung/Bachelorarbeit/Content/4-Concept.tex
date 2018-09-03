@@ -7,7 +7,6 @@
 Nachdem im vorherigen Kapitel die verschieden Methoden die genutzt werden vorgestellt wurden, beschäftigt sich dieser Abschnitt mit dem Softwaredesign.
 \newline
 Die Implementierung dieser Bachelorarbeit teilt sich dabei in zwei verschieden Programme auf. Zum einen den sogenannten \textit{VolumeRenderHelper}, der für das Laden, Umwandeln, Verarbeiten und Speichern der Volumendaten zuständig ist.
-\newline
 Zum anderen das Unityprogramm \textit{VolumeRenderer}, welches zur Visualisierung der vom \textit{VolumeRenderHelper} erzeugten Daten dient. Diese beiden Programme existierten bereits vor dieser Arbeit und sind in Vorarbeiten des IPRs entstanden.
 
 
@@ -17,18 +16,14 @@ Die Beiden Programme werden im folgenden als Helper und Renderer bezeichnet. Wei
 
 
 Anfangs liegen die CT-Daten der Volumen in mehreren Dateien als Schnittbilder im DICOM Format vor. Diese werden mithilfe der \textit{Medical Imaging Interaction Toolkit} (kurz: \textit{MITK}) \textit{Workbench} \cite{mitk} zu einer einzelnen Datei im .nrrd Format umgewandelt, da Volumen nur in diesem Format, oder als binäre Datei, vom Helper eingelesen werden können.
-\newline
 \textit{MITK} ist ein kostenloses open-source System zur Entwicklung von medizinischer Bildverarbeitungssoftware und wurde vom Deutschen Krebsforschungszentrum entwickelt. Dessen \textit{Workbench} bietet zum einen, das eben vorgestellte Laden und Umwandeln von DICOM Dateien, zum anderen auch diverse Segmentierungstools.
 
 
 Die Darstellung von Volumendaten ist über den Renderer in Unity möglich. Der Benutzer hat hierbei mehrere Möglichkeiten Eingaben über Parameterfelder oder mithilfe der Tastatur zu machen und mit der Visualisierung zu interagieren. Zunächst muss er jedoch in das Parameterfeld \textit{Binary Data} via drag and drop eine binäre Volumendatei ziehen.
-\newline
 Anschließend kann die Visualisierung gestartet werden. Hierbei hat der Nutzer die Möglichkeit die Kamera mit den Tasten $W$ $A$ $S$ $D$ zu bewegen als auch mit den seitlichen Pfeiltasten sowie der $Q$ und $E$ Taste das Volumen um verschiedene Achsen zu drehen. Die Position der Kamera sowie die Drehung des Volumens, kann ebenfalls durch entsprechende Parameterfelder verändert werden.
-\newline
 Die Volumen, werden als Graubilder dargestellt, wobei die Helligkeit der einzelnen Voxel abhängig vom Intensitätswert bestimmt wird. Dabei kann der User über ein weiteres Parameterfeld entscheiden ob der Größte, der Kleinste, der Erste oder die Summe aller gefunden Voxel als Wert für die Farbgebung benutzt wird. Der Standard ist hierbei, dass des maximale Wert genommen wird .
 \newline
 Des Weiteren kann der Nutzer einen Threshold setzen, bei dem alle Voxel die einen Intensitätswert niedriger als diesen haben für die Visualisierung ignoriert werden.
-\newline
 Es existieren noch deutlich mehr Eingabefelder, mit denen der Benutzer die Darstellung des Volumens verändern und anpassen kann. Diese werden jedoch, da sie im Kontext dieser Bachelorarbeit von wenig Interesse sind, nicht alle vorgestellt.
 
 
@@ -41,12 +36,10 @@ Es existieren noch deutlich mehr Eingabefelder, mit denen der Benutzer die Darst
 
 
 Die interne Speicherung des Volumens im Helper wird mit der generischen Klasse \textit{Volume} umgesetzt, deren Felder, Attribute und Methoden in \autoref{fig:volume_uml} zu sehen sind. Diese besitzt ein dreidimensionalen Array vom angegebenen generischen Datentyp, sowie Informationen über das Volumen, wie zum Beispiel Größe der Voxel oder Anzahl der Elemente pro Achse.
-\newline
 Des Weiteren bietet die Klasse verschieden Funktionen um Informationen auszulesen oder zu bearbeiten. Zur Darstellung von dreidimensionale Koordinaten, werden die Klassen \textit{IVector3} und \textit{FVector3} benutzt. Diese stellen Vektoren dar, die entweder Integer, Ganzzahlen, oder Float, Dezimalzahlen, als $x,y$ und $z$ Werte speichern.
 
 
 Die Interaktion des Benutzers mit dem Helper findet über eine Kommandozeile statt. Hierbei hat der Anwender die Befehle \textit{Load}, \textit{Dump}, \textit{Resample}, \textit{Info}, \textit{Write}, \textit{LHHistogram}, \textit{ClusterVolume} und \textit{MergeCluster} zur Auswahl. Jedes Modul hat dabei Parameter, die beim Aufruf angegeben werden müssen. Wird ein Befehl mit einem Help dahinter aufgerufen, wird die richtige Benutzung des Moduls erklärt.
-\newline
 Die vorgestellten Module erben dabei alle von der abstrakten \textit{BaseModule} Klasse, die es ihnen vorschreibt, eine \textit{Call} sowie eine \textit{PrintHelp} Methode zu implementieren. Dies ist im UML-Diagramm in \autoref{fig:modul_uml} zu sehen.
 
 
@@ -66,7 +59,6 @@ Wird der \textit{Dump} Befehl mit einem $u$ am Ende aufgerufen, so wird das Volu
 Im Folgenden werden hauptsächlich die Module \textit{LHHistogram}, \textit{ClusterVolume} und \textit{MergeCluster} erläutert, da diese im Laufe dieser Arbeit entstanden sind. \textit{LHHistogram} berechnet das LH-Histogramm des geladenen Volumens und speichert dieses in einer .csv Datei ab.
 \newline
 \textit{ClusterVolume} kalkuliert ebenfalls die LH-Werte des Volumens, führt jedoch hinterher noch die beiden Clusteringsschritte des Verfahrens aus. Als Ausgabe speichert das Modul eine binäre Datei eines Volumens, in welchem die verschiedenen IDs der Cluster gespeichert sind. Die Idee dahinter wird im laufe dieses Kapitels erklärt.
-\newline
 Das Modul \textit{MergeCluster} dient der Verschmelzung der gewünschten IDs mit dem ursprünglichen Volumen. Das Ergebnis dessen, ist eine finale binäre Datei, die im Renderer geladen und das Ventrikelsystem visualisiert werden kann. Ein Überblick über den gesamten Aufbau und Ablauf der Implementierung ist in  \autoref{fig:ueberblick} zu sehen.
 
 \begin{figure}
@@ -77,13 +69,10 @@ Das Modul \textit{MergeCluster} dient der Verschmelzung der gewünschten IDs mit
 \end{figure}
 
 Als erstes muss mithilfe des \textit{Load} Moduls ein Volumen geladen werden. Wird anschließend der  \textit{LHHistogram} oder \textit{ClusterVolume} Befehl ausgeführt, beginnt der Ablauf der Berechnung in der statischen \textit{Gradient} Klasse.
-\newline
 Diese ist eine Implementierung des Verfahren von Hong \cite{hong2003method}. Zur Berechnung wird der Funktion \textit{CalcGradientVolume} das Volumen der Intensitätswerte, als \textit{Volume<int>}, als Parameter übergeben. Wie im vorherigen Kapitel besprochen, können die Gradienten nicht für einen Voxel direkt berechnet werden, sondern nur für die Punkte zwischen den Voxeln. Aus diesem Grund ist das Ergebnisvolumen um ein Voxel in jeder Achse kleiner als das Volumen der Intensitätswerte.
 \newline
 In \autoref{fig:shift} ist dazu ein zweidimensionales Beispiel zu sehen. Die Daten werden hierbei jeweils in der Ecken der Gitter gespeichert. Die Gradienten werden, da es sich um einen zweidimensionalen Fall hält, jeweils in der Mitte von vier benachbarten Punkten berechnet.
-\newline
 Die Dimension der Intensitätswerte ist 5x5, in der Abbildung in schwarz zu sehen. Nachdem die Gradienten berechnet wurden, ist zu erkennen, dass die das Gitter der Gradienten eine Dimension von 4x4 besitzt, in der Abbildung in rot zu sehen.
-\newline
 Als Ergebnis der \textit{CalcGradientVolume} Funktion wird ein Volumen vom Typen \textit{FVector3} zurückgegeben.
 
 
@@ -97,20 +86,16 @@ Als Ergebnis der \textit{CalcGradientVolume} Funktion wird ein Volumen vom Typen
 
 
 Die Berechnung der LH-Werte findet in der statischen Klasse \textit{LHValues} in der Funktion \textit{LHValueVolume} statt. Als Parameter wird das \textit{FVector3} Volumen der Gradienten aus dem Schritt davor entgegengenommen.
-\newline
 Da für die Berechnung der LH-Werte die Intensitätswerte und die Gradienten am gleichen Punkt vorhanden seien müssen, müssen die Intensitätswerte für das verschobene Volumen der Gradienten berechnet werden. Dazu wurde eine einfache Interpolation durchgeführt, indem von allen 8 Nachbarn eines Punktes die Intensitätswerte aufaddiert und hinterher durch acht geteilt wurden. Hierbei muss jedoch beachtet werden, dass die durch diese Interpolation Informationen verloren gehen.
 \newline
 Als Ergebnis der Funktion wird ein Volumen von zweier Tupeln zurückgegeben, in denen die Low- und High-Werte gespeichert sind.
 
 
 Hat der Benutzer das Modul \textit{LHHistogram} aufgerufen, wird im Anschluss das LH-Histogramm in der Klasse \textit{LHHistogramCSV} erstellt und wird von ihr als .csv Datei in einem vom Anwender angegebenen Pfad abgespeichert.
-\newline
 An dieser Stelle kommt das Pythonskript \textit{PlotHelper} zum Einsatz. Dieses lädt die .csv Datei und visualisiert das LH-Histogramm mithilfe einer kalt-zu-heiß-Farbrampe in einem zweidimensionalem Koordinatensystem.
-\newline
 Ein Beispiel davon ist in \autoref{fig:lh_histo} im Kapitel \nameref{sec:implementation} zu sehen. Hierbei ist zu beachten, dass das Histogramm abhängig von der Häufigkeit des Vorkommens eines LH-Wertpaares im Volumen gebildet wird. Diese werden im jeweils dazu passenden Kästchen des Koordinatensystems gespeichert. Dies ist ein simplerer Vorgehen, als das im Paper von Nguyen \cite{nguyen2012clustering} benutzten Erstellen des Histogramms abhängig von einer für jeden Voxel berechneten Gewichtung.
 \newline
 Da die Arbeit an der Implementierung zeitlich beschränkt war, wurde diese Gewichtung, die einzig und allein einer genaueren Darstellung des für das Verfahren irrelevante LH-Histogramm dient, vernachlässigt. Die Gewichtung ist für das Clustering belanglos, da dort ein Histogramm wie eben beschrieben, abhängig von der Häufigkeit der LH-Werte verwendet wird.
-\newline
 Bei der Erstellung des Histogramms im \textit{LHHistogram} Modul wird weiterhin der Logarithmus der Anzahl der Einträge jedes Kästchens genommen. Dies geschieht aus dem Grund der großen Diskrepanz zwischen der Anzahl der Einträge an den meisten Stellen im Histogramm im Vergleich zu dem Maximum. Dies lässt bei der Darstellung mit einer Farbrampe fast alles mit der Farbe des Minimums anzeigen. Da die Logarithmusfunktion für schnell wachsende Zahlen nur sehr langsam steigt, eignet sie sich dafür, diesen großen Unterschied anzupassen.
 
 
@@ -123,17 +108,15 @@ Anschließend geht es in der Funktion \textit{ComputeIDs} der \textit{SpatialClu
 
 
 Nachdem alle Cluster kalkuliert wurden, werden sie in der \textit{ClusterVolume} Klasse in einem Volumen gespeichert. Jeder Cluster bekommt dabei zunächst eine einzigartige ID. Die IDs beginnen bei eins und werden hochgezählt. Anschließend wird das Volumen mit den verschiedenen IDs gefüllt. Dies geschieht indem für jeden Cluster an den Positionen der Punkte die jeweilige ID gespeichert wird. Alle anderen Voxeln des Clustervolumens wird der Wert null zugewiesen.
-\newline
 Dieses Volumen wird als binäre Datei gespeichert und ist das Ergebnis des \textit{ClusterVolume} Moduls. Es ist bei diesem Modul sehr wichtig, dass es, wie es bei dem \textit{Dump} Befehl möglich ist, mit einem $u$ am Ende aufgerufen wird, da das Ergebnis sonst nicht vom Renderer eingelesen werden kann.
 
 
 Das Ergebnis muss anschließend vom Nutzer in Unity geladen werden. Hierbei kommt die in dieser Arbeit vorgenommenen Anpassung am Renderer zum Einsatz.
-\newline
-Hier hat der Benutzer durch die Erweiterung die Möglichkeit einen speziellen Wert oder einen Wertebereich hervorzuheben. Mithilfe dessen muss der Anwender alle Cluster die zum Ventrikelsystem gehören finden und sich deren IDs zu notieren.
+Hier hat der Benutzer durch die Erweiterung die Möglichkeit einen speziellen Wert oder einen Wertebereich hervorzuheben. Da das Volumen lediglich die IDs als Werte gespeichert hat und sonst nur aus nullen besteht, werden wenn ein Wert vom User angegeben wird, die Voxel die zum Cluster der jeweiligen ID gehören hervorgehoben.
+Mithilfe dessen muss der Anwender alle Cluster die zum Ventrikelsystem gehören finden und sich deren IDs zu notieren.
 
 
 Hat er dies getan kann er mit dem \textit{MergeCluster} Modul des Helpers das Ergebnis zusammenfügen und die finale Visualisierung erstellen. Beim Aufruf muss das Intensitätsvolumen bereits geladen sein und der Benutzer das Clustervolumen, die ausgewählten IDs und ein Zielpfad als Parameter übergeben. In der \textit{Call} Methode der \textit{MergeCluster} Klasse wird anschließend an den Stellen im Volumen, an denen die entsprechenden IDs gespeichert sind, die Werte im Intensitäsvolumen auf 5000 gesetzt.
-\newline
 Nach dem beschriebenen Verschieben aller Werte ins positive, liegt der maximale Intensitätswert bei ungefähr 4500. Folglich erhöht das Hinzufügen des Wertes 5000 das Maximum des Volumens, und damit die Darstellung im Renderer nur gering, und lässt es zu, die segmentierten Bereiche klar vom Rest abzugrenzen. Dieses Volumen wird erneut als binäre Datei im Zielpfad abgespeichert.
 
 

@@ -23,7 +23,6 @@ Zeilennummern erwähnen
 ------------------------------------------------------------------------------------------------
 Evaluation:
 
-Screenshots neu machen -> Höhen anpassen
 ------------------------------------------------------------------------------------------------
 Fazit:
 
@@ -50,8 +49,7 @@ Bilder:
 ------------------------------------------------------------------------------------------------
 Fragen an Christian: -> Beim Zusenden fragen
 
-Paper von ihm
-Qualität der Screenshots verbessern?
-Abbildung Ventrikelsystem verändert wie erwähnen?
-Zeitraum angeben von wann bis wann?
-Wie genau die zusammenfassung/ abstract am anfang? in englisch und deutsch?
+S. 1 - Wie Quelle von HoloMed angeben?
+S. 15 - Quelle ist angegeben übersehen oder genauer?
+S. 16 - Implementierung -> er hat gesagt Datentypen ins Design -> beziehe mich darauf -> komplettes Kapitel umschreiben
+S. 24-25 - Pseudocode klar von mir muss ich das angeben?, wie pseudocode erneut im text angeben -> benutze schon die entsprechenden wörter
