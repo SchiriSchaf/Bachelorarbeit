@@ -10,9 +10,7 @@ Die Implementierung dieser Bachelorarbeit teilt sich dabei in zwei verschieden P
 Zum anderen das Unityprogramm \textit{VolumeRenderer}, welches zur Visualisierung der vom \textit{VolumeRenderHelper} erzeugten Daten dient. Diese beiden Programme existierten bereits vor dieser Arbeit und sind in Vorarbeiten des IPRs entstanden.
 
 
-In dieser Bachelorarbeit wurde der \textit{VolumeRenderHelper} um die vorgestellte Transferfunktion erweitert und der \textit{VolumeRenderer} geringfügig angepasst. Da beide Programme in \textit{C\#} geschrieben sind, wurden auch der Code, der im Laufe dieser Bachelorarbeit entstand, in \textit{C\#} geschrieben. Als Entwicklerumgebung wurde \textit{Visual Studio 2017} von Microsoft verwendet.
-\newline
-Die Beiden Programme werden im folgenden als Helper und Renderer bezeichnet. Weiterhin wurde ein Pythonskript \textit{PlotHelper} geschrieben, um LH-Histogramme anzuzeigen.
+In dieser Bachelorarbeit wurde der \textit{VolumeRenderHelper} um die vorgestellte Transferfunktion erweitert und der \textit{VolumeRenderer} geringfügig angepasst. Da beide Programme in \textit{C\#} geschrieben sind, wurden auch der Code, der im Laufe dieser Bachelorarbeit entstand, in \textit{C\#} geschrieben. Als Entwicklerumgebung wurde \textit{Visual Studio 2017} von Microsoft verwendet. Die Beiden Programme werden im folgenden als Helper und Renderer bezeichnet. Weiterhin wurde ein Pythonskript \textit{PlotHelper} geschrieben, um LH-Histogramme anzuzeigen.
 
 
 Anfangs liegen die CT-Daten der Volumen in mehreren Dateien als Schnittbilder im DICOM Format vor. Diese werden mithilfe der \textit{Medical Imaging Interaction Toolkit} (kurz: \textit{MITK}) \textit{Workbench} \cite{mitk} zu einer einzelnen Datei im .nrrd Format umgewandelt, da Volumen nur in diesem Format, oder als binäre Datei, vom Helper eingelesen werden können.
@@ -35,7 +33,7 @@ Es existieren noch deutlich mehr Eingabefelder, mit denen der Benutzer die Darst
 \end{figure}
 
 
-Die interne Speicherung des Volumens im Helper wird mit der generischen Klasse \textit{Volume} umgesetzt, deren Felder, Attribute und Methoden in \autoref{fig:volume_uml} zu sehen sind. Diese besitzt ein dreidimensionalen Array vom angegebenen generischen Datentyp, sowie Informationen über das Volumen, wie zum Beispiel Größe der Voxel oder Anzahl der Elemente pro Achse.
+Die in der Vorarbeit bereits vorhandene interne Speicherung des Volumens im Helper wird mit der generischen Klasse \textit{Volume} umgesetzt, deren Felder, Attribute und Methoden in \autoref{fig:volume_uml} zu sehen sind. Diese besitzt ein dreidimensionalen Array vom angegebenen generischen Datentyp, sowie Informationen über das Volumen, wie zum Beispiel Größe der Voxel oder Anzahl der Elemente pro Achse.
 Des Weiteren bietet die Klasse verschieden Funktionen um Informationen auszulesen oder zu bearbeiten. Zur Darstellung von dreidimensionale Koordinaten, werden die Klassen \textit{IVector3} und \textit{FVector3} benutzt. Diese stellen Vektoren dar, die entweder Integer, Ganzzahlen, oder Float, Dezimalzahlen, als $x$, $y$ und $z$ Werte speichern.
 
 
@@ -43,7 +41,7 @@ Die Interaktion des Benutzers mit dem Helper findet über eine Kommandozeile sta
 Die vorgestellten Module erben dabei alle von der abstrakten \textit{BaseModule} Klasse, die es ihnen vorschreibt, eine \textit{Call} sowie eine \textit{PrintHelp} Methode zu implementieren. Dies ist im UML-Diagramm in \autoref{fig:modul_uml} zu sehen.
 
 
-\begin{figure}
+\begin{figure}[h]
 \centering 
 \includegraphics[width=\textwidth]{Logos/Modules_UML.PNG}
 \caption{UML-Diagramm über die Module} 
@@ -51,15 +49,50 @@ Die vorgestellten Module erben dabei alle von der abstrakten \textit{BaseModule}
 \end{figure}
 
 
-Die Funktionen der Module entsprechen deren Namen. So lädt \textit{Load} bespielsweise eine .nrrd oder binäre Datei, \textit{Dump} und \textit{Write} speichern das geladene Volumen als binäre oder .nrrd Datei ab. \textit{Info} gibt Informationen über das aktuell geladene Volumen zurück und \textit{Resample} lässt den Anwender die Größe des Volumens verändern.
+Die Funktionen der Module entsprechen deren Namen und sind im folgenden aufgelistet.
+
+
+\underline{\textit{Load}}
 \newline
+Lädt eine .nrrd oder eine binäre Datei.
+\newline
+\underline{\textit{Dump}}
+\newline
+Speichert das aktuell geladene Volumen als binäre Datei.
+\newline
+\underline{\textit{Write}}
+\newline
+Speichert das aktuell geladene Volumen als .nrrd Datei.
+\newline
+\underline{\textit{Info}}
+\newline
+Gibt Informationen über das aktuell geladene Volumen, wie beispielsweise Größe, Minimum, Maximum,.. etc.
+\newline
+\underline{\textit{Resample}}
+\newline
+Verändert die Größe des aktuell geladenen Volumens.
+
+
 Wird der \textit{Dump} Befehl mit einem $u$ am Ende aufgerufen, so wird das Volumen vor dem Speichern zum Typ $unsigned$ $int$ gecastet. Dies geschieht indem auf alle Werte der Betrag des minimalen Wertes aufaddiert wird. Dadurch verschieben sich die Werte so, dass das Minimum bei null liegt, also nur noch positive Zahlen im Volumen vorhanden sind. Dies ist für die Darstellung im Renderer wichtig, da dieser nur mit positiven Zahlen funktioniert. Des Weiteren müssen alle binären Dateien mit dem Suffix .bin.txt gespeichert werden, da Unity die Dateien sonst nicht einlesen kann.
 
 
 Im Folgenden werden hauptsächlich die Module \textit{LHHistogram}, \textit{ClusterVolume} und \textit{MergeCluster} erläutert, da diese im Laufe dieser Arbeit entstanden sind. \textit{LHHistogram} berechnet das LH-Histogramm des geladenen Volumens und speichert dieses in einer .csv Datei ab.
+
+
+\underline{\textit{LHHistogram}}
 \newline
-\textit{ClusterVolume} kalkuliert ebenfalls die LH-Werte des Volumens, führt jedoch hinterher noch die beiden Clusteringsschritte des Verfahrens aus. Als Ausgabe speichert das Modul eine binäre Datei eines Volumens, in welchem die verschiedenen IDs der Cluster gespeichert sind. Die Idee dahinter wird im laufe dieses Kapitels erklärt.
-Das Modul \textit{MergeCluster} dient der Verschmelzung der gewünschten IDs mit dem ursprünglichen Volumen. Das Ergebnis dessen, ist eine finale binäre Datei, die im Renderer geladen und das Ventrikelsystem visualisiert werden kann. Ein Überblick über den gesamten Aufbau und Ablauf der Implementierung ist in  \autoref{fig:ueberblick} zu sehen.
+ Berechnet das LH-Histogramm des geladenen Volumens und speichert dieses in einer .csv Datei ab.
+\newline
+\underline{\textit{ClusterVolume}}
+\newline
+Kalkuliert die LH-Werte des Volumens und führt hinterher die beiden Clusteringsschritte des Verfahrens aus. Als Ausgabe wird eine binäre Datei eines Volumens gespeichert, in welchem die verschiedenen IDs der Cluster gespeichert sind.
+\newline
+\underline{\textit{MergeCluster}}
+\newline
+Verschmilzt die gewünschten IDs mit dem ursprünglichen Volumen.
+
+Das Konzept hinter den IDs wird im laufe dieses Kapitels erklärt. Des Weitern ist das Ergebnis des \textit{MergeCluster} Moduls, ist eine finale binäre Datei, die im Renderer geladen und das Ventrikelsystem visualisiert werden kann. Ein Überblick über den gesamten Aufbau und Ablauf der Implementierung ist in  \autoref{fig:ueberblick} zu sehen.
+
 
 \begin{figure}
 \centering 
@@ -67,6 +100,7 @@ Das Modul \textit{MergeCluster} dient der Verschmelzung der gewünschten IDs mit
 \caption{Aktivitätsdiagramm über den Prozessablauf} 
 \label{fig:ueberblick} 
 \end{figure}
+
 
 Als erstes muss mithilfe des \textit{Load} Moduls ein Volumen geladen werden. Wird anschließend der  \textit{LHHistogram} oder \textit{ClusterVolume} Befehl ausgeführt, beginnt der Ablauf der Berechnung in der statischen \textit{Gradient} Klasse.
 Diese ist eine Implementierung des Verfahren von Hong \cite{hong2003method}. Zur Berechnung wird der Funktion \textit{CalcGradientVolume} das Volumen der Intensitätswerte, als \textit{Volume<int>}, als Parameter übergeben. Wie im vorherigen Kapitel besprochen, können die Gradienten nicht für einen Voxel direkt berechnet werden, sondern nur für die Punkte zwischen den Voxeln. Aus diesem Grund ist das Ergebnisvolumen um ein Voxel in jeder Achse kleiner als das Volumen der Intensitätswerte.
@@ -82,7 +116,6 @@ Als Ergebnis der \textit{CalcGradientVolume} Funktion wird ein Volumen vom Typen
 \caption{2D Beispiel warum das Volumen kleiner wird} 
 \label{fig:shift} 
 \end{figure}
-
 
 
 Die Berechnung der LH-Werte findet in der statischen Klasse \textit{LHValues} in der Funktion \textit{LHValueVolume} statt. Als Parameter wird das \textit{FVector3} Volumen der Gradienten aus dem Schritt davor entgegengenommen.
