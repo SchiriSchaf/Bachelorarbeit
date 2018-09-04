@@ -20,14 +20,13 @@ Eine Einteilung in verschieden Kategorien fällt dabei schwer, da viele der Verf
 
 \subsection{Eindimensionale Verfahren}
 
-Die einfachste Form einer Transferfunktionen, ist eine eindimensionale. Bei dieser wird einem Voxel Farbe und Okklusion nur abhängig von dessen Intensitätswerten zugeteilt.
-\newline
-Abgesehen von den niedrigen Berechnungszeiten, eigenen sich diese aus mehreren Gründen nicht, um das Ventrikelsystem zu segmentieren. Medizinischen Daten werden gemessen und haben deshalb meist ein Rauschen, was die genaue Darstellung erschwert. Weiterhin sind die Intensitätswerte verschiedener Bereiche nah beieinander oder gar gleich. Deshalb sind eindimensionale Transferfunktionen unpraktisch um verschiedene Materialien kenntlich zu machen.
-\newline
-Trotzdem sind eindimensionale Transferfunktionen weit verbreitet und werden häufig benutzt, da sie oft bei Softwarepaketen inklusive sind.
+Die einfachste Form der Transferfunktionen, sind die eindimensionalen. Bei dieser werden den Voxeln Farbe und Okklusion nur abhängig von deren Intensitätswerten zugewiesen. Beispielsweise ist die simpelste Herangehensweise, dass ein Benutzer einen oder mehrere Werte angibt. Diese werden anschließend von der Transferfunktion eingefärbt.
 
+Es existieren auch etwas aufwändigere eindimensionalen Transferfunktion, wie zum Beispiel das Vorgehen, das im Paper von Drebin \cite{drebin1988volume} vorgestellt wird. In diesem werden die Voxel anhand von auf den Intensitätswerten basierenden Wahrscheinlichkeiten klassifiziert. Abhängig von dieser Klassifizierung werden den Voxeln Farbwerte zugewiesen.
 
-Eine etwas komplexere eindimensionalen Transferfunktion wird im Paper von Drebin \cite{drebin1988volume} vorgestellt, bei der Voxel, anhand von Wahrscheinlichkeiten, die auf den Intensitätswerten basieren, klassifiziert werden. Abhängig von dieser Klassifizierung werden den Voxeln Farbwerte zugewiesen.
+Allgemein sind eindimensionale Transferfunktionen weit verbreitet und werden häufig benutzt, da sie schnell implementiert sind, geringe Berechnungszeiten haben und sich für simple Problemstellungen gut eignen.
+\newline
+Für das Lösen der komplexen Aufgabe das Ventrikelsystem zu segmentieren, sind sie jedoch unbrauchbar. Medizinischen Daten werden gemessen und haben deshalb meist ein Rauschen, welches das Ausmachen eines genauen Wertebereichs der Strukturen von Interesse erschwert. Weiterhin sind die Intensitätswerte verschiedener Bereiche nah beieinander oder gar gleich. Deshalb ist es mit eindimensionale Transferfunktionen nicht möglich verschiedene Materialien von einander zu unterscheiden.
 
 
 

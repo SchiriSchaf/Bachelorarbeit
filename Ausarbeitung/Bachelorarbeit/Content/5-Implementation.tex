@@ -65,9 +65,9 @@ if (!HisFinished){
 Am Anfang eines Durchlaufes wird der normalisierte Gradienten des aktuellen Punktes in \textit{absVectorNormalized} gespeichert. Anschließend wird der Punkt des zweiten normalisierten Vektors berechnet. Liegt dieser außerhalb des Volumens, so wird die Integration beendet. Liegt er jedoch innerhalb des Volumens, so wird der \textit{secondAbsVector} ausgelesen und der Intensitätswert des aktuellen Punktes zu der Liste \textit{highestIntensity} hinzugefügt. Ist der Gradient des aktuellen Punktes kleiner als die \textit{extremumLength}, welche im Falle von CT-Daten bei null liegt, wird die Integration beendet.
 \newline
 Andernfalls wird zunächst mithilfe der \textit{highestIntensity} Liste nach Schleifen gesucht. Bei sehr kleinen Gradienten, die jedoch größer als null sind, kann es vorkommen, dass das Verfahren immer wieder den selben Punkt findet und somit in einer Endlosschleife feststeckt.
-Wie in \autoref{fig:lh_code} zu sehen ist, wird dabei jedoch erst getestet ob die Liste schon mehr als 3 Einträge hat. Dies geschieht aus dem Grund, dass anfangs, vor der while-Schleife bereits der Intensitätswert des Startvoxels zur Liste hinzugefügt werden muss. Dies geschieht aus dem Grund, dass sonst, würde das Verfahren bei dem ersten Abbruchkriterium bei der ersten Iteration schon stoppen, die \textit{highestIntensity} Liste leer wäre, und es kein Ergebnis für den High-Wert gäbe.
+Wie in \autoref{lst:lh_code} zu sehen ist, wird dabei jedoch erst getestet ob die Liste schon mehr als 3 Einträge hat. Dies geschieht aus dem Grund, dass anfangs, vor der while-Schleife bereits der Intensitätswert des Startvoxels zur Liste hinzugefügt werden muss. Dies geschieht aus dem Grund, dass sonst, würde das Verfahren bei dem ersten Abbruchkriterium bei der ersten Iteration schon stoppen, die \textit{highestIntensity} Liste leer wäre, und es kein Ergebnis für den High-Wert gäbe.
 Das Testen von Schleifen könnte jedoch über die Koordinaten der iterierten Punkte geschehen, um dem unwahrscheinlichem Fall, dass zwei durch die Integration hintereinander besuchte Punkte genau den selben Intensitätswert haben.
-Anschließend wird der nächste Punkt der Integration mithilfe von \textit{absVectorNormalized} und \textit{secondAbsVecotr} gemäß Heun's Methode, die im Kapitel \nameref{sec:mathods} vorgestellt wurde, ermittelt. Erneut endet die Integration, falls der neu berechnete Punkt außerhalb des Volumens liegt.
+Anschließend wird der nächste Punkt der Integration mithilfe von \textit{absVectorNormalized} und \textit{secondAbsVecotr} gemäß Heun's Methode, die im Kapitel \nameref{sec:methods} vorgestellt wurde, ermittelt. Erneut endet die Integration, falls der neu berechnete Punkt außerhalb des Volumens liegt.
 \newline
 Dieser Vorgang wiederholt sich für den High- als auch für den Low-Wert solange, bis die Integration aus einem der gegebenen Abbruchkriterien stoppt. In diesem Fall wird der letzte Eintrag der \textit{highestIntensity} Liste ausgelesen und als Ergebnis für den High-Wert gespeichert. Ebenso passiert dies mit der für die Low-Werte äquivalenten \textit{lowestIntensity} Liste.
 Der Fall, dass ein Iterationsschritt in einer der gezeigten Formen außerhalb des Volumens liegt, und deshalb das Verfahren gestoppt wird, kommt in ungefähr 2-\%-3\% der Fälle vor. Des Weiteren kommt es bei zirka 25\% aller Berechnung dazu, dass die LH-Werte vertauscht waren, also der Low- größer als der High-Wert war. Dem wird entgegengewirkt, indem bei einem Vorkommen dieses Problems die beiden Werte vertauscht gespeichert werden. Es war noch nicht möglich den Grund für diese Verwechslung herauszufinden.
@@ -78,8 +78,8 @@ Der Fall, dass ein Iterationsschritt in einer der gezeigten Formen außerhalb de
 
 Die Implementierung des LH-Clusterings wurde mit einer parallelen for-Schleife realisiert, die über die L-Werte mit der Schrittweite von 5 iteriert. Für jede Spalte i wird dann die in \autoref{alg:clustering} beschriebene Funktion aufgerufen.
 
-\IncMargin{1em}
-\begin{algorithm}
+
+\begin{algorithm}[h]
 \SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}
 \SetKwFunction{Union}{Union}\SetKwFunction{FindCompress}{FindCompress}
 \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
@@ -110,7 +110,7 @@ $VerschmelzeNaheCluster(AlleErgebnisCluster)$\;
 
  \caption{Pseudocode der Implementierung der LH-Cluster}
  \label{alg:clustering}
-\end{algorithm}\DecMargin{1em}
+\end{algorithm}
 
 
 Die erste for-Schleife iteriert über die H-Werte. Der Parameter j beginnt mit dem Wert i und wird, wie dieser, mit der Schrittweite 5 hochgezählt. Dies hat den Grund, dass es im LH-Histogramm keine Einträge gibt, bei denen der Low- höher als der High-Wert ist. Alle durch die beiden Schleifen entstehenden Punkte $(i, j)$ sind jeweils die Startpunkte einer Clustersuche.
@@ -191,7 +191,11 @@ Anschließend wird in der Funktion \textit{ComputeIDs}, der die Cluster als Para
 
 \subsection{Unity}
 
-Die Erweiterung die am Renderer vorgenommen wurden, wurden im Shader programmiert. Die dazugehörigen hinzugefügten Parameterfelder sind in \autoref{fig:unity_para} zu sehen. Zuerst wurde eine drop-down-Liste \textit{Volume coloring method}  hinzugefügt, über die der Nutzer zwischen den Modi \textit{Default}, \textit{SpecificValue} und \textit{SpecificValueRange} wählen kann.
+Die Erweiterung die am Renderer vorgenommen wurden, wurden im Shader programmiert. Die dazugehörigen hinzugefügten Parameterfelder sind in \autoref{fig:unity_para} zu sehen. Zuerst wurde eine drop-down-Liste \textit{Volume coloring method}  hinzugefügt, über die der Nutzer zwischen den Modi \textit{Default}, \textit{SpecificValue} und \textit{SpecificValueRange} wählen kann. Außerdem wurden drei Textfelder hinzugefügt.
+\newline
+Über das Parameterfeld \textit{Specific value} ist es dem Anwender möglich den spezifischen Wert für den Modus \textit{SpecificValue} anzugeben. Weiterhin kann er über \textit{Minimum volume value} die untere Grenze und über \textit{Maximum volume value} die obere Grenze des Wertebereichs für den \textit{SpecificValueRange} Modus angeben. Die Grenzwerte sind dabei jeweils inklusive. Des Weiteren wurde noch das Farbfeld \textit{Color for specifiv value} hinzugefügt, welches die Farbe anzeigt, mit der hervorgehobenen Wert oder Wertebereiche dargestellt wird. Der Benutzer kann diese Farbe über das Parameterfeld verändern.
+\newline
+Der \textit{Default} Modus steht für die schon vorher dagewesene und im Kapitel \nameref{sec:concept} bereits beschriebene Implementierung der Farbgebung mit verschiedenen Grauwerten. Diese wurde in den beiden anderen beiden Modi übernommen. Der Unterschied besteht jedoch darin, dass alle Voxel, die bei \textit{SpecificValue} den spezifischen Wert, oder bei \textit{SpecificValueRange} innerhalb des Wertebereichs liegen, die Farbe des Farbfeldes \textit{Color for specifiv value} zugewiesen wird. Allen anderen Voxel erhalten Grauwerte wie im \textit{Default} Modus.
 
 
 \begin{figure}[h]
@@ -200,25 +204,6 @@ Die Erweiterung die am Renderer vorgenommen wurden, wurden im Shader programmier
 \caption{Parameterfelder in Unity} 
 \label{fig:unity_para} 
 \end{figure}
-
-
-Weiterhin wurden drei Textfelder hinzugefügt, über die es dem Anwender möglich ist den spezifischen Wert als auch den Wertebereich anzugeben. Des Weiteren wurde noch ein Farbfeld hinzugefügt, mit welchem die Farbe, in der hervorgehobenen Bereiche dargestellt wird, anzeigt wird und vom Benutzer verändert werden kann.
-\newline
-Der \textit{Default} Modus steht hierbei für die schon vorher dagewesene Implementierung der Farbgebung mit verschiedenen Grauwerten. Diese wurde weitestgehend in den beiden anderen beiden Modi übernommen. Der Unterschied besteht jedoch darin, dass wenn ein Voxel bei \textit{SpecificValue} mit dem spezifischen Wert, oder bei \textit{SpecificValueRange} innerhalb des Wertebereichs gefunden wird, dieser in der Farbe des Farbfeldes angezeigt wird. Alle andern Voxel bekommen die selbe Farbe, die sie auch im \textit{Default} Modus erhalten würden.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

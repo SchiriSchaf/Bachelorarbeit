@@ -8,7 +8,7 @@
 %% Additions by: Thorsten Haberecht, IPD - Chair Prof. BÃ¶hm, 2010
 %% thorsten.haberecht@kit.edu
 %%
-%% Additions of multiple classes: Denis ¦togl, IAR-IPR Prof. Hein, 2017
+%% Additions of multiple classes: Denis ï¿½togl, IAR-IPR Prof. Hein, 2017
 %% denis.stogl@kit.edu
 %% Some ideas taken from: SDQ-Version by Erik Burger (v1.3, Dezember 2016)
 
@@ -332,6 +332,7 @@
 	}{
 	  \iflanguage{ngerman}{Erstgutachter}{First reviewer}: & \hfill & \thereviewerone \\
 	  { }\iflanguage{ngerman}{Zweitgutachter}{Second reviewer}: & \hfill & \thereviewertwo \\
+	  {}\iflanguage{ngerman}{Betreuender Mitarbeiter}{Advisor}: & \hfill & \theadvisorone \\
 	}
       \fi
       \ifIPRthesis@thesis
@@ -356,7 +357,7 @@
     \vspace{4cm}
     \normalsize{
       \ifIPRthesis@techreport
-	\today
+	\theeditstart{} -- \theeditend
       \else
 	\theeditstart{} -- \theeditend
       \fi
@@ -370,8 +371,7 @@
 
 \newcommand{\includedeclaration}{}
 \ifIPRthesis@techreport
-  \thispagestyle{empty}
-  \pagebreak
+  \renewcommand{\includedeclaration}{\input{Content/0-Declaration.tex}}
 \else
   \renewcommand{\includedeclaration}{\input{Content/0-Declaration.tex}}
 \fi
@@ -474,6 +474,9 @@
 \ifIPRthesis@techreport
   \renewcommand{\inculdetableofcontents}{
     \tableofcontents
+    \pagebreak
+    \listoffigures \addcontentsline{}{chapter}{\listfigurename}
+    \listoftables \addcontentsline{}{chapter}{\listtablename}
     \pagebreak
     }
 \fi

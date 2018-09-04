@@ -4,13 +4,12 @@ Bild Quelle richtig angeben
 ------------------------------------------------------------------------------------------------
 State of the art:
 
-1D überarbeiten
 Machinelearning Absatz überarbeiten
 ------------------------------------------------------------------------------------------------
 Methods:
 
 Überarbeitung Gradient nochmal lesen -> Formel richtig formatieren
-Allgemein nochmal drüber lesen -> wichtiges Kapitel
+Allgemein nochmal drüber lesen -> wichtiges Kapitel -> Formeln -> ist jeder Part der Formel erklärt?
 Clustering neu beschreiben -> ausführlicher, einfacher
 ------------------------------------------------------------------------------------------------
 Design:
@@ -32,10 +31,7 @@ Ausblick:
 ------------------------------------------------------------------------------------------------
 Allgemein:
 
-Abstract schreiben
 Bilder, Tabellen etc. an die richtigen Stellen im Text schieben
-UML Diagrammte testen ob diese UML konform sind
-
 ------------------------------------------------------------------------------------------------
 Sprache:
 
@@ -48,8 +44,3 @@ Bilder:
 
 ------------------------------------------------------------------------------------------------
 Fragen an Christian: -> Beim Zusenden fragen
-
-S. 1 - Wie Quelle von HoloMed angeben?
-S. 15 - Quelle ist angegeben übersehen oder genauer?
-S. 16 - Implementierung -> er hat gesagt Datentypen ins Design -> beziehe mich darauf -> komplettes Kapitel umschreiben
-S. 24-25 - Pseudocode klar von mir muss ich das angeben?, wie pseudocode erneut im text angeben -> benutze schon die entsprechenden wörter

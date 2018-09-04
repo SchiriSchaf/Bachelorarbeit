@@ -42,8 +42,7 @@ Um zu messen, wie gut die Approximation die Intensitätswerte beschreibt, wird i
 
 
 \begin{equation}
-  E(A,B,C,D,F,G,H,I,J,K) = \\
-\sum\limits_{k=1}^{64}  w_{k}(Ax^{2}+By^{2}+Cz^{2}+2Fyz+2Gzx+2Hxy+2Ix+2Jy+2Kz+D - f_{k})^2
+  E(A,B,C,D,F,G,H,I,J,K) = \sum\limits_{k=1}^{64}  w_{k}(Ax^{2}+By^{2}+Cz^{2}+2Fyz+2Gzx+2Hxy+2Ix+2Jy+2Kz+D - f_{k})^2
 \end{equation}
 
 Dabei ist $w_{k} = \frac{1}{d_{k}}$, $d_{k} =(x_{k}^2y_{k}^2z_{k}^2)^{1/2}$  die Distanz des k-ten Punktes zum Ursprung des Koordinatensystems, wie es in \autoref{fig:nachbarschaft} zu sehen ist und $f_{k}$ der Intensitätswert des k-ten Punktes. Die Parameter $A,B,C,E,F,G,H,I,J,K$  der Funktion müssen so gewählt werden, dass die Summe $E$ minimal wird, damit die approximierte Intensitätsfunktion das Volumen möglichst genau beschreibt. Die Parameter können deshalb mithilfe der Methode der kleinsten Quadrate bestimmt werden. Dies ist ein mathematisches Verfahren, das zu mehreren Punkten, eine Funktion bestimmt. Die Funktion beschreibt eine Kurve, bei der die Summe der Abweichung aller Punkte zur Kurve minimal ist. Mithilfe dessen können durch mehrere Umformungsschritte die Parameter berechnet werden. Anschließend kann der Gradient $[X, Y, Z]$ des Punktes $[x, y, z]$ mit folgender Formel, die sich aus der Ableitung des Intensitätsfunktion ergibt, kalkuliert werden:
