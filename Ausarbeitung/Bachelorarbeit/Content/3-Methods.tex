@@ -22,7 +22,7 @@ In \autoref{fig:nachbarschaft} ist zu erkennen, wie der Gradient im Zentrum der 
 \end{figure}
 
 
-Ein Gradient ist ein dreidimensionaler Vektor, der in die Richtung der größten Änderung der Intensitätswerte im Volumen zeigt. Gäbe es eine Funktion, die die Intensitätswerte des Volumens beschreibt, wären der Gradient die Ableitung dieser Funktion. Folglich muss für die Berechnung eines Gradienten zunächst eine Intensitätsfunktion für die lokale 4x4x4 Nachbarschaft aufgestellt werden. Im Paper wird dies mit der Formel:
+Ein Gradient ist ein dreidimensionaler Vektor, der in die Richtung der größten Änderung der Intensitätswerte im Volumen zeigt. Gäbe es eine Funktion, die die Intensitätswerte des Volumens in der lokalen Nachbarschaft beschreibt, wäre der Gradient die Ableitung dieser Funktion. Folglich muss für die Berechnung eines Gradienten zunächst eine Intensitätsfunktion für die lokale 4x4x4 Nachbarschaft aufgestellt werden. Im Paper wird dies mit der Formel:
 \begin{equation}
 	f(x,y,z) = Ax^{2}+By^{2}+Cz^{2}+2Fyz+2Gzx+2Hxy+2Ix+2Jy+2Kz+D
 \end{equation}
@@ -37,7 +37,7 @@ approximiert, da es nicht möglich ist eine solche Funktion zu bestimmen. Um den
          \end{bmatrix} 
 \end{equation}
 
-Um den Gradienten zu berechnen müssen folglich die Parameter $A$, $B$, $C$, $E$, $F$, $G$, $H$, $I$ ,$J$, $K$ aufgelöst werden. Dazu wird im Paper zunächst die \textit{error distance} vorgestellt. Diese beschreibt die Entfernung zwischen einem berechneten Datenpunkt und seinem korrespondierenden Punkt in den tatsächlichen Daten. Die Funktion $E$($A$, $B$, $C$, $E$, $F$, $G$, $H$, $I$ ,$J$, $K$) berechnet die Summe der \textit{error distance} aller 64 Nachbarpunkte. Diese Summe drückt aus, wie gut die Approximation die tatsächlichen Intensitätswerte des Volumens beschreibt. Deshalb müssen die Parameter so gewählt werden, dass die Summe $E$ minimal wird und somit die approximierte Intensitätsfunktion das Volumen möglichst genau beschreibt.
+Um den Gradienten zu berechnen müssen folglich die Parameter $A$, $B$, $C$, $E$, $F$, $G$, $H$, $I$ ,$J$, $K$ gelöst werden. Dazu wird im Paper zunächst die \textit{error distance} vorgestellt. Diese beschreibt die Entfernung zwischen einem berechneten Datenpunkt und seinem korrespondierenden Punkt in den tatsächlichen Daten. Die Funktion $E$($A$, $B$, $C$, $E$, $F$, $G$, $H$, $I$ ,$J$, $K$) berechnet die Summe der \textit{error distance} aller 64 Nachbarpunkte. Diese Summe drückt aus, wie gut die Approximation die tatsächlichen Intensitätswerte des Volumens beschreibt. Deshalb müssen die Parameter so gewählt werden, dass die Summe $E$ minimal wird und somit die approximierte Intensitätsfunktion das Volumen möglichst genau beschreibt.
 
 
 \begin{equation}
@@ -94,23 +94,21 @@ Anschließend wird ein LH-Histogramm mit allen berechneten LH-Wertpaaren erstell
 
 \subsection{LH-Clustering}
 
-Als nächstes, wird der erste Clusteringschritt durchgeführt. Dieser findet über dem LH-Raum, genauer gesagt auf dem zuvor berechneten LH-Histogramm statt. Dafür wird \textit{Meanshiftclustering} verwendet.
+Als nächstes wird der erste Clusteringschritt durchgeführt. Dieser findet über dem LH-Raum, genauer gesagt auf dem zuvor berechneten LH-Histogramm statt. Dafür wird \textit{Meanshiftclustering} verwendet.
 \newline
 Vor dem Berechnen der Cluster muss zunächst eine Bandweite sowie ein Thresholdwert bestimmt werden, welche die Sensitivität des Clusterings angeben. Die von Nguyen \cite{nguyen2012clustering} verwendete Bandweite liegt bei 7\% bis 9\% des maximalen LH-Wertes und der Threshold bei 0,01. Anschließend kann die Kalkulation der Cluster beginnen.
 \newline
-Die Berechnung wird für jeden Punkt im Histogramm durchgeführt. Jede Iteration besitzt einen Cluster mit einen Mittelpunkt. Der Mittelpunkt eines Clusters ist der jeweilige Mittelwert der Low- und High-Werte aller Punkte des Clusters. Wenn die Kalkulation für einen beliebigen Punkt startet wird dieser zum Cluster hinzugefügt und als erster Mittelpunkt bestimmt. Anschließend werden alle Punkte die im Histogramm in einem Umkreis von der Bandweite um den Mittelpunkt liegen zum Cluster hinzugefügt. Danach wird der neue Mittelpunkt berechnet. Erneut werden alle Punkte, die noch nicht zum Cluster gehören aber innerhalb der Bandweite um den Mittelpunkt liegen hinzugefügt. Dies wiederholt sich so lange, bis die Distanz zweier aufeinanderfolgender Mittelpunkte kleiner als die Bandweite multipliziert mit dem Thresholdwert ist.
+Die Berechnung wird für jeden Punkt im Histogramm durchgeführt. Jede Iteration besitzt dabei einen Cluster mit einen Mittelpunkt. Der Mittelpunkt eines Clusters ist der jeweilige Mittelwert der Low- und High-Werte aller Punkte des Clusters. Wenn die Kalkulation für einen beliebigen Punkt startet wird dieser zum Cluster hinzugefügt und als erster Mittelpunkt bestimmt. Anschließend werden alle Punkte die im Histogramm in einem Umkreis von der Bandweite um den Mittelpunkt liegen zum Cluster hinzugefügt. Danach wird der neue Mittelpunkt berechnet. Erneut werden alle Punkte, die innerhalb der Bandweite um den Mittelpunkt liegen und noch nicht zum Cluster gehören, hinzugefügt. Dies wiederholt sich so lange, bis die Distanz zweier aufeinanderfolgender Mittelpunkte kleiner als die Bandweite multipliziert mit dem Thresholdwert ist.
 \newline
-Nachdem diese Berechnung für jeden Punkt im Histogramm durchgeführt wurde, existieren viele Cluster, die oftmals aus vielen gleichen Punkten bestehen. Um dies zu unterbinden werden in einem weiteren Schritt alle Cluster die sehr nah beieinander liegen verschmolzen. Dies betrifft jene Cluster, deren Mittelpunkte eine Distanz kleiner als die Hälfte der Bandweite zueinander haben.
+Nachdem diese Berechnung für jeden Punkt im Histogramm durchgeführt wurde, existieren mehrere Cluster, die oftmals aus vielen gleichen Punkten bestehen. Um dies zu unterbinden werden in einem weiteren Schritt alle Cluster die sehr nah beieinander liegen verschmolzen. Dies betrifft jene Cluster, deren Mittelpunkte eine Distanz kleiner als die Hälfte der Bandweite zueinander haben.
 
 
 
 \subsection{Räumliches-Clustering}
 
-Als nächster Schritt, wird erneut auf jedem eben entstandenen Cluster \textit{Meanshiftclustering} angewendet. Dabei wird auf jedem Cluster einzeln und unabhängig von den anderen Clustern geclustert. Außerdem werden diesmal die räumlichen Informationen der Punkte in Betracht gezogen. Hierzu müssen zunächst erneut die beiden Parameter Bandweite und Threshold definiert werden.
+Anschließend wird der zweite Clusteringschritt durchgeführt, welcher erneut \textit{Meanshiftclustering} verwendet. Dies wird mit dem gleichen Vorgehen wie im vorherigen Schritt beschrieben umgesetzt. Ein Unterschied besteht jedoch darin, dass diesmal das Clustering nicht auf dem LH-Raum, sondern auf dem kartesischen Raum des Volumens angewendet wird. Weiterhin wird das Clustering auf den zuvor entstandenen Clustern einzeln und unabhängig von einander durchgeführt. Dadurch haben alle durch den räumlichen Clusteringschritt entstehende Ergebniscluster ähnliche LH-Werte und liegen auch im Volumen sehr nah beieinander.
 \newline
-Anschließend läuft das Clustering wie zuvor im LH-Raum ab, mit dem Unterschied, dass statt im zweidimensionalem Raum mit einem zweidimensionalem Kreis im dreidimensionalem Raum des Volumens mit einer dreidimensionalen Kugel nach Voxeln des selben LHJ-Clusters gesucht wird.
-\newline
-Des Weiteren findet am Ende der Berechnung der Cluster keine Verschmelzung statt, da dies den Sinn der beiden verschiedenen Clusteringschritte zerstören würde. In den finalen Cluster haben alle Punkte jeweils ähnliche LH-Werte und liegen im Volumen nah beieinander. Würden diese Cluster anhand ihrer räumlichen Informationen verschmolzen werden, hätten die Punkte keine ähnlichen LH-Werte mehr und der erste Clusteringschritt wäre umsonst gewesen.
+Aus diesem Grund findet am Ende der Berechnung der Cluster keine Verschmelzung statt, da dies den Sinn der beiden von einander getrennten Clusteringschritte zerstören würde. Würden die Ergebniscluster anhand ihrer räumlichen Informationen verschmolzen werden, wäre der erste Clusteringschritt umsonst gewesen, da die Ähnlichkeit der LH-Werte verloren gehen würde.
 
 
 
@@ -119,4 +117,55 @@ Des Weiteren findet am Ende der Berechnung der Cluster keine Verschmelzung statt
 Im optionalen letzten Clusteringschritt, werden die berechneten Cluster hierarchisch miteinander verschmolzen. Dafür wird zunächst der paarweise Abstand zwischen allen Clustern berechnet. Der Abstand wird wie bei Sereda \cite{sereda2006automating} anhand der Anzahl der direkten Nachbarschaften der Voxel beider Cluster bestimmt. Anschließend werden immer die beiden Cluster die sich am nächsten sind zu einem verschmolzen. Dieser Vorgang wiederholt sich so lange, bis nur noch ein Cluster existiert. Im Anschluss wird das Verfahren Schritt für Schritt rückgängig gemacht, bis eine vom Benutzer angegebene Anzahl an Clustern erreicht wird.
 \newline
 Der vorgestellte dritte hierarchische Clusteringsschritt wurde in dieser Arbeit nicht angewendet. Dies wurde aus dem Grund entschieden, dass das Verschmelzen von Clustern abhängig von räumlicher Nähe für die Aufgabe das Ventrikelsystem hervorzuheben nicht zielführend ist. Wird das System als ein oder mehrere Cluster erkannt, liegen diese mitten im Gehirn neben sehr vielen anderen Clustern und würden mit anderen umliegenden Strukturen verschmolzen werden.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

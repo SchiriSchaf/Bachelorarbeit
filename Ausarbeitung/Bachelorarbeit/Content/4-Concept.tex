@@ -37,7 +37,7 @@ Die in der Vorarbeit bereits vorhandene interne Speicherung des Volumens im Help
 Des Weiteren bietet die Klasse verschieden Funktionen um Informationen auszulesen oder zu bearbeiten. Zur Darstellung von dreidimensionale Koordinaten, werden die Klassen \textit{IVector3} und \textit{FVector3} benutzt. Diese stellen Vektoren dar, die entweder Integer, Ganzzahlen, oder Float, Dezimalzahlen, als $x$, $y$ und $z$ Werte speichern.
 
 
-Die Interaktion des Benutzers mit dem Helper findet über eine Kommandozeile statt. Hierbei hat der Anwender die Befehle \textit{Load}, \textit{Dump}, \textit{Resample}, \textit{Info}, \textit{Write}, \textit{LHHistogram}, \textit{ClusterVolume} und \textit{MergeCluster} zur Auswahl. Jedes Modul hat dabei Parameter, die beim Aufruf angegeben werden müssen. Wird ein Befehl mit einem Help dahinter aufgerufen, wird die richtige Benutzung des Moduls erklärt.
+Die Interaktion des Benutzers mit dem Helper findet über eine Kommandozeile statt. Hierbei hat der Anwender die Befehle \textit{Load}, \textit{Dump}, \textit{Resample}, \textit{Info}, \textit{Write}, \textit{LHHistogram}, \textit{ClusterVolume} und \textit{MergeCluster} zur Auswahl. Jedes Modul hat dabei spezifische Parameter, die beim Aufruf angegeben werden müssen. Wird ein Befehl mit einem Help dahinter aufgerufen, wird die richtige Benutzung des Moduls erklärt.
 Die vorgestellten Module erben dabei alle von der abstrakten \textit{BaseModule} Klasse, die es ihnen vorschreibt, eine \textit{Call} sowie eine \textit{PrintHelp} Methode zu implementieren. Dies ist im UML-Diagramm in \autoref{fig:modul_uml} zu sehen.
 
 
@@ -76,7 +76,7 @@ Verändert die Größe des aktuell geladenen Volumens.
 Wird der \textit{Dump} Befehl mit einem $u$ am Ende aufgerufen, so wird das Volumen vor dem Speichern zum Typ $unsigned$ $int$ gecastet. Dies geschieht indem auf alle Werte der Betrag des minimalen Wertes aufaddiert wird. Dadurch verschieben sich die Werte so, dass das Minimum bei null liegt, also nur noch positive Zahlen im Volumen vorhanden sind. Dies ist für die Darstellung im Renderer wichtig, da dieser nur mit positiven Zahlen funktioniert. Des Weiteren müssen alle binären Dateien mit dem Suffix .bin.txt gespeichert werden, da Unity die Dateien sonst nicht einlesen kann.
 
 
-Im Folgenden werden hauptsächlich die Module \textit{LHHistogram}, \textit{ClusterVolume} und \textit{MergeCluster} erläutert, da diese im Laufe dieser Arbeit entstanden sind. \textit{LHHistogram} berechnet das LH-Histogramm des geladenen Volumens und speichert dieses in einer .csv Datei ab.
+Im Folgenden werden hauptsächlich die Module \textit{LHHistogram}, \textit{ClusterVolume} und \textit{MergeCluster} erläutert, da diese im Laufe dieser Arbeit entstanden sind.
 
 
 \underline{\textit{LHHistogram}}
