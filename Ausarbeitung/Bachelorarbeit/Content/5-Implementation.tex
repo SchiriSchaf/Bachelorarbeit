@@ -21,7 +21,7 @@ Die Implementierung der Klassen und deren Methoden ist das Thema dieses Kapitels
 
 Bei der  Kalkulation der Gradienten wird parallel über jeden Voxel im Intensitätsvolumen iteriert und für jeden die Implementierung von \cite{hong2003method} aufgerufen.
 \newline
-Für die Berechnung der Methode wird eine Gewichtung und die Koordinaten aller 64 Punkte im Koordinatensystem der lokalen Nachbarschaft benötigt. Da das gesamte Volumen die selbe Voxellänge hat und die Koordinaten in der lokalen Nachbarschaft immer gleich sind, können diese beiden Werte für alle 64 Nachbarn einmalig in einem Vorverarbeitungsschritt berechnet werden. Sie werden dabei in einem 64 Elemente großes Array, mit der gleichen Nummerierung wie in \autoref{fig:nachbarschaft} gezeigt, gespeichert. Bei der Kalkulation jedes Gradienten müssen lediglich die beiden Arrays durch iteriert werden um die entsprechenden Gewichtung und Koordinate  des Nachbars zu erhalten
+Für die Berechnung der Methode wird eine Gewichtung und die Koordinaten aller 64 Punkte im Koordinatensystem der lokalen Nachbarschaft benötigt. Da das gesamte Volumen die selbe Voxellänge hat und die Koordinaten in der lokalen Nachbarschaft immer gleich sind, können diese beiden Werte für alle 64 Nachbarn einmalig in einem Vorverarbeitungsschritt berechnet werden. Sie werden dabei in einem 64 Elemente großes Array, mit der gleichen Nummerierung wie in \autoref{fig:nachbarschaft} gezeigt, gespeichert. Bei der Kalkulation jedes Gradienten müssen lediglich die beiden Arrays durch iteriert werden um die entsprechenden Gewichtung und Koordinaten jedes Nachbars zu erhalten.
 
 \subsection{LH-Werte}
 
@@ -33,39 +33,45 @@ Die Berechnung des Low-Wertes ist ebenfalls in der Schleife und sieht bis auf di
 
 
 \begin{lstlisting}[caption = Code zur Berechnung der High-Werte, label = lst:lh_code]
-if (!HisFinished){
+if (!HisFinished)
+{
 		FVector3 absVectorH = volumeVectors[xH, yH, zH];
 		FVector3 absVectorHNormalized = absVectorH.Normalize();
 		int tempNewXH = (((int)Math.Ceiling(xH + (stepSize * absVectorHNormalized.X))));
 		int tempNewYH = (((int)Math.Ceiling(yH + (stepSize * absVectorHNormalized.Y))));
 		int tempNewZH = (((int)Math.Ceiling(zH + (stepSize * absVectorHNormalized.Z))));
-		if (tempNewXH < volumeVectors.Dimension.X && tempNewYH < volumeVectors.Dimension.Y && tempNewZH < volumeVectors.Dimension.Z && !(tempNewXH < 0) && !(tempNewYH < 0) && !(tempNewZH < 0)){
+		if (tempNewXH < volumeVectors.Dimension.X && tempNewYH < volumeVectors.Dimension.Y && tempNewZH < volumeVectors.Dimension.Z && !(tempNewXH < 0) && !(tempNewYH < 0) && !(tempNewZH < 0))
+		{
 				secondAbsVectorH = volumeVectors[tempNewXH, tempNewYH, tempNewZH].Normalize();
 				highestIntensity.Add(gradientIntensity[xH, yH, zH]);
-				if (absVectorH.Length() < extremumLength){
+				if (absVectorH.Length() < extremumLength)
+				{
 						HisFinished = true;
-				}else{
+				}else
+				{
 						if (highestIntensity[highestIntensity.Count - 1] == highestIntensity[highestIntensity.Count - 2] && highestIntensity.Count > 3){
-						HisFinished = true;
+								HisFinished = true;
 						}
 						xH = (((int)Math.Ceiling(xH + 0.5 * stepSize * (absVectorHNormalized.X + secondAbsVectorH.X))));
 						yH = (((int)Math.Ceiling(yH + 0.5 * stepSize * (absVectorHNormalized.Y + secondAbsVectorH.Y))));
 						zH = (((int)Math.Ceiling(zH + 0.5 * stepSize * (absVectorHNormalized.Z + secondAbsVectorH.Z))));
-						if (xH > volumeVectors.Dimension.X-1 || yH > volumeVectors.Dimension.Y-1 || zH > volumeVectors.Dimension.Z-1|| xH < 0 || yH < 0 || zH < 0){
+						if (xH > volumeVectors.Dimension.X-1 || yH > volumeVectors.Dimension.Y-1 || zH > volumeVectors.Dimension.Z-1|| xH < 0 || yH < 0 || zH < 0)
+						{
 								HisFinished = true;
 						}
 				}
-		}else{
+		}else
+		{
 				HisFinished = true;
 		}
 }
 \end{lstlisting}
 
 
-Am Anfang eines Durchlaufes wird der normalisierte Gradienten des aktuellen Punktes in \textit{absVectorNormalized} gespeichert. Anschließend wird der Punkt des zweiten normalisierten Vektors berechnet. Liegt dieser außerhalb des Volumens, so wird die Integration beendet. Liegt er jedoch innerhalb des Volumens, so wird der \textit{secondAbsVector} ausgelesen und der Intensitätswert des aktuellen Punktes zu der Liste \textit{highestIntensity} hinzugefügt. Ist der Gradient des aktuellen Punktes kleiner als die \textit{extremumLength}, welche im Falle von CT-Daten bei null liegt, wird die Integration beendet.
+Am Anfang eines Durchlaufes wird der normalisierte Gradienten des aktuellen Punktes in \textit{absVectorNormalized} gespeichert. Anschließend wird der Punkt des zweiten normalisierten Vektors in den Zeilen 5 bis 7 berechnet. Liegt dieser außerhalb des Volumens, so wird die Integration beendet. Liegt er jedoch innerhalb des Volumens, so wird der \textit{secondAbsVector} ausgelesen und der Intensitätswert des aktuellen Punktes zu der Liste \textit{highestIntensity} hinzugefügt. Ist der Gradient des aktuellen Punktes kleiner als die \textit{extremumLength}, welche im Falle von CT-Daten bei null liegt, wird die Integration beendet.
 \newline
 Andernfalls wird zunächst mithilfe der \textit{highestIntensity} Liste nach Schleifen gesucht. Bei sehr kleinen Gradienten, die jedoch größer als null sind, kann es vorkommen, dass das Verfahren immer wieder den selben Punkt findet und somit in einer Endlosschleife feststeckt.
-Wie in \autoref{lst:lh_code} zu sehen ist, wird dabei jedoch erst getestet ob die Liste schon mehr als 3 Einträge hat. Dies geschieht aus dem Grund, dass anfangs, vor der while-Schleife bereits der Intensitätswert des Startvoxels zur Liste hinzugefügt werden muss. Dies geschieht aus dem Grund, dass sonst, würde das Verfahren bei dem ersten Abbruchkriterium bei der ersten Iteration schon stoppen, die \textit{highestIntensity} Liste leer wäre, und es kein Ergebnis für den High-Wert gäbe.
+Wie in Zeile 17s zu sehen ist, wird dabei jedoch erst getestet ob die Liste schon mehr als 3 Einträge hat. Dies geschieht aus dem Grund, dass anfangs, vor der while-Schleife bereits der Intensitätswert des Startvoxels zur Liste hinzugefügt werden muss. Dies geschieht aus dem Grund, dass sonst, würde das Verfahren bei dem ersten Abbruchkriterium bei der ersten Iteration schon stoppen, die \textit{highestIntensity} Liste leer wäre, und es kein Ergebnis für den High-Wert gäbe.
 Das Testen von Schleifen könnte jedoch über die Koordinaten der iterierten Punkte geschehen, um dem unwahrscheinlichem Fall, dass zwei durch die Integration hintereinander besuchte Punkte genau den selben Intensitätswert haben.
 Anschließend wird der nächste Punkt der Integration mithilfe von \textit{absVectorNormalized} und \textit{secondAbsVecotr} gemäß Heun's Methode, die im Kapitel \nameref{sec:methods} vorgestellt wurde, ermittelt. Erneut endet die Integration, falls der neu berechnete Punkt außerhalb des Volumens liegt.
 \newline
@@ -140,39 +146,50 @@ Dies macht das genaue Clustern über diesen speziellen Bereich notwendig.
 
 \subsection{Räumliches-Clustering}
 
-Die Berechnung der räumlichen Cluster und des Volumens der IDs wird in der statischen Klasse \textit{SpatialClustering} ausgeführt.
+Die Berechnung der räumlichen Cluster und des Volumens, in dem die Cluster IDs gespeichert sind, wird in der statischen Klasse \textit{SpatialClustering} ausgeführt.
 
 
 \begin{lstlisting}[caption = Code zur Berechnung der räumlichen Cluster, label = lst:spatclust_code]
 List<IVector3> currentSpatialCluster = new List<IVector3>();
-            List<List<IVector3>> resultClusters = new List<List<IVector3>>();
-            FVector3 midPoint;
-            HashSet<IVector3> toRemove = new HashSet<IVector3>();
-            while (LHClusters2[i].Count > ClusterSizeMin)
-            {
-                midPoint = LHClusters2[i].ElementAt(0);
-                bool nothingMoreFound = false;
-                while (!nothingMoreFound)
-                {
-                    foreach( IVector3 current in LHClusters2[i]){
-                        if (InDistance(midPoint, current)){
-                            currentSpatialCluster.Add(current);
-                            toRemove.Add(current);
-                        }
-                    }
-                    foreach(IVector3 remove in toRemove){
-                        LHClusters2[i].Remove(remove);
-                    }
-                    toRemove.Clear();
-                    FVector3 newMidPoint = NewMidpoint(currentSpatialCluster);
-                    if (MinimumDistance > (SpatialDistance(newMidPoint, midPoint))) nothingMoreFound = true;
-                    else midPoint = newMidPoint;
-                }
-                if (currentSpatialCluster.Count > ClusterSizeMin) resultClusters.Add(new List<IVector3>(currentSpatialCluster));
-                currentSpatialCluster.Clear();
-            }
-            currentSpatialCluster.Clear();
-            return resultClusters;
+		List<List<IVector3>> resultClusters = new List<List<IVector3>>();
+		FVector3 midPoint;
+		HashSet<IVector3> toRemove = new HashSet<IVector3>();
+		while (LHClusters2[i].Count > ClusterSizeMin)
+		{
+				midPoint = LHClusters2[i].ElementAt(0);
+				bool nothingMoreFound = false;
+				while (!nothingMoreFound)
+				{
+						foreach( IVector3 current in LHClusters2[i])
+						{
+								if (InDistance(midPoint, current))
+								{
+										currentSpatialCluster.Add(current);
+										toRemove.Add(current);
+								}
+						}
+						foreach(IVector3 remove in toRemove){
+								LHClusters2[i].Remove(remove);
+						}
+						toRemove.Clear();
+						FVector3 newMidPoint = NewMidpoint(currentSpatialCluster);
+						if (MinimumDistance > (SpatialDistance(newMidPoint, midPoint)))
+						{
+								nothingMoreFound = true;
+						}
+						else
+						{
+								midPoint = newMidPoint;
+						}
+				}
+				if (currentSpatialCluster.Count > ClusterSizeMin)
+				{
+						resultClusters.Add(new List<IVector3>(currentSpatialCluster));		
+				}
+				currentSpatialCluster.Clear();
+		}
+		currentSpatialCluster.Clear();
+		return resultClusters;
 
 \end{lstlisting}
 
@@ -180,6 +197,7 @@ List<IVector3> currentSpatialCluster = new List<IVector3>();
 Die Kalkulation der räumlichen Clustern wurde dabei, wie die Berechnung der LH-Cluster, mit einer parallelen for-Schleife realisiert. Diese iteriert über die LH-Cluster und ruft für jeden Cluster die in \autoref{lst:spatclust_code} gezeigte Funktion auf. Die Cluster sind in der globalen Liste \textit{LHClusters} gespeichert. Sie haben den Typ einer Liste von \textit{IVector3}. 
 Die Suche nach Clustern liegt in einer while-Schleife, die so lange ausgeführt wird, solange der LH-Cluster genug Elemente hat, damit ein Cluster mit der Mindestgröße an Elementen gefunden werden kann. 
 Das Finden von Clustern läuft dabei folgendermaßen ab. Der erste Punkt im LH-Cluster wird als Startmittelpunkt gewählt. Danach wird durch alle Punkte iteriert und diejenigen die innerhalb der Bandweite liegen sowohl zum temporärem Cluster \textit{currentSpatialCluster} als auch zum HashSet der zu entfernenden Punkte \textit{toRemove} hinzugefügt.
+Im Code ist dies in den Zeilen 7 bis 18 zu sehen.
 \newline
 Anschließend werden, alle Elemente von \textit{toRemove} aus dem LH-Cluster entfernt und wie beim LH-Clustering auch ein neuer Mittelpunkt für den aktuellen Cluster errechnet.
 Wenn das Abbruchkriterium der zwei naheliegenden aufeinanderfolgenden Mittelpunkte erfüllt ist, wird der temporäre Cluster \textit{currentSpatialCluster} zur Liste der Ergebniscluster \textit{resultClusters} hinzugefügt, falls er genug Elemente besitzt.

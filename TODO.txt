@@ -3,21 +3,15 @@
 ------------------------------------------------------------------------------------------------
 State of the art:
 
-Machinelearning Absatz überarbeiten
 ------------------------------------------------------------------------------------------------
 Methods:
 
-Überarbeitung Gradient nochmal lesen -> Formel richtig formatieren
-Allgemein nochmal drüber lesen -> wichtiges Kapitel -> Formeln -> ist jeder Part der Formel erklärt?
-Clustering neu beschreiben -> ausführlicher, einfacher
 ------------------------------------------------------------------------------------------------
 Design:
 
 ------------------------------------------------------------------------------------------------
 Implementierung:
 
-Code nochmal drüber schauen ob alles ok ist -> einrücken etc. -> vllt. leerzeilen für die Übersicht einfügen
-Zeilennummern erwähnen
 ------------------------------------------------------------------------------------------------
 Evaluation:
 
@@ -35,11 +29,9 @@ Bilder, Tabellen etc. an die richtigen Stellen im Text schieben
 Sprache:
 
 Alle "man"s finden und entfernen
-Wertende Wörter z.b. gut, besser, etc. entfernen
-Segmentieren häufiger verwenden -> statt visualisieren etc.
 Englische Wörter immer gleich schreiben -> bsp. Region Growing
 ------------------------------------------------------------------------------------------------
 Bilder:
 
 ------------------------------------------------------------------------------------------------
-Fragen an Christian: -> Beim Zusenden fragen
+Fragen an Christian:

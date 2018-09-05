@@ -26,9 +26,8 @@ Bevor die Visualisierungen ausgewertet werden können, muss zunächst das Ventri
 
 \subsubsection{Visualisierungen}
 
-Die in diesem Unterkapitel gezeigten Visualisierungen wurde alle auf Volumen mit einer Auflösung von 256x101x256 Pixeln berechnet. In \autoref{fig:norm1_s} und \autoref{fig:norm1_u} ist die Visualisierung des ersten normalen Ventrikelsystems, in \autoref{fig:norm2_s} und \autoref{fig:norm2_u} die Visualisierung des zweiten normalen Ventrikelsystems und schließlich in \autoref{fig:atro_s} und \autoref{fig:atro_u} die Visualisierung des Ventrikelsystems eines Patienten mit Atrophie zu sehen. Die Datensätze werden im nächsten Unterkapitel erklärt. Die Abbildungen zeigen Screenshots aus der Darstellung in Unity, jeweils aus den Perspektiven von der Seite und von unten.
-\newline
-Bei allen Visualisierungen sind die beiden für die Operation essentiell wichtigen Seitenventrikel gut zu erkennen. 
+Die in diesem Unterkapitel gezeigten Segmentierungen wurde alle auf Volumen mit einer Auflösung von 256x101x256 Pixeln berechnet. In \autoref{fig:norm1_s} und \autoref{fig:norm1_u} ist die Visualisierung eines normalen Ventrikelsystems, in \autoref{fig:norm2_s} und \autoref{fig:norm2_u} die Visualisierung eines weiteren normalen Ventrikelsystems und schließlich in \autoref{fig:atro_s} und \autoref{fig:atro_u} die Visualisierung des Ventrikelsystems eines Patienten mit Atrophie zu sehen. Die Datensätze werden im nächsten Unterkapitel erklärt. Die Abbildungen zeigen Screenshots aus der Darstellung in Unity, jeweils aus den Perspektiven von der Seite und von unten.
+
 
 \begin{figure}[H]
 \begin{minipage}[b]{.5\textwidth}
@@ -103,12 +102,12 @@ Das Verfahren wurde an 15 verschiedenen CT-Datensätzen der Uni Ulm getestet. Da
 
 
 
-Da die Aufgabe das Ventrikelsystem anhand von CT-Daten automatisiert zu segmentieren sehr komplex ist, kam es bei Patienten mit besonderen Systemen zu Problemen.
-Da das Verfahren Strukturen anhand ihrer Grenzen erkennt, war es nicht möglich schlanke Ventrikelsysteme zu segmentieren. Sehr dünnen Strukturen zu erkennen ist mit CT-Daten nicht möglich, da diese nicht hochauflösend genug sind. Das Problem, dass es nicht möglich ist Grenzen zu erkennen, tritt ebenfalls bei den Mittellinienshift und dem Deformierten Datensatz auf. Ein Mittellinenshift bezeichnet die Verschiebung der Mittellinie und eine Verformung des Ventrikelsystems, was beispielsweise durch einen Schlag auf den Kopf hervorgerufen werden kann. Beim Deformierten, wurde das System aufgrund eines Tumors im Gehirn stark verformt. Durch diese Verformungen ist das Ventrikelsystem allgemein sehr schlecht bis gar nicht von umliegenden Strukturen abgrenzbar.
+Aus dem Grund, dass die Aufgabe das Ventrikelsystem anhand von CT-Daten automatisiert zu segmentieren sehr komplex ist, kam es bei Patienten mit besonderen Systemen zu Problemen.
+Da das Verfahren Strukturen anhand ihrer Grenzen erkennt, war es nicht möglich schlanke Ventrikelsysteme zu segmentieren. Sehr dünnen Strukturen anhand von CT-Daten zu erkennen ist schwer bis gar nicht realisierbar, da diese nicht hochauflösend genug sind. Dieses Problem, tritt ebenfalls bei dem Deformierten und den Mittellinienshift Datensätzen auf. Ein Mittellinenshift bezeichnet die Verschiebung der Mittellinie und eine Verformung des Ventrikelsystems, was beispielsweise durch einen Schlag auf den Kopf hervorgerufen werden kann. Beim Deformierten, wurde das System aufgrund eines Tumors im Gehirn stark verformt. Durch diese Verformungen ist das Ventrikelsystem allgemein sehr schlecht bis gar nicht von umliegenden Strukturen abgrenzbar.
 \newline
 Atrophie ist ein, oft durch das Alter verursachter, Schwund an Gehirnmasse. Bei diesem weiten sich alle Ventrikel und es ist im allgemeinem mehr Liquor im Gehirn zu finden. Dadurch war es bei einem der beiden Datensätze nicht möglich, eine Segmentierung vorzunehmen, da durch die viele Flüssigkeit im Gehirn die Grenze zwischen dem System und der umliegenden Hirnmasse stark verschwammen.
 Ein ähnliches Problem entstand bei dem Hydrocephalus-Ventrikelblut und der Subarachnoidale Einblutung, bei denen die Ventrikel fast vollständig mit Blut vollgelaufen sind. Dadurch war es nicht möglich das System vom restlichen Gehirn abzugrenzen.
-Beim Blut-resorbierten  handelt es sich um Hydrocephalus-Ventrikelblut Datensatz, nachdem das Blut entfernt wurde. Das Ventrikelsystem hat sich jedoch noch nicht wieder vollständig mit Liquor gefüllt, was erneut keine Segmentierung zulässt.
+Beim Blut-resorbierten  handelt es sich um den Hydrocephalus-Ventrikelblut Datensatz, nachdem das Blut entfernt wurde. Das Ventrikelsystem hat sich jedoch noch nicht wieder vollständig mit Liquor gefüllt, was erneut keine Segmentierung zulässt.
 Der dritte normale Datensatz hat eine Verkalkung des liquorproduzierenden Plexus, weshalb auch hier weniger Liquor in den Ventrikeln zu finden ist.
 
 
@@ -126,7 +125,7 @@ Die Fragen lauteten:
 \end{itemize}
 
 
-Die Ergebnisse der Antworten des Arztes werden in \autoref{tab:ergebnis_arzt} gezeigt. Allgemein merkte der Mediziner jedoch an, dass bei jeder Visualisierung, die durch das Verfahren erzeugt wurde, nur der linke und rechte Seitenventrikel zu sehen war. Die deutlich schmaleren dritten und vierten Ventrikel und die Unterhörner der Seitenventrikel fehlten bei den Darstellungen komplett. Er erklärte jedoch, dass diese bei einem gesunden Menschen sehr dünn und deshalb anhand von CT-Daten schwer bis gar nicht zu segmentieren seien. Weiterhin sind, wie schon erwähnt, die Seitenventrikel entscheidend für eine erfolgreiche Punktion.
+Die Ergebnisse der Antworten des Arztes werden in \autoref{tab:ergebnis_arzt} gezeigt. Allgemein merkte der Mediziner an, dass bei jeder Visualisierung, die durch das Verfahren erzeugt wurde, nur der linke und rechte Seitenventrikel zu sehen war. Die deutlich schmaleren dritten und vierten Ventrikel und die Unterhörner der Seitenventrikel fehlten bei den Darstellungen. Er erklärte jedoch, dass diese bei einem gesunden Menschen sehr dünn und deshalb anhand von CT-Daten schwer bis gar nicht zu segmentieren seien. Weiterhin sind, wie schon erwähnt, die Seitenventrikel entscheidend für eine erfolgreiche Punktion.
 \newline
 In folge dessen, wurde sich darauf verständigt, dass die Beantwortung der zweiten Frage, nach der Vollständigkeit des Ventrikelsystems, lediglich auf die Vollständigkeit der beiden Seitenventrikel bezogen ist.
 
@@ -153,7 +152,7 @@ Das zweite normale Ventrikelsystem, war ebenfalls klar zu erkennen. Jedoch wurde
 \newline
 In einem Gehirn eines unter Atrophie leidenden Menschen, ist deutlich mehr Liquor, als bei einem gesunden Menschen, zu finden. Diese Flüssigkeiten werden vom Verfahren ebenfalls erkannt, weshalb die Segmentierung etwas verschwommen erscheint und nicht die kompletten Seitenventrikel erfasst werden. Jedoch vermutete der Arzt, dass viele der Ausreißer zum dritten Ventrikel gehören könnten, da sich dieses, wie alle Ventrikel bei einer Atrophie, weitet. Trotz der Flüssigkeiten im Gehirn war das Ventrikelsystem in der Darstellung deutlich auszumachen.
 \newline
-Im Allgemeinen bemängelte der Arzt, dass die Darstellungen nicht glatt genug sei und viele Ausreißer existieren. Jedoch sagte der Mediziner auch, dass das Ventrikelsystem bei allen Visualisierungen eindeutig zu erkennen und die Aufgabe das System zu segmentieren gelungen sei.
+Im Allgemeinen sagte der Arzt, dass die Darstellungen nicht glatt genug sei und viele Ausreißer existieren. Jedoch meinte der Mediziner, dass das Ventrikelsystem bei allen Visualisierungen eindeutig zu erkennen und die Aufgabe das System zu segmentieren gelungen sei.
 
 
 \begin{figure}[h]
@@ -195,10 +194,9 @@ Die Ergebnisse sind in \autoref{fig:unity_s} und \autoref{fig:unity_u} zu sehen.
 
 
 In der MITK-Workbench gibt es verschiedene Segmentierungstools. Darunter ist ein Region Growing Tool, bei dem der Nutzer einen \textit{seed} Punkt in den Schnittbildern wählen kann. Über die verwendete Kostenfunktion werden keine Informationen genannt.
-Anschließend können die Löcher der Auswahl mit einem \textit{closing} Filter geschlossen und mit einem weiteren Tool ein geglättete 3D Ansicht des Ergebnis erzeugt werden.
+Anschließend können die Löcher der Auswahl mit einem \textit{closing} Filter geschlossen und mit einem weiteren Tool ein geglättete 3D Ansicht des Ergebnis erzeugt werden. Eine genaue Beschreibung, über das Anwenden der Tools, ist im Anhang diese Arbeit zu finden.
 \newline
-Screenshots der Ergebnisse sind in \autoref{fig:mitk_o} und \autoref{fig:mitk_v} zu sehen. Eine genaue Beschreibung, über das Anwenden der Tools, ist im Anhang diese Arbeit zu finden.
-In dem von der Workbench erzeugte Ergebnis ist das Ventrikelsystem gut zu erkennen. Die Seitenventrikel sind vollständig und besitzen eine glatte Oberfläche. Sogar große Teile des dritten und vierten Ventrikels sind teil der Segmentierung.
+Screenshots der Ergebnisse sind in \autoref{fig:mitk_o} und \autoref{fig:mitk_v} zu sehen. In dem von der Workbench erzeugte Ergebnis ist das Ventrikelsystem gut zu erkennen. Die Seitenventrikel sind vollständig und besitzen eine glatte Oberfläche. Sogar große Teile des dritten und vierten Ventrikels sind teil der Segmentierung.
 Allerdings sind auch ganze Bereiche hervorgehoben, die nicht zum Ventrikelsystem gehören. Diese könnten vom Benutzer manuell in jedem Schichtbild des Datensatzes entfernt werden, was jedoch sehr zeitaufwändig wäre.
 
 
