@@ -30,46 +30,46 @@ Die in diesem Unterkapitel gezeigten Segmentierungen wurde alle auf Volumen mit 
 
 
 \begin{figure}[H]
-\begin{minipage}[b]{.5\textwidth}
+\begin{minipage}[t]{.5\textwidth}
   \centering
   \includegraphics[width=.9\linewidth, height=.9\linewidth]{Logos/Normal1/Seite2.PNG}
-  \caption{Visualisierung des ersten normalen Ventrikelsystems von der Seite}
+  \caption{Visualisierung des \\ ersten normalen \\ Ventrikelsystems von \\ der Seite}
   \label{fig:norm1_s}
 \end{minipage}%
-\begin{minipage}[b]{.5\textwidth}
+\begin{minipage}[t]{.5\textwidth}
   \centering
   \includegraphics[width=.9\linewidth, height=.9\linewidth]{Logos/Normal1/Unten3.PNG}
-  \caption{Visualisierung des ersten normalen Ventrikelsystems von unten}
+  \caption{Visualisierung des \\ ersten normalen \\ Ventrikelsystems von \\ unten}
   \label{fig:norm1_u}
 \end{minipage}
 \end{figure}
 
 \begin{figure}[H]
-\begin{minipage}[b]{.5\textwidth}
+\begin{minipage}[t]{.5\textwidth}
   \centering
   \includegraphics[width=.9\linewidth, height=.9\linewidth]{Logos/Normal2/Seite2.PNG}
-  \caption{Visualisierung des zweiten normalen Ventrikelsystems von der Seite}
+  \caption{Visualisierung des \\ zweiten normalen \\ Ventrikelsystems von \\ der Seite}
   \label{fig:norm2_s}
 \end{minipage}%
-\begin{minipage}[b]{.5\textwidth}
+\begin{minipage}[t]{.5\textwidth}
   \centering
   \includegraphics[width=.9\linewidth, height=.9\linewidth]{Logos/Normal2/Unten3.PNG}
-  \caption{Visualisierung des zweiten normalen Ventrikelsystems von unten}
+  \caption{Visualisierung des \\ zweiten normalen \\ Ventrikelsystems von \\ unten}
   \label{fig:norm2_u}
 \end{minipage}
 \end{figure}
 
 \begin{figure}[H]
-\begin{minipage}[b]{.5\textwidth}
+\begin{minipage}[t]{.5\textwidth}
   \centering
   \includegraphics[width=.9\linewidth, height=.9\linewidth]{Logos/Atrophie/Seite2.PNG}
-  \caption{Visualisierung des Ventrikelsystems mit Atrophie von der Seite}
+  \caption{Visualisierung des \\ Ventrikelsystems mit \\ Atrophie von der Seite}
   \label{fig:atro_s}
 \end{minipage}%
-\begin{minipage}[b]{.5\textwidth}
+\begin{minipage}[t]{.5\textwidth}
   \centering
   \includegraphics[width=.9\linewidth, height=.9\linewidth]{Logos/Atrophie/Unten3.PNG}
-  \caption{Visualisierung des Ventrikelsystems mit Atrophie von unten}
+  \caption{Visualisierung des \\ Ventrikelsystems mit \\ Atrophie von unten}
   \label{fig:atro_u}
 \end{minipage}
 \end{figure}
@@ -85,15 +85,15 @@ Das Verfahren wurde an 15 verschiedenen CT-Datensätzen der Uni Ulm getestet. Da
 \resizebox{0.65\columnwidth}{!}{
  \begin{tabular}{| c | c | c | c |}
   \hline
-  Datensatz & Anzahl \\ \hline
-   Normale Ventrikel & 3  \\ \hline
-   Schlanke Ventrikel & 4  \\ \hline
-   Mittellinienshift & 2  \\ \hline
-   Deformiertes & 1 \\ \hline
-   Atrophie & 2  \\ \hline
-   Hydrocephalus-Ventrikelblut & 1 \\ \hline
-   Subarachnoidale Einblutung & 1 \\ \hline
-   Blut-resorbiert & 1  \\ \hline
+  Datensatz (ID) & Anzahl \\ \hline
+   Normale Ventrikel (D1) & 3  \\ \hline
+   Schlanke Ventrikel (D2) & 4  \\ \hline
+   Mittellinienshift (D3) & 2  \\ \hline
+   Deformiertes (D4) & 1 \\ \hline
+   Atrophie (D5) & 2  \\ \hline
+   Hydrocephalus-Ventrikelblut (D6) & 1 \\ \hline
+   Subarachnoidale Einblutung (D7) & 1 \\ \hline
+   Blut-resorbiert (D8) & 1  \\ \hline
  \end{tabular}
  }
 \caption{Verwendeten Datensätze}
@@ -102,17 +102,17 @@ Das Verfahren wurde an 15 verschiedenen CT-Datensätzen der Uni Ulm getestet. Da
 
 
 
-Da die Aufgabe das Ventrikelsystem anhand von CT-Daten automatisiert zu segmentieren sehr komplex ist, kam es bei Patienten mit besonderen Systemen zu Problemen.
-Das Verfahren erkennt Strukturen anhand ihrer Grenzen. Deshalb war es nicht möglich, schlanke Ventrikelsysteme zu segmentieren. Sehr dünnen Strukturen anhand von CT-Daten zu erkennen, ist kaum bis gar nicht realisierbar, da diese nicht hochauflösend genug sind. Dieses Problem tritt ebenfalls bei dem Deformierten und den Mittellinienshift Datensätzen auf. Ein Mittellinenshift bezeichnet die Verschiebung der Mittellinie und eine Verformung des Ventrikelsystems, was beispielsweise durch einen Schlag auf den Kopf hervorgerufen werden kann. Beim Deformierten wird das System aufgrund eines Tumors im Gehirn stark verformt. Durch diese Verformungen ist das Ventrikelsystem allgemein sehr schlecht bis gar nicht von umliegenden Strukturen abgrenzbar.
+Da die Aufgabe das Ventrikelsystem anhand von CT-Daten automatisiert zu segmentieren sehr komplex ist, kam es bei Patienten veränderten Ventrikelsystemen, z.B.  durch Verformung oder Krankheit, zu Problemen.
+Das Verfahren erkennt Strukturen anhand ihrer Grenzen. Deshalb war es nicht möglich, bei ''D2: Schlanke Ventrikel'' zu einer erfolgreichen Segmentierung zu gelangen. Sehr dünne Strukturen anhand von CT-Daten zu erkennen, ist kaum bis gar nicht realisierbar, da diese nicht hochauflösend genug sind. Dieses Problem tritt ebenfalls bei ''D3: Mittellinienshift'' und  ''D4: Deformiert'' auf. Ein Mittellinenshift bezeichnet die Verschiebung der Mittellinie und eine Verformung des Ventrikelsystems, was beispielsweise durch Gewalteinwirkung auf den Kopf hervorgerufen werden kann. Bei ''D4: Deformiert'' wird das System aufgrund eines Tumors im Gehirn stark verformt. Durch diese Verformungen ist das Ventrikelsystem allgemein sehr schlecht bis gar nicht von umliegenden Strukturen abgrenzbar.
 \newline
-Atrophie ist ein oft durch das Alter verursachter Schwund an Gehirnmasse. Bei diesem weiten sich alle Ventrikel und es ist im Allgemeinem mehr Liquor im Gehirn zu finden. Dadurch war es bei einem der beiden Datensätze nicht möglich, eine Segmentierung vorzunehmen, da durch die viele Flüssigkeit im Gehirn die Grenze zwischen dem System und der umliegenden Hirnmasse stark verschwammen.
-Ein ähnliches Problem entstand bei dem Hydrocephalus-Ventrikelblut und der Subarachnoidale Einblutung, bei denen die Ventrikel fast vollständig mit Blut vollgelaufen sind. Dadurch war es nicht möglich das System vom restlichen Gehirn abzugrenzen.
-Beim Blut-resorbierten  handelt es sich um den Hydrocephalus-Ventrikelblut Datensatz, nachdem das Blut entfernt wurde. Das Ventrikelsystem hat sich jedoch noch nicht wieder vollständig mit Liquor gefüllt, was erneut keine Segmentierung zuließ.
-Der dritte normale Datensatz hat eine Verkalkung des liquorproduzierenden Plexus, weshalb auch hier weniger Liquor in den Ventrikeln zu finden war.
+Atrophie ist ein oft durch das Alter verursachter Schwund an Gehirnmasse. Bei diesem weiten sich alle Ventrikel und es ist im Allgemeinem mehr Liquor im Gehirn zu finden. Dadurch war es bei einem der beiden Datensätze von D5 nicht möglich, eine Segmentierung vorzunehmen, da durch die viele Flüssigkeit im Gehirn die Grenze zwischen dem System und der umliegenden Hirnmasse stark verschwammen.
+Ein ähnliches Problem entstand bei ''D6: Hydrocephalus-Ventrikelblut'' und ''D7: Subarachnoidale Einblutung'', bei denen die Ventrikel fast vollständig mit Blut vollgelaufen sind. Dadurch war es nicht möglich das System vom restlichen Gehirn abzugrenzen.
+Beim ''D8: Blut-resorbiert'' handelt es sich um den D6 Datensatz, nachdem das Blut entfernt wurde. Das Ventrikelsystem hat sich jedoch noch nicht wieder vollständig mit Liquor gefüllt, was erneut keine Segmentierung zuließ.
+Der dritte D1 Datensatz hat eine Verkalkung des liquorproduzierenden Plexus, weshalb auch hier weniger Liquor in den Ventrikeln zu finden war.
 
 
 
-\subsubsection{Auswertungen}
+\subsubsection{Auswertung}
 
 Um die Qualität der erzeugten Segmentierungen zu evaluieren, wurde ein Arzt von der Uniklinik Ulm interviewt. Diesem wurden die drei gezeigten Visualisierungen direkt in Unity vorgeführt. Während der Vorführung konnte der Mediziner selbst die Kamera durch die Darstellung lenken und das Ergebnis aus verschiedenen Blickwinkeln betrachten.
 \newline
@@ -156,16 +156,16 @@ Im Allgemeinen waren die Darstellungen nicht glatt genug und es existieren viele
 
 
 \begin{figure}[h]
-\begin{minipage}[b]{.5\textwidth}
+\begin{minipage}[t]{.5\textwidth}
   \centering
   \includegraphics[width=.9\linewidth, height=.9\linewidth]{Logos/Normal1_Unity/Seite.PNG}
-  \caption{Visualisierung des ersten normalen Ventrikelsystems von der Seite mithilfe von Unity}
+  \caption{Visualisierung des \\ ersten normalen \\ Ventrikelsystems von \\ der Seite mithilfe \\ von Unity}
   \label{fig:unity_s}
 \end{minipage}%
-\begin{minipage}[b]{.5\textwidth}
+\begin{minipage}[t]{.5\textwidth}
   \centering
   \includegraphics[width=.9\linewidth, height=.9\linewidth]{Logos/Normal1_Unity/Unten3.PNG}
-  \caption{Visualisierung des ersten normalen Ventrikelsystems von unten mithilfe von Unity}
+  \caption{Visualisierung des \\ ersten normalen \\ Ventrikelsystems von \\ unten mithilfe \\ von Unity}
   \label{fig:unity_u}
 \end{minipage}
 \end{figure}
@@ -178,16 +178,16 @@ Die Ergebnisse sind in \autoref{fig:unity_s} und \autoref{fig:unity_u} zu sehen.
 
 
 \begin{figure}[h]
-\begin{minipage}[b]{.5\textwidth}
+\begin{minipage}[t]{.5\textwidth}
   \centering
   \includegraphics[width=.9\linewidth, height=.9\linewidth]{Logos/Normal1_MITK/Oben.PNG}
-  \caption{Visualisierung des ersten normalen Ventrikelsystems von Oben mithilfe von MITK}
+  \caption{Visualisierung des \\ ersten normalen \\ Ventrikelsystems von \\ oben mithilfe \\ von MITK}
   \label{fig:mitk_o}
 \end{minipage}%
-\begin{minipage}[b]{.5\textwidth}
+\begin{minipage}[t]{.5\textwidth}
   \centering
   \includegraphics[width=.9\linewidth, height=.9\linewidth]{Logos/Normal1_MITK/Schraeg_Vorne.PNG}
-  \caption{Visualisierung des ersten normalen Ventrikelsystems von vorne mithilfe von MITK}
+  \caption{Visualisierung des \\ ersten normalen \\ Ventrikelsystems von \\ vorne mithilfe \\ von MITK}
   \label{fig:mitk_v}
 \end{minipage}
 \end{figure}
@@ -253,7 +253,7 @@ Trotz der Schwierigkeiten gaben alle Probanden an, auch jene ohne Programmiererf
 Die in diesem Unterkapitel vorgestellten Zeitmessungen wurden alle auf einem Computer mit einem 3.70GHz  Intel Core(TM) i7-8700K CPU mit 32GB RAM ausgeführt.
 Um die Berechnungszeit des Systems evaluieren zu können, wurde die Kalkulation des gesamten Clusteringverfahrens sowie die Berechnung des LH-Histogramms auf drei Volumen verschiedener Größen durchgeführt. Damit der Vergleich nicht von unterschiedlichen Volumendaten verfälscht wird, wurden alle Volumen aus dem gleichen CT-Datensatz generiert.
 \newline
-Dabei wurde die Originalgröße, die ein Auflösung von 512x201x512 Pixeln besitzt, mithilfe des Resamplemoduls des Helpers verkleinert. Die beiden anderen Volumengrößen haben dabei die  Hälfte, mit 256x101x256 Pixeln, und Dreiviertel, mit 384x151x384 Pixeln, der Auflösungen des Originalvolumens.
+Dabei wurde die Originalgröße, die ein Auflösung von 512x201x512 Voxeln besitzt, mithilfe des Resamplemoduls des Helpers verkleinert. Die beiden anderen Volumengrößen haben dabei die  Hälfte, mit 256x101x256 Voxeln, und Dreiviertel, mit 384x151x384 Voxeln, der Auflösungen des Originalvolumens.
 Es war geplant, dass noch ein viertes Volumen zum Vergleich hinzugezogen wird. Jedoch war es aus einem unbekannten Grund nicht möglich, die beiden Berechnungen mit dem gevierteltem Volumen durchzuführen.
 Des Weiteren funktionierte beim Originalvolumen lediglich die Berechnung des LH-Histogramms. Die Kalkulation des Clusteringverfahrens war nicht möglich, vermutlich weil es bei dieser hohen Auflösung zu viele Daten für die aktuelle Implementierung zu berechnen gab.
 Die Berechnungszeit hängt stark von der Größe des Eingabevolumens ab. Dies ist in \autoref{tab:ueberblick_zeit} sehr gut zu erkennen. Sie gibt einen Überblick über die  Berechnungszeiten der verschiedenen Volumengrößen.
@@ -276,10 +276,30 @@ Die Berechnungszeit hängt stark von der Größe des Eingabevolumens ab. Dies is
 
 
 Dabei ist wichtig zu beachten, dass die Zeit zur Berechnung der LH-Histogramme die gleiche Zeit wie die Kalkulation der LH-Werte im gesamten Verfahren benötigt. Die Berechnungsdauer der Gradienten ist hierbei zirka doppelt so lange wie die der LH-Werte. Wird die Berechnungszeit des Histogramms von der Kalkulationszeit des gesamten Verfahrens abgezogen, ergibt dies die Zeit, die die beiden Clusteringschritte benötigen.
-Eine interessante Beobachtung hierbei war, dass die Berechnung der LH-Histogramme abhängig von der Anzahl der Pixel in etwa gleich schnell abläuft. Das halbe Volumen hat eine Gesamtpixelzahl von ungefähr 6,6 Millionen, das dreiviertel Volumen von zirka 22,2 Millionen und das Original von grob 52,6 Millionen Pixeln.
+
+\begin{table}[h]
+\centering
+\resizebox{\columnwidth}{!}{
+ \begin{tabular}{| c | c | c | c |}
+  \hline
+  Volumengröße & LH-Histogramm $[Voxel/s]$ & Clustering $[Voxel/s]$ \\ \hline
+  256x101x256  & $220 * 10^3$ &  $330 * 10^3$ \\ \hline
+  384x151x384  & $247 * 10^3$ &  $76 * 10^3$	\\ \hline
+  512x201x512 & $234 * 10^3$ & -	\\ \hline
+ \end{tabular}
+ }
+\caption{Überblick über die Berechnungsraten der verschiedenen Volumengrößen}
+\label{tab:ueberblick_rate}
+\end{table}
+
+
+
+Eine interessante Beobachtung hierbei war, dass die Berechnung der LH-Histogramme abhängig von der Anzahl der Voxel in etwa gleich schnell abläuft. Das halbe Volumen hat eine Gesamtvoxelzahl von ungefähr 6,6 Millionen, das 75\% Volumen von zirka 22,2 Millionen und das Original von ca. 52,6 Millionen Voxeln.
+Die Anzahl der bearbeiteten Voxel pro Sekunde bei der Berechnung des LH-Histogramms sowie der Clusteringschritte ist in \autoref{tab:ueberblick_rate} zu sehen.
 \newline
-Wird die Anzahl an Pixeln die pro Sekunde bei der LH-Wert Berechnung bearbeitet werden für diese drei Volumen berechnet, so ist zu beobachten, dass keine großen Unterschiede zwischen den Zeiten existiert.
-Das Halbe bearbeitet etwa 220 Tausend, das Dreiviertel ungefähr 247 Tausend und das Ganze 234 Tausend Pixel pro Sekunde. Der kleine Unterschied in der Rate lässt sich einerseits durch von der Volumengröße unabhängige Berechnungen und andererseits durch Messfehler erklären. Folglich kann die Aussage getroffen werden, dass die Berechnungszeit der LH-Werte bei dieser Implementierung in etwa linear mit der Anzahl an Eingabepixeln wächst.
+Dabei ist zu beobachten, dass beim der Kalkulation der LH-Histogramme keine großen Unterschiede zwischen den Raten existiert.
+Beim halben Volumen werden etwa 220 Tausend, beim dreiviertel Volumen ungefähr 247 Tausend und beim original Volumen 234 Tausend Voxel pro Sekunde bearbeitet. Der kleine Unterschied in der Rate lässt sich einerseits durch von der Volumengröße unabhängige Berechnungen und andererseits durch Messfehler erklären. Folglich kann die Aussage getroffen werden, dass die Berechnungszeit der LH-Werte bei dieser Implementierung in etwa linear mit der Anzahl an Eingabepixeln wächst.
+\newline
 Auf der anderen Seite ist jedoch auch zu erkennen, dass die beiden Clusteringschritte mit zunehmender Eingabegröße deutlich langsamer werden. Das Clustering des halben Volumens dauerte 20 Sekunden und hat damit eine Verarbeitungsrate von zirka 330 Tausend Pixeln pro Sekunde. Hingegen dauert es beim dreiviertel Volumen 290 Sekunden und erreicht damit gerade einmal eine Rate von 76 Tausend Pixeln pro Sekunde. Es benötigt also 14,5 mal so viel Zeit für die 3,3 fache Anzahl an Pixeln.
 
 

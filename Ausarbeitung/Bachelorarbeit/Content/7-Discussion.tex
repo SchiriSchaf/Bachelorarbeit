@@ -9,15 +9,15 @@ Nachdem die Ergebnisse im vorherigen Kapitel gezeigt und evaluiert wurden, wird 
 Das Ziel der Bachelorarbeit war die Implementierung eines Verfahrens zur erfolgreiche Segmentierung des Ventrikelsystem basierend auf Volumendaten. Dieses Ziel wurde erreicht.
 \newline
 Das Ventrikelsystem ist in den Visualisierungen deutlich zu sehen und als solches auch klar zu identifizieren. Die beiden für die Operation essentiell wichtigen Seitenventrikel werden hervorgehoben.
-Es fehlten zwar bei allen Visualisierungen der dritte und vierte Ventrikel, jedoch sind diese für die Ventrikelpunktion nicht notwendig. Das Hervorheben assistiert dem Arzt im Operationssaal. Dazu benötigt er nur für den Eingriff relevante Informationen. Das Anzeigen der, für die Operation irrelevanten, dritten und vierten Ventrikel könnte den Mediziner verwirren und die Punktion erschweren. Dies würde einen erfolgreichen Eingriff gefährden.
+Es fehlten zwar bei allen Visualisierungen der dritte und vierte Ventrikel, jedoch sind diese für die Ventrikelpunktion nicht notwendig. Das Hervorheben soll den Arzt im Operationssaal unterstützen. Dazu benötigt er nur für den Eingriff relevante Informationen. Das Anzeigen der, für die Operation irrelevanten, dritten und vierten Ventrikel könnte den Mediziner verwirren und die Punktion erschweren. Dies würde einen erfolgreichen Eingriff gefährden.
 \newline
 Es gab auch Datensätze, bei denen die Segmentierung nicht erfolgreich war. Diese hatten auffallende Besonderheiten, durch welche es schwer bis gar nicht möglich war mithilfe der CT-Daten eine Segmentierung zu erstellen.
 \newline
-Die Schritte, die vom Benutzer ausgeführt werden müssen, um zu einem Ergebnis zu gelangen, sind wenig intuitiv. Der Nutzer benötigt Wissen darüber, welche Befehle wann im Helper ausgeführt werden müssen, deren Syntax und die passenden Dateiformate.
+Die Usability zur Durchführung des Prozesses zur Segmentierung ist zurzeit noch verbesserungswürdig. Der Nutzer benötigt Wissen darüber, welche Befehle wann im Helper ausgeführt werden müssen, deren Syntax und die passenden Dateiformate.
 \newline
 Trotzdem zeigte die Nutzerstudie, dass selbst Menschen ohne Programmiererfahrung die Aufgabe bewältigen können. Des Weiteren ist die Ausführung des Verfahrens mit einer guten Dokumentation auch ohne weitere Hilfe durchführbar. Nach einer kleinen Eingewöhnungsphase stellt das Durchführen für den Anwender kein Problem dar.
 \newline
-Schließlich muss noch die Verarbeitungsgeschwindigkeit des Verfahren betrachtet werden. Diese ist für die kleineren Auflösungen relativ schnell. Die benötigte Zeit zur Berechnung der Cluster wächst jedoch nicht linear mit der Größe der Eingabe. Hierbei ist jedoch unklar, ob dies an der Implementierung oder an dem Verfahren an sich liegt, da über die Laufzeit des \textit{Meanshiftclustering} keine Informationen vorliegen.
+Schließlich muss noch die Verarbeitungsgeschwindigkeit des Verfahren betrachtet werden. Diese ist für die kleineren Auflösungen relativ schnell. Die benötigte Zeit zur Berechnung der Cluster wächst jedoch nicht linear mit der Größe der Eingabe. Hierbei ist jedoch unklar, ob dies an der Implementierung oder an dem Verfahren liegt, da über die Laufzeit des \textit{Meanshiftclustering} keine Informationen vorliegen.
 
 
 Zusammenfassend lässt sich sagen, dass die Bachelorarbeit zu einem positiven Ergebnis kam. Es war möglich, die im Kontext des HoloMed Projektes wichtigen Bereiche des Ventrikelsystems zu segmentieren und hervorzuheben.

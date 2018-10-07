@@ -3,13 +3,13 @@
 \label{sec:methods}
 %% ==============================
 
-Diese Arbeit orientiert sich an dem Clusteringverfahren aus dem Paper von Nguyen \cite{nguyen2012clustering}.In diesem Kapitel werden die verschiedenen verwendeten Methoden vorgestellt.
+Diese Arbeit orientiert sich an dem Clusteringverfahren aus dem Paper von Nguyen \cite{nguyen2012clustering}. In diesem Kapitel werden die verschiedenen verwendeten Methoden vorgestellt.
 
 \subsection{Gradient}
 
-Zuerst müssen die Gradienten aller Voxel berechnet werden. Dafür wurde Hong's Methode \cite{hong2003method} gewählt. Diese ist ein Approximation-basiertes Verfahren zur Berechnung von Gradienten eines Volumens unter der Betrachtung der lokalen 4x4x4 Nachbarschaft des Punktes.
+Zuerst müssen die Gradienten aller Voxel berechnet werden. Dafür wurde Hong's Methode \cite{hong2003method} gewählt. Diese ist ein Verfahren basierend auf Approximation zur Berechnung von Gradienten eines Volumens unter der Betrachtung der lokalen 4x4x4 Nachbarschaft des Punktes.
 \newline
-Hierbei ist zu beachten, dass es nicht möglich ist, den Gradienten für einen Voxel direkt zu berechnen. Der Gradient drückt die Veränderung der Intensitätswerte im Raum aus, folglich kann er immer nur zwischen mehreren Punkten berechnet werden. Deshalb liegt er im Falle eines dreidimensionalen Volumens im Zentrum eins Würfels, der von 8 benachbarten Voxeln aufgespannt wird.
+Hierbei ist zu beachten, dass es nicht möglich ist, den Gradienten für einen Voxel direkt zu berechnen. Der Gradient drückt die Veränderung der Intensitätswerte im Raum aus, folglich kann er immer nur zwischen mehreren Punkten berechnet werden. Deshalb liegt er im Falle eines dreidimensionalen Volumens im Zentrum eines Würfels, der von 8 benachbarten Voxeln aufgespannt wird.
 \newline
 In \autoref{fig:nachbarschaft} ist zu erkennen, wie der Gradient im Zentrum der acht Voxel liegt. Des Weiteren ist die 4x4x4 Nachbarschaft in Form der durchnummerierten Punkte zu sehen.
 \newline
@@ -80,7 +80,7 @@ Die Parameter $A$, $B$, $C$, $E$, $F$, $G$, $H$, $I$ ,$J$, $K$  können mithilfe
 
 \subsection{LH-Werte}
 
-Als nächster Schritt folgt die Berechnung der Low- und High-Werte. Diese beschreiben die Grenzen zwischen zwei verschiedenen Materialien. Liegt ein Voxel innerhalb eines Materials, so sind seine LH-Werte gleich. Liegt ein Punkt jedoch an der Grenze zweier Strukturen, so beschreibt der Low-Wert den Intensitätswert des Materials mit dem niedrigeren und der High-Wert das Material mit dem höheren Intensitätswert. Die LH-Werte eines Voxels werden berechnet, indem in die Richtung des Gradienten integriert wird. Hierfür wurde Heun's Methode, eine modifizierte Euler Methode, verwendet. Die für die Integration benutzte Formel lautet:
+Als nächster Schritt folgt die Berechnung der Low- und High-Werte. Diese beschreiben die Grenzen zwischen zwei verschiedenen Materialien. Liegt ein Voxel innerhalb eines Materials, so sind seine LH-Werte gleich. Liegt ein Punkt jedoch an der Grenze zweier Strukturen, so beschreibt der Low-Wert den Intensitätswert des Materials mit dem niedrigeren und der High-Wert das Material mit dem höheren Intensitätswert. Die LH-Werte eines Voxels werden berechnet, indem in die Richtung des Gradienten integriert wird. Hierfür wurde Heun's Methode, eine modifizierte Euler Methode, verwendet. Dies ist ein numerisches Verfahren, um gewöhnliche Differentialgleichungen mit einem Startwert zu lösen. Dabei lautet die für die Integration benutzte Formel:
 \begin{equation}
 	u_{i+1} = u_{i} + \frac{1}{2}d(\triangledown f (u_{i}) + \triangledown f(u_{i}+d \triangledown f(u_{i}))) 
 \end{equation}
