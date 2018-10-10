@@ -22,7 +22,19 @@ In \autoref{fig:nachbarschaft} ist zu erkennen, wie der Gradient im Zentrum der 
 \end{figure}
 
 
-Ein Gradient ist ein dreidimensionaler Vektor, der in die Richtung der größten Änderung der Intensitätswerte im Volumen zeigt. Gäbe es eine Funktion, die die Intensitätswerte des Volumens in der lokalen Nachbarschaft beschreibt, wäre der Gradient die Ableitung dieser Funktion. Folglich muss für die Berechnung eines Gradienten zunächst eine Intensitätsfunktion für die lokale 4x4x4 Nachbarschaft aufgestellt werden. Im Paper wird dies mit der Formel:
+Ein Gradient ist ein dreidimensionaler Vektor, der in die Richtung der größten Änderung der Intensitätswerte im Volumen zeigt. Ein Beispiel dessen ist in \autoref{fig:gradient} zu sehen. Die Gradienten zeigen von rechts nach links, in die Richtung, in der die Intensitätswerte anwachsen.
+
+
+\begin{figure}[!h] 
+\centering 
+\includegraphics[width=0.75\textwidth]{Logos/Gradient.PNG}
+\caption{Beispiel Gradienten} 
+\label{fig:gradient} 
+\end{figure}
+
+
+
+Gäbe es eine Funktion, die die Intensitätswerte des Volumens in der lokalen Nachbarschaft beschreibt, wäre der Gradient die Ableitung dieser Funktion. Folglich muss für die Berechnung eines Gradienten zunächst eine Intensitätsfunktion für die lokale 4x4x4 Nachbarschaft aufgestellt werden. Im Paper wird dies mit der Formel:
 \begin{equation}
 	f(x,y,z) = Ax^{2}+By^{2}+Cz^{2}+2Fyz+2Gzx+2Hxy+2Ix+2Jy+2Kz+D
 \end{equation}
@@ -89,6 +101,17 @@ Hierbei sind $u_{i}$ und $u_{i+1}$ die Positionen des aktuellen, beziehungsweise
 Die Integration stoppt, wenn eine lokale Extremstelle oder ein Wendepunkt erreicht wird. Diese sind daran zu erkennen, dass die Längen der Gradienten an diesen Stellen null sind. Wird ein solcher Punkt erreicht, wird der Intensitätswert des aktuell besuchten Voxels als Ergebnis für den Low- beziehungsweise High-Wert des Startvoxel gespeichert.
 \newline
 Anschließend wird ein LH-Histogramm mit allen berechneten LH-Wertpaaren erstellt. Hierbei sind auf der x-Achse die Low-Werte und auf der y-Achse die High-Werte angesiedelt. Die Werte der Achsen reichen von null bis zum jeweiligen Maximum der Low- beziehungsweise High-Werte.
+\newline
+Ein simples Beispiel der LH-Werte ist in \autoref{fig:lh_bsp} zu sehen. Es ist zu erkennen, dass die Voxel innerhalb der Materialien als LH-Werte den Intensitätswert des jeweiligen Materials besitzen. Der Voxel an der Grenze hat als Low- und High-Werte die Intensitäten der beiden Materialien zwischen denen die Grenze verläuft.
+
+
+
+\begin{figure}[!h] 
+\centering 
+\includegraphics[width=0.75\textwidth]{Logos/LH.PNG}
+\caption{Beispiel LH-Werte} 
+\label{fig:lh_bsp} 
+\end{figure}
 
 
 
